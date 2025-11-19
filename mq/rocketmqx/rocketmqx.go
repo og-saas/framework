@@ -109,11 +109,9 @@ func (r *RocketMqx) processMessages(consumer golang.SimpleConsumer, handler conf
 		if err != nil {
 			if strings.Contains(err.Error(), v2.Code_name[int32(v2.Code_MESSAGE_NOT_FOUND)]) {
 				// 无消息时短暂休眠
-				//time.Sleep(time.Duration(r.config.ConsumerConfig.AwaitDuration/3) * time.Second)
 				continue
 			}
 			logx.Errorf("拉取消息失败，topic:%s,原因为:%s", topic, err.Error())
-			//time.Sleep(time.Duration(r.config.ConsumerConfig.AwaitDuration/2) * time.Second)
 			continue
 		}
 
