@@ -57,7 +57,7 @@ func (l *GormLogger) Trace(ctx context.Context, begin time.Time, fc func() (sql 
 	if err != nil {
 		// 记录未找到的错误使用 warning 等级
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			logx.WithContext(ctx).Infow("Database ErrRecordNotFound", logFields...)
+			logx.WithContext(ctx).Debugw("Database ErrRecordNotFound", logFields...)
 		} else {
 			// 其他错误使用 error 等级
 			logFields = append(logFields, logx.Field("catch error", err))
@@ -70,6 +70,6 @@ func (l *GormLogger) Trace(ctx context.Context, begin time.Time, fc func() (sql 
 	}
 	// 非生产模式下，记录所有 SQL 请求
 	if l.c.Debug {
-		logx.WithContext(ctx).Infow("Database Query", logFields...)
+		logx.WithContext(ctx).Debugw("Database Query", logFields...)
 	}
 }
