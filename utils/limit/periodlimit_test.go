@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/og-game/glib/stores/redisx"
-	"github.com/og-game/glib/stores/redisx/config"
-
+	"github.com/og-sass/framework/stores/redisx"
+	"github.com/og-sass/framework/stores/redisx/config"
 	"github.com/stretchr/testify/assert"
 )
 

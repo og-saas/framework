@@ -10,7 +10,7 @@ func RpcInterceptor(ctx context.Context, req any, info *grpc.UnaryServerInfo, ha
 	resp, err = handler(ctx, req)
 	if err != nil {
 		//causeErr := errors.Cause(err)
-		
+
 	}
 	return
 }
