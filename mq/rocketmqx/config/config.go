@@ -18,12 +18,14 @@ type Config struct {
 }
 
 type ConsumerConfig struct {
-	ConsumerGroup     string             `json:"consumer_group"`
-	Handler           PullMessageHandler `json:"handler"`
-	AwaitDuration     int64              `json:"await_duration,default=5"`
-	PullBatchSize     int                `json:"pull_batch_size,default=32"`
-	InvisibleDuration int64              `json:"invisible_duration,default=60"`
-	TopicRelations    TopicRelation      `json:"topic_relations,optional"`
+	ConsumerGroup              string             `json:"consumer_group"`
+	Handler                    PullMessageHandler `json:"handler"`
+	AwaitDuration              int64              `json:"await_duration,default=5"`
+	PullBatchSize              int                `json:"pull_batch_size,default=32"`
+	InvisibleDuration          int64              `json:"invisible_duration,default=60"`
+	PushConsumptionThreadCount int32              `json:"push_consumption_thread_count,default=20"`
+	PushMaxCacheMessageCount   int32              `json:"push_max_cache_message_count,default=1024"`
+	TopicRelations             TopicRelation      `json:"topic_relations,optional"`
 }
 
 type TopicRelation struct {
@@ -33,3 +35,4 @@ type TopicRelation struct {
 }
 
 type PullMessageHandler func(ctx context.Context, messages ...*golang.MessageView) (bool, error)
+type PushMessageHandler func(messages ...*golang.MessageView) (bool, error)

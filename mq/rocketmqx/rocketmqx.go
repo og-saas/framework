@@ -105,8 +105,8 @@ func (r *RocketMqx) NewPushConsumer(handler func(*rmq_client.MessageView) rmq_cl
 		rmq_client.WithPushMessageListener(&rmq_client.FuncMessageListener{
 			Consume: handler,
 		}),
-		rmq_client.WithPushConsumptionThreadCount(20),
-		rmq_client.WithPushMaxCacheMessageCount(1024),
+		rmq_client.WithPushConsumptionThreadCount(r.config.ConsumerConfig.PushConsumptionThreadCount),
+		rmq_client.WithPushMaxCacheMessageCount(r.config.ConsumerConfig.PushMaxCacheMessageCount),
 	)
 	if err != nil {
 		logx.Errorf("NewPushConsumer err: %s", err.Error())
