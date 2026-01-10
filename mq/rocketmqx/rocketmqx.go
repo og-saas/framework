@@ -91,7 +91,7 @@ func (r *RocketMqx) NewPullConsumer(handler config2.PullMessageHandler) (simpleC
 	return
 }
 
-func (r *RocketMqx) NewPushConsumer(handler func(*rmq_client.MessageView) rmq_client.ConsumerResult) (pushConsumer rmq_client.PushConsumer, err error) {
+func (r *RocketMqx) NewPushConsumer(handler config2.PushMessageHandler) (pushConsumer rmq_client.PushConsumer, err error) {
 	relations := map[string]*rmq_client.FilterExpression{
 		r.config.ConsumerConfig.TopicRelations.Topic: rmq_client.NewFilterExpressionWithType(
 			r.config.ConsumerConfig.TopicRelations.Expression,
