@@ -4,17 +4,21 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/og-saas/framework/utils/contextkey"
+	"github.com/og-saas/framework/utils/tenant"
 	"time"
 
-	"github.com/og-saas/framework/pkg/consts"
-	"github.com/og-saas/framework/pkg/contextkey"
-	"github.com/samber/lo"
 	"github.com/zeromicro/go-zero/core/logx"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
 
-const dbOperation = "DB"
+const (
+	dbOperationContent = "DB"
+	dbSqlField         = "sql"
+	dbRowsField        = "rows"
+	dbDurationField    = "duration"
+)
 
 type GormLogger struct {
 	logger.Config
@@ -33,19 +37,19 @@ func (l *GormLogger) LogMode(level logger.LogLevel) logger.Interface {
 
 func (l *GormLogger) Info(ctx context.Context, msg string, data ...interface{}) {
 	if l.LogLevel >= logger.Info {
-		logx.WithContext(ctx).Infow(fmt.Sprintf(msg, data...), logx.Field("tenant", getTenantId(ctx)))
+		logx.WithContext(ctx).Infow(fmt.Sprintf(msg, data...), logx.Field(contextkey.TenantKey.Name(), tenant.GetTenantId(ctx)))
 	}
 }
 
 func (l *GormLogger) Warn(ctx context.Context, msg string, data ...interface{}) {
 	if l.LogLevel >= logger.Warn {
-		logx.WithContext(ctx).Sloww(fmt.Sprintf(msg, data...), logx.Field("tenant", getTenantId(ctx)))
+		logx.WithContext(ctx).Sloww(fmt.Sprintf(msg, data...), logx.Field(contextkey.TenantKey.Name(), tenant.GetTenantId(ctx)))
 	}
 }
 
 func (l *GormLogger) Error(ctx context.Context, msg string, data ...interface{}) {
 	if l.LogLevel >= logger.Error {
-		logx.WithContext(ctx).Errorw(fmt.Sprintf(msg, data...), logx.Field("tenant", getTenantId(ctx)))
+		logx.WithContext(ctx).Errorw(fmt.Sprintf(msg, data...), logx.Field(contextkey.TenantKey.Name(), tenant.GetTenantId(ctx)))
 	}
 }
 
@@ -58,24 +62,19 @@ func (l *GormLogger) Trace(ctx context.Context, begin time.Time, fc func() (sql 
 	sql, rows := fc()
 
 	fields := []logx.LogField{
-		logx.Field("sql", sql),
-		logx.Field("rows", rows),
-		logx.Field("duration", float64(elapsed.Nanoseconds())/1e6),
-		logx.Field("tenant", getTenantId(ctx)),
+		logx.Field(dbSqlField, sql),
+		logx.Field(dbRowsField, rows),
+		logx.Field(dbDurationField, float64(elapsed.Nanoseconds())/1e6),
+		logx.Field(contextkey.TenantKey.Name(), tenant.GetTenantId(ctx)),
 	}
 
 	switch {
 	case err != nil && l.LogLevel >= logger.Error && (!errors.Is(err, gorm.ErrRecordNotFound) || !l.IgnoreRecordNotFoundError):
 		fields = append(fields, logx.Field("err", err))
-		logx.WithContext(ctx).Errorw(dbOperation, fields...)
+		logx.WithContext(ctx).Errorw(dbOperationContent, fields...)
 	case elapsed > l.SlowThreshold && l.SlowThreshold > 0 && l.LogLevel >= logger.Warn:
-		logx.WithContext(ctx).Sloww(dbOperation, fields...)
+		logx.WithContext(ctx).Sloww(dbOperationContent, fields...)
 	case l.LogLevel == logger.Info:
-		logx.WithContext(ctx).Infow(dbOperation, fields...)
+		logx.WithContext(ctx).Infow(dbOperationContent, fields...)
 	}
-}
-
-func getTenantId(ctx context.Context) any {
-	tenantId := contextkey.GetContext[any](ctx, contextkey.TenantKey)
-	return lo.Ternary(tenantId != nil, tenantId, consts.Default)
 }

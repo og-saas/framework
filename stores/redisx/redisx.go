@@ -2,11 +2,9 @@ package redisx
 
 import (
 	"context"
-	"fmt"
+	"github.com/og-saas/framework/utils/tenant"
 	"sync"
 
-	"github.com/og-saas/framework/pkg/consts"
-	"github.com/og-saas/framework/pkg/contextkey"
 	"github.com/redis/go-redis/v9"
 )
 
@@ -17,7 +15,7 @@ type RDBEngine struct {
 }
 
 func Must(c Config) {
-	must(consts.Default, c)
+	must(tenant.Default, c)
 }
 
 func MustTenant(providers ...TenantConfigProvider) {
@@ -27,18 +25,13 @@ func MustTenant(providers ...TenantConfigProvider) {
 			panic(err)
 		}
 
-		for tenant, cfg := range configMap {
-			must(tenant, cfg)
+		for key, val := range configMap {
+			must(key, val)
 		}
 	}
-	fmt.Println("rdb: database initialized")
 }
 
-func must(tenant string, cfg Config) {
-	if tenant == "" {
-		panic("rdb: empty tenant")
-	}
-
+func must(tenant int64, cfg Config) {
 	rdb := cfg.newRdb()
 	if rdb == nil {
 		panic("rdb init failed")
@@ -68,13 +61,11 @@ func (c Config) newRdb() (rdb redis.UniversalClient) {
 
 func (e *RDBEngine) RDB(ctx context.Context) redis.UniversalClient {
 
-	tenant := contextkey.GetContext[string](ctx, contextkey.TenantKey)
-
-	if rdb, ok := e.getClientForTenant(tenant); ok {
+	if rdb, ok := e.getClientForTenant(tenant.GetTenantId(ctx)); ok {
 		return rdb
 	}
 
-	if rdb, ok := e.getClientForTenant(consts.Default); ok {
+	if rdb, ok := e.getClientForTenant(tenant.Default); ok {
 		return rdb
 	}
 
@@ -83,8 +74,8 @@ func (e *RDBEngine) RDB(ctx context.Context) redis.UniversalClient {
 }
 
 // getClientForTenant 从 pool 安全获取 redis client
-func (e *RDBEngine) getClientForTenant(tenant string) (redis.UniversalClient, bool) {
-	v, ok := e.pool.Load(tenant)
+func (e *RDBEngine) getClientForTenant(tenantId int64) (redis.UniversalClient, bool) {
+	v, ok := e.pool.Load(tenantId)
 	if !ok || v == nil {
 		return nil, false
 	}

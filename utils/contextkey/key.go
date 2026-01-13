@@ -5,6 +5,10 @@ type (
 	tenantKeyType struct{}
 )
 
+func (tenantKeyType) Name() string {
+	return "tenant_id"
+}
+
 // 全局 key 实例
 var (
 	TenantKey = tenantKeyType{}
