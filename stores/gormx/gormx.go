@@ -45,11 +45,11 @@ func (e *DBEngine) DB(drivers ...string) *DBManager {
 
 func (s *DBManager) WithContext(ctx context.Context) *gorm.DB {
 	if db, ok := s.getClientForTenant(tenant.GetTenantId(ctx)); ok {
-		return db
+		return db.WithContext(ctx)
 	}
 
 	if db, ok := s.getClientForTenant(tenant.Default); ok {
-		return db
+		return db.WithContext(ctx)
 	}
 	panic("gorm: database not initialized")
 }
