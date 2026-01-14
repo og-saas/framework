@@ -15,7 +15,7 @@ func Do(ctx context.Context) *resty.Request {
 	once.Do(func() {
 		engine = MustClient()
 	})
-	return engine.R().SetContext(ctx)
+	return engine.R().SetContext(ctx).SetDebug(true)
 }
 
 func New(ctx context.Context, fs ...func(cli *resty.Client)) *resty.Request {

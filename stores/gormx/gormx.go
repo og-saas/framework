@@ -2,10 +2,10 @@ package gormx
 
 import (
 	"context"
+	"github.com/og-saas/framework/utils/tenant"
+	"github.com/spf13/cast"
 	"sync"
 
-	"github.com/og-saas/framework/pkg/consts"
-	"github.com/og-saas/framework/pkg/contextkey"
 	"gorm.io/gorm"
 )
 
@@ -44,19 +44,18 @@ func (e *DBEngine) DB(drivers ...string) *DBManager {
 }
 
 func (s *DBManager) WithContext(ctx context.Context) *gorm.DB {
-	tenant := contextkey.GetContext[string](ctx, contextkey.TenantKey)
-	if db, ok := s.getClientForTenant(tenant); ok {
-		return db
+	if db, ok := s.getClientForTenant(tenant.GetTenantId(ctx)); ok {
+		return db.WithContext(ctx)
 	}
 
-	if db, ok := s.getClientForTenant(consts.Default); ok {
-		return db
+	if db, ok := s.getClientForTenant(tenant.Default); ok {
+		return db.WithContext(ctx)
 	}
 	panic("gorm: database not initialized")
 }
 
-func (s *DBManager) getClientForTenant(tenant string) (*gorm.DB, bool) {
-	v, ok := s.pool.Load(tenant)
+func (s *DBManager) getClientForTenant(tenantId int64) (*gorm.DB, bool) {
+	v, ok := s.pool.Load(tenantId)
 	if !ok || v == nil {
 		return nil, false
 	}
@@ -65,7 +64,7 @@ func (s *DBManager) getClientForTenant(tenant string) (*gorm.DB, bool) {
 }
 
 func Must(configs ...Config) {
-	must(consts.Default, configs...)
+	must(tenant.Default, configs...)
 }
 
 func MustTenant(providers ...TenantConfigProvider) {
@@ -75,16 +74,14 @@ func MustTenant(providers ...TenantConfigProvider) {
 			panic(err)
 		}
 
-		for tenant, cfg := range configMap {
-			must(tenant, cfg)
+		for key, val := range configMap {
+			tenantId := cast.ToInt64(key)
+			must(tenantId, val)
 		}
 	}
 }
 
-func must(tenant string, configs ...Config) {
-	if tenant == "" {
-		panic("gorm: empty tenant")
-	}
+func must(tenantId int64, configs ...Config) {
 	if len(configs) == 0 {
 		panic("gorm: empty config")
 	}
@@ -120,6 +117,6 @@ func must(tenant string, configs ...Config) {
 			panic("gorm: unknown driver")
 		}
 
-		mgr.pool.Store(tenant, db)
+		mgr.pool.Store(tenantId, db)
 	}
 }
