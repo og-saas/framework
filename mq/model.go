@@ -1,7 +1,7 @@
 package mq
 
-// UserRechargeNotify 用户成功充值推送
-type UserRechargeNotify struct {
+// UserWalletTransferNotify 用户钱包交易通知
+type UserWalletTransferNotify struct {
 	UserId          int64  `json:"user_id,omitempty"`          // 用户ID
 	SiteId          int64  `json:"site_id,omitempty"`          // 站点ID
 	ChannelId       int64  `json:"channel_id,omitempty"`       // 渠道ID
