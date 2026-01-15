@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/og-saas/framework/utils/metadatakey"
 	"github.com/og-saas/framework/utils/tenant"
+	"github.com/spf13/cast"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
@@ -76,4 +77,52 @@ type tenantServerStream struct {
 
 func (t *tenantServerStream) Context() context.Context {
 	return t.ctx
+}
+
+// TenantUnaryClientInterceptor 返回一个 Unary 客户端拦截器，自动在请求中注入 tenantId
+func TenantUnaryClientInterceptor() grpc.UnaryClientInterceptor {
+	return func(
+		ctx context.Context,
+		method string,
+		req, reply any,
+		cc *grpc.ClientConn,
+		invoker grpc.UnaryInvoker,
+		opts ...grpc.CallOption,
+	) error {
+		md, ok := metadata.FromOutgoingContext(ctx)
+		if !ok {
+			md = metadata.New(nil)
+		} else {
+			md = md.Copy() // 避免污染原 context
+		}
+
+		md.Set(metadatakey.TenantIdMetadataKey, cast.ToString(tenant.GetTenantId(ctx)))
+		ctx = metadata.NewOutgoingContext(ctx, md)
+
+		return invoker(ctx, method, req, reply, cc, opts...)
+	}
+}
+
+// TenantStreamClientInterceptor 返回一个 Stream 客户端拦截器，自动在请求中注入 tenantId
+func TenantStreamClientInterceptor() grpc.StreamClientInterceptor {
+	return func(
+		ctx context.Context,
+		desc *grpc.StreamDesc,
+		cc *grpc.ClientConn,
+		method string,
+		streamer grpc.Streamer,
+		opts ...grpc.CallOption,
+	) (grpc.ClientStream, error) {
+		md, ok := metadata.FromOutgoingContext(ctx)
+		if !ok {
+			md = metadata.New(nil)
+		} else {
+			md = md.Copy()
+		}
+
+		md.Set(metadatakey.TenantIdMetadataKey, cast.ToString(tenant.GetTenantId(ctx)))
+		ctx = metadata.NewOutgoingContext(ctx, md)
+
+		return streamer(ctx, desc, cc, method, opts...)
+	}
 }

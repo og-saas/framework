@@ -52,3 +52,17 @@ func (p *Pagination) GetPage() int {
 func (p *Pagination) GetPageSize() int {
 	return p.Limit()
 }
+
+func NewPagination(pageNum, pageSize int64) *Pagination {
+	return &Pagination{
+		Page:          int(pageNum),
+		PageSize:      int(pageSize),
+		NotQueryTotal: false,
+		ForcePageSize: false,
+	}
+}
+
+// HasNext 是否有下一页
+func (p *Pagination) HasNext() bool {
+	return p.TotalPage > int64(p.Page)
+}

@@ -2,7 +2,6 @@ package gormx
 
 import (
 	"fmt"
-	"github.com/og-saas/framework/stores/gormx/plugin"
 	"strings"
 	"time"
 
@@ -95,6 +94,6 @@ func (c Config) NewDB() *gorm.DB {
 		panic(fmt.Errorf("gorm DB() error: %w", err))
 	}
 
-	plugin.NewTenantPlugin(c.TenantDBName).Register(db)
+	//plugin.NewTenantPlugin(c.TenantDBName).Register(db)
 	return db
 }
