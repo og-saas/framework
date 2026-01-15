@@ -37,6 +37,8 @@ const (
 	CtxRegisterDevice = "register_device"
 	// CtxIsGuest 是否游客
 	CtxIsGuest = "is_guest"
+	// CtxTenantId 租户id
+	CtxTenantId = "tenant_id"
 )
 
 const (
