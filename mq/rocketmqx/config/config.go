@@ -15,6 +15,7 @@ type Config struct {
 	NameSpace              string         `json:"namespace,optional"`
 	SecurityToken          string         `json:"security_token,optional"`
 	ConsumerConfig         ConsumerConfig `json:"consumer_config,optional"`
+	ProducerTopic          string         `json:"producer_topic,optional"` // 513版本初始化生产者必须有topic才能成功
 }
 
 type ConsumerConfig struct {
