@@ -8,22 +8,20 @@ import (
 type Metadata string
 
 const (
-	Authorization      Metadata = "Authorization"       // 授权
-	UserId             Metadata = "user_id"             // 用户id
-	Username           Metadata = "username"            // 用户名
-	ChannelId          Metadata = "channel_id"          // 渠道id
-	SiteId             Metadata = "site_id"             // 站点id
-	Language           Metadata = "language"            // 语言
-	IP                 Metadata = "ip"                  // ip
-	Currency           Metadata = "currency"            // 币种
-	Domain             Metadata = "domain"              // 域名
-	Region             Metadata = "region"              // 区域
-	DeviceId           Metadata = "Device-Id"           // 设备id
-	DeviceType         Metadata = "Device-Type"         // 设备类型
-	DeviceOS           Metadata = "Device-OS"           // 设备操作系统
-	BrowserFingerprint Metadata = "browser_fingerprint" // 浏览器指纹
-	AppVersion         Metadata = "App-Version"         // app版本
-	UserAgent          Metadata = "User-Agent"          // 浏览器用户代理
+	Authorization Metadata = "Authorization" // 授权
+	UserId        Metadata = "user_id"       // 用户id
+	Username      Metadata = "username"      // 用户名
+	ChannelId     Metadata = "channel_id"    // 渠道id
+	SiteId        Metadata = "site_id"       // 站点id
+	Language      Metadata = "language"      // 语言
+	IP            Metadata = "ip"            // ip
+	Currency      Metadata = "currency"      // 币种
+	Domain        Metadata = "domain"        // 域名
+	DeviceId      Metadata = "Device-Id"     // 设备id
+	DeviceType    Metadata = "Device-Type"   // 设备类型
+	DeviceOS      Metadata = "Device-OS"     // 设备操作系统
+	AppVersion    Metadata = "App-Version"   // app版本
+	UserAgent     Metadata = "User-Agent"    // 浏览器用户代理
 )
 
 // GetKey 获取元数据key
