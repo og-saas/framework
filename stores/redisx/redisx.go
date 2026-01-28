@@ -2,8 +2,9 @@ package redisx
 
 import (
 	"context"
-	"github.com/og-saas/framework/utils/tenant"
 	"sync"
+
+	"github.com/og-saas/framework/utils/tenant"
 
 	"github.com/redis/go-redis/v9"
 )
@@ -38,14 +39,14 @@ func must(tenant int64, cfg Config) {
 	once.Do(func() {
 		Engine = &RDBEngine{}
 	})
-	rdb := cfg.newRdb()
+	rdb := cfg.NewRdb()
 	if rdb == nil {
 		panic("rdb init failed")
 	}
 	Engine.pool.Store(tenant, rdb)
 }
 
-func (c Config) newRdb() (rdb redis.UniversalClient) {
+func (c Config) NewRdb() (rdb redis.UniversalClient) {
 	rdb = redis.NewUniversalClient(&redis.UniversalOptions{
 		Addrs:      c.Addrs,
 		Username:   c.Username,
