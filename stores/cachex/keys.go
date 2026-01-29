@@ -3,16 +3,20 @@ package cachex
 import (
 	"context"
 	"fmt"
+
 	"github.com/og-saas/framework/utils/tenant"
 )
 
 type KeyType interface {
-	CacheKey | TenantCacheKey | string
+	CacheKey | TenantCacheKey | LockKey | TenantLockKey | string
 }
 
 type (
 	CacheKey       string
 	TenantCacheKey string
+
+	LockKey       string
+	TenantLockKey string
 )
 
 func (key TenantCacheKey) String(ctx context.Context, args ...any) string {
@@ -20,6 +24,14 @@ func (key TenantCacheKey) String(ctx context.Context, args ...any) string {
 }
 
 func (key CacheKey) String(args ...any) string {
+	return fmt.Sprintf(string(key), args...)
+}
+
+func (key TenantLockKey) String(ctx context.Context, args ...any) string {
+	return fmt.Sprintf(string(key), append([]any{tenant.GetTenantId(ctx)}, args...)...)
+}
+
+func (key LockKey) String(args ...any) string {
 	return fmt.Sprintf(string(key), args...)
 }
 

@@ -2,6 +2,8 @@ package interceptor
 
 import (
 	"context"
+	"strconv"
+
 	"github.com/og-saas/framework/utils/metadatakey"
 	"github.com/og-saas/framework/utils/tenant"
 	"github.com/spf13/cast"
@@ -9,7 +11,6 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
-	"strconv"
 )
 
 func TenantUnaryServerInterceptor() grpc.UnaryServerInterceptor {
