@@ -19,3 +19,5 @@ func (t StatusType) Uint32() uint32 {
 func (t StatusType) Bool() bool {
 	return t == StatusTypeEnable
 }
+
+const DefaultLanguage = "en-US"
