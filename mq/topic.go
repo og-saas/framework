@@ -7,6 +7,8 @@ import (
 var (
 	// TopicUserWalletTransferNotify 用户钱包交易通知
 	TopicUserWalletTransferNotify = "user_wallet_transfer_notify"
+	// TopicUserLoginLogNotify 用户登录日志通知
+	TopicUserLoginLogNotify = "user_login_log_notify"
 )
 
 func UpdateTopicPrefix(prefixes ...string) (prefix string) {
