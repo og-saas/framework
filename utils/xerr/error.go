@@ -31,7 +31,7 @@ func NewError(code ErrCode, data any) Error {
 	return Error{
 		Code: code,
 		Data: data,
-		Msg:  "",
+		Msg:  code.String(),
 	}
 }
 
