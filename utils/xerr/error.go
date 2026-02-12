@@ -2,6 +2,7 @@ package xerr
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/zeromicro/go-zero/core/stringx"
 
@@ -92,8 +93,8 @@ func (err Error) GetMessage(language string) string {
 		return err.Msg
 	}
 
-	// 未找到code，返回默认错误信息
-	languageMsgMap, ok := confVal.ErrorMessages[err.Code.String()]
+	// 未找到code，返回默认错误信息\
+	languageMsgMap, ok := confVal.ErrorMessages[strconv.Itoa(err.Code.Int())]
 	if !ok {
 		return err.Msg
 	}
