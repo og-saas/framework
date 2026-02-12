@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+type ErrCode int
+
 const (
 	// 通用错误码
 	ErrCodeSuccess             ErrCode = 0   // 成功
@@ -31,8 +33,6 @@ const (
 	// 游戏相关
 	ErrCodeGameEnterLogExists ErrCode = 20001 // 用户进入游戏日志已存在
 )
-
-type ErrCode int
 
 func (s ErrCode) Int() int {
 	return int(s)
