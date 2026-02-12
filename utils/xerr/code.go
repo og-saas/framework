@@ -1,7 +1,7 @@
 package xerr
 
 //go:generate stringer -type=ErrCode -output=code_string.go --linecomment
-type ErrCode int
+type ErrCode uint32
 
 // 通用错误码
 const (
