@@ -26,6 +26,7 @@ const (
 	ErrCodeTemporaryTokenInvalidError ErrCode = 10008 // 账号更新令牌无效
 	ErrCodeSelfHadBindError           ErrCode = 10009 // 当前你已绑定该账号
 	ErrCodeBindSameError              ErrCode = 10010 // 换绑账号跟老账号相同
+	ErrCodeUserAbnormalError          ErrCode = 10011 // 用户账号状态异常
 
 	// 游戏相关
 	ErrCodeGameEnterLogExists ErrCode = 20001 // 用户进入游戏日志已存在
