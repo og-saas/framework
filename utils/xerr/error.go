@@ -2,7 +2,9 @@ package xerr
 
 import (
 	"fmt"
+
 	"github.com/zeromicro/go-zero/core/stringx"
+
 	"sync"
 	"sync/atomic"
 )
