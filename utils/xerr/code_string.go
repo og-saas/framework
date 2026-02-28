@@ -28,7 +28,7 @@ func _() {
 	_ = x[ErrCodeBindSameError-10010]
 	_ = x[ErrCodeUserAbnormalError-10011]
 	_ = x[ErrCodeGoogleAuthError-10012]
-	_ = x[ErrCodeAvatarTimeError-10013]
+	_ = x[ErrCodeNicknameTimeError-10013]
 	_ = x[ErrCodeGameEnterLogExists-20001]
 	_ = x[ErrCodeWithdrawBalanceNotEnough-30001]
 	_ = x[ErrCodeWithdrawAmountOutOfRange-30002]
@@ -40,7 +40,7 @@ const (
 	_ErrCode_name_2 = "ForbiddenNotFound"
 	_ErrCode_name_3 = "ServerInternalError"
 	_ErrCode_name_4 = "ServiceUnavailable"
-	_ErrCode_name_5 = "UserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorGoogleAuthErrorAvatarTimeError"
+	_ErrCode_name_5 = "UserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorGoogleAuthErrorNicknameTimeError"
 	_ErrCode_name_6 = "GameEnterLogExists"
 	_ErrCode_name_7 = "WithdrawBalanceNotEnoughWithdrawAmountOutOfRange"
 )
@@ -49,7 +49,7 @@ var (
 	_ErrCode_index_0 = [...]uint8{0, 7, 11}
 	_ErrCode_index_1 = [...]uint8{0, 10, 22}
 	_ErrCode_index_2 = [...]uint8{0, 9, 17}
-	_ErrCode_index_5 = [...]uint8{0, 13, 23, 35, 47, 59, 76, 100, 126, 142, 155, 172, 187, 202}
+	_ErrCode_index_5 = [...]uint8{0, 13, 23, 35, 47, 59, 76, 100, 126, 142, 155, 172, 187, 204}
 	_ErrCode_index_7 = [...]uint8{0, 24, 48}
 )
 
