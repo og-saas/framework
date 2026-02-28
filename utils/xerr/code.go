@@ -57,6 +57,8 @@ const (
 const (
 	// ErrCodeGameEnterLogExists 用户进入游戏日志已存在
 	ErrCodeGameEnterLogExists ErrCode = 20001 // GameEnterLogExists
+	// ErrCodeGameEnterBalanceNotEnough 用户进入游戏余额不足
+	ErrCodeGameEnterBalanceNotEnough ErrCode = 20002 // ErrCodeGameEnterLogExists
 )
 
 // 财务相关
