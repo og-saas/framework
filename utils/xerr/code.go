@@ -49,6 +49,8 @@ const (
 	ErrCodeUserAbnormalError ErrCode = 10011 // UserAbnormalError
 	// ErrCodeGoogleAuthError 谷歌校验失败，请重试
 	ErrCodeGoogleAuthError ErrCode = 10012 // GoogleAuthError
+	// ErrCodeAvatarTimeError 头像修改时间不满足
+	ErrCodeAvatarTimeError ErrCode = 10013 // AvatarTimeError
 )
 
 // 游戏相关

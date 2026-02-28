@@ -12,6 +12,7 @@ require (
 	github.com/jinzhu/copier v0.4.0
 	github.com/redis/go-redis/v9 v9.17.2
 	github.com/samber/lo v1.52.0
+	github.com/shopspring/decimal v1.4.0
 	github.com/sony/sonyflake v1.3.0
 	github.com/spf13/cast v1.10.0
 	github.com/zeromicro/go-zero v1.9.4
@@ -72,7 +73,6 @@ require (
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
 	github.com/pierrec/lz4/v4 v4.1.23 // indirect
 	github.com/segmentio/asm v1.2.1 // indirect
-	github.com/shopspring/decimal v1.4.0 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
 	github.com/valyala/fastrand v1.1.0 // indirect
 	go.etcd.io/etcd/api/v3 v3.6.7 // indirect

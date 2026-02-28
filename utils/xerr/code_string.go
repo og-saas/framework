@@ -28,6 +28,7 @@ func _() {
 	_ = x[ErrCodeBindSameError-10010]
 	_ = x[ErrCodeUserAbnormalError-10011]
 	_ = x[ErrCodeGoogleAuthError-10012]
+	_ = x[ErrCodeAvatarTimeError-10013]
 	_ = x[ErrCodeGameEnterLogExists-20001]
 	_ = x[ErrCodeWithdrawBalanceNotEnough-30001]
 	_ = x[ErrCodeWithdrawAmountOutOfRange-30002]
@@ -39,7 +40,7 @@ const (
 	_ErrCode_name_2 = "ForbiddenNotFound"
 	_ErrCode_name_3 = "ServerInternalError"
 	_ErrCode_name_4 = "ServiceUnavailable"
-	_ErrCode_name_5 = "UserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorGoogleAuthError"
+	_ErrCode_name_5 = "UserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorGoogleAuthErrorAvatarTimeError"
 	_ErrCode_name_6 = "GameEnterLogExists"
 	_ErrCode_name_7 = "WithdrawBalanceNotEnoughWithdrawAmountOutOfRange"
 )
@@ -48,13 +49,13 @@ var (
 	_ErrCode_index_0 = [...]uint8{0, 7, 11}
 	_ErrCode_index_1 = [...]uint8{0, 10, 22}
 	_ErrCode_index_2 = [...]uint8{0, 9, 17}
-	_ErrCode_index_5 = [...]uint8{0, 13, 23, 35, 47, 59, 76, 100, 126, 142, 155, 172, 187}
+	_ErrCode_index_5 = [...]uint8{0, 13, 23, 35, 47, 59, 76, 100, 126, 142, 155, 172, 187, 202}
 	_ErrCode_index_7 = [...]uint8{0, 24, 48}
 )
 
 func (i ErrCode) String() string {
 	switch {
-	case 0 <= i && i <= 1:
+	case i <= 1:
 		return _ErrCode_name_0[_ErrCode_index_0[i]:_ErrCode_index_0[i+1]]
 	case 400 <= i && i <= 401:
 		i -= 400
@@ -66,7 +67,7 @@ func (i ErrCode) String() string {
 		return _ErrCode_name_3
 	case i == 503:
 		return _ErrCode_name_4
-	case 10001 <= i && i <= 10012:
+	case 10001 <= i && i <= 10013:
 		i -= 10001
 		return _ErrCode_name_5[_ErrCode_index_5[i]:_ErrCode_index_5[i+1]]
 	case i == 20001:
