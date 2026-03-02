@@ -51,6 +51,9 @@ const (
 	ErrCodeGoogleAuthError ErrCode = 10012 // GoogleAuthError
 	// ErrCodeNicknameTimeError 昵称修改时间不满足
 	ErrCodeNicknameTimeError ErrCode = 10013 // NicknameTimeError
+	// ErrCodeMaxNumberError 最大数量上限
+	ErrCodeMaxNumberError ErrCode = 10014 // MaxNumberError
+
 )
 
 // 游戏相关
