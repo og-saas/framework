@@ -3,6 +3,7 @@ package schedule
 import "github.com/shopspring/decimal"
 
 type CheckGameTransferPayload struct {
+	RecordId           int64           `json:"record_id"`             // 转账记录ID
 	SiteId             int64           `json:"site_id"`               // 站点ID
 	UserId             int64           `json:"user_id"`               // 用户ID
 	CurrencyCode       string          `json:"currency_code"`         // 币种
