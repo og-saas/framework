@@ -29,7 +29,10 @@ func _() {
 	_ = x[ErrCodeUserAbnormalError-10011]
 	_ = x[ErrCodeGoogleAuthError-10012]
 	_ = x[ErrCodeNicknameTimeError-10013]
+	_ = x[ErrCodeMaxNumberError-10014]
+	_ = x[ErrCodeBalanceRetrievingError-10015]
 	_ = x[ErrCodeGameEnterLogExists-20001]
+	_ = x[ErrCodeGameEnterBalanceNotEnough-20002]
 	_ = x[ErrCodeWithdrawBalanceNotEnough-30001]
 	_ = x[ErrCodeWithdrawAmountOutOfRange-30002]
 }
@@ -40,8 +43,8 @@ const (
 	_ErrCode_name_2 = "ForbiddenNotFound"
 	_ErrCode_name_3 = "ServerInternalError"
 	_ErrCode_name_4 = "ServiceUnavailable"
-	_ErrCode_name_5 = "UserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorGoogleAuthErrorNicknameTimeError"
-	_ErrCode_name_6 = "GameEnterLogExists"
+	_ErrCode_name_5 = "UserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorGoogleAuthErrorNicknameTimeErrorMaxNumberErrorBalanceRetrievingError"
+	_ErrCode_name_6 = "GameEnterLogExistsErrCodeGameEnterLogExists"
 	_ErrCode_name_7 = "WithdrawBalanceNotEnoughWithdrawAmountOutOfRange"
 )
 
@@ -49,7 +52,8 @@ var (
 	_ErrCode_index_0 = [...]uint8{0, 7, 11}
 	_ErrCode_index_1 = [...]uint8{0, 10, 22}
 	_ErrCode_index_2 = [...]uint8{0, 9, 17}
-	_ErrCode_index_5 = [...]uint8{0, 13, 23, 35, 47, 59, 76, 100, 126, 142, 155, 172, 187, 204}
+	_ErrCode_index_5 = [...]uint8{0, 13, 23, 35, 47, 59, 76, 100, 126, 142, 155, 172, 187, 204, 218, 240}
+	_ErrCode_index_6 = [...]uint8{0, 18, 43}
 	_ErrCode_index_7 = [...]uint8{0, 24, 48}
 )
 
@@ -67,11 +71,12 @@ func (i ErrCode) String() string {
 		return _ErrCode_name_3
 	case i == 503:
 		return _ErrCode_name_4
-	case 10001 <= i && i <= 10013:
+	case 10001 <= i && i <= 10015:
 		i -= 10001
 		return _ErrCode_name_5[_ErrCode_index_5[i]:_ErrCode_index_5[i+1]]
-	case i == 20001:
-		return _ErrCode_name_6
+	case 20001 <= i && i <= 20002:
+		i -= 20001
+		return _ErrCode_name_6[_ErrCode_index_6[i]:_ErrCode_index_6[i+1]]
 	case 30001 <= i && i <= 30002:
 		i -= 30001
 		return _ErrCode_name_7[_ErrCode_index_7[i]:_ErrCode_index_7[i+1]]
