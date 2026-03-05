@@ -53,6 +53,8 @@ const (
 	ErrCodeNicknameTimeError ErrCode = 10013 // NicknameTimeError
 	// ErrCodeMaxNumberError 最大数量上限
 	ErrCodeMaxNumberError ErrCode = 10014 // MaxNumberError
+	// ErrCodeBalanceRetrievingError 余额找回中，请稍后
+	ErrCodeBalanceRetrievingError ErrCode = 10015 // BalanceRetrievingError
 
 )
 
