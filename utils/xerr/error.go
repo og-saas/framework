@@ -3,11 +3,9 @@ package xerr
 import (
 	"fmt"
 	"strconv"
+	"sync/atomic"
 
 	"github.com/zeromicro/go-zero/core/stringx"
-
-	"sync"
-	"sync/atomic"
 )
 
 type Error struct {
@@ -16,15 +14,10 @@ type Error struct {
 	Msg  string  `json:"message"`
 }
 
-var (
-	conf atomic.Value
-	once sync.Once
-)
+var conf atomic.Value
 
 func Must(c *Config) {
-	once.Do(func() {
-		conf.Store(c)
-	})
+	conf.Store(c)
 }
 
 // NewError 业务错误
