@@ -21,3 +21,11 @@ func (t StatusType) Bool() bool {
 }
 
 const DefaultLanguage = "en-US"
+
+// TransferType 转入类型
+type TransferType uint32
+
+const (
+	TransferTypeIn  TransferType = 1 // 转入
+	TransferTypeOut TransferType = 2 // 转出
+)
