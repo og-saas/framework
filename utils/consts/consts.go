@@ -29,3 +29,5 @@ const (
 	TransferTypeIn  TransferType = 1 // 转入
 	TransferTypeOut TransferType = 2 // 转出
 )
+
+type PtbCoin int64 // 平台币
