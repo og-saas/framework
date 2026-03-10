@@ -39,6 +39,7 @@ type GameBetRecordNotify struct {
 	RoundId             string `json:"round_id,omitempty"`               // 牌局 id
 	BetCount            int64  `json:"bet_count,omitempty"`              // 投注笔数
 	BetAmount           string `json:"bet_amount,omitempty"`             // 投注金额
+	ValidBetAmount      string `json:"valid_bet_amount,omitempty"`       // 有效投注金额
 	CancelBetCount      int64  `json:"cancel_bet_count,omitempty"`       // 取消投注次数
 	CancelBetAmount     string `json:"cancel_bet_amount,omitempty"`      // 取消投注金额
 	SettleCount         int64  `json:"settle_count,omitempty"`           // 结算次数
