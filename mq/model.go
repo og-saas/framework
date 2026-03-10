@@ -73,5 +73,5 @@ type RechargeOrderNotify struct {
 	Remark                string `json:"remark,omitempty"`                   // 备注
 	SiteId                int64  `json:"site_id,omitempty"`                  // 站点 ID
 
-	RechargePtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 有效投注平台币(有效投注金额换算出来的)
+	RechargePtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 充值金额平台币(充值金额换算出来的)
 }
