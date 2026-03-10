@@ -25,26 +25,27 @@ type UserWalletTransferNotify struct {
 
 // GameBetRecordNotify 游戏下注记录通知
 type GameBetRecordNotify struct {
-	RecordNo            string         `json:"record_no,omitempty"`              // 记录号
-	UserId              int64          `json:"user_id,omitempty"`                // 用户 id
-	Username            string         `json:"username,omitempty"`               // 用户名
-	GameId              int64          `json:"game_id,omitempty"`                // 游戏 id
-	ThirdGameCategoryId int64          `json:"third_game_category_id,omitempty"` // 三方游戏分类 id
-	GameCategoryId      int64          `json:"game_category_id,omitempty"`       // 游戏分类 id
-	ThirdPlatformId     int64          `json:"third_platform_id,omitempty"`      // 三方厂商 id
-	GamePlatformId      int64          `json:"game_platform_id,omitempty"`       // 厂商 id
-	CurrencyCode        string         `json:"currency_code,omitempty"`          // 币种
-	RoundId             string         `json:"round_id,omitempty"`               // 牌局 id
-	BetAmount           string         `json:"bet_amount,omitempty"`             // 投注金额
-	CancelBetAmount     string         `json:"cancel_bet_amount,omitempty"`      // 取消投注金额
-	SettleAmount        string         `json:"settle_amount,omitempty"`          // 结算金额
-	CancelSettleAmount  string         `json:"cancel_settle_amount,omitempty"`   // 取消结算金额
-	BetStatus           int32          `json:"bet_status,omitempty"`             // 下注状态 1=未结算，2=已结算，3=已撤单
-	BetAt               int64          `json:"bet_at,omitempty"`                 // 下注时间
-	SettledAt           int64          `json:"settled_at,omitempty"`             // 结算时间
-	SiteId              int64          `json:"site_id,omitempty"`                // 站点 id
-	ValidBetAmount      string         `json:"valid_bet_amount,omitempty"`       // 有效投注金额
-	ValidPtbAmount      consts.PtbCoin `json:"valid_ptb_amount,omitempty"`       // 有效投注平台币(有效投注金额换算出来的)
+	RecordNo            string `json:"record_no,omitempty"`              // 记录号
+	UserId              int64  `json:"user_id,omitempty"`                // 用户 id
+	Username            string `json:"username,omitempty"`               // 用户名
+	GameId              int64  `json:"game_id,omitempty"`                // 游戏 id
+	ThirdGameCategoryId int64  `json:"third_game_category_id,omitempty"` // 三方游戏分类 id
+	GameCategoryId      int64  `json:"game_category_id,omitempty"`       // 游戏分类 id
+	ThirdPlatformId     int64  `json:"third_platform_id,omitempty"`      // 三方厂商 id
+	GamePlatformId      int64  `json:"game_platform_id,omitempty"`       // 厂商 id
+	CurrencyCode        string `json:"currency_code,omitempty"`          // 币种
+	RoundId             string `json:"round_id,omitempty"`               // 牌局 id
+	BetAmount           string `json:"bet_amount,omitempty"`             // 投注金额
+	CancelBetAmount     string `json:"cancel_bet_amount,omitempty"`      // 取消投注金额
+	SettleAmount        string `json:"settle_amount,omitempty"`          // 结算金额
+	CancelSettleAmount  string `json:"cancel_settle_amount,omitempty"`   // 取消结算金额
+	BetStatus           int32  `json:"bet_status,omitempty"`             // 下注状态 1=未结算，2=已结算，3=已撤单
+	BetAt               int64  `json:"bet_at,omitempty"`                 // 下注时间
+	SettledAt           int64  `json:"settled_at,omitempty"`             // 结算时间
+	SiteId              int64  `json:"site_id,omitempty"`                // 站点 id
+
+	ValidBetAmount string         `json:"valid_bet_amount,omitempty"` // 有效投注金额
+	ValidPtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 有效投注平台币(有效投注金额换算出来的)
 }
 
 // RechargeOrderNotify 充值订单通知
@@ -71,4 +72,6 @@ type RechargeOrderNotify struct {
 	FailTime              int64  `json:"fail_time,omitempty"`                // 订单失败时间
 	Remark                string `json:"remark,omitempty"`                   // 备注
 	SiteId                int64  `json:"site_id,omitempty"`                  // 站点 ID
+
+	RechargePtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 有效投注平台币(有效投注金额换算出来的)
 }
