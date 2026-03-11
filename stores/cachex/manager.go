@@ -1,9 +1,8 @@
 package cachex
 
 import (
-	"bytes"
 	"context"
-	"encoding/gob"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"time"
@@ -32,7 +31,7 @@ var cacheSf singleflight.Group
 // CacheFn 通用缓存读取方法，支持泛型类型
 // 实现了缓存读取、防击穿、回源、写缓存的完整流程
 // Key 支持 CacheKey | TenantCacheKey | string 类型
-// 使用 gob 编码存储减少redis内存占用，使用 singleflight 防止缓存击穿
+// 使用 singleflight 防止缓存击穿
 func CacheFn[T any, K KeyType](ctx context.Context, keyT K, expire time.Duration, fn func() (T, error), args ...any) (T, error) {
 	var (
 		ret      T
@@ -43,7 +42,7 @@ func CacheFn[T any, K KeyType](ctx context.Context, keyT K, expire time.Duration
 	// 1. 先读缓存
 	bs, err := redisCli.Get(ctx, key).Bytes()
 	if err == nil {
-		if err = gob.NewDecoder(bytes.NewReader(bs)).Decode(&ret); err == nil {
+		if err = json.Unmarshal(bs, &ret); err == nil {
 			return ret, nil
 		}
 		log.Errorf("CacheFn NewDecoder error, key=%s err=%v", key, err)
@@ -59,7 +58,7 @@ func CacheFn[T any, K KeyType](ctx context.Context, keyT K, expire time.Duration
 		// 双检缓存
 		bs, e := redisCli.Get(ctx, key).Bytes()
 		if e == nil {
-			if e = gob.NewDecoder(bytes.NewReader(bs)).Decode(&innerRet); e == nil {
+			if e = json.Unmarshal(bs, &innerRet); e == nil {
 				return innerRet, nil
 			}
 			log.Errorf("CacheFn singleflight NewDecoder error, key=%s err=%v", key, e)
@@ -75,9 +74,9 @@ func CacheFn[T any, K KeyType](ctx context.Context, keyT K, expire time.Duration
 		}
 
 		// 写缓存
-		var buf bytes.Buffer
-		if e = gob.NewEncoder(&buf).Encode(innerRet); e == nil {
-			if e = redisCli.Set(ctx, key, buf.Bytes(), expire).Err(); e != nil {
+		var bt []byte
+		if bt, e = json.Marshal(innerRet); e == nil {
+			if e = redisCli.Set(ctx, key, bt, expire).Err(); e != nil {
 				log.Errorf("CacheFn Set error, key=%s err=%v", key, e)
 			}
 		} else {
