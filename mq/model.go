@@ -46,6 +46,7 @@ type GameBetRecordNotify struct {
 
 	ValidBetAmount string         `json:"valid_bet_amount,omitempty"` // 有效投注金额
 	ValidPtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 有效投注平台币(有效投注金额换算出来的)
+	UserWinAmount  consts.PtbCoin `json:"user_win_amount,omitempty"`  // 玩家输赢金额 赢为正 输为负
 }
 
 // RechargeOrderNotify 充值订单通知
