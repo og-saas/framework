@@ -86,14 +86,12 @@ func CacheFn[T any, K KeyType](ctx context.Context, keyT K, expire time.Duration
 
 		return innerRet, nil
 	})
-	if err != nil {
-		return ret, err
-	}
 
 	data, ok := v.(T)
 	if !ok {
+		// 这应该不会发生
 		return ret, fmt.Errorf("CacheFn singleflight type assert failed, key=%s", key)
 	}
 
-	return data, nil
+	return data, err
 }
