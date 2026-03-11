@@ -126,7 +126,7 @@ func CacheFn[T any, K KeyType](ctx context.Context, keyT K, expire time.Duration
 		}
 		log.Errorf("CacheFn decodeCacheValue error, key=%s err=%v", key, err)
 		_ = redisCli.Del(ctx, key).Err()
-	} else if err != redis.Nil {
+	} else if !errors.Is(err, redis.Nil) {
 		log.Errorf("CacheFn Get error, key=%s err=%v", key, err)
 	}
 
