@@ -4,6 +4,7 @@ go 1.25.0
 
 require (
 	github.com/apache/rocketmq-clients/golang/v5 v5.1.3
+	github.com/dromara/carbon/v2 v2.6.16
 	github.com/dtm-labs/rockscache v0.1.1
 	github.com/go-redsync/redsync/v4 v4.15.0
 	github.com/go-resty/resty/v2 v2.17.1
@@ -18,6 +19,7 @@ require (
 	github.com/zeromicro/go-zero v1.9.4
 	github.com/zeromicro/x v0.0.0-20240408115609-8224c482b07e
 	go.opentelemetry.io/otel/trace v1.39.0
+	golang.org/x/sync v0.19.0
 	google.golang.org/grpc v1.78.0
 	gorm.io/driver/clickhouse v0.7.0
 	gorm.io/driver/mysql v1.6.0
@@ -102,7 +104,6 @@ require (
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
 	golang.org/x/crypto v0.46.0 // indirect
 	golang.org/x/net v0.48.0 // indirect
-	golang.org/x/sync v0.19.0 // indirect
 	golang.org/x/sys v0.40.0 // indirect
 	golang.org/x/text v0.33.0 // indirect
 	google.golang.org/api v0.259.0 // indirect
