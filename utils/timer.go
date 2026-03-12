@@ -26,7 +26,7 @@ func (s TimeRangeType) GetTimestampRange() (int64, int64) {
 }
 
 func (s TimeRangeType) GetTimeRange() (*carbon.Carbon, *carbon.Carbon) {
-	now := carbon.SetWeekStartsAt(carbon.Monday)
+	now := carbon.Now().SetWeekStartsAt(carbon.Monday)
 	switch s {
 	case TimeRangeTypeToday: // 当日
 		return now.StartOfDay(), now.EndOfDay()
