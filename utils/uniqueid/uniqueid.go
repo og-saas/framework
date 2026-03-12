@@ -6,6 +6,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/og-saas/framework/utils/consts"
 	"github.com/sony/sonyflake"
 )
 
@@ -29,7 +30,7 @@ func GenId() (id uint64, err error) {
 	return
 }
 
-func GenOrderNO(prefix string) string {
+func GenOrderNO(prefix consts.OrderPrefix) string {
 	id, _ := GenId()
 	return fmt.Sprintf("%s-%d", prefix, id)
 }

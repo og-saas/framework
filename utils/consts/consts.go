@@ -35,3 +35,9 @@ type PtbCoin int64 // 平台币
 func (p PtbCoin) Code() string {
 	return "PTB"
 }
+
+type OrderPrefix string
+
+const (
+	VIP OrderPrefix = "VIP"
+)
