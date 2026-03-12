@@ -39,5 +39,5 @@ func (p PtbCoin) Code() string {
 type OrderPrefix string
 
 const (
-	VIP OrderPrefix = "VIP"
+	OrderPrefixVip OrderPrefix = "VIP"
 )
