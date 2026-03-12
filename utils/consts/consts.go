@@ -39,5 +39,8 @@ func (p PtbCoin) Code() string {
 type OrderPrefix string
 
 const (
+	DefaultOrder   OrderPrefix = "OR"
+	RechargeOrder  OrderPrefix = "RO"
+	WithdrawOrder  OrderPrefix = "WO"
 	OrderPrefixVip OrderPrefix = "VIP"
 )

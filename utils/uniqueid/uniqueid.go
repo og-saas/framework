@@ -32,6 +32,9 @@ func GenId() (id uint64, err error) {
 
 func GenOrderNO(prefix consts.OrderPrefix) string {
 	id, _ := GenId()
+	if prefix == "" {
+		prefix = consts.DefaultOrder
+	}
 	return fmt.Sprintf("%s-%d", prefix, id)
 }
 
