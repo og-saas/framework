@@ -37,16 +37,7 @@ func GenOrderNO(prefix consts.OrderPrefix) string {
 
 // ExtractTime 从 sonyflake ID 中提取时间戳
 func ExtractTime(id uint64) time.Time {
-	// sonyflake ID 结构：
-	// 39 bits: 时间戳（10ms 精度）
-	// 8 bits: sequence number
-	// 16 bits: machine id
-
-	// 提取时间戳部分（右移 24 位）
-	elapsedTime := id >> 24
-
-	// 转换为实际时间（10ms 单位）
-	return startTime.Add(time.Duration(elapsedTime) * 10 * time.Millisecond)
+	return startTime.Add(sonyflake.ElapsedTime(id))
 }
 
 // ExtractOrderTime 从订单号中提取时间戳

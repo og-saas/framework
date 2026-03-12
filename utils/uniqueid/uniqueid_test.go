@@ -30,8 +30,11 @@ func TestExtractTime(t *testing.T) {
 func Test_GenOrderNO(t *testing.T) {
 	id := GenOrderNO("ORDER")
 	t.Log(id)
-	tt, er := ExtractOrderTime(id)
-	t.Log(tt, er)
+	tt, _ := ExtractOrderTime(id)
+	if tt.Unix() != time.Now().Unix() {
+		t.Errorf("ExtractOrderTime returned time too far from now: got %v, now %v", tt, time.Now())
+	}
+	t.Logf("order time: %d == %d", tt.Unix(), time.Now().Unix())
 }
 
 func TestExtractTime_KnownID(t *testing.T) {
