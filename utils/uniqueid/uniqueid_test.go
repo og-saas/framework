@@ -27,6 +27,13 @@ func TestExtractTime(t *testing.T) {
 	}
 }
 
+func Test_GenOrderNO(t *testing.T) {
+	id := GenOrderNO("ORDER")
+	t.Log(id)
+	tt, er := ExtractOrderTime(id)
+	t.Log(tt, er)
+}
+
 func TestExtractTime_KnownID(t *testing.T) {
 	// 测试已知的 ID 值
 	// sonyflake ID 结构：39 bits 时间戳 + 8 bits sequence + 16 bits machine id
