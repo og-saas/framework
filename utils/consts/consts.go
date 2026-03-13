@@ -53,6 +53,10 @@ func NewPtbCoinFromInt(val int64) PtbCoin {
 	return PtbCoin{}.FromDecimal(decimal.NewFromInt(val))
 }
 
+func NewPtbCoinFromDecimal(val decimal.Decimal) PtbCoin {
+	return PtbCoin{}.FromDecimal(val)
+}
+
 type OrderPrefix string
 
 const (
