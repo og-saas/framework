@@ -74,6 +74,12 @@ const (
 	ErrCodeWithdrawAmountOutOfRange ErrCode = 30002 // WithdrawAmountOutOfRange
 )
 
+// 代理相关
+const (
+	// ErrCodeBindParentNotAllowed 不允许绑定上级
+	ErrCodeBindParentNotAllowed ErrCode = 40000 // ErrCodeBindParentNotAllowed
+)
+
 func (code ErrCode) Int() int {
 	return int(code)
 }
