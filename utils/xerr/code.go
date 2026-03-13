@@ -76,8 +76,10 @@ const (
 
 // 代理相关
 const (
+	// ErrCodeInvalidPromotionCode 无效的推广码
+	ErrCodeInvalidPromotionCode ErrCode = 40000 // ErrCodeInvalidPromotionCode
 	// ErrCodeBindParentNotAllowed 不允许绑定上级
-	ErrCodeBindParentNotAllowed ErrCode = 40000 // ErrCodeBindParentNotAllowed
+	ErrCodeBindParentNotAllowed ErrCode = 40001 // ErrCodeBindParentNotAllowed
 )
 
 func (code ErrCode) Int() int {
