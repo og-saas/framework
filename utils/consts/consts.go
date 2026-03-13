@@ -36,17 +36,25 @@ type PtbCoin struct {
 	decimal.Decimal
 } // 平台币
 
-func (p *PtbCoin) Code() string {
+func (p PtbCoin) Code() string {
 	return "PTB"
 }
 
-func (p *PtbCoin) ToDecimal() decimal.Decimal {
+func (p PtbCoin) ToDecimal() decimal.Decimal {
 	return p.Decimal
 }
 
-func (p *PtbCoin) FromDecimal(dcl decimal.Decimal) *PtbCoin {
+func (p PtbCoin) FromDecimal(dcl decimal.Decimal) PtbCoin {
 	p.Decimal = dcl
 	return p
+}
+
+func NewPtbCoinFromInt(val int64) PtbCoin {
+	return PtbCoin{}.FromDecimal(decimal.NewFromInt(val))
+}
+
+func NewPtbCoinFromDecimal(val decimal.Decimal) PtbCoin {
+	return PtbCoin{}.FromDecimal(val)
 }
 
 type OrderPrefix string
