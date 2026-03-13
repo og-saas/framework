@@ -27,4 +27,8 @@ const (
 	HandlerNameSyncGameRecord HandlerName = "sync_game_record_handler"
 	// HandlerNameCheckGameTransfer 检查游戏转账
 	HandlerNameCheckGameTransfer HandlerName = "check_game_transfer_handler"
+	// HandlerNameVipWeekReward vip 周奖励
+	HandlerNameVipWeekReward HandlerName = "vip_week_reward_handler"
+	// HandlerNameVipMonthReward vip 月奖励
+	HandlerNameVipMonthReward HandlerName = "vip_month_reward_handler"
 )
