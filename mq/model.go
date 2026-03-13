@@ -76,3 +76,12 @@ type RechargeOrderNotify struct {
 
 	RechargePtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 充值金额平台币(充值金额换算出来的)
 }
+
+type AgentLevelGrowthNotify struct {
+	UserId            int64          `json:"user_id"`                    // 用户 ID
+	GrowthType        int32          `json:"growth_type"`                // 成长类型 1-充值 2-投注 3-登录
+	RechargePtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 充值金额平台币(充值金额换算出来的) 有效
+	BetPtbAmount      consts.PtbCoin `json:"bet_ptb_amount,omitempty"`   // 投注金额平台币(投注金额换算出来的) 有效
+	LoginDay          int32          `json:"login_count,omitempty"`      // 累计登录天数
+	ContinueLoginDay  int32          `json:"login_continue,omitempty"`   // 连续登录天数
+}

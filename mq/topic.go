@@ -13,6 +13,8 @@ var (
 	TopicGameBetRecordNotify = "game_bet_record_notify"
 	// TopicRechargeOrderNotify 充值订单通知
 	TopicRechargeOrderNotify = "recharge_order_notify"
+	// TopicAgentLevelGrowthNotify 代理等级成长消息通知
+	TopicAgentLevelGrowthNotify = "agent_level_growth_notify"
 )
 
 func UpdateTopicPrefix(prefixes ...string) (prefix string) {
