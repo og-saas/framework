@@ -1,5 +1,7 @@
 package consts
 
+import "github.com/shopspring/decimal"
+
 // StatusType 状态
 // StatusTypeEnable 启用
 // StatusTypeDisable 禁用
@@ -30,7 +32,7 @@ const (
 	TransferTypeOut TransferType = 2 // 转出
 )
 
-type PtbCoin int64 // 平台币
+type PtbCoin decimal.Decimal // 平台币
 
 func (p PtbCoin) Code() string {
 	return "PTB"
