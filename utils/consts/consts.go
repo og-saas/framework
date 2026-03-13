@@ -49,6 +49,11 @@ func (p *PtbCoin) FromDecimal(dcl decimal.Decimal) *PtbCoin {
 	return p
 }
 
+func NewPtbCoinFromInt(val int64) *PtbCoin {
+	p := &PtbCoin{}
+	return p.FromDecimal(decimal.NewFromInt(val))
+}
+
 type OrderPrefix string
 
 const (
