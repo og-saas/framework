@@ -1,9 +1,12 @@
 package utils
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"log"
+
+	"go.opentelemetry.io/otel/trace"
 )
 
 const base62Chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
@@ -76,4 +79,12 @@ func Base62Decode(code string) int64 {
 	}
 
 	return id
+}
+
+func NewFromContext(ctx context.Context) context.Context {
+	span := trace.SpanFromContext(ctx)
+	if span.SpanContext().IsValid() {
+		ctx = trace.ContextWithSpan(context.Background(), span)
+	}
+	return ctx
 }
