@@ -22,10 +22,10 @@ type VipEndpointPromoteInfo struct {
 
 // VipCustomerService vip客服信息
 type VipCustomerService struct {
-	DefaultLanguage string                      `json:"default_language"`
-	H5              *VipEndpointCustomerService `json:"h5"`
-	PC              *VipEndpointCustomerService `json:"pc"`
-	APP             *VipEndpointCustomerService `json:"app"`
+	DefaultLanguage string                        `json:"default_language"`
+	H5              []*VipEndpointCustomerService `json:"h5"`
+	PC              []*VipEndpointCustomerService `json:"pc"`
+	APP             []*VipEndpointCustomerService `json:"app"`
 }
 
 // VipEndpointCustomerService vip终端客服信息
