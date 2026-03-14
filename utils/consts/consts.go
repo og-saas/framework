@@ -53,6 +53,13 @@ func NewPtbCoinFromInt(val int64) PtbCoin {
 	return PtbCoin{}.FromDecimal(decimal.NewFromInt(val))
 }
 
+func NewPtbCoinFromString(val string) (PtbCoin, error) {
+	dc, err := decimal.NewFromString(val)
+	if err != nil {
+		return PtbCoin{}, err
+	}
+	return PtbCoin{}.FromDecimal(dc), nil
+}
 func NewPtbCoinFromDecimal(val decimal.Decimal) PtbCoin {
 	return PtbCoin{}.FromDecimal(val)
 }
