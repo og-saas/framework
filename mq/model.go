@@ -83,6 +83,7 @@ type AgentLevelGrowthNotify struct {
 	RechargePtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 充值金额平台币(充值金额换算出来的) 有效
 	BetPtbAmount      consts.PtbCoin `json:"bet_ptb_amount,omitempty"`   // 投注金额平台币(投注金额换算出来的) 有效
 	ContinueLoginDay  int64          `json:"login_continue,omitempty"`   // 连续登录天数
+	LoginDay          int64          `json:"login_day,omitempty"`        // 累计登录天数
 	SiteId            int64          `json:"site_id"`                    // 站点 ID
 	LabelNo           string         `json:"label_no"`                   // 消息标识
 }
