@@ -78,12 +78,13 @@ type RechargeOrderNotify struct {
 }
 
 type AgentLevelGrowthNotify struct {
-	UserId            int64          `json:"user_id"`                    // 用户 ID
-	GrowthType        int32          `json:"growth_type"`                // 成长类型 1-充值 2-投注 3-登录
-	RechargePtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 充值金额平台币(充值金额换算出来的) 有效
-	BetPtbAmount      consts.PtbCoin `json:"bet_ptb_amount,omitempty"`   // 投注金额平台币(投注金额换算出来的) 有效
-	ContinueLoginDay  int64          `json:"login_continue,omitempty"`   // 连续登录天数
-	LoginDay          int64          `json:"login_day,omitempty"`        // 累计登录天数
-	SiteId            int64          `json:"site_id"`                    // 站点 ID
-	LabelNo           string         `json:"label_no"`                   // 消息标识
+	UserId            int64          `json:"user_id"`                       // 用户 ID
+	GrowthType        int32          `json:"growth_type"`                   // 成长类型 1-充值 2-投注 3-登录
+	RechargePtbAmount consts.PtbCoin `json:"recharge_ptb_amount,omitempty"` // 充值金额平台币(充值金额换算出来的) 有效
+	BetPtbAmount      consts.PtbCoin `json:"bet_ptb_amount,omitempty"`      // 投注金额平台币(投注金额换算出来的) 有效
+	ContinueLoginDay  int64          `json:"continue_login_day,omitempty"`  // 连续登录天数
+	LoginDay          int64          `json:"login_day,omitempty"`           // 累计登录天数
+	SiteId            int64          `json:"site_id"`                       // 站点 ID
+	LabelNo           string         `json:"label_no"`                      // 消息标识
+	DataTime          int64          `json:"data_time,omitempty"`           // 数据时间
 }
