@@ -29,6 +29,7 @@ func UpdateTopicPrefix(prefixes ...string) (prefix string) {
 	TopicUserLoginLogNotify = prefix + TopicUserLoginLogNotify
 	TopicGameBetRecordNotify = prefix + TopicGameBetRecordNotify
 	TopicRechargeOrderNotify = prefix + TopicRechargeOrderNotify
+	TopicAgentLevelGrowthNotify = prefix + TopicAgentLevelGrowthNotify
 
 	return
 }
