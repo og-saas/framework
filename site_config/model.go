@@ -1,9 +1,23 @@
 package site_config
 
+import "github.com/zeromicro/go-zero/core/stringx"
+
+type LangAware interface {
+	GetLangData() (string, bool)
+}
+
 // LanguageContent 语言内容信息
 type LanguageContent struct {
 	Lang    string `json:"lang"`    // 语言编码
 	Content string `json:"content"` // 内容
+}
+
+func (l *LanguageContent) GetLangData() (string, bool) {
+	var hasContent bool
+	if stringx.NotEmpty(l.Content) {
+		hasContent = true
+	}
+	return l.Lang, hasContent
 }
 
 // VipPromoteInfo vip推广信息
