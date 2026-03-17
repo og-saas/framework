@@ -1,6 +1,16 @@
 package site_config
 
-import "github.com/zeromicro/go-zero/core/stringx"
+import (
+	"github.com/zeromicro/go-zero/core/stringx"
+)
+
+func GetContentByLanguage(data []*LanguageContent, language, defaultLanguage string) string {
+	langData := GetLanguageObject(data, language, defaultLanguage)
+	if langData == nil {
+		return ""
+	}
+	return langData.Content
+}
 
 func GetLanguageObject[T LangAware](items []T, language, defaultLanguage string) T {
 	var zero T
