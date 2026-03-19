@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/og-saas/framework/utils/consts"
+	"github.com/og-saas/framework/utils/tenant"
 	"go.opentelemetry.io/otel/trace"
 )
 
@@ -87,4 +89,14 @@ func NewFromContext(ctx context.Context) context.Context {
 		ctx = trace.ContextWithSpan(context.Background(), span)
 	}
 	return ctx
+}
+
+func WithOldTraceContext(ctx context.Context) context.Context {
+	newCtx := context.Background()
+	spanCtx := trace.SpanContextFromContext(ctx)
+	if spanCtx.HasTraceID() {
+		newCtx = context.WithValue(newCtx, consts.Trace, spanCtx.TraceID().String())
+	}
+	newCtx = tenant.SetTenantId(newCtx, tenant.GetTenantId(ctx))
+	return newCtx
 }
