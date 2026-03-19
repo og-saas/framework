@@ -1,0 +1,74 @@
+package consts
+
+import commonv1 "github.com/og-saas/proto/pb/common/v1"
+
+func RewardSubCategoryToTransactionSubCategory(subCategory commonv1.RewardSubCategory) commonv1.TransactionSubCategory {
+	switch subCategory {
+	case commonv1.RewardSubCategory_REWARD_SUB_ACTIVITY:
+		return commonv1.TransactionSubCategory_ACTIVITY_REGISTER
+	case commonv1.RewardSubCategory_REWARD_SUB_TASK:
+		return commonv1.TransactionSubCategory_TASK_DAILY
+	case commonv1.RewardSubCategory_REWARD_SUB_AGENT_INVITE, commonv1.RewardSubCategory_REWARD_SUB_AGENT_COMMISSION:
+		return commonv1.TransactionSubCategory_REBATE_SEND
+	case commonv1.RewardSubCategory_REWARD_SUB_VIP_UPGRADE:
+		return commonv1.TransactionSubCategory_VIP_REWARD_UPGRADE_BONUS
+	case commonv1.RewardSubCategory_REWARD_SUB_VIP_WEEKLY:
+		return commonv1.TransactionSubCategory_VIP_REWARD_WEEKLY_SALARY
+	case commonv1.RewardSubCategory_REWARD_SUB_VIP_MONTHLY:
+		return commonv1.TransactionSubCategory_VIP_REWARD_MONTHLY_SALARY
+	case commonv1.RewardSubCategory_REWARD_SUB_VIP_REBATE:
+		return commonv1.TransactionSubCategory_VIP_REWARD_TURNOVER_REBATE
+	case commonv1.RewardSubCategory_REWARD_SUB_VIP_LOSSBACK:
+		return commonv1.TransactionSubCategory_VIP_REWARD_LOSS_REBATE
+	case commonv1.RewardSubCategory_REWARD_SUB_VIP_TASK_DAILY_CODE:
+		return commonv1.TransactionSubCategory_VIP_TASK_BET_DAY
+	case commonv1.RewardSubCategory_REWARD_SUB_VIP_TASK_WEEKLY_CODE:
+		return commonv1.TransactionSubCategory_VIP_TASK_BET_WEEK
+	case commonv1.RewardSubCategory_REWARD_SUB_VIP_TASK_DAILY_RECHARGE:
+		return commonv1.TransactionSubCategory_VIP_TASK_RECHARGE_DAY
+	case commonv1.RewardSubCategory_REWARD_SUB_VIP_TASK_WEEKLY_RECHARGE:
+		return commonv1.TransactionSubCategory_VIP_TASK_RECHARGE_WEEK
+	case commonv1.RewardSubCategory_REWARD_SUB_RECHARGE_BONUS:
+		return commonv1.TransactionSubCategory_ACTIVITY_RECHARGE
+	default:
+		return commonv1.TransactionSubCategory_SUB_UNSPECIFIED
+	}
+}
+
+func TransactionSubCategoryToTransactionCategory(subCategory commonv1.TransactionSubCategory) commonv1.TransactionCategory {
+	switch subCategory {
+	case commonv1.TransactionSubCategory_FUND_SWITCHING_TRANSFER_IN,
+		commonv1.TransactionSubCategory_FUND_SWITCHING_TRANSFER_OUT:
+		return commonv1.TransactionCategory_FUND_SWITCHING
+	case commonv1.TransactionSubCategory_MEMBER_DEPOSIT_ONLINE:
+		return commonv1.TransactionCategory_MEMBER_DEPOSIT
+	case commonv1.TransactionSubCategory_MEMBER_WITHDRAW_SUCCESS,
+		commonv1.TransactionSubCategory_MEMBER_WITHDRAW_REJECT:
+		return commonv1.TransactionCategory_MEMBER_WITHDRAW
+	case commonv1.TransactionSubCategory_FUND_CORRECTION_MANUAL_ADDITION,
+		commonv1.TransactionSubCategory_FUND_CORRECTION_MANUAL_DEDUCTION:
+		return commonv1.TransactionCategory_FUND_CORRECTION
+	case commonv1.TransactionSubCategory_ACTIVITY_REGISTER,
+		commonv1.TransactionSubCategory_ACTIVITY_RECHARGE:
+		return commonv1.TransactionCategory_ACTIVITY
+	case commonv1.TransactionSubCategory_REBATE_SEND,
+		commonv1.TransactionSubCategory_REBATE_RECEIVE:
+		return commonv1.TransactionCategory_REBATE
+	case commonv1.TransactionSubCategory_TASK_DAILY,
+		commonv1.TransactionSubCategory_TASK_WEEKLY,
+		commonv1.TransactionSubCategory_TASK_MONTHLY:
+		return commonv1.TransactionCategory_TASK
+	case commonv1.TransactionSubCategory_VIP_TASK_BET_DAY,
+		commonv1.TransactionSubCategory_VIP_TASK_BET_WEEK,
+		commonv1.TransactionSubCategory_VIP_TASK_RECHARGE_DAY,
+		commonv1.TransactionSubCategory_VIP_TASK_RECHARGE_WEEK,
+		commonv1.TransactionSubCategory_VIP_REWARD_TURNOVER_REBATE,
+		commonv1.TransactionSubCategory_VIP_REWARD_LOSS_REBATE,
+		commonv1.TransactionSubCategory_VIP_REWARD_UPGRADE_BONUS,
+		commonv1.TransactionSubCategory_VIP_REWARD_WEEKLY_SALARY,
+		commonv1.TransactionSubCategory_VIP_REWARD_MONTHLY_SALARY:
+		return commonv1.TransactionCategory_VIP
+	default:
+		return commonv1.TransactionCategory_UNSPECIFIED
+	}
+}

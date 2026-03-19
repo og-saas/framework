@@ -1,6 +1,6 @@
 module github.com/og-saas/framework
 
-go 1.25.0
+go 1.25.1
 
 require (
 	github.com/apache/rocketmq-clients/golang/v5 v5.1.3
@@ -73,6 +73,7 @@ require (
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/natefinch/lumberjack v2.0.0+incompatible // indirect
+	github.com/og-saas/proto v0.0.16 // indirect
 	github.com/openzipkin/zipkin-go v0.4.3 // indirect
 	github.com/paulmach/orb v0.12.0 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.4 // indirect
