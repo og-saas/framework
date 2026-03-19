@@ -57,11 +57,14 @@ func NewForbiddenError(formatMsg string, data any, formatMsgArgs ...any) Error {
 }
 
 // NewServerInternalError 服务内部错误
-func NewServerInternalError() Error {
+func NewServerInternalError(err error) Error {
+	if err == nil {
+		err = fmt.Errorf("unknown error")
+	}
 	return Error{
 		Code: ErrCodeServerInternalError,
 		Data: nil,
-		Msg:  "",
+		Msg:  err.Error(),
 	}
 }
 
@@ -86,7 +89,11 @@ func (err Error) GetMessage(language string) string {
 		return err.Msg
 	}
 
-	// 未找到code，返回默认错误信息\
+	if err.Code == ErrCodeServerInternalError && confVal.ShowServerInternalError {
+		return err.Msg
+	}
+
+	// 未找到code，返回默认错误信息
 	languageMsgMap, ok := confVal.ErrorMessages[strconv.Itoa(err.Code.Int())]
 	if !ok {
 		return err.Msg
