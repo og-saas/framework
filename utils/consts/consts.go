@@ -74,3 +74,6 @@ const (
 	OrderPrefixAgentInviteReward OrderPrefix = "AIRO" // 代理邀请奖励订单
 	OrderPrefixAgentRebate       OrderPrefix = "ARO"  // 代理返佣订单
 )
+
+// Trace 上下文 key
+const Trace = "trace"
