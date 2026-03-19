@@ -15,6 +15,8 @@ var (
 	TopicRechargeOrderNotify = "recharge_order_notify"
 	// TopicAgentGradeGrowthNotify 代理等级成长消息通知
 	TopicAgentGradeGrowthNotify = "agent_grade_growth_notify"
+	// TopicAgentBetRebatNotify 代理返佣投注更新通知
+	TopicAgentBetRebatNotify = "agent_bet_rebat_notify"
 )
 
 func UpdateTopicPrefix(prefixes ...string) (prefix string) {

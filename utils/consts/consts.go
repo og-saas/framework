@@ -1,6 +1,9 @@
 package consts
 
-import "github.com/shopspring/decimal"
+import (
+	"github.com/shopspring/decimal"
+	"github.com/zeromicro/go-zero/core/stringx"
+)
 
 // StatusType 状态
 // StatusTypeEnable 启用
@@ -46,6 +49,18 @@ func (p PtbCoin) ToDecimal() decimal.Decimal {
 
 func (p PtbCoin) FromDecimal(dcl decimal.Decimal) PtbCoin {
 	p.Decimal = dcl
+	return p
+}
+
+func (p PtbCoin) FromString(val string) PtbCoin {
+	if stringx.HasEmpty(val) {
+		return p.FromDecimal(decimal.Zero)
+	}
+	valDecimal, err := decimal.NewFromString(val)
+	if err != nil {
+		return p.FromDecimal(decimal.Zero)
+	}
+	p.Decimal = valDecimal
 	return p
 }
 

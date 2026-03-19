@@ -48,6 +48,7 @@ type GameBetRecordNotify struct {
 	ValidPtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 有效投注平台币(有效投注金额换算出来的)
 	UserWinAmount  consts.PtbCoin `json:"user_win_amount,omitempty"`  // 玩家输赢金额 赢为正 输为负
 	BetPtbAmount   consts.PtbCoin `json:"bet_ptb_amount,omitempty"`   // 投注金额（平台币）
+	RecordId       int64          `json:"record_id,omitempty"`        // 投注记录表主键id
 }
 
 // RechargeOrderNotify 充值订单通知
@@ -90,4 +91,17 @@ type AgentLevelGrowthNotify struct {
 	SiteId                   int64          `json:"site_id"`                               // 站点 ID
 	LabelNo                  string         `json:"label_no"`                              // 消息标识
 	DataTime                 int64          `json:"data_time,omitempty"`                   // 数据时间
+}
+
+type AgentBetRebatNotify struct {
+	SiteId         int64  `json:"site_id"`                    // 站点 ID
+	UserId         int64  `json:"user_id,omitempty"`          // 用户 ID
+	RecordNo       string `json:"record_no,omitempty"`        // 记录号
+	RecordId       int64  `json:"record_id,omitempty"`        // 投注记录表主键id
+	BetPtbAmount   string `json:"bet_ptb_amount,omitempty"`   // 投注金额（平台币）
+	ValidPtbAmount string `json:"valid_ptb_amount,omitempty"` // 有效投注平台币(有效投注金额换算出来的)
+	UserWinAmount  string `json:"user_win_amount,omitempty"`  // 玩家输赢金额 赢为正 输为负
+	BetAt          int64  `json:"bet_at,omitempty"`           // 下注时间
+	SettledAt      int64  `json:"settled_at,omitempty"`       // 结算时间
+	GameCategoryId int64  `json:"game_category_id,omitempty"` // 游戏分类 id
 }
