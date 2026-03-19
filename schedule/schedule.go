@@ -33,4 +33,6 @@ const (
 	HandlerNameVipMonthReward HandlerName = "vip_month_reward_handler"
 	// HandlerNameSyncAgentExp 代理 同步经验值
 	HandlerNameSyncAgentExp HandlerName = "sync_agent_exp_handler"
+	// HandlerNameRewardExpire 奖励过期
+	HandlerNameRewardExpire HandlerName = "reward_expire_handler"
 )
