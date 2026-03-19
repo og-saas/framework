@@ -8,7 +8,7 @@ func RewardSubCategoryToTransactionSubCategory(subCategory commonv1.RewardSubCat
 		return commonv1.TransactionSubCategory_ACTIVITY_REGISTER
 	case commonv1.RewardSubCategory_REWARD_SUB_TASK:
 		return commonv1.TransactionSubCategory_TASK_DAILY
-	case commonv1.RewardSubCategory_REWARD_SUB_AGENT_INVITE, commonv1.RewardSubCategory_REWARD_SUB_AGENT_COMMISSION:
+	case commonv1.RewardSubCategory_REWARD_SUB_AGENT_INVITE:
 		return commonv1.TransactionSubCategory_REBATE_SEND
 	case commonv1.RewardSubCategory_REWARD_SUB_VIP_UPGRADE:
 		return commonv1.TransactionSubCategory_VIP_REWARD_UPGRADE_BONUS
