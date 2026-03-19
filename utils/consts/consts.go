@@ -67,8 +67,10 @@ func NewPtbCoinFromDecimal(val decimal.Decimal) PtbCoin {
 type OrderPrefix string
 
 const (
-	DefaultOrder   OrderPrefix = "OR"
-	RechargeOrder  OrderPrefix = "RO"
-	WithdrawOrder  OrderPrefix = "WO"
-	OrderPrefixVip OrderPrefix = "VIP"
+	DefaultOrder                 OrderPrefix = "OR"   // 默认订单
+	RechargeOrder                OrderPrefix = "RO"   // 充值订单
+	WithdrawOrder                OrderPrefix = "WO"   // 提现订单
+	OrderPrefixVip               OrderPrefix = "VIP"  // VIP奖励订单
+	OrderPrefixAgentInviteReward OrderPrefix = "AIRO" // 代理邀请奖励订单
+	OrderPrefixAgentRebate       OrderPrefix = "ARO"  // 代理返佣订单
 )

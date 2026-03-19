@@ -56,6 +56,17 @@ func ILike(field string, value string) func(db *gorm.DB) *gorm.DB {
 	}
 }
 
+// PrefixLike 前缀匹配查询 LIKE 'value%'，可走 B-tree 索引
+func PrefixLike(field string, value string) func(db *gorm.DB) *gorm.DB {
+	return func(db *gorm.DB) *gorm.DB {
+		if stringx.HasEmpty(value) {
+			return db
+		}
+
+		return db.Where(field+" LIKE ?", value+"%")
+	}
+}
+
 // In in查询
 func In[T comparable](field string, value []T) func(db *gorm.DB) *gorm.DB {
 	return func(db *gorm.DB) *gorm.DB {
