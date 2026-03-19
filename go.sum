@@ -230,6 +230,8 @@ github.com/natefinch/lumberjack v2.0.0+incompatible h1:4QJd3OLAMgj7ph+yZTuX13Ld4
 github.com/natefinch/lumberjack v2.0.0+incompatible/go.mod h1:Wi9p2TTF5DG5oU+6YfsmYQpsTIOm0B1VNzQg9Mw6nPk=
 github.com/og-saas/proto v0.0.16 h1:+TWUf3e1I+aIR0UQKKZzbbfhQnSsoUbDpgHELxoh6+U=
 github.com/og-saas/proto v0.0.16/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
+github.com/og-saas/proto v0.0.17-0.20260319064650-3a662c5a685e h1:8bCjopyyUkf73UWuGy2MqjtmkOnbHsv24eabX8fEXzM=
+github.com/og-saas/proto v0.0.17-0.20260319064650-3a662c5a685e/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
 github.com/openzipkin/zipkin-go v0.4.3 h1:9EGwpqkgnwdEIJ+Od7QVSEIH+ocmm5nPat0G7sjsSdg=
 github.com/openzipkin/zipkin-go v0.4.3/go.mod h1:M9wCJZFWCo2RiY+o1eBCEMe0Dp2S5LDHcMZmk3RmK7c=
 github.com/paulmach/orb v0.12.0 h1:z+zOwjmG3MyEEqzv92UN49Lg1JFYx0L9GpGKNVDKk1s=
