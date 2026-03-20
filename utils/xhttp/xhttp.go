@@ -47,8 +47,13 @@ func wrapBaseResponse(ctx context.Context, v any) BaseResponse[any] {
 		resp.Code = int(data.Code())
 		resp.Message = data.Message()
 	case error:
-		resp.Code = http.StatusInternalServerError
-		resp.Message = data.Error()
+		if st, ok := status.FromError(data); ok {
+			resp.Code = int(st.Code())
+			resp.Message = st.Message()
+		} else {
+			resp.Code = http.StatusInternalServerError
+			resp.Message = data.Error()
+		}
 	default:
 		resp.Code = BusinessCodeOK
 		resp.Message = BusinessMsgOk
