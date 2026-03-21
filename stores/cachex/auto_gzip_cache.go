@@ -98,6 +98,57 @@ func decodeCacheValue[T any](bs []byte, ret *T) error {
 	}
 }
 
+// CacheGet 从缓存中读取数据，支持自动解压
+// 返回值:
+//   - T: 泛型返回类型，缓存的数据
+//   - error: 缓存未命中返回 redis.Nil，其他为真实错误
+func CacheGet[T any, K KeyType](ctx context.Context, keyT K, args ...any) (T, error) {
+	var (
+		ret      T
+		log      = logx.WithContext(ctx)
+		redisCli = redisx.Engine.RDB(ctx)
+		key      = KeyString(ctx, keyT, args...)
+	)
+
+	bs, err := redisCli.Get(ctx, key).Bytes()
+	if err != nil {
+		if !errors.Is(err, redis.Nil) {
+			log.Errorf("CacheGet error, key=%s err=%v", key, err)
+		}
+		return ret, err
+	}
+
+	if err = decodeCacheValue(bs, &ret); err != nil {
+		log.Errorf("CacheGet decodeCacheValue error, key=%s err=%v", key, err)
+		_ = redisCli.Del(ctx, key).Err()
+		return ret, err
+	}
+
+	return ret, nil
+}
+
+// CacheSet 将数据写入缓存，支持自动压缩
+func CacheSet[T any, K KeyType](ctx context.Context, keyT K, expire time.Duration, val T, args ...any) error {
+	var (
+		log      = logx.WithContext(ctx)
+		redisCli = redisx.Engine.RDB(ctx)
+		key      = KeyString(ctx, keyT, args...)
+	)
+
+	data, err := encodeCacheValue(val)
+	if err != nil {
+		log.Errorf("CacheSet encodeCacheValue error, key=%s err=%v", key, err)
+		return err
+	}
+
+	if err = redisCli.Set(ctx, key, data, expire).Err(); err != nil {
+		log.Errorf("CacheSet error, key=%s err=%v", key, err)
+		return err
+	}
+
+	return nil
+}
+
 // CacheFn 是一个带缓存的通用函数包装器，支持泛型类型
 // 该函数实现了缓存读写、防击穿（singleflight）、自动压缩等功能
 // 参数:
@@ -112,56 +163,32 @@ func decodeCacheValue[T any](bs []byte, ret *T) error {
 //   - error: 错误信息，如果发生错误则返回
 func CacheFn[T any, K KeyType](ctx context.Context, keyT K, expire time.Duration, fn func() (T, error), args ...any) (T, error) {
 	var (
-		ret      T
-		log      = logx.WithContext(ctx)
-		redisCli = redisx.Engine.RDB(ctx)
-		key      = KeyString(ctx, keyT, args...)
+		ret T
+		log = logx.WithContext(ctx)
+		key = KeyString(ctx, keyT, args...)
 	)
 
 	// 1. 先读缓存
-	bs, err := redisCli.Get(ctx, key).Bytes()
-	if err == nil {
-		if err = decodeCacheValue(bs, &ret); err == nil {
-			return ret, nil
-		}
-		log.Errorf("CacheFn decodeCacheValue error, key=%s err=%v", key, err)
-		_ = redisCli.Del(ctx, key).Err()
-	} else if !errors.Is(err, redis.Nil) {
-		log.Errorf("CacheFn Get error, key=%s err=%v", key, err)
+	if val, err := CacheGet[T](ctx, keyT, args...); err == nil {
+		return val, nil
 	}
 
 	// 2. singleflight 防击穿
 	v, err, _ := cacheSf.Do(key, func() (any, error) {
-		var innerRet T
-
 		// 双检缓存
-		bs, e := redisCli.Get(ctx, key).Bytes()
-		if e == nil {
-			if e = decodeCacheValue(bs, &innerRet); e == nil {
-				return innerRet, nil
-			}
-			log.Errorf("CacheFn singleflight decodeCacheValue error, key=%s err=%v", key, e)
-			_ = redisCli.Del(ctx, key).Err()
-		} else if !errors.Is(e, redis.Nil) {
-			log.Errorf("CacheFn singleflight Get error, key=%s err=%v", key, e)
+		if val, err := CacheGet[T](ctx, keyT, args...); err == nil {
+			return val, nil
 		}
 
 		// 回源
-		innerRet, e = fn()
+		innerRet, e := fn()
 		if e != nil {
 			return innerRet, e
 		}
 
-		// 编码
-		data, e := encodeCacheValue(innerRet)
-		if e != nil {
-			log.Errorf("CacheFn encodeCacheValue error, key=%s err=%v", key, e)
-			return innerRet, nil
-		}
-
 		// 写缓存
-		if e = redisCli.Set(ctx, key, data, expire).Err(); e != nil {
-			log.Errorf("CacheFn Set error, key=%s err=%v", key, e)
+		if e = CacheSet(ctx, keyT, expire, innerRet, args...); e != nil {
+			log.Errorf("CacheFn CacheSet error, key=%s err=%v", key, e)
 		}
 
 		return innerRet, nil
@@ -172,5 +199,5 @@ func CacheFn[T any, K KeyType](ctx context.Context, keyT K, expire time.Duration
 		return ret, fmt.Errorf("CacheFn singleflight type assert failed, key=%s", key)
 	}
 
-	return data, nil
+	return data, err
 }
