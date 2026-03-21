@@ -16,3 +16,11 @@ type CheckGameTransferPayload struct {
 	Amount             decimal.Decimal     `json:"amount"`                // 金额
 	TransferType       consts.TransferType `json:"transfer_type"`         // 转账标记 1-转入 2-转出
 }
+
+type AgentCommissionStatRetryPayload struct {
+	SiteId      int64   `json:"site_id"`
+	UserIds     []int64 `json:"user_ids"`     // 用户id列表
+	StartTime   int64   `json:"start_time"`   // 开始时间
+	EndTime     int64   `json:"end_time"`     // 结束时间
+	SettleCycle int32   `json:"settle_cycle"` // 结算周期 1-日 2-周 3-月
+}

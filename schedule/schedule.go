@@ -33,6 +33,10 @@ const (
 	HandlerNameVipMonthReward HandlerName = "vip_month_reward_handler"
 	// HandlerNameSyncAgentExp 代理 同步经验值
 	HandlerNameSyncAgentExp HandlerName = "sync_agent_exp_handler"
+	// HandlerNameAgentCommissionStat 代理 用户佣金日统计
+	HandlerNameAgentCommissionStat HandlerName = "agent_commission_stat_handler"
+	// HandlerNameAgentCommissionStatRetry 代理 用户佣金日统计失败用户重试
+	HandlerNameAgentCommissionStatRetry HandlerName = "agent_commission_stat_retry_handler"
 	// HandlerNameRewardExpire 奖励过期
 	HandlerNameRewardExpire HandlerName = "reward_expire_handler"
 	// HandlerNameRewardRetry 奖励重发
