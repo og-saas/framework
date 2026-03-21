@@ -92,3 +92,49 @@ const (
 
 // Trace 上下文 key
 const Trace = "trace"
+
+// DeviceType 设备类型
+type DeviceType string
+
+const (
+	DeviceTypeWindowsPC      DeviceType = "Windows-PC"      // Windows PC
+	DeviceTypeWindowsPWA     DeviceType = "Windows-PWA"     // Windows PWA
+	DeviceTypeMacPC          DeviceType = "Mac-PC"          // Mac PC
+	DeviceTypeMacPWA         DeviceType = "Mac-PWA"         // Mac PWA
+	DeviceTypeLinuxPC        DeviceType = "Linux-PC"        // Linux PC
+	DeviceTypeLinuxPWA       DeviceType = "Linux-PWA"       // Linux PWA
+	DeviceTypeIOSWebApp      DeviceType = "iOS-WebApp"      // iOS WebApp（原生浏览器）
+	DeviceTypeIOSPWA         DeviceType = "iOS-PWA"         // iOS PWA（添加到主屏幕）
+	DeviceTypeIOSWebView     DeviceType = "iOS-WebView"     // iOS WebView（App 内嵌浏览器）
+	DeviceTypeAndroidWebApp  DeviceType = "Android-WebApp"  // Android WebApp（原生浏览器）
+	DeviceTypeAndroidPWA     DeviceType = "Android-PWA"     // Android PWA（添加到主屏幕）
+	DeviceTypeAndroidWebView DeviceType = "Android-WebView" // Android WebView（App 内嵌浏览器）
+	DeviceTypeWeb            DeviceType = "Web"             // Web 浏览器（无法识别具体设备时）
+	DeviceTypeUnknown        DeviceType = "Unknown"         // 未知设备
+	DeviceTypeAndroid        DeviceType = "Android"         // Android
+	DeviceTypeIOS            DeviceType = "iOS"             // iOS
+)
+
+func (d DeviceType) EndpointType() EndpointType {
+	switch d {
+	case DeviceTypeWindowsPC, DeviceTypeMacPC, DeviceTypeLinuxPC,
+		DeviceTypeWindowsPWA, DeviceTypeMacPWA, DeviceTypeLinuxPWA:
+		return EndpointTypePC
+	case DeviceTypeIOSWebApp, DeviceTypeIOSPWA, DeviceTypeIOSWebView, DeviceTypeAndroidWebApp,
+		DeviceTypeAndroidPWA, DeviceTypeAndroidWebView, DeviceTypeWeb, DeviceTypeUnknown:
+		return EndpointTypeH5
+	case DeviceTypeAndroid, DeviceTypeIOS:
+		return EndpointTypeApp
+	}
+
+	return EndpointTypeH5
+}
+
+// EndpointType 终端信息
+type EndpointType string
+
+const (
+	EndpointTypeH5  EndpointType = "H5"  // H5
+	EndpointTypeApp EndpointType = "APP" // APP
+	EndpointTypePC  EndpointType = "PC"  // PC
+)
