@@ -2,6 +2,7 @@ package schedule
 
 import (
 	"github.com/og-saas/framework/utils/consts"
+	"github.com/og-saas/proto/rpc/promotionservice"
 	"github.com/shopspring/decimal"
 )
 
@@ -23,4 +24,9 @@ type AgentCommissionStatRetryPayload struct {
 	StartTime   int64   `json:"start_time"`   // 开始时间
 	EndTime     int64   `json:"end_time"`     // 结束时间
 	SettleCycle int32   `json:"settle_cycle"` // 结算周期 1-日 2-周 3-月
+}
+
+type RewardReleaseRetryPayload struct {
+	SiteId  int64                              `json:"site_id"`
+	Rewards []promotionservice.CreateRewardReq `json:"rewards"`
 }
