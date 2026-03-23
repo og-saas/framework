@@ -27,6 +27,6 @@ type AgentCommissionStatRetryPayload struct {
 }
 
 type RewardReleaseRetryPayload struct {
-	SiteId  int64                              `json:"site_id"`
-	Rewards []promotionservice.CreateRewardReq `json:"rewards"`
+	SiteId  int64                               `json:"site_id"`
+	Rewards []*promotionservice.CreateRewardReq `json:"rewards"`
 }
