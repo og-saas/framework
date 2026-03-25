@@ -11,6 +11,9 @@ import (
 var shardingCount int64
 
 func initShardingDB(db *gorm.DB, tables ...string) {
+	tbs := lo.Map(tables, func(item string, index int) any {
+		return item
+	})
 	db.Use(sharding.Register(sharding.Config{
 		ShardingKey: "site_id",
 		ShardingAlgorithm: func(columnValue any) (string, error) {
@@ -33,9 +36,7 @@ func initShardingDB(db *gorm.DB, tables ...string) {
 		PrimaryKeyGeneratorFn: func(tableIdx int64) int64 {
 			return 0
 		},
-	}, lo.Map(tables, func(item string, index int) any {
-		return item
-	})))
+	}, tbs...))
 }
 
 func ShardingSuffix(siteId int64) string {
