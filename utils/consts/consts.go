@@ -88,6 +88,7 @@ const (
 	OrderPrefixVip               OrderPrefix = "VIP"  // VIP奖励订单
 	OrderPrefixAgentInviteReward OrderPrefix = "AIRO" // 代理邀请奖励订单
 	OrderPrefixAgentRebate       OrderPrefix = "ARO"  // 代理返佣订单
+	OrderPrefixCurrencyConvert   OrderPrefix = "CO"   // 币种兑换订单
 )
 
 // Trace 上下文 key

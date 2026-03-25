@@ -1,6 +1,9 @@
 package site_config
 
-import "github.com/zeromicro/go-zero/core/stringx"
+import (
+	"github.com/og-saas/framework/utils/consts"
+	"github.com/zeromicro/go-zero/core/stringx"
+)
 
 type LangAware interface {
 	GetLangData() (string, bool)
@@ -48,4 +51,20 @@ type VipEndpointCustomerService struct {
 	Link     string             `json:"link"`      // 跳转链接
 	Names    []*LanguageContent `json:"names"`     // 名称列表
 	LinkType int                `json:"link_type"` // 链接类型
+}
+
+// CurrencyConvertConfig 币种兑换配置
+type CurrencyConvertConfig struct {
+	Status             consts.StatusType `json:"status"`               // 状态
+	FeeType            int64             `json:"fee_type"`             // 手续费模式 1-固定 2-比例
+	Multiple           int64             `json:"multiple"`             // 流水倍数
+	FeeValue           int64             `json:"fee_value"`            // 手续费值
+	MinExchange        int64             `json:"min_exchange"`         // 最小兑换平台币
+	DailyFreeNum       int64             `json:"daily_free_num"`       // 每日免费次数
+	AutoAuditLimit     int64             `json:"auto_audit_limit"`     // 审核阀值
+	SingleMaxLimit     int64             `json:"single_max_limit"`     // 单笔最高限额
+	DailyPlayerLimit   int64             `json:"daily_player_limit"`   // 单日玩家兑换上限
+	ExchangeCoolDown   int64             `json:"exchange_cool_down"`   // 兑换冷却时间
+	ExchangeOpenHours  []int64           `json:"exchange_open_hours"`  // 兑换开放时间段
+	DailyExchangeLimit int64             `json:"daily_exchange_limit"` // 单日兑换上限
 }
