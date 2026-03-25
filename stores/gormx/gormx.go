@@ -2,9 +2,10 @@ package gormx
 
 import (
 	"context"
+	"sync"
+
 	"github.com/og-saas/framework/utils/tenant"
 	"github.com/spf13/cast"
-	"sync"
 
 	"gorm.io/gorm"
 )
@@ -117,6 +118,11 @@ func must(tenantId int64, configs ...Config) {
 
 		default:
 			panic("gorm: unknown driver")
+		}
+
+		if tenantId == tenant.Default && cfg.ShardingCount > 0 {
+			initShardingDB(db, cfg.ShardingTables...)
+			shardingCount = cfg.ShardingCount
 		}
 
 		mgr.pool.Store(tenantId, db)

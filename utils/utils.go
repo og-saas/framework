@@ -2,12 +2,17 @@ package utils
 
 import (
 	"context"
+	"crypto/rand"
 	"encoding/json"
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/og-saas/framework/utils/consts"
 	"github.com/og-saas/framework/utils/tenant"
+	"github.com/zeromicro/go-zero/core/logx"
+	"github.com/zeromicro/go-zero/core/stringx"
+	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/trace"
 )
 
@@ -91,12 +96,67 @@ func NewFromContext(ctx context.Context) context.Context {
 	return ctx
 }
 
-func WithOldTraceContext(ctx context.Context) context.Context {
+// DetachContext 创建不受上游取消/超时限制的新上下文，保留 trace 链路和租户信息
+// 适用于异步调用、后台任务等需要脱离请求生命周期的场景
+// 如果上游没有 trace，自动注入新的 trace ID
+func DetachContext(ctx context.Context) context.Context {
+	if ctx == nil {
+		ctx = context.Background()
+	}
+
 	newCtx := context.Background()
+
+	// 继承或创建 trace
 	spanCtx := trace.SpanContextFromContext(ctx)
 	if spanCtx.HasTraceID() {
-		newCtx = context.WithValue(newCtx, consts.Trace, spanCtx.TraceID().String())
+		newCtx = trace.ContextWithSpanContext(newCtx, spanCtx)
+	} else {
+		// 生成新 trace ID
+		var traceID trace.TraceID
+		_, _ = rand.Read(traceID[:])
+		sc := trace.NewSpanContext(trace.SpanContextConfig{
+			TraceID:    traceID,
+			TraceFlags: trace.FlagsSampled,
+		})
+		newCtx = trace.ContextWithSpanContext(newCtx, sc)
 	}
-	newCtx = tenant.SetTenantId(newCtx, tenant.GetTenantId(ctx))
+
+	// 继承租户信息
+	if tenantID := tenant.GetTenantId(ctx); tenantID != 0 {
+		newCtx = tenant.SetTenantId(newCtx, tenantID)
+	}
+
 	return newCtx
+}
+
+// DetachContextWithSpan 创建新上下文并启动 span，由调用方 defer span.End()
+// spanName 建议格式："{service}_{operation}"，例如 "agent_process_bet_notify"
+func DetachContextWithSpan(ctx context.Context, spanName string) (context.Context, trace.Span) {
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	if stringx.HasEmpty(spanName) {
+		spanName = "unknown_operation"
+	}
+
+	// 继承 trace 链路
+	spanCtx := trace.SpanContextFromContext(ctx)
+
+	// 创建新 span
+	name := strings.Split(spanName, "_")[0]
+	tracer := otel.Tracer(name)
+	newCtx, span := tracer.Start(trace.ContextWithSpanContext(context.Background(), spanCtx), spanName)
+
+	// 注入日志字段
+	newCtx = logx.ContextWithFields(newCtx,
+		logx.Field(consts.TraceID, span.SpanContext().TraceID().String()),
+		logx.Field(consts.SpanID, span.SpanContext().SpanID().String()),
+	)
+
+	// 继承租户信息
+	if tenantID := tenant.GetTenantId(ctx); tenantID != 0 {
+		newCtx = tenant.SetTenantId(newCtx, tenantID)
+	}
+
+	return newCtx, span
 }

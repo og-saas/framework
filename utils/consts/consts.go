@@ -90,9 +90,11 @@ const (
 	OrderPrefixAgentRebate       OrderPrefix = "ARO"  // 代理返佣订单
 	OrderPrefixCurrencyConvert   OrderPrefix = "CO"   // 币种兑换订单
 )
-
-// Trace 上下文 key
-const Trace = "trace"
+const (
+	// OpenTelemetry 标准字段名（推荐）
+	TraceID = "trace_id"
+	SpanID  = "span_id"
+)
 
 // DeviceType 设备类型
 type DeviceType string

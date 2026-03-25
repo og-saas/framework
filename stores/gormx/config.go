@@ -25,6 +25,8 @@ type Config struct {
 	DisableAutomaticPing      bool     `json:"disable_automatic_ping,optional"`                         // 是否禁止 GORM 自动 ping 数据库以检测连接
 	TranslateError            bool     `json:"translate_error,default=true"`                            // 是否转换错误
 	TenantDBName              string   `json:"tenant_db_name,default=site_id"`
+	ShardingCount             int64    `json:"sharding_count,optional"`  // 分表数量
+	ShardingTables            []string `json:"sharding_tables,optional"` // 需要分表的表名
 }
 
 type TenantConfig struct {
