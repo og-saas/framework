@@ -121,7 +121,7 @@ func must(tenantId int64, configs ...Config) {
 		}
 
 		if tenantId == tenant.Default && cfg.ShardingCount > 0 {
-			initShardingDB(db)
+			initShardingDB(db, cfg.ShardingTables...)
 			shardingCount = cfg.ShardingCount
 		}
 
