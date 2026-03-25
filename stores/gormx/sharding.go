@@ -3,13 +3,14 @@ package gormx
 import (
 	"fmt"
 
+	"github.com/samber/lo"
 	"gorm.io/gorm"
 	"gorm.io/sharding"
 )
 
 var shardingCount int64
 
-func initShardingDB(db *gorm.DB, tables ...any) {
+func initShardingDB(db *gorm.DB, tables ...string) {
 	db.Use(sharding.Register(sharding.Config{
 		ShardingKey: "site_id",
 		ShardingAlgorithm: func(columnValue any) (string, error) {
@@ -32,7 +33,9 @@ func initShardingDB(db *gorm.DB, tables ...any) {
 		PrimaryKeyGeneratorFn: func(tableIdx int64) int64 {
 			return 0
 		},
-	}, tables...))
+	}, lo.Map(tables, func(item string, index int) any {
+		return item
+	})))
 }
 
 func ShardingSuffix(siteId int64) string {
