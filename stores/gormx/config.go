@@ -28,7 +28,8 @@ type Config struct {
 }
 
 type TenantConfig struct {
-	Default      Config            `json:"default"`
-	Tenants      map[string]Config `json:"tenants,optional"`
-	TenantDBName string            `json:"tenant_db_name,default=site_id"`
+	Default       Config            `json:"default"`
+	Tenants       map[string]Config `json:"tenants,optional"`
+	TenantDBName  string            `json:"tenant_db_name,default=site_id"`
+	ShardingCount int64             `json:"sharding_count"` // 分表数量
 }
