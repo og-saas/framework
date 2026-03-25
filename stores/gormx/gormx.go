@@ -120,10 +120,10 @@ func must(tenantId int64, configs ...Config) {
 			panic("gorm: unknown driver")
 		}
 
-		if tenantId == tenant.Default && cfg.ShardingCount > 0 {
-			initShardingDB(db, cfg.ShardingTables...)
-			shardingCount = cfg.ShardingCount
-		}
+		//if tenantId == tenant.Default && cfg.ShardingCount > 0 {
+		//	initShardingDB(db, cfg.ShardingTables...)
+		//	shardingCount = cfg.ShardingCount
+		//}
 
 		mgr.pool.Store(tenantId, db)
 	}
