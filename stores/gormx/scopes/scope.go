@@ -124,7 +124,7 @@ func GTE(field string, value any) func(db *gorm.DB) *gorm.DB {
 // GTE2 大于等于
 func GTE2(field string, value any, apply bool) func(db *gorm.DB) *gorm.DB {
 	return func(db *gorm.DB) *gorm.DB {
-		if !apply {
+		if apply {
 			return db.Where(field+" >= ?", value)
 		}
 		return db
