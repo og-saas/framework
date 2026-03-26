@@ -18,6 +18,8 @@ import (
 
 const base62Chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
+const base36Chars = "0123456789abcdefghijklmnopqrstuvwxyz"
+
 // PrettyJSON 美化打印
 func PrettyJSON(v interface{}) {
 	// 使用 json.MarshalIndent 进行格式化和美化打印
@@ -77,6 +79,47 @@ func Base62Decode(code string) int64 {
 	}
 
 	// 从左到右遍历编码字符串
+	for _, ch := range code {
+		index, ok := charIndex[ch]
+		if !ok {
+			return 0
+		}
+		id = id*base + index
+	}
+
+	return id
+}
+
+// Base36Encode id转base36
+func Base36Encode(id int64) string {
+	if id == 0 {
+		return "0"
+	}
+	base := int64(len(base36Chars))
+	result := ""
+
+	for id > 0 {
+		remainder := id % base
+		result = string(base36Chars[remainder]) + result
+		id /= base
+	}
+	return result
+}
+
+// Base36Decode base36转id
+func Base36Decode(code string) int64 {
+	if code == "" {
+		return 0
+	}
+
+	base := int64(len(base36Chars))
+	var id int64
+
+	charIndex := make(map[rune]int64)
+	for i, ch := range base36Chars {
+		charIndex[ch] = int64(i)
+	}
+
 	for _, ch := range code {
 		index, ok := charIndex[ch]
 		if !ok {
