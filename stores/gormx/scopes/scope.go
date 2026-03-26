@@ -104,10 +104,30 @@ func GT(field string, value any) func(db *gorm.DB) *gorm.DB {
 	}
 }
 
+// GT2 大于
+func GT2(field string, value any, apply bool) func(db *gorm.DB) *gorm.DB {
+	return func(db *gorm.DB) *gorm.DB {
+		if apply {
+			return db.Where(field+" > ?", value)
+		}
+		return db
+	}
+}
+
 // GTE 大于等于
 func GTE(field string, value any) func(db *gorm.DB) *gorm.DB {
 	return func(db *gorm.DB) *gorm.DB {
 		return db.Where(field+" >= ?", value)
+	}
+}
+
+// GTE2 大于等于
+func GTE2(field string, value any, apply bool) func(db *gorm.DB) *gorm.DB {
+	return func(db *gorm.DB) *gorm.DB {
+		if !apply {
+			return db.Where(field+" >= ?", value)
+		}
+		return db
 	}
 }
 
@@ -118,10 +138,30 @@ func LT(field string, value any) func(db *gorm.DB) *gorm.DB {
 	}
 }
 
+// LT2 小于
+func LT2(field string, value any, apply bool) func(db *gorm.DB) *gorm.DB {
+	return func(db *gorm.DB) *gorm.DB {
+		if apply {
+			return db.Where(field+" < ?", value)
+		}
+		return db
+	}
+}
+
 // LTE 小于等于
 func LTE(field string, value any) func(db *gorm.DB) *gorm.DB {
 	return func(db *gorm.DB) *gorm.DB {
 		return db.Where(field+" <= ?", value)
+	}
+}
+
+// LTE2 小于等于
+func LTE2(field string, value any, apply bool) func(db *gorm.DB) *gorm.DB {
+	return func(db *gorm.DB) *gorm.DB {
+		if apply {
+			return db.Where(field+" <= ?", value)
+		}
+		return db
 	}
 }
 
