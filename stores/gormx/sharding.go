@@ -3,6 +3,7 @@ package gormx
 import (
 	"errors"
 	"fmt"
+	"sync"
 
 	"github.com/og-saas/framework/utils/tenant"
 	"gorm.io/gorm"
@@ -10,10 +11,13 @@ import (
 
 var ShardingErr = errors.New("site_id is empty")
 
-var tables = make(map[string]int)
+var (
+	shardingTables sync.Map // map[string]int
+)
 
 type ShardingPlugin struct {
-	tables map[string]int
+	tables      map[string]int
+	initialized bool
 }
 
 func NewShardingPlugin(conf []ShardingInfo) *ShardingPlugin {
@@ -25,7 +29,9 @@ func NewShardingPlugin(conf []ShardingInfo) *ShardingPlugin {
 			p.tables[t] = item.Count
 		}
 	}
-	tables = p.tables
+	for k, v := range p.tables {
+		shardingTables.Store(k, v)
+	}
 	return p
 }
 
@@ -34,30 +40,37 @@ func (p *ShardingPlugin) Name() string {
 }
 
 func (p *ShardingPlugin) Initialize(db *gorm.DB) error {
-	// 注册所有需要的回调
-	for _, op := range []string{"create", "query", "update", "delete", "row", "raw"} {
-		switch op {
-		case "create":
-			db.Callback().Create().Before("*").Register("sharding_plugin:before_create", p.beforeCallback)
-		case "query":
-			db.Callback().Query().Before("*").Register("sharding_plugin:before_query", p.beforeCallback)
-		case "update":
-			db.Callback().Update().Before("*").Register("sharding_plugin:before_update", p.beforeCallback)
-		case "delete":
-			db.Callback().Delete().Before("*").Register("sharding_plugin:before_delete", p.beforeCallback)
-		case "row":
-			db.Callback().Row().Before("*").Register("sharding_plugin:before_row", p.beforeCallback)
-		case "raw":
-			db.Callback().Raw().Before("*").Register("sharding_plugin:before_raw", p.beforeCallback)
-		}
+	if p.initialized {
+		return errors.New("sharding plugin already initialized")
 	}
+	p.initialized = true
+
+	db.Callback().Create().Before("*").Register("sharding_plugin:before_create", p.beforeCallback)
+	db.Callback().Query().Before("*").Register("sharding_plugin:before_query", p.beforeCallback)
+	db.Callback().Update().Before("*").Register("sharding_plugin:before_update", p.beforeCallback)
+	db.Callback().Delete().Before("*").Register("sharding_plugin:before_delete", p.beforeCallback)
+	db.Callback().Row().Before("*").Register("sharding_plugin:before_row", p.beforeCallback)
+	db.Callback().Raw().Before("*").Register("sharding_plugin:before_raw", p.beforeCallback)
+
 	return nil
 }
 
 // beforeCallback 在 SQL 执行前修改表名
 func (p *ShardingPlugin) beforeCallback(db *gorm.DB) {
-
 	table := db.Statement.Table
+
+	// 如果 Table 为空，尝试从 Model 解析表名
+	if table == "" && db.Statement.Model != nil {
+		if err := db.Statement.Parse(db.Statement.Model); err == nil && db.Statement.Schema != nil {
+			table = db.Statement.Schema.Table
+		}
+	}
+
+	if table == "" {
+		_ = db.AddError(ShardingErr)
+		return
+	}
+
 	count := p.tables[table]
 	if count <= 0 {
 		return
@@ -72,13 +85,12 @@ func (p *ShardingPlugin) beforeCallback(db *gorm.DB) {
 
 	// 修改 Statement 中的表名
 	db.Statement.Table = fmt.Sprintf("%s_%d", table, siteId%int64(count))
-
 }
 
 // ShardingSuffix 获取分表
-func ShardingSuffix(siteId int, table string) string {
-	if c, ok := tables[table]; ok {
-		return fmt.Sprintf("%s_%d", table, siteId%c)
+func ShardingSuffix(siteId int64, table string) string {
+	if c, ok := shardingTables.Load(table); ok {
+		return fmt.Sprintf("%s_%d", table, siteId%int64(c.(int)))
 	}
 	return table
 }
