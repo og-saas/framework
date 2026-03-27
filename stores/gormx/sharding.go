@@ -9,7 +9,7 @@ import (
 	"gorm.io/gorm"
 )
 
-var ShardingErr = errors.New("site_id is empty")
+var ShardingErr = errors.New("site_id or table is empty")
 
 var (
 	shardingTables sync.Map // map[string]int
