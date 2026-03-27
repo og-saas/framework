@@ -14,6 +14,7 @@ import (
 	"github.com/zeromicro/go-zero/core/stringx"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/trace"
+	"go.opentelemetry.io/otel/trace/noop"
 )
 
 const base62Chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
@@ -131,12 +132,24 @@ func Base36Decode(code string) int64 {
 	return id
 }
 
+func init() {
+	otel.SetTracerProvider(noop.NewTracerProvider())
+}
+
+func WithTraceCtx(ctx context.Context) context.Context {
+	tracer := otel.Tracer("framework")
+	ctx, span := tracer.Start(ctx, "WithTraceCtx")
+	defer span.End()
+	traceID := span.SpanContext().TraceID().String()
+	return logx.ContextWithFields(ctx, logx.Field(consts.TraceID, traceID))
+}
+
 func NewFromContext(ctx context.Context) context.Context {
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
-		ctx = trace.ContextWithSpan(context.Background(), span)
+		return trace.ContextWithSpan(context.Background(), span)
 	}
-	return ctx
+	return WithTraceCtx(ctx)
 }
 
 // DetachContext 创建不受上游取消/超时限制的新上下文，保留 trace 链路和租户信息
