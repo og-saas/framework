@@ -88,6 +88,7 @@ const (
 	OrderPrefixVip               OrderPrefix = "VIP"  // VIP奖励订单
 	OrderPrefixAgentInviteReward OrderPrefix = "AIRO" // 代理邀请奖励订单
 	OrderPrefixAgentRebate       OrderPrefix = "ARO"  // 代理返佣订单
+	OrderPrefixCurrencyConvert   OrderPrefix = "CO"   // 币种兑换订单
 	GameBet                      OrderPrefix = "GB"   // 游戏打码
 	TransferIn                   OrderPrefix = "TI"   // 转入操作【用户转入中台】
 	TransferOut                  OrderPrefix = "TO"   // 转出操作【用户转出中台】
