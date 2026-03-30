@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/dromara/carbon/v2"
@@ -52,4 +53,12 @@ func (s TimeRangeType) GetTimeRange() (*carbon.Carbon, *carbon.Carbon) {
 func (s TimeRangeType) GetStdTimeRange() (time.Time, time.Time) {
 	start, end := s.GetTimeRange()
 	return start.StdTime(), end.StdTime()
+}
+
+func FormatSeconds(sec int64) string {
+	h := sec / 3600
+	m := (sec % 3600) / 60
+	s := sec % 60
+
+	return fmt.Sprintf("%02d:%02d:%02d", h, m, s)
 }

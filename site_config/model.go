@@ -63,8 +63,8 @@ type CurrencyConvertConfig struct {
 	DailyFreeNum       int64             `json:"daily_free_num"`       // 每日免费次数
 	AutoAuditLimit     int64             `json:"auto_audit_limit"`     // 审核阀值
 	SingleMaxLimit     int64             `json:"single_max_limit"`     // 单笔最高限额
-	DailyPlayerLimit   int64             `json:"daily_player_limit"`   // 单日玩家兑换上限
+	DailyPlayerLimit   int64             `json:"daily_player_limit"`   // 单日玩家兑换上限(全站)
 	ExchangeCoolDown   int64             `json:"exchange_cool_down"`   // 兑换冷却时间
 	ExchangeOpenHours  []int64           `json:"exchange_open_hours"`  // 兑换开放时间段
-	DailyExchangeLimit int64             `json:"daily_exchange_limit"` // 单日兑换上限
+	DailyExchangeLimit int64             `json:"daily_exchange_limit"` // 单日兑换上限(单人玩家)
 }
