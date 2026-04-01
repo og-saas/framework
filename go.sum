@@ -287,6 +287,8 @@ github.com/natefinch/lumberjack v2.0.0+incompatible h1:4QJd3OLAMgj7ph+yZTuX13Ld4
 github.com/natefinch/lumberjack v2.0.0+incompatible/go.mod h1:Wi9p2TTF5DG5oU+6YfsmYQpsTIOm0B1VNzQg9Mw6nPk=
 github.com/og-saas/proto v0.0.17-0.20260319064650-3a662c5a685e h1:8bCjopyyUkf73UWuGy2MqjtmkOnbHsv24eabX8fEXzM=
 github.com/og-saas/proto v0.0.17-0.20260319064650-3a662c5a685e/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
+github.com/og-saas/proto v0.0.17-0.20260401090259-1120c446785b h1:FNyuHo1DZniVY2winXv58rpW77ii864sfo7ODgUkGRE=
+github.com/og-saas/proto v0.0.17-0.20260401090259-1120c446785b/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
 github.com/onsi/ginkgo/v2 v2.13.0 h1:0jY9lJquiL8fcf3M4LAXN5aMlS/b2BV86HFFPCPMgE4=
 github.com/onsi/ginkgo/v2 v2.13.0/go.mod h1:TE309ZR8s5FsKKpuB1YAQYBzCaAfUgatB/xlT/ETL/o=
 github.com/onsi/gomega v1.29.0 h1:KIA/t2t5UBzoirT4H9tsML45GEbo3ouUnBHsCfD2tVg=
