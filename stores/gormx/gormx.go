@@ -7,7 +7,7 @@ import (
 
 	"github.com/og-saas/framework/utils/tenant"
 	"github.com/spf13/cast"
-
+	"github.com/zeromicro/go-zero/core/logx"
 	"gorm.io/gorm"
 )
 
@@ -66,6 +66,87 @@ func (s *DBManager) getClientForTenant(tenantId int64) (*gorm.DB, bool) {
 
 func Must(configs ...Config) {
 	must(tenant.Default, configs...)
+}
+
+// UpdateTenant 更新租户配置，configMap 中的全部更新，pool 中存在但 configMap 中没有的删除
+func UpdateTenant(providers ...TenantConfigProvider) {
+	for _, p := range providers {
+		configMap, err := p.Load()
+		if err != nil {
+			logx.Errorf("gorm: update tenant load config error: %v", err)
+			return
+		}
+
+		// 按 driver 分组记录 configMap 中的 tenantId
+		driverTenants := make(map[string]map[int64]struct{})
+		for tenantId, cfg := range configMap {
+			if driverTenants[cfg.Driver] == nil {
+				driverTenants[cfg.Driver] = make(map[int64]struct{})
+			}
+			driverTenants[cfg.Driver][tenantId] = struct{}{}
+			must(tenantId, cfg)
+		}
+
+		// 删除 pool 中存在但 configMap 中没有的租户
+		for driver, tenantIds := range driverTenants {
+			mgr := getManager(driver)
+			if mgr == nil {
+				continue
+			}
+			mgr.pool.Range(func(key, _ interface{}) bool {
+				tid, ok := key.(int64)
+				if !ok {
+					return true
+				}
+				if tid == tenant.Default {
+					return true
+				}
+				if _, exists := tenantIds[tid]; !exists {
+					mgr.pool.Delete(tid)
+				}
+				return true
+			})
+		}
+	}
+}
+
+// AppendTenant 追加租户配置，不存在则添加
+func AppendTenant(providers ...TenantConfigProvider) {
+	for _, p := range providers {
+		configMap, err := p.Load()
+		if err != nil {
+			logx.Errorf("gorm: append tenant load config error: %v", err)
+			return
+		}
+
+		for tenantId, cfg := range configMap {
+			mgr := getManager(cfg.Driver)
+			if mgr == nil {
+				logx.Errorf("gorm: append tenant manager not initialized, driver: %s", cfg.Driver)
+				return
+			}
+			if _, ok := mgr.getClientForTenant(tenantId); !ok {
+				must(tenantId, cfg)
+			}
+		}
+	}
+}
+
+func getManager(driver string) *DBManager {
+	if Engine == nil {
+		return nil
+	}
+	switch driver {
+	case DriverMysql:
+		return Engine.Mysql
+	case DriverPostgres:
+		return Engine.Postgres
+	case DriverClickHouse:
+		return Engine.Clickhouse
+	default:
+		logx.Errorf("gorm: unknown driver: %s", driver)
+		return nil
+	}
 }
 
 func MustTenant(providers ...TenantConfigProvider) {

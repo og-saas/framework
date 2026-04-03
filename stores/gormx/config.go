@@ -17,6 +17,7 @@ type Config struct {
 	SlowThreshold             int            `json:"slow_threshold,default=200"`                              // 慢查询阈值(ms)
 	Sources                   []string       `json:"sources,optional"`                                        // Master
 	Replicas                  []string       `json:"replicas,optional"`                                       // Slave
+	ReadTables                []string       `json:"read_tables,optional"`                                    // 读表
 	SkipDefaultTransaction    bool           `json:"skip_default_transaction,optional"`                       // 跳过默认事务
 	DefaultTransactionTimeout int            `json:"default_transaction_timeout,optional"`                    // 默认事务超时时间(s)
 	PrepareStmt               bool           `json:"prepare_stmt,optional"`                                   // 开启预编译语句缓存

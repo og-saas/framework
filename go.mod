@@ -2,6 +2,8 @@ module github.com/og-saas/framework
 
 go 1.25.1
 
+//replace github.com/og-saas/proto => ../proto
+
 require (
 	github.com/apache/rocketmq-clients/golang/v5 v5.1.3
 	github.com/dromara/carbon/v2 v2.6.16
@@ -11,7 +13,7 @@ require (
 	github.com/golang-jwt/jwt/v4 v4.5.2
 	github.com/google/uuid v1.6.0
 	github.com/jinzhu/copier v0.4.0
-	github.com/og-saas/proto v0.0.17-0.20260401090259-1120c446785b
+	github.com/og-saas/proto v0.0.17-0.20260403100109-8eb6b4f0f62a
 	github.com/redis/go-redis/v9 v9.17.2
 	github.com/samber/lo v1.52.0
 	github.com/shopspring/decimal v1.4.0

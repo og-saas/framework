@@ -57,7 +57,7 @@ func (c Config) NewDB() *gorm.DB {
 		panic(err)
 	}
 
-	if len(c.Sources) > 0 || len(c.Replicas) > 0 {
+	if len(c.Replicas) > 0 {
 		var sources, replicas []gorm.Dialector
 		for _, dsn := range c.Sources {
 			sources = append(sources, f(dsn))
@@ -65,14 +65,26 @@ func (c Config) NewDB() *gorm.DB {
 		for _, dsn := range c.Replicas {
 			replicas = append(replicas, f(dsn))
 		}
-
-		if err = db.Use(dbresolver.Register(dbresolver.Config{
+		cfg := dbresolver.Config{
 			Sources:           sources,
 			Replicas:          replicas,
 			Policy:            dbresolver.RandomPolicy{},
 			TraceResolverMode: true,
-		})); err != nil {
-			panic(fmt.Errorf("gorm dbresolver error: %w", err))
+		}
+		if len(c.ReadTables) == 0 {
+			if err = db.Use(dbresolver.Register(cfg)); err != nil {
+				panic(fmt.Errorf("gorm dbresolver error: %w", err))
+			}
+		}
+		if len(c.ReadTables) > 0 {
+			args := make([]interface{}, 0, len(c.ReadTables)+1)
+			for _, t := range c.ReadTables {
+				args = append(args, t) // 每个表名单独传入
+			}
+			args = append(args, "replica") // resolver 名（可选）
+			if err = db.Use(dbresolver.Register(cfg, args...)); err != nil {
+				panic(fmt.Errorf("gorm dbresolver error: %w", err))
+			}
 		}
 	}
 

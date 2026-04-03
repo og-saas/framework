@@ -4,9 +4,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"time"
+
 	"github.com/og-saas/framework/utils/contextkey"
 	"github.com/og-saas/framework/utils/tenant"
-	"time"
 
 	"github.com/zeromicro/go-zero/core/logx"
 	"gorm.io/gorm"
@@ -14,10 +15,8 @@ import (
 )
 
 const (
-	dbOperationContent = "DB"
-	dbSqlField         = "sql"
-	dbRowsField        = "rows"
-	dbDurationField    = "duration"
+	dbRowsField     = "rows"
+	dbDurationField = "duration"
 )
 
 const skipCaller = 3
@@ -64,20 +63,18 @@ func (l *GormLogger) Trace(ctx context.Context, begin time.Time, fc func() (sql 
 	sql, rows := fc()
 
 	fields := []logx.LogField{
-		logx.Field(dbSqlField, sql),
 		logx.Field(dbRowsField, rows),
 		logx.Field(dbDurationField, float64(elapsed.Nanoseconds())/1e6),
-		logx.Field(contextkey.TenantKey.Name(), tenant.GetTenantId(ctx)),
 	}
 
 	switch {
 	case err != nil && l.LogLevel >= logger.Error && (!errors.Is(err, gorm.ErrRecordNotFound) || !l.IgnoreRecordNotFoundError):
 		fields = append(fields, logx.Field("err", err))
-		log(ctx).Errorw(dbOperationContent, fields...)
+		log(ctx).Errorw(sql, fields...)
 	case elapsed > l.SlowThreshold && l.SlowThreshold > 0 && l.LogLevel >= logger.Warn:
-		log(ctx).Sloww(dbOperationContent, fields...)
+		log(ctx).Sloww(sql, fields...)
 	case l.LogLevel == logger.Info:
-		log(ctx).Infow(dbOperationContent, fields...)
+		log(ctx).Infow(sql, fields...)
 	}
 }
 
