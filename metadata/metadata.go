@@ -2,6 +2,7 @@ package metadata
 
 import (
 	"context"
+
 	"github.com/spf13/cast"
 )
 
@@ -19,10 +20,11 @@ const (
 	Domain          Metadata = "domain"           // 域名
 	DeviceId        Metadata = "Device-Id"        // 设备id
 	DeviceType      Metadata = "Device-Type"      // 设备类型
-	DeviceOS        Metadata = "Device-OS"        // 设备操作系统
+	DeviceOS        Metadata = "Device-Os"        // 设备操作系统
 	AppVersion      Metadata = "App-Version"      // app版本
 	UserAgent       Metadata = "User-Agent"       // 浏览器用户代理
 	DefaultCurrency Metadata = "default_currency" // 钱包默认币种
+	DeviceEndpoint  Metadata = "Device-Endpoint"  // 设备终端类型 APP H5 PC
 )
 
 // GetKey 获取元数据key

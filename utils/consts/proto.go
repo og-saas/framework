@@ -72,3 +72,17 @@ func TransactionSubCategoryToTransactionCategory(subCategory commonv1.Transactio
 		return commonv1.TransactionCategory_UNSPECIFIED
 	}
 }
+
+// 终端类型枚举转换
+func EndpointTypeConvert(typ EndpointType) commonv1.EndpointType {
+	switch typ {
+	case EndpointTypeH5:
+		return commonv1.EndpointType_EndpointType_H5
+	case EndpointTypeApp:
+		return commonv1.EndpointType_EndpointType_App
+	case EndpointTypePC:
+		return commonv1.EndpointType_EndpointType_Pc
+	default:
+		return commonv1.EndpointType_EndpointType_UNSPECIFIED
+	}
+}
