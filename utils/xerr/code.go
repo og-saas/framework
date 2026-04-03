@@ -55,6 +55,8 @@ const (
 	ErrCodeMaxNumberError ErrCode = 10014 // MaxNumberError
 	// ErrCodeBalanceRetrievingError 余额找回中，请稍后
 	ErrCodeBalanceRetrievingError ErrCode = 10015 // BalanceRetrievingError
+	// ErrCodeNicknameExistError 昵称已存在
+	ErrCodeNicknameExistError ErrCode = 10016 // NicknameExistError
 
 )
 
