@@ -51,7 +51,9 @@ func TransactionSubCategoryToTransactionCategory(subCategory commonv1.Transactio
 		commonv1.TransactionSubCategory_FUND_CORRECTION_MANUAL_DEDUCTION:
 		return commonv1.TransactionCategory_FUND_CORRECTION
 	case commonv1.TransactionSubCategory_ACTIVITY_REGISTER,
-		commonv1.TransactionSubCategory_ACTIVITY_RECHARGE:
+		commonv1.TransactionSubCategory_ACTIVITY_SINGLE_RECHARGE,
+		commonv1.TransactionSubCategory_ACTIVITY_TOTAL_RECHARGE,
+		commonv1.TransactionSubCategory_ACTIVITY_FIRST_RECHARGE:
 		return commonv1.TransactionCategory_ACTIVITY
 	case commonv1.TransactionSubCategory_REBATE_SEND,
 		commonv1.TransactionSubCategory_REBATE_RECEIVE:
