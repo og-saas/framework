@@ -5,6 +5,7 @@ import (
 	"sync"
 
 	"github.com/og-saas/framework/utils/tenant"
+	"github.com/zeromicro/go-zero/core/logx"
 
 	"github.com/redis/go-redis/v9"
 )
@@ -31,6 +32,62 @@ func MustTenant(providers ...TenantConfigProvider) {
 
 		for key, val := range configMap {
 			must(key, val)
+		}
+	}
+}
+
+// UpdateTenant 更新租户配置，configMap 中的全部更新，pool 中存在但 configMap 中没有的删除
+func UpdateTenant(providers ...TenantConfigProvider) {
+	for _, p := range providers {
+		configMap, err := p.Load()
+		if err != nil {
+			logx.Errorf("redis: update tenant load config error: %v", err)
+			return
+		}
+
+		if Engine == nil {
+			return
+		}
+
+		tenantIds := make(map[int64]struct{})
+		for tenantId, cfg := range configMap {
+			tenantIds[tenantId] = struct{}{}
+			must(tenantId, cfg)
+		}
+
+		Engine.pool.Range(func(key, _ interface{}) bool {
+			tid, ok := key.(int64)
+			if !ok {
+				return true
+			}
+			if tid == tenant.Default {
+				return true
+			}
+			if _, exists := tenantIds[tid]; !exists {
+				Engine.pool.Delete(tid)
+			}
+			return true
+		})
+	}
+}
+
+// AppendTenant 追加租户配置，不存在则添加
+func AppendTenant(providers ...TenantConfigProvider) {
+	for _, p := range providers {
+		configMap, err := p.Load()
+		if err != nil {
+			logx.Errorf("redis: append tenant load config error: %v", err)
+			return
+		}
+
+		if Engine == nil {
+			return
+		}
+
+		for tenantId, cfg := range configMap {
+			if _, ok := Engine.getClientForTenant(tenantId); !ok {
+				must(tenantId, cfg)
+			}
 		}
 	}
 }
