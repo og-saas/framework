@@ -7,7 +7,11 @@ func RewardSubCategoryToTransactionSubCategory(subCategory commonv1.RewardSubCat
 	case commonv1.RewardSubCategory_REWARD_SUB_REGISTER_ACTIVITY:
 		return commonv1.TransactionSubCategory_ACTIVITY_REGISTER
 	case commonv1.RewardSubCategory_REWARD_SUB_FIRST_RECHARGE_ACTIVITY:
-		return commonv1.TransactionSubCategory_ACTIVITY_RECHARGE
+		return commonv1.TransactionSubCategory_ACTIVITY_FIRST_RECHARGE
+	case commonv1.RewardSubCategory_REWARD_SUB_TOTAL_RECHARGE_ACTIVITY:
+		return commonv1.TransactionSubCategory_ACTIVITY_TOTAL_RECHARGE
+	case commonv1.RewardSubCategory_REWARD_SUB_SINGLE_RECHARGE_ACTIVITY:
+		return commonv1.TransactionSubCategory_ACTIVITY_SINGLE_RECHARGE
 	case commonv1.RewardSubCategory_REWARD_SUB_AGENT_INVITE:
 		return commonv1.TransactionSubCategory_REBATE_SEND
 	case commonv1.RewardSubCategory_REWARD_SUB_VIP_UPGRADE:
@@ -28,8 +32,6 @@ func RewardSubCategoryToTransactionSubCategory(subCategory commonv1.RewardSubCat
 		return commonv1.TransactionSubCategory_VIP_TASK_RECHARGE_DAY
 	case commonv1.RewardSubCategory_REWARD_SUB_VIP_TASK_WEEKLY_RECHARGE:
 		return commonv1.TransactionSubCategory_VIP_TASK_RECHARGE_WEEK
-	case commonv1.RewardSubCategory_REWARD_SUB_RECHARGE_BONUS:
-		return commonv1.TransactionSubCategory_ACTIVITY_RECHARGE
 	default:
 		return commonv1.TransactionSubCategory_SUB_UNSPECIFIED
 	}
