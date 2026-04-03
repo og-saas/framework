@@ -3,6 +3,7 @@ package redisx
 import (
 	"context"
 	"sync"
+	"time"
 
 	"github.com/og-saas/framework/utils/tenant"
 
@@ -47,13 +48,46 @@ func must(tenant int64, cfg Config) {
 }
 
 func (c Config) NewRdb() (rdb redis.UniversalClient) {
-	rdb = redis.NewUniversalClient(&redis.UniversalOptions{
+	opt := &redis.UniversalOptions{
 		Addrs:      c.Addrs,
 		Username:   c.Username,
 		Password:   c.Password,
 		MasterName: c.MasterName,
 		DB:         c.DB,
-	})
+	}
+
+	if c.PoolSize > 0 {
+		opt.PoolSize = c.PoolSize
+	} else {
+		opt.PoolSize = 100 // default pool size
+	}
+
+	if c.MinIdleConns > 0 {
+		opt.MinIdleConns = c.MinIdleConns
+	} else {
+		opt.MinIdleConns = 20 // default min idle conns
+	}
+
+	// Default to reasonable timeouts if not configured
+	if c.DialTimeout > 0 {
+		opt.DialTimeout = time.Duration(c.DialTimeout) * time.Millisecond
+	} else {
+		opt.DialTimeout = 5 * time.Second
+	}
+
+	if c.ReadTimeout > 0 {
+		opt.ReadTimeout = time.Duration(c.ReadTimeout) * time.Millisecond
+	} else {
+		opt.ReadTimeout = 3 * time.Second
+	}
+
+	if c.WriteTimeout > 0 {
+		opt.WriteTimeout = time.Duration(c.WriteTimeout) * time.Millisecond
+	} else {
+		opt.WriteTimeout = 3 * time.Second
+	}
+
+	rdb = redis.NewUniversalClient(opt)
 
 	if err := rdb.Ping(context.Background()).Err(); err != nil {
 		panic(err)
