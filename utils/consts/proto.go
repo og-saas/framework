@@ -6,8 +6,8 @@ func RewardSubCategoryToTransactionSubCategory(subCategory commonv1.RewardSubCat
 	switch subCategory {
 	case commonv1.RewardSubCategory_REWARD_SUB_REGISTER_ACTIVITY:
 		return commonv1.TransactionSubCategory_ACTIVITY_REGISTER
-	//case commonv1.RewardSubCategory_REWARD_SUB_TASK:
-	//return commonv1.TransactionSubCategory_TASK_DAILY
+	case commonv1.RewardSubCategory_REWARD_SUB_FIRST_RECHARGE_ACTIVITY:
+		return commonv1.TransactionSubCategory_ACTIVITY_RECHARGE
 	case commonv1.RewardSubCategory_REWARD_SUB_AGENT_INVITE:
 		return commonv1.TransactionSubCategory_REBATE_SEND
 	case commonv1.RewardSubCategory_REWARD_SUB_VIP_UPGRADE:
