@@ -2,16 +2,38 @@ package httpc
 
 import (
 	"context"
+	"net"
+	"net/http"
+	"net/http/cookiejar"
+	"runtime"
 	"sync"
+	"time"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/trace"
+	"golang.org/x/net/publicsuffix"
 )
 
-// 定义http 引擎
-var engine *resty.Client
-var once sync.Once
+const (
+	dialTimeout           = 30 * time.Second
+	keepAlive             = 30 * time.Second
+	idleConnTimeout       = 90 * time.Second
+	tlsHandshakeTimeout   = 10 * time.Second
+	expectContinueTimeout = time.Second
+	maxIdleConns          = 256
+	maxConnsPerHost       = 128
+)
+
+var maxIdleConnsPerHost = max(64, runtime.GOMAXPROCS(0)*2)
+
+// 定义 http 引擎
+var (
+	engine           *resty.Client
+	defaultClient    *http.Client
+	defaultTransport *http.Transport
+	once             sync.Once
+)
 
 func Do(ctx context.Context) *resty.Request {
 	once.Do(func() {
@@ -21,16 +43,59 @@ func Do(ctx context.Context) *resty.Request {
 }
 
 func New(ctx context.Context, fs ...func(cli *resty.Client)) *resty.Request {
-	client := MustClient()
+	client := newReusableClient()
 	for _, f := range fs {
 		f(client)
 	}
 	return client.R().SetContext(ctx)
 }
 
-// MustClient new http client
+// MustClient new reusable http client
 func MustClient() *resty.Client {
-	return resty.New()
+	return resty.NewWithClient(getDefaultHTTPClient())
+}
+
+func getDefaultHTTPClient() *http.Client {
+	once.Do(func() {
+		defaultTransport = &http.Transport{
+			Proxy:                 http.ProxyFromEnvironment,
+			DialContext:           (&net.Dialer{Timeout: dialTimeout, KeepAlive: keepAlive}).DialContext,
+			ForceAttemptHTTP2:     true,
+			MaxIdleConns:          maxIdleConns,
+			MaxIdleConnsPerHost:   maxIdleConnsPerHost,
+			MaxConnsPerHost:       maxConnsPerHost,
+			IdleConnTimeout:       idleConnTimeout,
+			TLSHandshakeTimeout:   tlsHandshakeTimeout,
+			ExpectContinueTimeout: expectContinueTimeout,
+		}
+
+		cookieJar, _ := cookiejar.New(&cookiejar.Options{PublicSuffixList: publicsuffix.List})
+		defaultClient = &http.Client{
+			Transport: defaultTransport,
+			Jar:       cookieJar,
+		}
+		engine = resty.NewWithClient(defaultClient)
+	})
+	return defaultClient
+}
+
+func newReusableClient() *resty.Client {
+	base := getDefaultHTTPClient()
+	cookieJar, _ := cookiejar.New(&cookiejar.Options{PublicSuffixList: publicsuffix.List})
+
+	return resty.NewWithClient(&http.Client{
+		Transport:     base.Transport,
+		CheckRedirect: base.CheckRedirect,
+		Jar:           cookieJar,
+		Timeout:       base.Timeout,
+	})
+}
+
+// CloseIdleConnections 主动释放空闲连接
+func CloseIdleConnections() {
+	if client := getDefaultHTTPClient(); client != nil {
+		client.CloseIdleConnections()
+	}
 }
 
 // ctxLogger 将 resty debug 日志桥接到 go-zero logx，自动携带 trace_id
