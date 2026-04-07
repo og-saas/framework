@@ -14,7 +14,6 @@ const (
 	UserId          Metadata = "user_id"          // 用户id
 	Username        Metadata = "username"         // 用户名
 	ChannelId       Metadata = "channel_id"       // 渠道id
-	TenantId        Metadata = "tenant_id"        // 租户id
 	Language        Metadata = "language"         // 语言
 	IP              Metadata = "ip"               // ip
 	Currency        Metadata = "currency"         // 币种
