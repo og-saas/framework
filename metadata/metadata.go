@@ -10,6 +10,7 @@ type Metadata string
 
 const (
 	Authorization   Metadata = "Authorization"    // 授权
+	XTenantId       Metadata = "X-Tenant-Id"      // 租户id
 	UserId          Metadata = "user_id"          // 用户id
 	Username        Metadata = "username"         // 用户名
 	ChannelId       Metadata = "channel_id"       // 渠道id
