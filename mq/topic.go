@@ -17,6 +17,8 @@ var (
 	TopicAgentGradeGrowthNotify = "agent_grade_growth_notify"
 	// TopicAgentBetRebatNotify 代理返佣投注更新通知
 	TopicAgentBetRebatNotify = "agent_bet_rebat_notify"
+	// TopicUserRegisterNotify 用户注册通知
+	TopicUserRegisterNotify = "user_register_notify"
 )
 
 func UpdateTopicPrefix(prefixes ...string) (prefix string) {
