@@ -146,7 +146,13 @@ func (r *RocketMqx) processMessages(consumer rmqClient.SimpleConsumer, handler c
 			continue
 		}
 
-		// 3. 处理消息 - 使用 InvisibleDuration 作为处理超时
+		// 3. 打印收到的消息
+		for _, mv := range mvs {
+			logx.Debugf("Received message: consumerGroup=%s, topic=%s, msgId=%s, tag=%s, body=%s",
+				consumer.GetGroupName(), topic, mv.GetMessageId(), mv.GetTag(), string(mv.GetBody()))
+		}
+
+		// 4. 处理消息 - 使用 InvisibleDuration 作为处理超时
 		handlerCtx, handlerCancel := context.WithTimeout(
 			context.Background(),
 			time.Duration(r.config.ConsumerConfig.InvisibleDuration)*time.Second,
