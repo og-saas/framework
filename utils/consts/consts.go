@@ -90,8 +90,8 @@ const (
 	OrderPrefixAgentRebate       OrderPrefix = "ARO"  // 代理返佣订单
 	OrderPrefixCurrencyConvert   OrderPrefix = "CO"   // 币种兑换订单
 	GameBet                      OrderPrefix = "GB"   // 游戏打码
-	TransferIn                   OrderPrefix = "TI"   // 转入操作【用户转入中台】
-	TransferOut                  OrderPrefix = "TO"   // 转出操作【用户转出中台】
+	TransferIn                   OrderPrefix = "TI"   // 转入操作【中台资金转入用户钱包】
+	TransferOut                  OrderPrefix = "TO"   // 转出操作【用户资金转入中台】
 )
 const (
 	// OpenTelemetry 标准字段名（推荐）
