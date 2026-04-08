@@ -33,6 +33,7 @@ var (
 	defaultClient    *http.Client
 	defaultTransport *http.Transport
 	once             sync.Once
+	clientOnce       sync.Once
 )
 
 func Do(ctx context.Context) *resty.Request {
@@ -56,7 +57,7 @@ func MustClient() *resty.Client {
 }
 
 func getDefaultHTTPClient() *http.Client {
-	once.Do(func() {
+	clientOnce.Do(func() {
 		defaultTransport = &http.Transport{
 			Proxy:                 http.ProxyFromEnvironment,
 			DialContext:           (&net.Dialer{Timeout: dialTimeout, KeepAlive: keepAlive}).DialContext,
@@ -74,7 +75,6 @@ func getDefaultHTTPClient() *http.Client {
 			Transport: defaultTransport,
 			Jar:       cookieJar,
 		}
-		engine = resty.NewWithClient(defaultClient)
 	})
 	return defaultClient
 }
