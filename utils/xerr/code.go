@@ -57,6 +57,8 @@ const (
 	ErrCodeBalanceRetrievingError ErrCode = 10015 // BalanceRetrievingError
 	// ErrCodeNicknameExistError 昵称已存在
 	ErrCodeNicknameExistError ErrCode = 10016 // NicknameExistError
+	// ErrCodeOldPasswordError 旧密码错误
+	ErrCodeOldPasswordError ErrCode = 10017 // OldPasswordError
 
 )
 
@@ -84,6 +86,12 @@ const (
 	ErrCodeInvalidPromotionCode ErrCode = 40000 // ErrCodeInvalidPromotionCode
 	// ErrCodeBindParentNotAllowed 不允许绑定上级
 	ErrCodeBindParentNotAllowed ErrCode = 40001 // ErrCodeBindParentNotAllowed
+)
+
+// share相关
+const (
+	// ErrCodeCaptchaErr 验证码错误
+	ErrCodeCaptchaErr ErrCode = 50001 // ErrCodeCaptchaErr
 )
 
 func (code ErrCode) Int() int {
