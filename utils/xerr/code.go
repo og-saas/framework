@@ -84,6 +84,26 @@ const (
 	ErrCodeBindParentNotAllowed ErrCode = 40001 // ErrCodeBindParentNotAllowed
 )
 
+// 优惠相关
+const (
+	// ErrCodeActivityNotStart 活动还未开始
+	ErrCodeActivityNotStart ErrCode = 50000 // ErrCodeActivityNotStart
+	// ErrCodeActivityEnded 活动已结束
+	ErrCodeActivityEnded ErrCode = 50001 // ErrCodeActivityEnded
+	// ErrCodeActivityClosed 活动已关闭
+	ErrCodeActivityClosed ErrCode = 50002 // ErrCodeActivityClosed
+	// ErrCodeRewardNotAvailableYet 奖励未到领取时间
+	ErrCodeRewardNotAvailableYet ErrCode = 50003 // ErrCodeRewardNotAvailableYet
+	// ErrCodeRewardNotBelongToYou 奖励不属于你
+	ErrCodeRewardNotBelongToYou ErrCode = 50004 // ErrCodeRewardNotBelongToYou
+	// ErrCodeRewardConditionNotMet 未达到领取奖励的条件
+	ErrCodeRewardConditionNotMet ErrCode = 50005 // ErrCodeRewardConditionNotMet
+	// ErrCodeRewardNotClaimable 奖励不可领取
+	ErrCodeRewardNotClaimable ErrCode = 50006 // ErrCodeRewardNotClaimable
+	// ErrCodeRewardExpired 奖励已过期
+	ErrCodeRewardExpired ErrCode = 50007 // ErrCodeRewardExpired
+)
+
 func (code ErrCode) Int() int {
 	return int(code)
 }

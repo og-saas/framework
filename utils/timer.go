@@ -1,7 +1,10 @@
 package utils
 
 import (
+	"crypto/rand"
 	"fmt"
+	"github.com/shopspring/decimal"
+	"math/big"
 	"time"
 
 	"github.com/dromara/carbon/v2"
@@ -61,4 +64,30 @@ func FormatSeconds(sec int64) string {
 	s := sec % 60
 
 	return fmt.Sprintf("%02d:%02d:%02d", h, m, s)
+}
+
+// RandomDecimal 在 [min, max] 内随机，结果固定保留2位小数
+func RandomDecimal(min, max decimal.Decimal) (decimal.Decimal, error) {
+	if min.GreaterThan(max) {
+		return decimal.Zero, fmt.Errorf("min > max")
+	}
+
+	hundred := decimal.NewFromInt(100)
+
+	// 只允许2位小数范围：min向上取整到分，max向下取整到分
+	minCents := min.Mul(hundred).Ceil().IntPart()
+	maxCents := max.Mul(hundred).Floor().IntPart()
+
+	if minCents > maxCents {
+		return decimal.Zero, fmt.Errorf("no valid 2-decimal number in range")
+	}
+
+	diff := maxCents - minCents + 1
+	n, err := rand.Int(rand.Reader, big.NewInt(diff))
+	if err != nil {
+		return decimal.Zero, err
+	}
+
+	valCents := minCents + n.Int64()
+	return decimal.NewFromInt(valCents).Div(hundred), nil
 }

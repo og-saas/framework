@@ -92,6 +92,7 @@ const (
 	GameBet                      OrderPrefix = "GB"   // 游戏打码
 	TransferIn                   OrderPrefix = "TI"   // 转入操作【用户转入中台】
 	TransferOut                  OrderPrefix = "TO"   // 转出操作【用户转出中台】
+	OrderPrefixActivity          OrderPrefix = "AO"   // 活动奖励订单
 )
 const (
 	// OpenTelemetry 标准字段名（推荐）

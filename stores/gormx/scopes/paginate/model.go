@@ -10,6 +10,7 @@ type Pagination struct {
 	TotalPage     int64 `json:"total_page"`
 	NotQueryTotal bool  `json:"not_query_total"` // 是否不查询总数
 	ForcePageSize bool  `json:"force_page_size"` // 是否强制获取超出限制的条数
+	ForceOffset   int   `json:"force_offset"`    // 强制使用偏移量
 }
 
 // Default constants
@@ -24,6 +25,9 @@ func (p *Pagination) Offset() int {
 	page := p.Page
 	if page <= 0 {
 		page = DefaultPage
+	}
+	if p.ForceOffset > 0 {
+		return p.ForceOffset
 	}
 	return (page - 1) * p.Limit()
 }
