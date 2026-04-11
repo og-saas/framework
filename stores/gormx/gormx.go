@@ -9,6 +9,7 @@ import (
 	"github.com/spf13/cast"
 	"github.com/zeromicro/go-zero/core/logx"
 	"gorm.io/gorm"
+	"gorm.io/plugin/dbresolver"
 )
 
 var (
@@ -51,6 +52,30 @@ func (s *DBManager) WithContext(ctx context.Context) *gorm.DB {
 
 	if db, ok := s.getClientForTenant(tenant.Default); ok {
 		return db.WithContext(ctx)
+	}
+	panic("gorm: database not initialized")
+}
+
+// OriginalDb 返回原始的 gorm.DB 对象
+func (s *DBManager) OriginalDb(ctx context.Context) *gorm.DB {
+	if db, ok := s.getClientForTenant(tenant.GetTenantId(ctx)); ok {
+		return db
+	}
+
+	if db, ok := s.getClientForTenant(tenant.Default); ok {
+		return db
+	}
+	panic("gorm: database not initialized")
+}
+
+// WithWriteContext 创建一个只写的 gorm.DB 对象
+func (s *DBManager) WithWriteContext(ctx context.Context) *gorm.DB {
+	if db, ok := s.getClientForTenant(tenant.GetTenantId(ctx)); ok {
+		return db.Clauses(dbresolver.Write).WithContext(ctx)
+	}
+
+	if db, ok := s.getClientForTenant(tenant.Default); ok {
+		return db.Clauses(dbresolver.Write).WithContext(ctx)
 	}
 	panic("gorm: database not initialized")
 }

@@ -57,6 +57,8 @@ const (
 	ErrCodeBalanceRetrievingError ErrCode = 10015 // BalanceRetrievingError
 	// ErrCodeNicknameExistError 昵称已存在
 	ErrCodeNicknameExistError ErrCode = 10016 // NicknameExistError
+	// ErrCodeOldPasswordError 旧密码错误
+	ErrCodeOldPasswordError ErrCode = 10017 // OldPasswordError
 
 )
 
@@ -66,6 +68,8 @@ const (
 	ErrCodeGameEnterLogExists ErrCode = 20001 // GameEnterLogExists
 	// ErrCodeGameEnterBalanceNotEnough 用户进入游戏余额不足
 	ErrCodeGameEnterBalanceNotEnough ErrCode = 20002 // ErrCodeGameEnterLogExists
+	// ErrCodeGamePlatformUnreachable 游戏中台请求未到达（被拦截/网络不可达）
+	ErrCodeGamePlatformUnreachable ErrCode = 20003 // GamePlatformUnreachable
 )
 
 // 财务相关
@@ -84,24 +88,30 @@ const (
 	ErrCodeBindParentNotAllowed ErrCode = 40001 // ErrCodeBindParentNotAllowed
 )
 
+// share相关
+const (
+	// ErrCodeCaptchaErr 验证码错误
+	ErrCodeCaptchaErr ErrCode = 50001 // ErrCodeCaptchaErr
+)
+
 // 优惠相关
 const (
 	// ErrCodeActivityNotStart 活动还未开始
-	ErrCodeActivityNotStart ErrCode = 50000 // ErrCodeActivityNotStart
+	ErrCodeActivityNotStart ErrCode = 60001 // ErrCodeActivityNotStart
 	// ErrCodeActivityEnded 活动已结束
-	ErrCodeActivityEnded ErrCode = 50001 // ErrCodeActivityEnded
+	ErrCodeActivityEnded ErrCode = 60002 // ErrCodeActivityEnded
 	// ErrCodeActivityClosed 活动已关闭
-	ErrCodeActivityClosed ErrCode = 50002 // ErrCodeActivityClosed
+	ErrCodeActivityClosed ErrCode = 60003 // ErrCodeActivityClosed
 	// ErrCodeRewardNotAvailableYet 奖励未到领取时间
-	ErrCodeRewardNotAvailableYet ErrCode = 50003 // ErrCodeRewardNotAvailableYet
+	ErrCodeRewardNotAvailableYet ErrCode = 60004 // ErrCodeRewardNotAvailableYet
 	// ErrCodeRewardNotBelongToYou 奖励不属于你
-	ErrCodeRewardNotBelongToYou ErrCode = 50004 // ErrCodeRewardNotBelongToYou
+	ErrCodeRewardNotBelongToYou ErrCode = 60005 // ErrCodeRewardNotBelongToYou
 	// ErrCodeRewardConditionNotMet 未达到领取奖励的条件
-	ErrCodeRewardConditionNotMet ErrCode = 50005 // ErrCodeRewardConditionNotMet
+	ErrCodeRewardConditionNotMet ErrCode = 60006 // ErrCodeRewardConditionNotMet
 	// ErrCodeRewardNotClaimable 奖励不可领取
-	ErrCodeRewardNotClaimable ErrCode = 50006 // ErrCodeRewardNotClaimable
+	ErrCodeRewardNotClaimable ErrCode = 60007 // ErrCodeRewardNotClaimable
 	// ErrCodeRewardExpired 奖励已过期
-	ErrCodeRewardExpired ErrCode = 50007 // ErrCodeRewardExpired
+	ErrCodeRewardExpired ErrCode = 60008 // ErrCodeRewardExpired
 )
 
 func (code ErrCode) Int() int {

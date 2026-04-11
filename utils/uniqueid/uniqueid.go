@@ -35,7 +35,7 @@ func GenOrderNO(prefix consts.OrderPrefix) string {
 	if prefix == "" {
 		prefix = consts.DefaultOrder
 	}
-	return fmt.Sprintf("%s-%d", prefix, id)
+	return fmt.Sprintf("%s_%d", prefix, id)
 }
 
 // ExtractTime 从 sonyflake ID 中提取时间戳

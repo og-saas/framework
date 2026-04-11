@@ -81,12 +81,12 @@ func TransactionSubCategoryToTransactionCategory(subCategory commonv1.Transactio
 func EndpointTypeConvert(typ EndpointType) commonv1.EndpointType {
 	switch typ {
 	case EndpointTypeH5:
-		return commonv1.EndpointType_EndpointType_H5
+		return commonv1.EndpointType_ENDPOINT_TYPE_H5
 	case EndpointTypeApp:
-		return commonv1.EndpointType_EndpointType_App
+		return commonv1.EndpointType_ENDPOINT_TYPE_APP
 	case EndpointTypePC:
-		return commonv1.EndpointType_EndpointType_Pc
+		return commonv1.EndpointType_ENDPOINT_TYPE_PC
 	default:
-		return commonv1.EndpointType_EndpointType_UNSPECIFIED
+		return commonv1.EndpointType_ENDPOINT_TYPE_UNSPECIFIED
 	}
 }
