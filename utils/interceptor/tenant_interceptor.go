@@ -7,6 +7,7 @@ import (
 	"github.com/og-saas/framework/utils/metadatakey"
 	"github.com/og-saas/framework/utils/tenant"
 	"github.com/spf13/cast"
+	"github.com/zeromicro/go-zero/core/logx"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
@@ -97,7 +98,12 @@ func TenantUnaryClientInterceptor() grpc.UnaryClientInterceptor {
 			md = md.Copy() // 避免污染原 context
 		}
 
-		md.Set(metadatakey.TenantIdMetadataKey, cast.ToString(tenant.GetTenantId(ctx)))
+		siteId := tenant.GetTenantId(ctx)
+		if siteId == tenant.Default {
+			logx.WithContext(ctx).Errorf("tenantId is not set , method:%s", method)
+		}
+
+		md.Set(metadatakey.TenantIdMetadataKey, cast.ToString(siteId))
 		ctx = metadata.NewOutgoingContext(ctx, md)
 
 		return invoker(ctx, method, req, reply, cc, opts...)
@@ -121,7 +127,12 @@ func TenantStreamClientInterceptor() grpc.StreamClientInterceptor {
 			md = md.Copy()
 		}
 
-		md.Set(metadatakey.TenantIdMetadataKey, cast.ToString(tenant.GetTenantId(ctx)))
+		siteId := tenant.GetTenantId(ctx)
+		if siteId == tenant.Default {
+			logx.WithContext(ctx).Errorf("tenantId is not set , method:%s", method)
+		}
+
+		md.Set(metadatakey.TenantIdMetadataKey, cast.ToString(siteId))
 		ctx = metadata.NewOutgoingContext(ctx, md)
 
 		return streamer(ctx, desc, cc, method, opts...)
