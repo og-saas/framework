@@ -58,6 +58,44 @@ func (s TimeRangeType) GetStdTimeRange() (time.Time, time.Time) {
 	return start.StdTime(), end.StdTime()
 }
 
+// GetTimestampRangeWithTimezone 获取时间范围(带时区)
+func (s TimeRangeType) GetTimestampRangeWithTimezone(zone string) (int64, int64) {
+	start, end := s.GetTimeRangeWithTimezone(zone)
+	return start.Timestamp(), end.Timestamp()
+}
+
+func (s TimeRangeType) GetTimeRangeWithTimezone(zone string) (*carbon.Carbon, *carbon.Carbon) {
+	if !IsValidTimezone(zone) {
+		zone = "UTC"
+	}
+	now := carbon.Now(zone).SetWeekStartsAt(carbon.Monday)
+	switch s {
+	case TimeRangeTypeToday: // 当日
+		return now.StartOfDay(), now.EndOfDay()
+	case TimeRangeTypeYesterday: // 昨天
+		return now.AddDays(-1).StartOfDay(), now.AddDays(-1).EndOfDay()
+	case TimeRangeTypeLastThreeDay: // 最近 3 天
+		return now.AddDays(-3), now
+	case TimeRangeTypeLastSevenDay: // 最近 7 天
+		return now.AddDays(-7), now
+	case TimeRangeTypeLastThirtyDay: // 最近 30 天
+		return now.AddDays(-30), now
+	case TimeRangeTypeThisWeek: // 本周
+		return now.StartOfWeek(), now.EndOfWeek()
+	case TimeRangeTypeThisMonth: // 本月
+		return now.StartOfMonth(), now.EndOfMonth()
+	default:
+		// 默认返回当日开始，结束时间
+		return now.StartOfDay(), now.EndOfDay()
+	}
+}
+
+// GetStdTimeRangeWithTimezone 获取时间范围，返回标准库 time.Time 类型 (带时区)
+func (s TimeRangeType) GetStdTimeRangeWithTimezone(zone string) (time.Time, time.Time) {
+	start, end := s.GetTimeRangeWithTimezone(zone)
+	return start.StdTime(), end.StdTime()
+}
+
 func FormatSeconds(sec int64) string {
 	h := sec / 3600
 	m := (sec % 3600) / 60
@@ -90,4 +128,10 @@ func RandomDecimal(min, max decimal.Decimal) (decimal.Decimal, error) {
 
 	valCents := minCents + n.Int64()
 	return decimal.NewFromInt(valCents).Div(hundred), nil
+}
+
+// IsValidTimezone 判断时区是否有效
+func IsValidTimezone(tz string) bool {
+	_, err := time.LoadLocation(tz)
+	return err == nil
 }
