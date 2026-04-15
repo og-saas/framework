@@ -48,7 +48,7 @@ type SiteAgentListPayload struct {
 	ChannelId                int64           `json:"channel_id,omitempty"`                  // 渠道ID
 	RegisterSource           string          `json:"register_source,omitempty"`             // 注册来源 H5 PC APP
 	LevelSubMax              int32           `json:"level_sub_max,omitempty"`               // 下级最大层级 顶层代理数据
-	AgentModeId              int64           `json:"agent_mode_id,omitempty"`               // 代理模式 1-普通代理 2-代理组
+	AgentModeId              int64           `json:"agent_mode_id,omitempty"`               // 代理模式id 顶层代理数据
 }
 
 func (p *SiteAgentListPayload) GetFilterableAttributes() []any {
