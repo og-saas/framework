@@ -41,4 +41,6 @@ const (
 	HandlerNameRewardExpire HandlerName = "reward_expire_handler"
 	// HandlerNameRewardRetry 奖励重发
 	HandlerNameRewardRetry HandlerName = "reward_retry_handler"
+	// HandlerNameMeiliPush meili push
+	HandlerNameMeiliPush HandlerName = "meili_push_handler"
 )
