@@ -59,6 +59,8 @@ const (
 	ErrCodeNicknameExistError ErrCode = 10016 // NicknameExistError
 	// ErrCodeOldPasswordError 旧密码错误
 	ErrCodeOldPasswordError ErrCode = 10017 // OldPasswordError
+	// ErrCodeLoginLocked 登录失败次数过多，账号已锁定
+	ErrCodeLoginLocked ErrCode = 10018 // LoginLocked
 
 )
 
