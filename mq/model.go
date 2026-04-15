@@ -110,7 +110,7 @@ type AgentBetRebatNotify struct {
 	SettledAt      int64  `json:"settled_at,omitempty"`       // 结算时间
 	GameCategoryId int64  `json:"game_category_id,omitempty"` // 游戏分类 id
 	CurrencyCode   string `json:"currency_code,omitempty"`    // 币种
-	CovertRatio    string `json:"covert_ratio,omitempty"`     // 平台币转换率
+	ConvertRatio   string `json:"convert_ratio,omitempty"`    // 转换比例
 }
 
 // UserRegisterNotify 用户注册通知
