@@ -19,13 +19,13 @@ type Config struct {
 }
 
 type ConsumerConfig struct {
-	ConsumerGroup              string        `json:"consumer_group"`
-	AwaitDuration              int64         `json:"await_duration,default=5"`
-	PullBatchSize              int           `json:"pull_batch_size,default=32"`
-	InvisibleDuration          int64         `json:"invisible_duration,default=60"`
-	PushConsumptionThreadCount int32         `json:"push_consumption_thread_count,default=20"`
-	PushMaxCacheMessageCount   int32         `json:"push_max_cache_message_count,default=1024"`
-	TopicRelations             TopicRelation `json:"topic_relations,optional"`
+	ConsumerGroup              string          `json:"consumer_group"`
+	AwaitDuration              int64           `json:"await_duration,default=5"`
+	PullBatchSize              int             `json:"pull_batch_size,default=32"`
+	InvisibleDuration          int64           `json:"invisible_duration,default=60"`
+	PushConsumptionThreadCount int32           `json:"push_consumption_thread_count,default=20"`
+	PushMaxCacheMessageCount   int32           `json:"push_max_cache_message_count,default=1024"`
+	TopicRelationList          []TopicRelation `json:"topic_relation_list,optional"` // 支持多 Topic 订阅
 }
 
 type TopicRelation struct {

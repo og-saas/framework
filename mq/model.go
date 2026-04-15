@@ -1,6 +1,8 @@
 package mq
 
-import "github.com/og-saas/framework/utils/consts"
+import (
+	"github.com/og-saas/framework/utils/consts"
+)
 
 // UserWalletTransferNotify 用户钱包交易通知
 type UserWalletTransferNotify struct {
@@ -49,6 +51,7 @@ type GameBetRecordNotify struct {
 	UserWinAmount  consts.PtbCoin `json:"user_win_amount,omitempty"`  // 玩家输赢金额 赢为正 输为负
 	BetPtbAmount   consts.PtbCoin `json:"bet_ptb_amount,omitempty"`   // 投注金额（平台币）
 	RecordId       int64          `json:"record_id,omitempty"`        // 投注记录表主键id
+	ConvertRatio   string         `json:"convert_ratio,omitempty"`    // 转换比例
 }
 
 // RechargeOrderNotify 充值订单通知
@@ -75,8 +78,10 @@ type RechargeOrderNotify struct {
 	FailTime              int64  `json:"fail_time,omitempty"`                // 订单失败时间
 	Remark                string `json:"remark,omitempty"`                   // 备注
 	SiteId                int64  `json:"site_id,omitempty"`                  // 站点 ID
+	FirstSign             bool   `json:"first_sign,omitempty"`               // 是否首充
 
 	RechargePtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 充值金额平台币(充值金额换算出来的)
+	ConvertRatio      string         `json:"convert_ratio,omitempty"`    // 转换比例
 }
 
 type AgentLevelGrowthNotify struct {
@@ -104,6 +109,8 @@ type AgentBetRebatNotify struct {
 	BetAt          int64  `json:"bet_at,omitempty"`           // 下注时间
 	SettledAt      int64  `json:"settled_at,omitempty"`       // 结算时间
 	GameCategoryId int64  `json:"game_category_id,omitempty"` // 游戏分类 id
+	CurrencyCode   string `json:"currency_code,omitempty"`    // 币种
+	ConvertRatio   string `json:"convert_ratio,omitempty"`    // 转换比例
 }
 
 // UserRegisterNotify 用户注册通知
