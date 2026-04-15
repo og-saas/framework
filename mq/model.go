@@ -47,11 +47,12 @@ type GameBetRecordNotify struct {
 	SettledAt           int64  `json:"settled_at,omitempty"`             // 结算时间
 	SiteId              int64  `json:"site_id,omitempty"`                // 站点 id
 
-	ValidBetAmount string         `json:"valid_bet_amount,omitempty"` // 有效投注金额
-	ValidPtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 有效投注平台币(有效投注金额换算出来的)
-	UserWinAmount  consts.PtbCoin `json:"user_win_amount,omitempty"`  // 玩家输赢金额 赢为正 输为负
-	BetPtbAmount   consts.PtbCoin `json:"bet_ptb_amount,omitempty"`   // 投注金额（平台币）
-	RecordId       int64          `json:"record_id,omitempty"`        // 投注记录表主键id
+	ValidBetAmount string          `json:"valid_bet_amount,omitempty"` // 有效投注金额
+	ValidPtbAmount consts.PtbCoin  `json:"valid_ptb_amount,omitempty"` // 有效投注平台币(有效投注金额换算出来的)
+	UserWinAmount  consts.PtbCoin  `json:"user_win_amount,omitempty"`  // 玩家输赢金额 赢为正 输为负
+	BetPtbAmount   consts.PtbCoin  `json:"bet_ptb_amount,omitempty"`   // 投注金额（平台币）
+	RecordId       int64           `json:"record_id,omitempty"`        // 投注记录表主键id
+	ConvertRatio   decimal.Decimal `json:"convert_ratio,omitempty"`    // 转换比例
 }
 
 // RechargeOrderNotify 充值订单通知
@@ -80,7 +81,8 @@ type RechargeOrderNotify struct {
 	SiteId                int64  `json:"site_id,omitempty"`                  // 站点 ID
 	FirstSign             bool   `json:"first_sign,omitempty"`               // 是否首充
 
-	RechargePtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 充值金额平台币(充值金额换算出来的)
+	RechargePtbAmount consts.PtbCoin  `json:"valid_ptb_amount,omitempty"` // 充值金额平台币(充值金额换算出来的)
+	ConvertRatio      decimal.Decimal `json:"convert_ratio,omitempty"`    // 转换比例
 }
 
 type AgentLevelGrowthNotify struct {
