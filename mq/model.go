@@ -75,6 +75,7 @@ type RechargeOrderNotify struct {
 	FailTime              int64  `json:"fail_time,omitempty"`                // 订单失败时间
 	Remark                string `json:"remark,omitempty"`                   // 备注
 	SiteId                int64  `json:"site_id,omitempty"`                  // 站点 ID
+	FirstSign             bool   `json:"first_sign,omitempty"`               // 是否首充
 
 	RechargePtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 充值金额平台币(充值金额换算出来的)
 }
