@@ -1,6 +1,9 @@
 package mq
 
-import "github.com/og-saas/framework/utils/consts"
+import (
+	"github.com/og-saas/framework/utils/consts"
+	"github.com/shopspring/decimal"
+)
 
 // UserWalletTransferNotify 用户钱包交易通知
 type UserWalletTransferNotify struct {
@@ -95,16 +98,18 @@ type AgentLevelGrowthNotify struct {
 }
 
 type AgentBetRebatNotify struct {
-	SiteId         int64  `json:"site_id"`                    // 站点 ID
-	UserId         int64  `json:"user_id,omitempty"`          // 用户 ID
-	RecordNo       string `json:"record_no,omitempty"`        // 记录号
-	RecordId       int64  `json:"record_id,omitempty"`        // 投注记录表主键id
-	BetPtbAmount   string `json:"bet_ptb_amount,omitempty"`   // 投注金额（平台币）
-	ValidPtbAmount string `json:"valid_ptb_amount,omitempty"` // 有效投注平台币(有效投注金额换算出来的)
-	UserWinAmount  string `json:"user_win_amount,omitempty"`  // 玩家输赢金额 赢为正 输为负
-	BetAt          int64  `json:"bet_at,omitempty"`           // 下注时间
-	SettledAt      int64  `json:"settled_at,omitempty"`       // 结算时间
-	GameCategoryId int64  `json:"game_category_id,omitempty"` // 游戏分类 id
+	SiteId         int64           `json:"site_id"`                    // 站点 ID
+	UserId         int64           `json:"user_id,omitempty"`          // 用户 ID
+	RecordNo       string          `json:"record_no,omitempty"`        // 记录号
+	RecordId       int64           `json:"record_id,omitempty"`        // 投注记录表主键id
+	BetPtbAmount   string          `json:"bet_ptb_amount,omitempty"`   // 投注金额（平台币）
+	ValidPtbAmount string          `json:"valid_ptb_amount,omitempty"` // 有效投注平台币(有效投注金额换算出来的)
+	UserWinAmount  string          `json:"user_win_amount,omitempty"`  // 玩家输赢金额 赢为正 输为负
+	BetAt          int64           `json:"bet_at,omitempty"`           // 下注时间
+	SettledAt      int64           `json:"settled_at,omitempty"`       // 结算时间
+	GameCategoryId int64           `json:"game_category_id,omitempty"` // 游戏分类 id
+	CurrencyCode   string          `json:"currency_code,omitempty"`    // 币种
+	CovertRatio    decimal.Decimal `json:"covert_ratio,omitempty"`     // 平台币转换率
 }
 
 // UserRegisterNotify 用户注册通知
