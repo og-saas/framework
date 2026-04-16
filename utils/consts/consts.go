@@ -35,12 +35,15 @@ const (
 	TransferTypeOut TransferType = 2 // 转出
 )
 
+// PlatformCurrencyCode 平台币
+const PlatformCurrencyCode = "PTB"
+
 type PtbCoin struct {
 	decimal.Decimal
 } // 平台币
 
 func (p PtbCoin) Code() string {
-	return "PTB"
+	return PlatformCurrencyCode
 }
 
 func (p PtbCoin) ToDecimal() decimal.Decimal {

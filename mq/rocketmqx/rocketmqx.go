@@ -93,7 +93,7 @@ func (r *RocketMqx) NewPullConsumer(handler config2.PullMessageHandler) (simpleC
 	}
 
 	// 将消息处理逻辑提取到单独的函数中
-	go r.processMessages(simpleConsumer, handler, r.config.ConsumerConfig.TopicRelations.Topic)
+	go r.processMessages(simpleConsumer, handler, r.getTopicNames())
 
 	return
 }
@@ -121,7 +121,7 @@ func (r *RocketMqx) NewPushConsumer(handler config2.PushMessageHandler) (pushCon
 }
 
 // processMessages 处理消息的逻辑
-func (r *RocketMqx) processMessages(consumer rmqClient.SimpleConsumer, handler config2.PullMessageHandler, topic string) {
+func (r *RocketMqx) processMessages(consumer rmqClient.SimpleConsumer, handler config2.PullMessageHandler, topics string) {
 	for {
 		// 1. 拉取消息 - Receive超时设置为 AwaitDuration + 5秒buffer
 		receiveCtx, receiveCancel := context.WithTimeout(
@@ -142,14 +142,14 @@ func (r *RocketMqx) processMessages(consumer rmqClient.SimpleConsumer, handler c
 				time.Sleep(noMessageSleepDuration)
 				continue
 			}
-			logx.Errorf("Pull message failed, topic: %s, error: %s", topic, err.Error())
+			logx.Errorf("Pull message failed, topics: %s, error: %s", topics, err.Error())
 			continue
 		}
 
 		// 3. 打印收到的消息
 		for _, mv := range mvs {
 			logx.Debugf("Received message: consumerGroup=%s, topic=%s, msgId=%s, tag=%s, body=%s",
-				consumer.GetGroupName(), topic, mv.GetMessageId(), mv.GetTag(), string(mv.GetBody()))
+				consumer.GetGroupName(), mv.GetTopic(), mv.GetMessageId(), mv.GetTag(), string(mv.GetBody()))
 		}
 
 		// 4. 处理消息 - 使用 InvisibleDuration 作为处理超时
@@ -172,17 +172,28 @@ func (r *RocketMqx) processMessages(consumer rmqClient.SimpleConsumer, handler c
 			}
 			ackCancel()
 		} else if err != nil {
-			logx.Errorf("Process message failed, topic: %s, error: %s", topic, err.Error())
+			logx.Errorf("Process message failed, topics: %s, error: %s", topics, err.Error())
 		}
 	}
 }
 
+// getTopicNames 获取所有订阅的 Topic 名称（用于日志）
+func (r *RocketMqx) getTopicNames() string {
+	names := make([]string, 0, len(r.config.ConsumerConfig.TopicRelationList))
+	for _, tr := range r.config.ConsumerConfig.TopicRelationList {
+		names = append(names, tr.Topic)
+	}
+	return strings.Join(names, ",")
+}
+
 // buildSubscriptionRelations 构建订阅关系映射
 func (r *RocketMqx) buildSubscriptionRelations() map[string]*rmqClient.FilterExpression {
-	return map[string]*rmqClient.FilterExpression{
-		r.config.ConsumerConfig.TopicRelations.Topic: rmqClient.NewFilterExpressionWithType(
-			r.config.ConsumerConfig.TopicRelations.Expression,
-			rmqClient.FilterExpressionType(r.config.ConsumerConfig.TopicRelations.ExpressionType),
-		),
+	result := make(map[string]*rmqClient.FilterExpression, len(r.config.ConsumerConfig.TopicRelationList))
+	for _, tr := range r.config.ConsumerConfig.TopicRelationList {
+		result[tr.Topic] = rmqClient.NewFilterExpressionWithType(
+			tr.Expression,
+			rmqClient.FilterExpressionType(tr.ExpressionType),
+		)
 	}
+	return result
 }
