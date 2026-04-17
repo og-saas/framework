@@ -50,7 +50,7 @@ type GameBetRecordNotify struct {
 	ValidPtbAmount    consts.PtbCoin `json:"valid_ptb_amount,omitempty"`    // 有效投注平台币(有效投注金额换算出来的)
 	UserWinAmount     consts.PtbCoin `json:"user_win_amount,omitempty"`     // 玩家输赢金额 赢为正 输为负
 	BetPtbAmount      consts.PtbCoin `json:"bet_ptb_amount,omitempty"`      // 投注金额（平台币）
-	ValidSettleAmount consts.PtbCoin `json:"valid_settle_amount,omitempty"` // 结算金额（平台币）
+	ValidSettleAmount consts.PtbCoin `json:"valid_settle_amount,omitempty"` // 结算金额（平台币） SettleAmount - CancelSettleAmount
 
 	RecordId     int64  `json:"record_id,omitempty"`     // 投注记录表主键id
 	ConvertRatio string `json:"convert_ratio,omitempty"` // 转换比例
