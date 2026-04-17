@@ -35,12 +35,15 @@ const (
 	TransferTypeOut TransferType = 2 // 转出
 )
 
+// PlatformCurrencyCode 平台币
+const PlatformCurrencyCode = "PTB"
+
 type PtbCoin struct {
 	decimal.Decimal
 } // 平台币
 
 func (p PtbCoin) Code() string {
-	return "PTB"
+	return PlatformCurrencyCode
 }
 
 func (p PtbCoin) ToDecimal() decimal.Decimal {
@@ -118,24 +121,9 @@ const (
 	DeviceTypeAndroidWebView DeviceType = "Android-WebView" // Android WebView（App 内嵌浏览器）
 	DeviceTypeWeb            DeviceType = "Web"             // Web 浏览器（无法识别具体设备时）
 	DeviceTypeUnknown        DeviceType = "Unknown"         // 未知设备
-	DeviceTypeAndroid        DeviceType = "Android"         // Android
-	DeviceTypeIOS            DeviceType = "iOS"             // iOS
+	DeviceTypeAndroid        DeviceType = "Android-APP"     // Android APP
+	DeviceTypeIOS            DeviceType = "iOS-APP"         // iOS APP
 )
-
-func (d DeviceType) EndpointType() EndpointType {
-	switch d {
-	case DeviceTypeWindowsPC, DeviceTypeMacPC, DeviceTypeLinuxPC,
-		DeviceTypeWindowsPWA, DeviceTypeMacPWA, DeviceTypeLinuxPWA:
-		return EndpointTypePC
-	case DeviceTypeIOSWebApp, DeviceTypeIOSPWA, DeviceTypeIOSWebView, DeviceTypeAndroidWebApp,
-		DeviceTypeAndroidPWA, DeviceTypeAndroidWebView, DeviceTypeWeb, DeviceTypeUnknown:
-		return EndpointTypeH5
-	case DeviceTypeAndroid, DeviceTypeIOS:
-		return EndpointTypeApp
-	}
-
-	return EndpointTypeH5
-}
 
 // EndpointType 终端信息
 type EndpointType string
@@ -145,3 +133,47 @@ const (
 	EndpointTypeApp EndpointType = "APP" // APP
 	EndpointTypePC  EndpointType = "PC"  // PC
 )
+
+// EndpointSubType 子终端信息
+type EndpointSubType string
+
+const (
+	EndpointSubTypeAndroidApp EndpointSubType = "android-app" // Android APP
+	EndpointSubTypeAndroidH5  EndpointSubType = "android-h5"  // Android H5
+	EndpointSubTypeIOSH5      EndpointSubType = "ios-h5"      // iOS H5
+	EndpointSubTypeIOSApp     EndpointSubType = "ios-app"     // iOS APP
+	EndpointSubTypePC         EndpointSubType = "pc"          // PC
+	EndpointSubTypeOther      EndpointSubType = "other"       // 其他
+)
+
+func (d DeviceType) EndpointType() EndpointType {
+	switch d {
+	case DeviceTypeWindowsPC, DeviceTypeMacPC, DeviceTypeLinuxPC, DeviceTypeWindowsPWA:
+		return EndpointTypePC
+	case DeviceTypeMacPWA, DeviceTypeLinuxPWA,
+		DeviceTypeIOSWebApp, DeviceTypeIOSPWA, DeviceTypeIOSWebView, DeviceTypeAndroidWebApp,
+		DeviceTypeAndroidPWA, DeviceTypeAndroidWebView, DeviceTypeWeb, DeviceTypeUnknown:
+		return EndpointTypeH5
+	case DeviceTypeAndroid, DeviceTypeIOS:
+		return EndpointTypeApp
+	}
+
+	return EndpointTypeH5
+}
+
+func (d DeviceType) EndpointSubType() EndpointSubType {
+	switch d {
+	case DeviceTypeWindowsPC, DeviceTypeMacPC, DeviceTypeLinuxPC, DeviceTypeWindowsPWA:
+		return EndpointSubTypePC
+	case DeviceTypeIOSWebApp, DeviceTypeIOSPWA, DeviceTypeIOSWebView:
+		return EndpointSubTypeIOSH5
+	case DeviceTypeAndroidWebApp, DeviceTypeAndroidPWA, DeviceTypeAndroidWebView:
+		return EndpointSubTypeAndroidH5
+	case DeviceTypeAndroid:
+		return EndpointSubTypeAndroidApp
+	case DeviceTypeIOS:
+		return EndpointSubTypeIOSApp
+	}
+
+	return EndpointSubTypeOther
+}

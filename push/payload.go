@@ -4,9 +4,9 @@ import "github.com/shopspring/decimal"
 
 // 站点端会员信息上报
 type SiteUserListPayload struct {
-	SiteId          int64    `json:"site_id"`                    // 站点ID
-	UserId          int64    `json:"user_id"`                    // 用户ID
-	ChannelId       int64    `json:"channel_id,omitempty"`       // 渠道ID
+	SiteId          string   `json:"site_id"`                    // 站点ID
+	UserId          string   `json:"user_id"`                    // 用户ID
+	ChannelId       string   `json:"channel_id,omitempty"`       // 渠道ID
 	Username        string   `json:"username,omitempty"`         // 用户名
 	RegisterTime    int64    `json:"register_time,omitempty"`    // 注册时间
 	RegisterCountry string   `json:"register_country,omitempty"` // 注册国家 code_2
@@ -22,7 +22,7 @@ type SiteUserListPayload struct {
 	LastLoginIp     string   `json:"last_login_ip,omitempty"`    // 最后登录IP
 }
 
-func (p *SiteUserListPayload) GetFilterableAttributes() []any {
+func (p SiteUserListPayload) GetFilterableAttributes() []any {
 	return []any{
 		"site_id", "user_id", "channel_id", "username", "register_country", "register_ip", "register_source", "user_tags", "phone", "email", "status", "sub_status", "vip_level", "last_login_time",
 	}
@@ -30,12 +30,12 @@ func (p *SiteUserListPayload) GetFilterableAttributes() []any {
 
 // 站点端代理信息上报
 type SiteAgentListPayload struct {
-	SiteId                   int64           `json:"site_id"`                               // 站点ID
-	UserId                   int64           `json:"user_id"`                               // 用户ID/代理ID
+	SiteId                   string          `json:"site_id"`                               // 站点ID
+	UserId                   string          `json:"user_id"`                               // 用户ID/代理ID
 	Username                 string          `json:"username,omitempty"`                    // 用户名/代理用户名
 	PromotionStatus          int32           `json:"promotion_status,omitempty"`            // 推广开关状态：1-启用，2-禁用
-	ParentUserID             int64           `json:"parent_user_id,omitempty"`              // 父代理ID 直属上级
-	TopUserID                int64           `json:"top_user_id,omitempty"`                 // 顶部代理ID
+	ParentUserID             string          `json:"parent_user_id,omitempty"`              // 父代理ID 直属上级
+	TopUserID                string          `json:"top_user_id,omitempty"`                 // 顶部代理ID
 	Level                    int32           `json:"level,omitempty"`                       // 所处层级
 	FeeAmountClaimed         decimal.Decimal `json:"fee_amount_claimed,omitempty"`          // 已领取佣金金额
 	FeeAmountDirectClaimed   decimal.Decimal `json:"fee_amount_direct_claimed,omitempty"`   // 直属佣金已领取金额
@@ -45,13 +45,13 @@ type SiteAgentListPayload struct {
 	UpgradeTeamAt            int64           `json:"upgraded_team_at,omitempty"`            // 成为代理时间
 	SubNumDirect             int32           `json:"sub_num_direct,omitempty"`              // 直属下级总数 绑定
 	SubNumIndirect           int32           `json:"sub_num_indirect,omitempty"`            // 非直属下级总数 绑定
-	ChannelId                int64           `json:"channel_id,omitempty"`                  // 渠道ID
+	ChannelId                string          `json:"channel_id,omitempty"`                  // 渠道ID
 	RegisterSource           string          `json:"register_source,omitempty"`             // 注册来源 H5 PC APP
 	LevelSubMax              int32           `json:"level_sub_max,omitempty"`               // 下级最大层级 顶层代理数据
-	AgentModeId              int64           `json:"agent_mode_id,omitempty"`               // 代理模式 1-普通代理 2-代理组
+	AgentModeId              string          `json:"agent_mode_id,omitempty"`               // 代理模式id 顶层代理数据
 }
 
-func (p *SiteAgentListPayload) GetFilterableAttributes() []any {
+func (p SiteAgentListPayload) GetFilterableAttributes() []any {
 	return []any{
 		"site_id", "user_id", "username", "promotion_status", "parent_user_id", "top_user_id", "level", "fee_amount_claimed",
 		"fee_amount_direct_claimed", "fee_amount_indirect_claimed", "contribute_fee_valid", "contribute_fee_invalid", "upgraded_team_at", "sub_num_direct", "sub_num_indirect", "channel_id", "register_source", "level_sub_max", "agent_mode_id",
