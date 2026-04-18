@@ -34,56 +34,80 @@ func _() {
 	_ = x[ErrCodeNicknameExistError-10016]
 	_ = x[ErrCodeOldPasswordError-10017]
 	_ = x[ErrCodeLoginLocked-10018]
+	_ = x[ErrCodeSetPinLocked-10019]
+	_ = x[ErrCodeOldPinError-10020]
+	_ = x[ErrCodeWithdrawLocked-10021]
 	_ = x[ErrCodeGameEnterLogExists-20001]
 	_ = x[ErrCodeGameEnterBalanceNotEnough-20002]
+	_ = x[ErrCodeGamePlatformUnreachable-20003]
 	_ = x[ErrCodeWithdrawBalanceNotEnough-30001]
 	_ = x[ErrCodeWithdrawAmountOutOfRange-30002]
+	_ = x[ErrCodeInvalidPromotionCode-40000]
+	_ = x[ErrCodeBindParentNotAllowed-40001]
+	_ = x[ErrCodeCaptchaErr-50001]
+	_ = x[ErrCodeActivityNotStart-60001]
+	_ = x[ErrCodeActivityEnded-60002]
+	_ = x[ErrCodeActivityClosed-60003]
+	_ = x[ErrCodeRewardNotAvailableYet-60004]
+	_ = x[ErrCodeRewardNotBelongToYou-60005]
+	_ = x[ErrCodeRewardConditionNotMet-60006]
+	_ = x[ErrCodeRewardNotClaimable-60007]
+	_ = x[ErrCodeRewardExpired-60008]
 }
 
-const (
-	_ErrCode_name_0 = "SuccessFail"
-	_ErrCode_name_1 = "ParamErrorUnauthorized"
-	_ErrCode_name_2 = "ForbiddenNotFound"
-	_ErrCode_name_3 = "ServerInternalError"
-	_ErrCode_name_4 = "ServiceUnavailable"
-	_ErrCode_name_5 = "UserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorGoogleAuthErrorNicknameTimeErrorMaxNumberErrorBalanceRetrievingErrorNicknameExistErrorOldPasswordErrorLoginLocked"
-	_ErrCode_name_6 = "GameEnterLogExistsErrCodeGameEnterLogExists"
-	_ErrCode_name_7 = "WithdrawBalanceNotEnoughWithdrawAmountOutOfRange"
-)
+const _ErrCode_name = "SuccessFailParamErrorUnauthorizedForbiddenNotFoundServerInternalErrorServiceUnavailableUserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorGoogleAuthErrorNicknameTimeErrorMaxNumberErrorBalanceRetrievingErrorNicknameExistErrorOldPasswordErrorLoginLockedSetPinLockedOldPinErrorWithdrawLockedGameEnterLogExistsErrCodeGameEnterLogExistsGamePlatformUnreachableWithdrawBalanceNotEnoughWithdrawAmountOutOfRangeErrCodeInvalidPromotionCodeErrCodeBindParentNotAllowedErrCodeCaptchaErrErrCodeActivityNotStartErrCodeActivityEndedErrCodeActivityClosedErrCodeRewardNotAvailableYetErrCodeRewardNotBelongToYouErrCodeRewardConditionNotMetErrCodeRewardNotClaimableErrCodeRewardExpired"
 
-var (
-	_ErrCode_index_0 = [...]uint8{0, 7, 11}
-	_ErrCode_index_1 = [...]uint8{0, 10, 22}
-	_ErrCode_index_2 = [...]uint8{0, 9, 17}
-	_ErrCode_index_5 = [...]uint16{0, 13, 23, 35, 47, 59, 76, 100, 126, 142, 155, 172, 187, 204, 218, 240, 258, 274, 285}
-	_ErrCode_index_6 = [...]uint8{0, 18, 43}
-	_ErrCode_index_7 = [...]uint8{0, 24, 48}
-)
+var _ErrCode_map = map[ErrCode]string{
+	0:     _ErrCode_name[0:7],
+	1:     _ErrCode_name[7:11],
+	400:   _ErrCode_name[11:21],
+	401:   _ErrCode_name[21:33],
+	403:   _ErrCode_name[33:42],
+	404:   _ErrCode_name[42:50],
+	500:   _ErrCode_name[50:69],
+	503:   _ErrCode_name[69:87],
+	10001: _ErrCode_name[87:100],
+	10002: _ErrCode_name[100:110],
+	10003: _ErrCode_name[110:122],
+	10004: _ErrCode_name[122:134],
+	10005: _ErrCode_name[134:146],
+	10006: _ErrCode_name[146:163],
+	10007: _ErrCode_name[163:187],
+	10008: _ErrCode_name[187:213],
+	10009: _ErrCode_name[213:229],
+	10010: _ErrCode_name[229:242],
+	10011: _ErrCode_name[242:259],
+	10012: _ErrCode_name[259:274],
+	10013: _ErrCode_name[274:291],
+	10014: _ErrCode_name[291:305],
+	10015: _ErrCode_name[305:327],
+	10016: _ErrCode_name[327:345],
+	10017: _ErrCode_name[345:361],
+	10018: _ErrCode_name[361:372],
+	10019: _ErrCode_name[372:384],
+	10020: _ErrCode_name[384:395],
+	10021: _ErrCode_name[395:409],
+	20001: _ErrCode_name[409:427],
+	20002: _ErrCode_name[427:452],
+	20003: _ErrCode_name[452:475],
+	30001: _ErrCode_name[475:499],
+	30002: _ErrCode_name[499:523],
+	40000: _ErrCode_name[523:550],
+	40001: _ErrCode_name[550:577],
+	50001: _ErrCode_name[577:594],
+	60001: _ErrCode_name[594:617],
+	60002: _ErrCode_name[617:637],
+	60003: _ErrCode_name[637:658],
+	60004: _ErrCode_name[658:686],
+	60005: _ErrCode_name[686:713],
+	60006: _ErrCode_name[713:741],
+	60007: _ErrCode_name[741:766],
+	60008: _ErrCode_name[766:786],
+}
 
 func (i ErrCode) String() string {
-	switch {
-	case i <= 1:
-		return _ErrCode_name_0[_ErrCode_index_0[i]:_ErrCode_index_0[i+1]]
-	case 400 <= i && i <= 401:
-		i -= 400
-		return _ErrCode_name_1[_ErrCode_index_1[i]:_ErrCode_index_1[i+1]]
-	case 403 <= i && i <= 404:
-		i -= 403
-		return _ErrCode_name_2[_ErrCode_index_2[i]:_ErrCode_index_2[i+1]]
-	case i == 500:
-		return _ErrCode_name_3
-	case i == 503:
-		return _ErrCode_name_4
-	case 10001 <= i && i <= 10018:
-		i -= 10001
-		return _ErrCode_name_5[_ErrCode_index_5[i]:_ErrCode_index_5[i+1]]
-	case 20001 <= i && i <= 20002:
-		i -= 20001
-		return _ErrCode_name_6[_ErrCode_index_6[i]:_ErrCode_index_6[i+1]]
-	case 30001 <= i && i <= 30002:
-		i -= 30001
-		return _ErrCode_name_7[_ErrCode_index_7[i]:_ErrCode_index_7[i+1]]
-	default:
-		return "ErrCode(" + strconv.FormatInt(int64(i), 10) + ")"
+	if str, ok := _ErrCode_map[i]; ok {
+		return str
 	}
+	return "ErrCode(" + strconv.FormatInt(int64(i), 10) + ")"
 }
