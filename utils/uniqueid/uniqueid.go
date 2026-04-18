@@ -47,7 +47,7 @@ func ExtractTime(id uint64) time.Time {
 // orderNo 格式为 "prefix-id"，例如 "ORDER-123456789"
 func ExtractOrderTime(orderNo string) (time.Time, error) {
 	// 分割订单号，获取 ID 部分
-	parts := strings.Split(orderNo, "-")
+	parts := strings.Split(orderNo, "_")
 	if len(parts) < 2 {
 		return time.Time{}, fmt.Errorf("invalid order number format: %s", orderNo)
 	}
