@@ -2,6 +2,7 @@ package rocketmqx
 
 import (
 	"context"
+	"os"
 	"strings"
 	"time"
 
@@ -9,6 +10,7 @@ import (
 	"github.com/apache/rocketmq-clients/golang/v5/credentials"
 	v2 "github.com/apache/rocketmq-clients/golang/v5/protocol/v2"
 	config2 "github.com/og-saas/framework/mq/rocketmqx/config"
+	"github.com/samber/lo"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -26,6 +28,15 @@ type RocketMqx struct {
 }
 
 func NewRocketMqx(config config2.Config) *RocketMqx {
+	// 配置日志参数
+	consoleAppender := lo.Ternary(config.ConsoleAppenderEnabled, "true", "false")
+	if err := os.Setenv(rmqClient.ENABLE_CONSOLE_APPENDER, consoleAppender); err != nil {
+		logx.Errorf("Set console appender env failed: %s", err.Error())
+	}
+
+	if err := os.Setenv(rmqClient.CLIENT_LOG_LEVEL, config.LogLevel); err != nil {
+		logx.Errorf("Set log level env failed: %s", err.Error())
+	}
 	rmqClient.ResetLogger()
 	return &RocketMqx{config: config}
 }
