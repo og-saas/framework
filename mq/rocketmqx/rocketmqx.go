@@ -2,7 +2,6 @@ package rocketmqx
 
 import (
 	"context"
-	"os"
 	"strings"
 	"time"
 
@@ -27,20 +26,6 @@ type RocketMqx struct {
 }
 
 func NewRocketMqx(config config2.Config) *RocketMqx {
-	// 配置日志参数 - 完全禁用日志输出
-	// 既不输出到控制台，也不写文件
-	// 方法1：禁用控制台appender
-	if err := os.Setenv(rmqClient.ENABLE_CONSOLE_APPENDER, "false"); err != nil {
-		logx.Errorf("Set console appender env failed: %s", err.Error())
-	}
-	// 方法2：设置日志级别为error（即使写文件也只会记录错误）
-	if err := os.Setenv(rmqClient.CLIENT_LOG_LEVEL, "error"); err != nil {
-		logx.Errorf("Set log level env failed: %s", err.Error())
-	}
-	// 方法3：设置一个不存在的日志目录，SDK尝试创建文件时会失败（静默失败，不报错）
-	if err := os.Setenv("rocketmq.client.logRoot", "/tmp/rocketmq_logs_disabled"); err != nil {
-		logx.Errorf("Set log root failed: %s", err.Error())
-	}
 	rmqClient.ResetLogger()
 	return &RocketMqx{config: config}
 }
