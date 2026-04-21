@@ -38,6 +38,8 @@ func _() {
 	_ = x[ErrCodeOldPinError-10020]
 	_ = x[ErrCodeWithdrawLocked-10021]
 	_ = x[ErrCodeSetPinLockedMax-10022]
+	_ = x[ErrCodeWithdrawAccountNotExists-10023]
+	_ = x[ErrCodeWithdrawAccountNotSetPin-10024]
 	_ = x[ErrCodeGameEnterLogExists-20001]
 	_ = x[ErrCodeGameEnterBalanceNotEnough-20002]
 	_ = x[ErrCodeGamePlatformUnreachable-20003]
@@ -56,7 +58,7 @@ func _() {
 	_ = x[ErrCodeRewardExpired-60008]
 }
 
-const _ErrCode_name = "SuccessFailParamErrorUnauthorizedForbiddenNotFoundServerInternalErrorServiceUnavailableUserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorGoogleAuthErrorNicknameTimeErrorMaxNumberErrorBalanceRetrievingErrorNicknameExistErrorOldPasswordErrorLoginLockedSetPinLockedFirstOldPinErrorWithdrawLockedSetPinLockedMaxGameEnterLogExistsErrCodeGameEnterLogExistsGamePlatformUnreachableWithdrawBalanceNotEnoughWithdrawAmountOutOfRangeErrCodeInvalidPromotionCodeErrCodeBindParentNotAllowedErrCodeCaptchaErrErrCodeActivityNotStartErrCodeActivityEndedErrCodeActivityClosedErrCodeRewardNotAvailableYetErrCodeRewardNotBelongToYouErrCodeRewardConditionNotMetErrCodeRewardNotClaimableErrCodeRewardExpired"
+const _ErrCode_name = "SuccessFailParamErrorUnauthorizedForbiddenNotFoundServerInternalErrorServiceUnavailableUserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorGoogleAuthErrorNicknameTimeErrorMaxNumberErrorBalanceRetrievingErrorNicknameExistErrorOldPasswordErrorLoginLockedSetPinLockedFirstOldPinErrorWithdrawLockedSetPinLockedMaxWithdrawAccountNotExistsWithdrawAccountNotSetPinGameEnterLogExistsErrCodeGameEnterLogExistsGamePlatformUnreachableWithdrawBalanceNotEnoughWithdrawAmountOutOfRangeErrCodeInvalidPromotionCodeErrCodeBindParentNotAllowedErrCodeCaptchaErrErrCodeActivityNotStartErrCodeActivityEndedErrCodeActivityClosedErrCodeRewardNotAvailableYetErrCodeRewardNotBelongToYouErrCodeRewardConditionNotMetErrCodeRewardNotClaimableErrCodeRewardExpired"
 
 var _ErrCode_map = map[ErrCode]string{
 	0:     _ErrCode_name[0:7],
@@ -89,22 +91,24 @@ var _ErrCode_map = map[ErrCode]string{
 	10020: _ErrCode_name[389:400],
 	10021: _ErrCode_name[400:414],
 	10022: _ErrCode_name[414:429],
-	20001: _ErrCode_name[429:447],
-	20002: _ErrCode_name[447:472],
-	20003: _ErrCode_name[472:495],
-	30001: _ErrCode_name[495:519],
-	30002: _ErrCode_name[519:543],
-	40000: _ErrCode_name[543:570],
-	40001: _ErrCode_name[570:597],
-	50001: _ErrCode_name[597:614],
-	60001: _ErrCode_name[614:637],
-	60002: _ErrCode_name[637:657],
-	60003: _ErrCode_name[657:678],
-	60004: _ErrCode_name[678:706],
-	60005: _ErrCode_name[706:733],
-	60006: _ErrCode_name[733:761],
-	60007: _ErrCode_name[761:786],
-	60008: _ErrCode_name[786:806],
+	10023: _ErrCode_name[429:453],
+	10024: _ErrCode_name[453:477],
+	20001: _ErrCode_name[477:495],
+	20002: _ErrCode_name[495:520],
+	20003: _ErrCode_name[520:543],
+	30001: _ErrCode_name[543:567],
+	30002: _ErrCode_name[567:591],
+	40000: _ErrCode_name[591:618],
+	40001: _ErrCode_name[618:645],
+	50001: _ErrCode_name[645:662],
+	60001: _ErrCode_name[662:685],
+	60002: _ErrCode_name[685:705],
+	60003: _ErrCode_name[705:726],
+	60004: _ErrCode_name[726:754],
+	60005: _ErrCode_name[754:781],
+	60006: _ErrCode_name[781:809],
+	60007: _ErrCode_name[809:834],
+	60008: _ErrCode_name[834:854],
 }
 
 func (i ErrCode) String() string {

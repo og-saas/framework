@@ -69,6 +69,10 @@ const (
 	ErrCodeWithdrawLocked ErrCode = 10021 // WithdrawLocked
 	// ErrCodeSetPinLockedMax 设置PIN码失败，账号已锁定（最大锁定）
 	ErrCodeSetPinLockedMax ErrCode = 10022 // SetPinLockedMax
+	// ErrCodeWithdrawAccountNotExists 提现账号不存在
+	ErrCodeWithdrawAccountNotExists ErrCode = 10023 // WithdrawAccountNotExists
+	// ErrCodeWithdrawAccountNotSetPin 提现账号未设置PIN码
+	ErrCodeWithdrawAccountNotSetPin ErrCode = 10024 // WithdrawAccountNotSetPin
 
 )
 
