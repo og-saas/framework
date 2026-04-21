@@ -61,12 +61,14 @@ const (
 	ErrCodeOldPasswordError ErrCode = 10017 // OldPasswordError
 	// ErrCodeLoginLocked 登录失败次数过多，账号已锁定
 	ErrCodeLoginLocked ErrCode = 10018 // LoginLocked
-	// ErrCodeSetPinLocked 设置PIN码失败，账号已锁定
-	ErrCodeSetPinLocked ErrCode = 10019 // SetPinLocked
+	// ErrCodeSetPinLockedFirst 设置PIN码失败，账号已锁定（首次锁定）
+	ErrCodeSetPinLockedFirst ErrCode = 10019 // SetPinLockedFirst
 	// ErrCodeOldPinError 旧PIN码错误
 	ErrCodeOldPinError ErrCode = 10020 // OldPinError
 	// ErrCodeWithdrawLocked 提现功能已被锁定，请稍后再试
 	ErrCodeWithdrawLocked ErrCode = 10021 // WithdrawLocked
+	// ErrCodeSetPinLockedMax 设置PIN码失败，账号已锁定（最大锁定）
+	ErrCodeSetPinLockedMax ErrCode = 10022 // SetPinLockedMax
 
 )
 
