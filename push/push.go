@@ -13,5 +13,5 @@ const (
 
 // meiliSearch 筛选字段 Field
 var MeiliSearchFilterObject = map[string][]any{
-	MeiliSearchReportUserIndex:      SiteUserListPayload{}.GetFilterableAttributes(),
-	MeiliSearchReportAgentUserIndex: SiteAgentListPayload{}.GetFilterableAttributes()}
+	MeiliSearchReportUserIndex:      SiteUserFullPayload{}.GetFilterableAttributes(),
+	MeiliSearchReportAgentUserIndex: SiteAgentFullPayload{}.GetFilterableAttributes()}
