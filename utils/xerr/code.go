@@ -73,6 +73,8 @@ const (
 	ErrCodeWithdrawAccountNotExists ErrCode = 10023 // WithdrawAccountNotExists
 	// ErrCodeWithdrawAccountNotSetPin 提现账号未设置PIN码
 	ErrCodeWithdrawAccountNotSetPin ErrCode = 10024 // WithdrawAccountNotSetPin
+	// ErrCodeSetPinCaptchaNumError 设置PIN码验证码次数达到上限错误
+	ErrCodeSetPinCaptchaNumError ErrCode = 10025 // SetPinCaptchaNumError
 
 )
 
