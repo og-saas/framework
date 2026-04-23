@@ -98,7 +98,7 @@ func IsXerr(err error) bool {
 // 否则返回 ServerInternalError
 func FromError(err error) Error {
 	if err == nil {
-		return Error{}
+		return NewServerInternalError(err)
 	}
 
 	// 先尝试用 errors.As 提取
