@@ -1,6 +1,7 @@
 package xerr
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 	"sync/atomic"
@@ -79,6 +80,15 @@ func NewServiceUnreachableError(formatMsg string, data any, formatMsgArgs ...any
 
 func (err Error) Error() string {
 	return err.Msg
+}
+
+// IsXerr 判断 error 是否为 xerr.Error 类型
+func IsXerr(err error) bool {
+	if err == nil {
+		return false
+	}
+	var e Error
+	return errors.As(err, &e)
 }
 
 // GetMessage 获取多语言错误信息
