@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	mathrand "math/rand/v2"
 	"strings"
 
 	"github.com/og-saas/framework/utils/consts"
@@ -215,4 +216,15 @@ func DetachContextWithSpan(ctx context.Context, spanName string) (context.Contex
 	}
 
 	return newCtx, span
+}
+
+// RandomInt64 生成 [min, max] 范围内的随机整数（包含边界）
+func RandomInt64(min, max int64) int64 {
+	if min > max {
+		min, max = max, min
+	}
+	if min == max {
+		return min
+	}
+	return min + mathrand.Int64N(max-min+1)
 }
