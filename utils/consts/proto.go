@@ -12,6 +12,10 @@ func RewardSubCategoryToTransactionSubCategory(subCategory commonv1.RewardSubCat
 		return commonv1.TransactionSubCategory_ACTIVITY_TOTAL_RECHARGE
 	case commonv1.RewardSubCategory_REWARD_SUB_SINGLE_RECHARGE_ACTIVITY:
 		return commonv1.TransactionSubCategory_ACTIVITY_SINGLE_RECHARGE
+	case commonv1.RewardSubCategory_REWARD_SUB_JACKPOT_TOURNAMENT:
+		return commonv1.TransactionSubCategory_ACTIVITY_JACKPOT_TOURNAMENT
+	case commonv1.RewardSubCategory_REWARD_SUB_JACKPOT_TICKET:
+		return commonv1.TransactionSubCategory_ACTIVITY_JACKPOT_TICKET
 	case commonv1.RewardSubCategory_REWARD_SUB_AGENT_INVITE:
 		return commonv1.TransactionSubCategory_REBATE_SEND
 	case commonv1.RewardSubCategory_REWARD_SUB_VIP_UPGRADE:
@@ -51,6 +55,8 @@ func TransactionSubCategoryToTransactionCategory(subCategory commonv1.Transactio
 		commonv1.TransactionSubCategory_FUND_CORRECTION_MANUAL_DEDUCTION:
 		return commonv1.TransactionCategory_FUND_CORRECTION
 	case commonv1.TransactionSubCategory_ACTIVITY_REGISTER,
+		commonv1.TransactionSubCategory_ACTIVITY_JACKPOT_TOURNAMENT,
+		commonv1.TransactionSubCategory_ACTIVITY_JACKPOT_TICKET,
 		commonv1.TransactionSubCategory_ACTIVITY_SINGLE_RECHARGE,
 		commonv1.TransactionSubCategory_ACTIVITY_TOTAL_RECHARGE,
 		commonv1.TransactionSubCategory_ACTIVITY_FIRST_RECHARGE:

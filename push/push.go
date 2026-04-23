@@ -10,3 +10,8 @@ const (
 const (
 	MeiliSearchReportUserPrimaryKey = "user_id" // 用户index主键
 )
+
+// meiliSearch 筛选字段 Field
+var MeiliSearchFilterObject = map[string][]any{
+	MeiliSearchReportUserIndex:      SiteUserFullPayload{}.GetFilterableAttributes(),
+	MeiliSearchReportAgentUserIndex: SiteAgentFullPayload{}.GetFilterableAttributes()}
