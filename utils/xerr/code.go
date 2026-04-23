@@ -94,6 +94,8 @@ const (
 	ErrCodeWithdrawBalanceNotEnough ErrCode = 30001 // WithdrawBalanceNotEnough
 	// ErrCodeWithdrawAmountOutOfRange 提现金额超出范围
 	ErrCodeWithdrawAmountOutOfRange ErrCode = 30002 // WithdrawAmountOutOfRange
+	// ErrCodeRechargeAmountOutOfChannelDayMax 充值金额超出渠道每日最大限制
+	ErrCodeRechargeAmountOutOfChannelDayMax ErrCode = 30003 // ErrCodeRechargeAmountOutOfChannelDayMax
 )
 
 // 代理相关
