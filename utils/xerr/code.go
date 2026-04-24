@@ -63,10 +63,8 @@ const (
 	ErrCodeLoginLocked ErrCode = 10018 // LoginLocked
 	// ErrCodeSetPinLockedFirst 设置PIN码失败，账号已锁定（首次锁定）
 	ErrCodeSetPinLockedFirst ErrCode = 10019 // SetPinLockedFirst
-	// ErrCodeOldPinError 旧PIN码错误
+	// ErrCodeOldPinError 旧PIN码错误 带剩余次数
 	ErrCodeOldPinError ErrCode = 10020 // OldPinError
-	// ErrCodeWithdrawLocked 提现功能已被锁定，请稍后再试
-	ErrCodeWithdrawLocked ErrCode = 10021 // WithdrawLocked
 	// ErrCodeSetPinLockedMax 设置PIN码失败，账号已锁定（最大锁定）
 	ErrCodeSetPinLockedMax ErrCode = 10022 // SetPinLockedMax
 	// ErrCodeWithdrawAccountNotExists 提现账号不存在
@@ -95,9 +93,13 @@ const (
 	// ErrCodeWithdrawAmountOutOfRange 提现金额超出范围
 	ErrCodeWithdrawAmountOutOfRange ErrCode = 30002 // WithdrawAmountOutOfRange
 	// ErrCodeRechargeAmountOutOfChannelDayMax 充值金额超出渠道每日最大限制
-	ErrCodeRechargeAmountOutOfChannelDayMax ErrCode = 30003 // ErrCodeRechargeAmountOutOfChannelDayMax
+	ErrCodeRechargeAmountOutOfChannelDayMax ErrCode = 30003 // RechargeAmountOutOfChannelDayMax
+	// ErrCodeWithdrawLocked 提现功能已被锁定，请稍后再试
+	ErrCodeWithdrawLocked ErrCode = 30004 // WithdrawLocked
+	// ErrCodePinCheckError PIN码错误(发起提现)
+	ErrCodePinCheckError ErrCode = 30005 // PinCheckError
 	// ErrCodeUserWithdrawForbidden 用户禁止提现
-	ErrCodeUserWithdrawForbidden ErrCode = 30004 // ErrCodeUserWithdrawForbidden
+	ErrCodeUserWithdrawForbidden ErrCode = 30006 // UserWithdrawForbidden
 )
 
 // 代理相关
