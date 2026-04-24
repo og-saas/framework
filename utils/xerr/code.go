@@ -96,6 +96,8 @@ const (
 	ErrCodeWithdrawAmountOutOfRange ErrCode = 30002 // WithdrawAmountOutOfRange
 	// ErrCodeRechargeAmountOutOfChannelDayMax 充值金额超出渠道每日最大限制
 	ErrCodeRechargeAmountOutOfChannelDayMax ErrCode = 30003 // ErrCodeRechargeAmountOutOfChannelDayMax
+	// ErrCodeUserWithdrawForbidden 用户禁止提现
+	ErrCodeUserWithdrawForbidden ErrCode = 30004 // ErrCodeUserWithdrawForbidden
 )
 
 // 代理相关
