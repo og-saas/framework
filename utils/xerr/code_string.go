@@ -47,7 +47,9 @@ func _() {
 	_ = x[ErrCodeWithdrawAmountOutOfRange-30002]
 	_ = x[ErrCodeRechargeAmountOutOfChannelDayMax-30003]
 	_ = x[ErrCodeWithdrawLocked-30004]
-	_ = x[ErrCodePinCheckError-30005]
+	_ = x[ErrCodeWithdrawPinCheckError-30005]
+	_ = x[ErrCodeUserWithdrawForbidden-30006]
+	_ = x[ErrCodeWithdrawLockedFirst-30007]
 	_ = x[ErrCodeInvalidPromotionCode-40000]
 	_ = x[ErrCodeBindParentNotAllowed-40001]
 	_ = x[ErrCodeCaptchaErr-50001]
@@ -61,7 +63,7 @@ func _() {
 	_ = x[ErrCodeRewardExpired-60008]
 }
 
-const _ErrCode_name = "SuccessFailParamErrorUnauthorizedForbiddenNotFoundServerInternalErrorServiceUnavailableUserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorGoogleAuthErrorNicknameTimeErrorMaxNumberErrorBalanceRetrievingErrorNicknameExistErrorOldPasswordErrorLoginLockedSetPinLockedFirstOldPinErrorSetPinLockedMaxWithdrawAccountNotExistsWithdrawAccountNotSetPinSetPinCaptchaNumErrorGameEnterLogExistsErrCodeGameEnterLogExistsGamePlatformUnreachableWithdrawBalanceNotEnoughWithdrawAmountOutOfRangeErrCodeRechargeAmountOutOfChannelDayMaxWithdrawLockedPinCheckErrorErrCodeInvalidPromotionCodeErrCodeBindParentNotAllowedErrCodeCaptchaErrErrCodeActivityNotStartErrCodeActivityEndedErrCodeActivityClosedErrCodeRewardNotAvailableYetErrCodeRewardNotBelongToYouErrCodeRewardConditionNotMetErrCodeRewardNotClaimableErrCodeRewardExpired"
+const _ErrCode_name = "SuccessFailParamErrorUnauthorizedForbiddenNotFoundServerInternalErrorServiceUnavailableUserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorGoogleAuthErrorNicknameTimeErrorMaxNumberErrorBalanceRetrievingErrorNicknameExistErrorOldPasswordErrorLoginLockedSetPinLockedFirstOldPinErrorSetPinLockedMaxWithdrawAccountNotExistsWithdrawAccountNotSetPinSetPinCaptchaNumErrorGameEnterLogExistsErrCodeGameEnterLogExistsGamePlatformUnreachableWithdrawBalanceNotEnoughWithdrawAmountOutOfRangeRechargeAmountOutOfChannelDayMaxWithdrawLockedWithdrawPinCheckErrorUserWithdrawForbiddenWithdrawLockedFirstErrCodeInvalidPromotionCodeErrCodeBindParentNotAllowedErrCodeCaptchaErrErrCodeActivityNotStartErrCodeActivityEndedErrCodeActivityClosedErrCodeRewardNotAvailableYetErrCodeRewardNotBelongToYouErrCodeRewardConditionNotMetErrCodeRewardNotClaimableErrCodeRewardExpired"
 
 var _ErrCode_map = map[ErrCode]string{
 	0:     _ErrCode_name[0:7],
@@ -101,20 +103,22 @@ var _ErrCode_map = map[ErrCode]string{
 	20003: _ErrCode_name[527:550],
 	30001: _ErrCode_name[550:574],
 	30002: _ErrCode_name[574:598],
-	30003: _ErrCode_name[598:637],
-	30004: _ErrCode_name[637:651],
-	30005: _ErrCode_name[651:664],
-	40000: _ErrCode_name[664:691],
-	40001: _ErrCode_name[691:718],
-	50001: _ErrCode_name[718:735],
-	60001: _ErrCode_name[735:758],
-	60002: _ErrCode_name[758:778],
-	60003: _ErrCode_name[778:799],
-	60004: _ErrCode_name[799:827],
-	60005: _ErrCode_name[827:854],
-	60006: _ErrCode_name[854:882],
-	60007: _ErrCode_name[882:907],
-	60008: _ErrCode_name[907:927],
+	30003: _ErrCode_name[598:630],
+	30004: _ErrCode_name[630:644],
+	30005: _ErrCode_name[644:665],
+	30006: _ErrCode_name[665:686],
+	30007: _ErrCode_name[686:705],
+	40000: _ErrCode_name[705:732],
+	40001: _ErrCode_name[732:759],
+	50001: _ErrCode_name[759:776],
+	60001: _ErrCode_name[776:799],
+	60002: _ErrCode_name[799:819],
+	60003: _ErrCode_name[819:840],
+	60004: _ErrCode_name[840:868],
+	60005: _ErrCode_name[868:895],
+	60006: _ErrCode_name[895:923],
+	60007: _ErrCode_name[923:948],
+	60008: _ErrCode_name[948:968],
 }
 
 func (i ErrCode) String() string {

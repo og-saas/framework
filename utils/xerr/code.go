@@ -94,18 +94,14 @@ const (
 	ErrCodeWithdrawAmountOutOfRange ErrCode = 30002 // WithdrawAmountOutOfRange
 	// ErrCodeRechargeAmountOutOfChannelDayMax 充值金额超出渠道每日最大限制
 	ErrCodeRechargeAmountOutOfChannelDayMax ErrCode = 30003 // RechargeAmountOutOfChannelDayMax
-	// ErrCodeWithdrawLocked 提现功能已被锁定，请稍后再试
-	ErrCodeRechargeAmountOutOfChannelDayMax ErrCode = 30003 // ErrCodeRechargeAmountOutOfChannelDayMax
 	// ErrCodeWithdrawLocked 提现功能已被锁定 (设置PIN码超次数，提现输入超次数)
 	ErrCodeWithdrawLocked ErrCode = 30004 // WithdrawLocked
-	// ErrCodePinCheckError PIN码错误(发起提现)
-	ErrCodePinCheckError ErrCode = 30005 // PinCheckError
-	// ErrCodeUserWithdrawForbidden 用户禁止提现
-	ErrCodeUserWithdrawForbidden ErrCode = 30006 // UserWithdrawForbidden
 	// ErrCodeWithdrawPinCheckError PIN码错误(发起提现) 带剩余次数
 	ErrCodeWithdrawPinCheckError ErrCode = 30005 // WithdrawPinCheckError
+	// ErrCodeUserWithdrawForbidden 用户禁止提现
+	ErrCodeUserWithdrawForbidden ErrCode = 30006 // UserWithdrawForbidden
 	// ErrCodeWithdrawLockedFirst 提现PIN码错误，账号已锁定（首次锁定）
-	ErrCodeWithdrawLockedFirst ErrCode = 30006 // WithdrawLockedFirst
+	ErrCodeWithdrawLockedFirst ErrCode = 30007 // WithdrawLockedFirst
 )
 
 // 代理相关
