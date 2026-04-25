@@ -73,6 +73,8 @@ const (
 	ErrCodeWithdrawAccountNotSetPin ErrCode = 10024 // WithdrawAccountNotSetPin
 	// ErrCodeSetPinCaptchaNumError 设置PIN码验证码次数达到上限错误
 	ErrCodeSetPinCaptchaNumError ErrCode = 10025 // SetPinCaptchaNumError
+	// ErrCodeUserStatusForbidden 用户状态异常禁止操作错误码
+	ErrCodeUserStatusForbidden ErrCode = 10026 // UserStatusForbidden
 
 )
 

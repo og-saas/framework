@@ -40,6 +40,7 @@ func _() {
 	_ = x[ErrCodeWithdrawAccountNotExists-10023]
 	_ = x[ErrCodeWithdrawAccountNotSetPin-10024]
 	_ = x[ErrCodeSetPinCaptchaNumError-10025]
+	_ = x[ErrCodeUserStatusForbidden-10026]
 	_ = x[ErrCodeGameEnterLogExists-20001]
 	_ = x[ErrCodeGameEnterBalanceNotEnough-20002]
 	_ = x[ErrCodeGamePlatformUnreachable-20003]
@@ -63,7 +64,7 @@ func _() {
 	_ = x[ErrCodeRewardExpired-60008]
 }
 
-const _ErrCode_name = "SuccessFailParamErrorUnauthorizedForbiddenNotFoundServerInternalErrorServiceUnavailableUserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorGoogleAuthErrorNicknameTimeErrorMaxNumberErrorBalanceRetrievingErrorNicknameExistErrorOldPasswordErrorLoginLockedSetPinLockedFirstOldPinErrorSetPinLockedMaxWithdrawAccountNotExistsWithdrawAccountNotSetPinSetPinCaptchaNumErrorGameEnterLogExistsErrCodeGameEnterLogExistsGamePlatformUnreachableWithdrawBalanceNotEnoughWithdrawAmountOutOfRangeRechargeAmountOutOfChannelDayMaxWithdrawLockedWithdrawPinCheckErrorUserWithdrawForbiddenWithdrawLockedFirstErrCodeInvalidPromotionCodeErrCodeBindParentNotAllowedErrCodeCaptchaErrErrCodeActivityNotStartErrCodeActivityEndedErrCodeActivityClosedErrCodeRewardNotAvailableYetErrCodeRewardNotBelongToYouErrCodeRewardConditionNotMetErrCodeRewardNotClaimableErrCodeRewardExpired"
+const _ErrCode_name = "SuccessFailParamErrorUnauthorizedForbiddenNotFoundServerInternalErrorServiceUnavailableUserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorGoogleAuthErrorNicknameTimeErrorMaxNumberErrorBalanceRetrievingErrorNicknameExistErrorOldPasswordErrorLoginLockedSetPinLockedFirstOldPinErrorSetPinLockedMaxWithdrawAccountNotExistsWithdrawAccountNotSetPinSetPinCaptchaNumErrorUserStatusForbiddenGameEnterLogExistsErrCodeGameEnterLogExistsGamePlatformUnreachableWithdrawBalanceNotEnoughWithdrawAmountOutOfRangeRechargeAmountOutOfChannelDayMaxWithdrawLockedWithdrawPinCheckErrorUserWithdrawForbiddenWithdrawLockedFirstErrCodeInvalidPromotionCodeErrCodeBindParentNotAllowedErrCodeCaptchaErrErrCodeActivityNotStartErrCodeActivityEndedErrCodeActivityClosedErrCodeRewardNotAvailableYetErrCodeRewardNotBelongToYouErrCodeRewardConditionNotMetErrCodeRewardNotClaimableErrCodeRewardExpired"
 
 var _ErrCode_map = map[ErrCode]string{
 	0:     _ErrCode_name[0:7],
@@ -98,27 +99,28 @@ var _ErrCode_map = map[ErrCode]string{
 	10023: _ErrCode_name[415:439],
 	10024: _ErrCode_name[439:463],
 	10025: _ErrCode_name[463:484],
-	20001: _ErrCode_name[484:502],
-	20002: _ErrCode_name[502:527],
-	20003: _ErrCode_name[527:550],
-	30001: _ErrCode_name[550:574],
-	30002: _ErrCode_name[574:598],
-	30003: _ErrCode_name[598:630],
-	30004: _ErrCode_name[630:644],
-	30005: _ErrCode_name[644:665],
-	30006: _ErrCode_name[665:686],
-	30007: _ErrCode_name[686:705],
-	40000: _ErrCode_name[705:732],
-	40001: _ErrCode_name[732:759],
-	50001: _ErrCode_name[759:776],
-	60001: _ErrCode_name[776:799],
-	60002: _ErrCode_name[799:819],
-	60003: _ErrCode_name[819:840],
-	60004: _ErrCode_name[840:868],
-	60005: _ErrCode_name[868:895],
-	60006: _ErrCode_name[895:923],
-	60007: _ErrCode_name[923:948],
-	60008: _ErrCode_name[948:968],
+	10026: _ErrCode_name[484:503],
+	20001: _ErrCode_name[503:521],
+	20002: _ErrCode_name[521:546],
+	20003: _ErrCode_name[546:569],
+	30001: _ErrCode_name[569:593],
+	30002: _ErrCode_name[593:617],
+	30003: _ErrCode_name[617:649],
+	30004: _ErrCode_name[649:663],
+	30005: _ErrCode_name[663:684],
+	30006: _ErrCode_name[684:705],
+	30007: _ErrCode_name[705:724],
+	40000: _ErrCode_name[724:751],
+	40001: _ErrCode_name[751:778],
+	50001: _ErrCode_name[778:795],
+	60001: _ErrCode_name[795:818],
+	60002: _ErrCode_name[818:838],
+	60003: _ErrCode_name[838:859],
+	60004: _ErrCode_name[859:887],
+	60005: _ErrCode_name[887:914],
+	60006: _ErrCode_name[914:942],
+	60007: _ErrCode_name[942:967],
+	60008: _ErrCode_name[967:987],
 }
 
 func (i ErrCode) String() string {
