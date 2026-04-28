@@ -21,12 +21,12 @@ const (
 	SiteConfigCurrencyConvert             SiteConfigCategory = 15 // 币种兑换配置
 )
 
-type gameCalcBetAmountType int
+type GameCalcBetAmountType int
 
 const (
-	_                                             gameCalcBetAmountType = iota
-	gameCalcBetAmountTypeRealBetAmount                                  // 实际投注金额
-	gameCalcBetAmountTypeRealBetAmountOrWinAmount                       // min(实际投注金额,abs(用户输赢金额))
+	_                                             GameCalcBetAmountType = iota
+	GameCalcBetAmountTypeRealBetAmount                                  // 实际投注金额
+	GameCalcBetAmountTypeRealBetAmountOrWinAmount                       // min(实际投注金额,abs(用户输赢金额))
 )
 
 // SiteConfigKey 站点配置key
