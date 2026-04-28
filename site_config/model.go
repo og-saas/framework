@@ -68,3 +68,13 @@ type CurrencyConvertConfig struct {
 	ExchangeOpenHours  []int64           `json:"exchange_open_hours"`  // 兑换开放时间段
 	DailyExchangeLimit int64             `json:"daily_exchange_limit"` // 单日兑换上限(单人玩家)
 }
+
+type GameCalcBetAmount struct {
+	ActiveIndex int                     `json:"active_index"`
+	Items       []GameCalcBetAmountItem `json:"items"`
+}
+
+type GameCalcBetAmountItem struct {
+	Type gameCalcBetAmountType `json:"type"`
+	Desc string                `json:"desc"`
+}

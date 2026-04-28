@@ -1,6 +1,7 @@
 package site_config
 
 import (
+	"github.com/zeromicro/go-zero/core/jsonx"
 	"github.com/zeromicro/go-zero/core/stringx"
 )
 
@@ -10,6 +11,14 @@ func GetContentByLanguage(data []*LanguageContent, language, defaultLanguage str
 		return ""
 	}
 	return langData.Content
+}
+
+func ParseData[T any](bt []byte) (T, error) {
+	var out T
+	if err := jsonx.Unmarshal(bt, &out); err != nil {
+		return out, err
+	}
+	return out, nil
 }
 
 func GetLanguageObject[T LangAware](items []T, language, defaultLanguage string) T {
