@@ -75,6 +75,6 @@ type GameCalcBetAmount struct {
 }
 
 type GameCalcBetAmountItem struct {
-	Type gameCalcBetAmountType `json:"type"`
+	Type GameCalcBetAmountType `json:"type"`
 	Desc string                `json:"desc"`
 }
