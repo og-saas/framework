@@ -4,6 +4,7 @@ import (
 	"context"
 	"strconv"
 
+	metadata2 "github.com/og-saas/framework/metadata"
 	"github.com/og-saas/framework/utils/metadatakey"
 	"github.com/og-saas/framework/utils/tenant"
 	"github.com/spf13/cast"
@@ -79,6 +80,41 @@ type tenantServerStream struct {
 
 func (t *tenantServerStream) Context() context.Context {
 	return t.ctx
+}
+
+func TenantUnaryClientWithMetadataInterceptor() grpc.UnaryClientInterceptor {
+	return func(
+		ctx context.Context,
+		method string,
+		req, reply any,
+		cc *grpc.ClientConn,
+		invoker grpc.UnaryInvoker,
+		opts ...grpc.CallOption,
+	) error {
+		md, ok := metadata.FromOutgoingContext(ctx)
+		if !ok {
+			md = metadata.New(nil)
+		} else {
+			md = md.Copy() // 避免污染原 context
+		}
+
+		for _, v := range metadata2.RpcMetadata {
+			if _, ok1 := md[v.GetMetadataKey()]; ok1 {
+				continue
+			}
+			md.Set(v.GetMetadataKey(), v.GetString(ctx))
+		}
+
+		siteId := tenant.GetTenantId(ctx)
+		if siteId == tenant.Default {
+			logx.WithContext(ctx).Errorf("tenantId is not set , method:%s", method)
+		}
+
+		md.Set(metadatakey.TenantIdMetadataKey, cast.ToString(siteId))
+		ctx = metadata.NewOutgoingContext(ctx, md)
+
+		return invoker(ctx, method, req, reply, cc, opts...)
+	}
 }
 
 // TenantUnaryClientInterceptor 返回一个 Unary 客户端拦截器，自动在请求中注入 tenantId
