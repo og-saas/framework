@@ -2,8 +2,10 @@ package metadata
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/spf13/cast"
+	md "google.golang.org/grpc/metadata"
 )
 
 type Metadata string
@@ -27,6 +29,25 @@ const (
 	DeviceEndpoint  Metadata = "Device-Endpoint"  // 设备终端类型 APP H5 PC
 )
 
+// RpcMetadata 同步到下游服务的Metadata
+var RpcMetadata = []Metadata{
+	XTenantId,
+	UserId,
+	Username,
+	ChannelId,
+	Language,
+	IP,
+	Currency,
+	Domain,
+	DeviceId,
+	DeviceType,
+	DeviceOS,
+	AppVersion,
+	UserAgent,
+	DefaultCurrency,
+	DeviceEndpoint,
+}
+
 // GetKey 获取元数据key
 func (s Metadata) GetKey() string {
 	return string(s)
@@ -40,6 +61,25 @@ func (s Metadata) GetValue(ctx context.Context) any {
 // GetString 获取元数据字符串
 func (s Metadata) GetString(ctx context.Context) string {
 	return cast.ToString(ctx.Value(s))
+}
+
+// GetMetadataKey 防止同名被框架覆盖 添加og前缀
+func (s Metadata) GetMetadataKey() string {
+	return fmt.Sprintf("og-%s", s)
+}
+
+func (s Metadata) GetFromContentOrMetadata(ctx context.Context) string {
+	mdData, ok := md.FromIncomingContext(ctx)
+	if !ok {
+		return cast.ToString(ctx.Value(s))
+	}
+
+	values := mdData.Get(s.GetMetadataKey())
+	if len(values) == 0 {
+		return cast.ToString(ctx.Value(s))
+	}
+
+	return values[0]
 }
 
 // GetInt64 获取元数据int64

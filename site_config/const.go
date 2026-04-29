@@ -21,12 +21,21 @@ const (
 	SiteConfigCurrencyConvert             SiteConfigCategory = 15 // 币种兑换配置
 )
 
+type GameCalcBetAmountType int
+
+const (
+	_                                             GameCalcBetAmountType = iota
+	GameCalcBetAmountTypeRealBetAmount                                  // 实际投注金额
+	GameCalcBetAmountTypeRealBetAmountOrWinAmount                       // min(实际投注金额,abs(用户输赢金额))
+)
+
 // SiteConfigKey 站点配置key
 type SiteConfigKey string
 
 const (
 	SiteConfigKeyGame                       SiteConfigKey = "game"                          // 游戏账号配置
 	SiteConfigKeyGameFixedCategory          SiteConfigKey = "fixed_game_category"           // 游戏内置分类
+	SiteConfigKeyGameCalcBetAmount          SiteConfigKey = "game_calc_bet_amount"          // 游戏内置分类
 	SiteConfigKeyBaseInfo                   SiteConfigKey = "base_info"                     // 站点配置
 	SiteConfigKeyFooterInfo                 SiteConfigKey = "footer_info"                   // 页脚配置
 	SiteConfigKeyDownloadAPP                SiteConfigKey = "download_app"                  // 下载app配置
