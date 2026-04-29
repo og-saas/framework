@@ -130,3 +130,17 @@ type UserRegisterNotify struct {
 	CountryCode    string `json:"country_code"`    // 国家码
 	RegisterAt     int64  `json:"register_at"`     // 注册时间
 }
+
+// WithdrawOrderCreateNotify 发起提现通知
+type WithdrawOrderCreateNotify struct {
+	OrderId        int64  `json:"order_id,omitempty"`        // 订单ID 主键
+	UserId         int64  `json:"user_id,omitempty"`         // 用户ID
+	SiteId         int64  `json:"site_id,omitempty"`         // 站点ID
+	OrderNo        string `json:"order_no,omitempty"`        // 订单编号
+	CurrencyCode   string `json:"currency_code,omitempty"`   // 币种
+	WithdrawAmount string `json:"withdraw_amount,omitempty"` // 提现金额
+	ActualAmount   string `json:"actual_amount,omitempty"`   // 实际到账金额 = 提现金额 - 手续费金额
+	AccountId      int64  `json:"account_id,omitempty"`      // 提现账号ID
+	OrderStatus    int32  `json:"order_status,omitempty"`    // 提现订单状态 1-待审核 2-审核驳回 3-待出款/审核通过 4-出款成功 5-出款失败 6-出款已取消 7-提现失败
+	ShowStatus     int32  `json:"show_status,omitempty"`     // C端展示状态 1-处理中 2-已到账 3-失败 4-已取消
+}
