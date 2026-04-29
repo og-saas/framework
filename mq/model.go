@@ -128,4 +128,5 @@ type UserRegisterNotify struct {
 	SourceTarget   int32  `json:"source_target"`   // 注册来源 1-活动 2-游戏 3-代理推广
 	SourceID       int32  `json:"source_id"`       // 注册来源id
 	CountryCode    string `json:"country_code"`    // 国家码
+	RegisterAt     int64  `json:"register_at"`     // 注册时间
 }
