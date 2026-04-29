@@ -10,7 +10,7 @@ var (
 	// TopicUserLoginLogNotify 用户登录日志通知
 	TopicUserLoginLogNotify = "user_login_log_notify"
 	// TopicGameBetRecordNotify 游戏下注记录通知
-	TopicGameBetRecordNotify = "v2_game_bet_record_notify"
+	TopicGameBetRecordNotify = "game_bet_record_notify"
 	// TopicRechargeOrderNotify 充值订单通知
 	TopicRechargeOrderNotify = "recharge_order_notify"
 	// TopicAgentGradeGrowthNotify 代理等级成长消息通知
