@@ -3,11 +3,13 @@ package xhttp
 import (
 	"context"
 	"fmt"
-	"github.com/og-saas/framework/metadata"
-	"github.com/og-saas/framework/utils/xerr"
 	"net/http"
 	"time"
 
+	"github.com/og-saas/framework/metadata"
+	"github.com/og-saas/framework/utils/sign"
+	"github.com/og-saas/framework/utils/xerr"
+	"github.com/zeromicro/go-zero/core/service"
 	"github.com/zeromicro/go-zero/rest/httpx"
 	"github.com/zeromicro/x/errors"
 	"go.opentelemetry.io/otel/trace"
@@ -19,6 +21,8 @@ const (
 	BusinessMsgOk  = "ok"
 
 	serverTimeHeader = "X-Server-Time"
+
+	ServerMode = "mode"
 )
 
 type BaseResponse[T any] struct {
@@ -31,7 +35,14 @@ type BaseResponse[T any] struct {
 // JsonBaseResponseCtx writes v into w with appropriate http status code.
 func JsonBaseResponseCtx(ctx context.Context, w http.ResponseWriter, v any) {
 	w.Header().Set(serverTimeHeader, fmt.Sprintf("%d", time.Now().Unix()))
-	httpx.OkJsonCtx(ctx, w, wrapBaseResponse(ctx, v))
+	resp := wrapBaseResponse(ctx, v)
+	if mode, ok := ctx.Value(ServerMode).(string); ok {
+		if mode != service.DevMode && resp.Data != nil {
+			resp.Data = sign.SignParams(resp.TraceID, resp.Data)
+		}
+	}
+
+	httpx.OkJsonCtx(ctx, w, resp)
 }
 func wrapBaseResponse(ctx context.Context, v any) BaseResponse[any] {
 	var resp BaseResponse[any]
