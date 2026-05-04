@@ -31,7 +31,10 @@ func GenId() (id uint64, err error) {
 }
 
 func GenOrderNO(prefix consts.OrderPrefix) string {
-	id, _ := GenId()
+	id, err := GenId()
+	if err != nil {
+		panic(fmt.Sprintf("sonyflake failed: %v", err))
+	}
 	if prefix == "" {
 		prefix = consts.DefaultOrder
 	}
