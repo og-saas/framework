@@ -1,6 +1,8 @@
 package message_center
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Topic string
 

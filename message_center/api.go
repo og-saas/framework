@@ -46,3 +46,10 @@ const (
 func (r Retain) Int() int {
 	return int(r)
 }
+
+type ClientPrefix string
+
+const (
+	ClientPrefixUser  = "user_"
+	ClientPrefixAdmin = "admin_"
+)

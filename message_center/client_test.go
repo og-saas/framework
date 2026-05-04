@@ -2,6 +2,7 @@ package message_center
 
 import (
 	"context"
+	"log"
 	"testing"
 	"time"
 
@@ -11,7 +12,8 @@ import (
 var testConfig = Config{
 	AppKey:    "testKey",
 	AppSecret: "testSecret",
-	BaseURL:   "http://message.ng200.bingthy.xyz",
+	HttpURL:   "http://message.ng200.bingthy.xyz",
+	Timeout:   5,
 }
 
 func TestNew(t *testing.T) {
@@ -74,7 +76,7 @@ func TestClient_Otp(t *testing.T) {
 		},
 	})
 	if err != nil {
-		t.Logf("Otp error: %v", err)
+		log.Fatalln("Otp error: ", err)
 		return
 	}
 	utils.PrettyJSON(resp)

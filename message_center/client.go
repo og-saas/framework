@@ -158,7 +158,7 @@ func (c *Client) doRequest(ctx context.Context, path, method string, body interf
 		defer cancel()
 	}
 
-	apiUrl := fmt.Sprintf("%s%s", c.config.BaseURL, path)
+	apiUrl := fmt.Sprintf("%s%s", c.config.HttpURL, path)
 	headers := c.buildHeaders(method, path)
 
 	client := httpc.Do(ctx).SetHeaders(headers)

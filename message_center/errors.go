@@ -6,7 +6,7 @@ import "errors"
 var (
 	ErrAppKeyRequired    = errors.New("AppKey is required")
 	ErrAppSecretRequired = errors.New("AppSecret is required")
-	ErrBaseURLRequired   = errors.New("BaseURL is required")
+	ErrHttpURLRequired   = errors.New("HttURL is required")
 )
 
 // 错误码
