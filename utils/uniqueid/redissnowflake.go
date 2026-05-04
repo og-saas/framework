@@ -21,7 +21,7 @@ func NewRedisSnowflakeGenerator(rdb redis.UniversalClient) *RedisSnowflakeGenera
 	snow := &RedisSnowflakeGenerator{}
 	snow.rdb = rdb
 	snow.node = sonyflake.NewSonyflake(sonyflake.Settings{
-		StartTime: time.Date(1997, 1, 14, 0, 0, 0, 0, time.UTC),
+		StartTime: time.Date(2024, 10, 1, 0, 0, 0, 0, time.UTC),
 		MachineID: snow.machineID,
 	})
 	return snow

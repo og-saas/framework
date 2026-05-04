@@ -12,7 +12,7 @@ import (
 
 var (
 	flake     *sonyflake.Sonyflake
-	startTime = time.Date(1997, 1, 14, 0, 0, 0, 0, time.UTC)
+	startTime = time.Date(2024, 10, 1, 0, 0, 0, 0, time.UTC)
 )
 
 func init() {
