@@ -3,7 +3,6 @@ package xerr
 import (
 	"errors"
 	"fmt"
-	"regexp"
 	"strconv"
 	"sync/atomic"
 
@@ -90,38 +89,6 @@ func IsXerr(err error) bool {
 	}
 	var e Error
 	return errors.As(err, &e)
-}
-
-// FromError 从 error 中提取或构造 xerr.Error
-// 如果 err 本身是 xerr.Error，直接返回
-// 如果 err 是 gRPC 错误（格式：rpc error: code = Unknown desc = ErrCode(xxxxx)），解析错误码并返回
-// 否则返回 ServerInternalError
-func FromError(err error) Error {
-	if err == nil {
-		return NewServerInternalError(err)
-	}
-
-	// 先尝试用 errors.As 提取
-	var e Error
-	if errors.As(err, &e) {
-		return e
-	}
-
-	// 尝试从 gRPC 错误消息中解析错误码
-	// 格式：rpc error: code = Unknown desc = ErrCode(30003)
-	errMsg := err.Error()
-	re := regexp.MustCompile(`ErrCode\((\d+)\)`)
-	if matches := re.FindStringSubmatch(errMsg); len(matches) > 1 {
-		if code, parseErr := strconv.Atoi(matches[1]); parseErr == nil {
-			return Error{
-				Code: ErrCode(code),
-				Msg:  ErrCode(code).String(),
-			}
-		}
-	}
-
-	// 兜底返回 ServerInternalError
-	return NewServerInternalError(err)
 }
 
 // GetMessage 获取多语言错误信息
