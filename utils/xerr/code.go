@@ -47,8 +47,8 @@ const (
 	ErrCodeBindSameError ErrCode = 10010 // BindSameError
 	// ErrCodeUserAbnormalError 用户账号状态异常
 	ErrCodeUserAbnormalError ErrCode = 10011 // UserAbnormalError
-	// ErrCodeGoogleAuthError 谷歌校验失败，请重试
-	ErrCodeGoogleAuthError ErrCode = 10012 // GoogleAuthError
+	// ErrCodeThirdPartyAuthError 第三方账号校验失败，请重试
+	ErrCodeThirdPartyAuthError ErrCode = 10012 // ThirdPartyAuthError
 	// ErrCodeNicknameTimeError 昵称修改时间不满足
 	ErrCodeNicknameTimeError ErrCode = 10013 // NicknameTimeError
 	// ErrCodeMaxNumberError 最大数量上限
