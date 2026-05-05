@@ -49,7 +49,7 @@ func wrapBaseResponse(ctx context.Context, v any) BaseResponse[any] {
 	switch data := v.(type) {
 	case xerr.Error:
 		resp.Code = data.Code.Int()
-		resp.Message = data.GetMessage(metadata.Language.GetString(ctx))
+		resp.Message = data.Msg
 		resp.Data = data.Data
 	case errors.CodeMsg:
 		resp.Code = data.Code
@@ -70,6 +70,11 @@ func wrapBaseResponse(ctx context.Context, v any) BaseResponse[any] {
 		resp.Message = BusinessMsgOk
 		resp.Data = v
 	}
+
+	if resp.Code != BusinessCodeOK {
+		resp.Message = xerr.TransErrMsg(resp.Code, resp.Message, metadata.Language.GetString(ctx))
+	}
+
 	spanCtx := trace.SpanContextFromContext(ctx)
 	if spanCtx.HasTraceID() {
 		resp.TraceID = spanCtx.TraceID().String()
