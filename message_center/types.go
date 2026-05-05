@@ -32,6 +32,7 @@ type SendMessageReq struct {
 	Qos                QoS    `json:"qos,omitempty"`                // 消息等级，默认0
 	Retain             Retain `json:"retain,omitempty"`             // 是否保留，默认0
 	RetainTimeDuration int64  `json:"retainTimeDuration,omitempty"` // 保留时长（秒），retain=1时必填
+	SendTime           int64  `json:"sendTime,omitempty"`           // 发送时间（毫秒时间戳，0时区）, 定时消息比传此参数
 }
 
 // sendMessageReqInternal 内部请求（包含AppKey）
@@ -49,16 +50,6 @@ type SendMessageResp struct {
 	MessageId string `json:"messageId"` // 消息唯一ID
 }
 
-// SendTimerMessageReq 发送定时消息请求
-type SendTimerMessageReq struct {
-	Topic              string `json:"topic"`                        // 消息接收Topic
-	Content            string `json:"content"`                      // 消息内容
-	Qos                QoS    `json:"qos,omitempty"`                // 消息等级，默认0
-	Retain             Retain `json:"retain,omitempty"`             // 是否保留，默认0
-	RetainTimeDuration int64  `json:"retainTimeDuration,omitempty"` // 保留时长（秒）
-	SendTime           int64  `json:"sendTime"`                     // 发送时间（毫秒时间戳，0时区）
-}
-
 // sendTimerMessageReqInternal 内部请求（包含AppKey）
 type sendTimerMessageReqInternal struct {
 	AppKey             string `json:"appKey"`                       // 租户应用Key
@@ -68,11 +59,6 @@ type sendTimerMessageReqInternal struct {
 	Retain             Retain `json:"retain,omitempty"`             // 是否保留，默认0
 	RetainTimeDuration int64  `json:"retainTimeDuration,omitempty"` // 保留时长（秒）
 	SendTime           int64  `json:"sendTime"`                     // 发送时间（毫秒时间戳，0时区）
-}
-
-// SendTimerMessageResp 发送定时消息响应
-type SendTimerMessageResp struct {
-	MessageId string `json:"messageId"` // 定时消息ID
 }
 
 // CancelTimerMessageReq 取消定时消息请求

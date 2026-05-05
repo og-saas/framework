@@ -16,6 +16,7 @@ import (
 	"github.com/go-resty/resty/v2"
 	"github.com/og-saas/framework/utils/httpc"
 	"github.com/zeromicro/go-zero/core/jsonx"
+	"github.com/zeromicro/go-zero/core/stringx"
 )
 
 // Client 消息中心客户端
@@ -101,35 +102,43 @@ func (c *Client) Otp(ctx context.Context, req OtpReq) (*OtpResp, error) {
 	return doRequestAndParse[OtpResp](c, ctx, OtpURL, http.MethodPost, internalReq)
 }
 
-// NormalSend 发送即时消息
-func (c *Client) NormalSend(ctx context.Context, req SendMessageReq) (*SendMessageResp, error) {
+// Send 发送消息
+func (c *Client) Send(ctx context.Context, req SendMessageReq) (*SendMessageResp, error) {
+	// 检查参数
+	if stringx.HasEmpty(req.Content) {
+		return nil, fmt.Errorf("content cannot be empty")
+	}
+	if req.Retain == RetainEnabled && req.RetainTimeDuration <= 0 {
+		return nil, fmt.Errorf("retainTimeDuration must be greater than 0")
+	}
+
 	// 构建内部请求，自动填充 AppKey
-	internalReq := sendMessageReqInternal{
-		AppKey:             c.config.AppKey,
-		Topic:              req.Topic,
-		Content:            req.Content,
-		Qos:                req.Qos,
-		Retain:             req.Retain,
-		RetainTimeDuration: req.RetainTimeDuration,
+	var internalReq any
+	topic := fmt.Sprintf("%s%s", c.config.AppKey, req.Topic)
+	if req.SendTime > 0 {
+		// 定时消息
+		internalReq = sendTimerMessageReqInternal{
+			AppKey:             c.config.AppKey,
+			Topic:              topic,
+			Content:            req.Content,
+			Qos:                req.Qos,
+			Retain:             req.Retain,
+			RetainTimeDuration: req.RetainTimeDuration,
+			SendTime:           req.SendTime,
+		}
+	} else {
+		// 即时消息
+		internalReq = sendMessageReqInternal{
+			AppKey:             c.config.AppKey,
+			Topic:              topic,
+			Content:            req.Content,
+			Qos:                req.Qos,
+			Retain:             req.Retain,
+			RetainTimeDuration: req.RetainTimeDuration,
+		}
 	}
 
 	return doRequestAndParse[SendMessageResp](c, ctx, NormalSendURL, http.MethodPost, internalReq)
-}
-
-// TimerSend 发送定时消息
-func (c *Client) TimerSend(ctx context.Context, req SendTimerMessageReq) (*SendTimerMessageResp, error) {
-	// 构建内部请求，自动填充 AppKey
-	internalReq := sendTimerMessageReqInternal{
-		AppKey:             c.config.AppKey,
-		Topic:              req.Topic,
-		Content:            req.Content,
-		Qos:                req.Qos,
-		Retain:             req.Retain,
-		RetainTimeDuration: req.RetainTimeDuration,
-		SendTime:           req.SendTime,
-	}
-
-	return doRequestAndParse[SendTimerMessageResp](c, ctx, TimerSendURL, http.MethodPost, internalReq)
 }
 
 // CancelTimer 取消定时消息

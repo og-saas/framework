@@ -25,6 +25,10 @@ const (
 // TopicCustom 自定义消息
 const TopicCustom Topic = "/custom/%s"
 
+func (t Topic) String() string {
+	return string(t)
+}
+
 // BuildTopic 构建 Topic（通用方法）
 // topic: Topic 模板
 // args: 格式化参数
