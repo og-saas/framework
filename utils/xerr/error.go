@@ -126,20 +126,25 @@ func FromError(err error) Error {
 
 // GetMessage 获取多语言错误信息
 func (err Error) GetMessage(language string) string {
+	return TransErrMsg(err.Code.Int(), err.Msg, language)
+}
+
+// TransErrMsg 根据错误码和语言获取多语言错误信息
+func TransErrMsg(code int, defaultMsg, language string) string {
 	// 配置为空，返回默认错误信息
 	confVal, ok := conf.Load().(*Config) // 原子读取
 	if !ok || confVal == nil {
-		return err.Msg
+		return defaultMsg
 	}
 
-	if err.Code == ErrCodeServerInternalError && confVal.ShowServerInternalError {
-		return err.Msg
+	if ErrCode(code) == ErrCodeServerInternalError && confVal.ShowServerInternalError {
+		return defaultMsg
 	}
 
 	// 未找到code，返回默认错误信息
-	languageMsgMap, ok := confVal.ErrorMessages[strconv.Itoa(err.Code.Int())]
+	languageMsgMap, ok := confVal.ErrorMessages[strconv.Itoa(code)]
 	if !ok {
-		return err.Msg
+		return defaultMsg
 	}
 
 	// 语言参数为空，则使用默认语言
@@ -148,7 +153,7 @@ func (err Error) GetMessage(language string) string {
 	}
 	// 语言参数还是为空，则使用默认语言
 	if stringx.HasEmpty(language) {
-		return err.Msg
+		return defaultMsg
 	}
 
 	// 返回多语言错误信息
@@ -164,5 +169,5 @@ func (err Error) GetMessage(language string) string {
 		}
 	}
 
-	return err.Msg
+	return defaultMsg
 }
