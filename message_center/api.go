@@ -50,6 +50,7 @@ func (r Retain) Int() int {
 type ClientPrefix string
 
 const (
-	ClientPrefixUser  = "user_"
-	ClientPrefixAdmin = "admin_"
+	ClientPrefixDevice = "device"
+	ClientPrefixUser   = "user"
+	ClientPrefixAdmin  = "admin"
 )
