@@ -10,6 +10,7 @@ type CommonResp[T any] struct {
 type OtpReq struct {
 	ClientId string   `json:"clientId"` // 客户端唯一标识
 	Topics   []string `json:"topics"`   // 可订阅的Topic列表
+	Expire   int64    `json:"expire"`   // OTP有效时间（分钟）
 }
 
 // otpReqInternal 内部请求（包含AppKey）
@@ -17,6 +18,7 @@ type otpReqInternal struct {
 	AppKey   string   `json:"appKey"`   // 租户应用Key
 	ClientId string   `json:"clientId"` // 客户端唯一标识
 	Topics   []string `json:"topics"`   // 可订阅的Topic列表
+	Expire   int64    `json:"expire"`   // OTP有效时间（分钟）
 }
 
 // OtpResp 获取连接凭证响应
