@@ -10,7 +10,7 @@ type Topic string
 const (
 	TopicGlobalUser      Topic = "/global/user"        // 全局所有用户
 	TopicSiteUser        Topic = "/site/%d/user"       // 站点所有用户
-	TopicSiteUserSingle  Topic = "/site/%d/user/%d"    // 站点指定用户
+	TopicSiteUserSingle  Topic = "/site/%d/user/%v"    // 站点指定用户
 	TopicSiteUserTag     Topic = "/site/%d/tag/%s"     // 站点用户标签（如 VIP、新用户等）
 	TopicSiteUserChannel Topic = "/site/%d/channel/%d" // 站点渠道
 )

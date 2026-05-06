@@ -22,11 +22,11 @@ func Must(c *Config) {
 }
 
 // NewError 业务错误
-func NewError(code ErrCode, data any) Error {
+func NewError(code ErrCode, data any, formatMsgArgs ...any) Error {
 	return Error{
 		Code: code,
 		Data: data,
-		Msg:  code.String(),
+		Msg:  fmt.Sprintf(code.String(), formatMsgArgs...),
 	}
 }
 
