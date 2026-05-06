@@ -6,20 +6,26 @@ import (
 
 type Topic string
 
+// 设备消息
+const (
+	TopicGlobalDevice     Topic = "/global/device"     // 全局所有设备
+	TopicSiteDevice       Topic = "/site/%d/device"    // 站点所有设备, /site/{站点ID}/device
+	TopicSiteDeviceSingle Topic = "/site/%d/device/%s" // 站点指定设备，/site/{站点ID}/device/{设备ID}
+)
+
 // 用户消息
 const (
 	TopicGlobalUser      Topic = "/global/user"        // 全局所有用户
-	TopicSiteUser        Topic = "/site/%d/user"       // 站点所有用户
-	TopicSiteUserSingle  Topic = "/site/%d/user/%v"    // 站点指定用户
-	TopicSiteUserTag     Topic = "/site/%d/tag/%s"     // 站点用户标签（如 VIP、新用户等）
-	TopicSiteUserChannel Topic = "/site/%d/channel/%d" // 站点渠道
+	TopicSiteUser        Topic = "/site/%d/user"       // 站点所有用户，/site/{站点ID}/user
+	TopicSiteUserSingle  Topic = "/site/%d/user/%d"    // 站点指定用户，/site/{站点ID}/user/{用户ID}
+	TopicSiteUserChannel Topic = "/site/%d/channel/%d" // 站点渠道，/site/{站点ID}/channel/{渠道ID}
 )
 
 // 管理员消息
 const (
-	TopicGlobalAdmin     Topic = "/global/admin"     // 全局所有管理员
-	TopicSiteAdmin       Topic = "/site/%d/admin"    // 站点所有管理员
-	TopicSiteAdminSingle Topic = "/site/%d/admin/%s" // 站点指定管理员
+	TopicGlobalAdmin     Topic = "/global/admin"     // 全局所有管理员，/global/admin
+	TopicSiteAdmin       Topic = "/site/%d/admin"    // 站点所有管理员，/site/{站点ID}/admin
+	TopicSiteAdminSingle Topic = "/site/%d/admin/%d" // 站点指定管理员，/site/{站点ID}/admin/{管理员ID}
 )
 
 // TopicCustom 自定义消息
