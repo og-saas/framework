@@ -138,6 +138,18 @@ const (
 	ErrCodeRewardNotClaimable ErrCode = 60007 // ErrCodeRewardNotClaimable
 	// ErrCodeRewardExpired 奖励已过期
 	ErrCodeRewardExpired ErrCode = 60008 // ErrCodeRewardExpired
+	// ErrCodeClaimRewardSmsLimit 奖励领取短信未验证
+	ErrCodeClaimRewardSmsLimit ErrCode = 60009 // ErrCodeClaimRewardSmsLimit
+	// ErrCodeClaimRewardEmailLimit 奖励领取邮件未验证
+	ErrCodeClaimRewardEmailLimit ErrCode = 60010 // ErrCodeClaimRewardEmailLimit
+	// ErrCodeClaimRewardSameActivityTypeLimit 已领取同类活动奖励
+	ErrCodeClaimRewardSameActivityTypeLimit ErrCode = 60011 // ErrCodeClaimRewardSameActivityTypeLimit
+	// ErrCodeClaimRewardIPLimit 活动IP风控限制
+	ErrCodeClaimRewardIPLimit ErrCode = 60012 // ErrCodeClaimRewardIPLimit
+	// ErrCodeClaimRewardDeviceLimit 活动设备风控限制
+	ErrCodeClaimRewardDeviceLimit ErrCode = 60013 // ErrCodeClaimRewardDeviceLimit
+	// ErrCodeClaimRewardEndpointLimit 领取终端限制
+	ErrCodeClaimRewardEndpointLimit ErrCode = 60014 // ErrCodeClaimRewardEndpointLimit
 )
 
 func (code ErrCode) Int() int {
