@@ -8,17 +8,19 @@ type CommonResp[T any] struct {
 
 // OtpReq 获取连接凭证请求
 type OtpReq struct {
-	ClientId string   `json:"clientId"` // 客户端唯一标识
-	Topics   []string `json:"topics"`   // 可订阅的Topic列表
-	Expire   int64    `json:"expire"`   // OTP有效时间（分钟）
+	ClientId       string         `json:"clientId"`       // 客户端唯一标识
+	Topics         []string       `json:"topics"`         // 可订阅的Topic列表
+	Expire         int64          `json:"expire"`         // OTP有效时间（分钟）
+	ConnectionType ConnectionType `json:"connectionType"` // 连接类型 1:mqtt 2:ws 默认1
 }
 
 // otpReqInternal 内部请求（包含AppKey）
 type otpReqInternal struct {
-	AppKey   string   `json:"appKey"`   // 租户应用Key
-	ClientId string   `json:"clientId"` // 客户端唯一标识
-	Topics   []string `json:"topics"`   // 可订阅的Topic列表
-	Expire   int64    `json:"expire"`   // OTP有效时间（分钟）
+	AppKey         string         `json:"appKey"`         // 租户应用Key
+	ClientId       string         `json:"clientId"`       // 客户端唯一标识
+	Topics         []string       `json:"topics"`         // 可订阅的Topic列表
+	Expire         int64          `json:"expire"`         // OTP有效时间（分钟）
+	ConnectionType ConnectionType `json:"connectionType"` // 连接类型 1:mqtt 2:ws 默认1
 }
 
 // OtpResp 获取连接凭证响应

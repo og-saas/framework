@@ -42,6 +42,8 @@ func TestClient_Otp(t *testing.T) {
 			client.BuildTopic(TopicSiteUser, siteId),               // 站点用户消息
 			client.BuildTopic(TopicSiteUserSingle, siteId, userId), // 点对点消息
 		},
+		Expire:         100,
+		ConnectionType: ConnectionTypeWebsocket,
 	})
 	if err != nil {
 		log.Fatalln("Otp error: ", err)

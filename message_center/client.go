@@ -95,10 +95,11 @@ func (c *Client) buildHeaders(method, path string) map[string]string {
 func (c *Client) Otp(ctx context.Context, req OtpReq) (*OtpResp, error) {
 	// 构建内部请求，自动填充 AppKey
 	internalReq := otpReqInternal{
-		AppKey:   c.config.AppKey,
-		ClientId: req.ClientId,
-		Topics:   req.Topics,
-		Expire:   req.Expire,
+		AppKey:         c.config.AppKey,
+		ClientId:       req.ClientId,
+		Topics:         req.Topics,
+		Expire:         req.Expire,
+		ConnectionType: req.ConnectionType,
 	}
 
 	return doRequestAndParse[OtpResp](c, ctx, OtpURL, http.MethodPost, internalReq)
