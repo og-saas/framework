@@ -23,8 +23,9 @@ type otpReqInternal struct {
 
 // OtpResp 获取连接凭证响应
 type OtpResp struct {
-	ClientId string `json:"clientId"` // 实际连接用的客户端ID
-	UserName string `json:"userName"` // MQTT连接用户名（即appKey）
+	ClientId      string `json:"clientId"`      // 实际连接用的客户端ID
+	UserName      string `json:"userName"`      // 连接用户名（即appKey）
+	BrokerAddress string `json:"brokerAddress"` // 连接地址
 }
 
 // SendMessageReq 发送消息请求

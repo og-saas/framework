@@ -55,11 +55,8 @@ func TestClient_NormalSend(t *testing.T) {
 	if err != nil {
 		t.Fatalf("New error: %v", err)
 	}
-
-	siteId := int64(1001)
-	userId := int64(123)
 	resp, err := client.Send(context.Background(), SendMessageReq{
-		Topic:   fmt.Sprintf(TopicSiteUserSingle.String(), siteId, userId),
+		Topic:   "testKey/site/1546549056912754661/device/2a166308-ac41-409e-808a-955295fa420d",
 		Content: `{"text":"Hello"}`,
 		Qos:     QosAtMostOnce,
 	})
