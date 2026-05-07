@@ -7,8 +7,6 @@ type Config struct {
 	AppKey    string `json:"app_key"`
 	AppSecret string `json:"app_secret"`
 	HttpURL   string `json:"http_url"`   // HTTP 地址
-	WsURL     string `json:"ws_url"`     // Websocket 地址
-	MqttURL   string `json:"mqtt_url"`   // MQTT 地址
 	Timeout   int64  `json:"timeout"`    // 请求超时时间，单位：秒，默认 3 秒
 	OtpExpire int64  `json:"otp_expire"` // OTP 有效时间，单位：分钟
 }
