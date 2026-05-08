@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"sort"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/go-resty/resty/v2"
@@ -94,10 +95,11 @@ func (c *Client) buildHeaders(method, path string) map[string]string {
 func (c *Client) Otp(ctx context.Context, req OtpReq) (*OtpResp, error) {
 	// 构建内部请求，自动填充 AppKey
 	internalReq := otpReqInternal{
-		AppKey:   c.config.AppKey,
-		ClientId: req.ClientId,
-		Topics:   req.Topics,
-		Expire:   req.Expire,
+		AppKey:         c.config.AppKey,
+		ClientId:       req.ClientId,
+		Topics:         req.Topics,
+		Expire:         req.Expire,
+		ConnectionType: req.ConnectionType,
 	}
 
 	return doRequestAndParse[OtpResp](c, ctx, OtpURL, http.MethodPost, internalReq)
@@ -115,7 +117,10 @@ func (c *Client) Send(ctx context.Context, req SendMessageReq) (*SendMessageResp
 
 	// 构建内部请求，自动填充 AppKey
 	var internalReq any
-	topic := fmt.Sprintf("%s%s", c.config.AppKey, req.Topic)
+	topic := req.Topic
+	if !strings.HasPrefix(topic, c.config.AppKey) {
+		topic = fmt.Sprintf("%s%s", c.config.AppKey, req.Topic)
+	}
 	if req.SendTime > 0 {
 		// 定时消息
 		internalReq = sendTimerMessageReqInternal{

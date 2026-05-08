@@ -54,3 +54,10 @@ const (
 	ClientPrefixUser   = "user"
 	ClientPrefixAdmin  = "admin"
 )
+
+type ConnectionType int
+
+const (
+	ConnectionTypeMqtt      ConnectionType = 1
+	ConnectionTypeWebsocket ConnectionType = 2
+)
