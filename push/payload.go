@@ -55,6 +55,7 @@ type SiteAgentFullPayload struct {
 	ParentUserID             string          `json:"parent_user_id"`              // 父代理ID 直属上级
 	TopUserID                string          `json:"top_user_id"`                 // 顶部代理ID
 	Level                    int32           `json:"level"`                       // 所处层级
+	Type                     int32           `json:"type"`                        // 代理类型：1-代理成员（无下级），2-代理团队（有下级）
 	FeeAmountClaimed         decimal.Decimal `json:"fee_amount_claimed"`          // 已领取佣金金额
 	FeeAmountDirectClaimed   decimal.Decimal `json:"fee_amount_direct_claimed"`   // 直属佣金已领取金额
 	FeeAmountIndirectClaimed decimal.Decimal `json:"fee_amount_indirect_claimed"` // 非直属佣金已领取金额
@@ -71,7 +72,7 @@ type SiteAgentFullPayload struct {
 
 func (p SiteAgentFullPayload) GetFilterableAttributes() []any {
 	return []any{
-		"site_id", "user_id", "username", "promotion_status", "parent_user_id", "top_user_id", "level", "fee_amount_claimed",
+		"site_id", "user_id", "username", "promotion_status", "parent_user_id", "top_user_id", "level", "type", "fee_amount_claimed",
 		"fee_amount_direct_claimed", "fee_amount_indirect_claimed", "contribute_fee_valid", "contribute_fee_invalid", "upgraded_team_at", "sub_num_direct", "sub_num_indirect", "channel_id", "register_source", "level_sub_max", "agent_mode_id",
 	}
 }
@@ -81,6 +82,7 @@ type SiteAgentListPayload struct {
 	UserId                   string          `json:"user_id"`                               // 用户ID/代理ID
 	Username                 string          `json:"username,omitempty"`                    // 用户名/代理用户名
 	PromotionStatus          int32           `json:"promotion_status,omitempty"`            // 推广开关状态：1-启用，2-禁用
+	Type                     int32           `json:"type,omitempty"`                        // 代理类型：1-代理成员（无下级），2-代理团队（有下级）
 	FeeAmountClaimed         decimal.Decimal `json:"fee_amount_claimed,omitempty"`          // 已领取佣金金额
 	FeeAmountDirectClaimed   decimal.Decimal `json:"fee_amount_direct_claimed,omitempty"`   // 直属佣金已领取金额
 	FeeAmountIndirectClaimed decimal.Decimal `json:"fee_amount_indirect_claimed,omitempty"` // 非直属佣金已领取金额
