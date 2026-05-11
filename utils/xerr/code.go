@@ -75,7 +75,14 @@ const (
 	ErrCodeSetPinCaptchaNumError ErrCode = 10025 // SetPinCaptchaNumError
 	// ErrCodeUserStatusForbidden 用户状态异常禁止操作错误码
 	ErrCodeUserStatusForbidden ErrCode = 10026 // UserStatusForbidden
-
+	// ErrCodeAccountFormatError 账号格式错误 (长度不符/含非法字符)
+	ErrCodeAccountFormatError ErrCode = 10027 // AccountFormatError
+	// ErrCodeCaptchaCooling 验证码冷却中 (频繁点击发送)
+	ErrCodeCaptchaCooling ErrCode = 10028 // CaptchaCooling
+	// ErrCodeCaptchaDayLimit 验证码达日上限 (触碰发送阈值)
+	ErrCodeCaptchaDayLimit ErrCode = 10029 // CaptchaDayLimit
+	// ErrCodeVerifyFailWarning 校验失败预警 (密码/验证码错误)
+	ErrCodeVerifyFailWarning ErrCode = 10030 // VerifyFailWarning
 )
 
 // 游戏相关

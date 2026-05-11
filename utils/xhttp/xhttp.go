@@ -46,11 +46,13 @@ func JsonBaseResponseCtx(ctx context.Context, w http.ResponseWriter, v any) {
 }
 func wrapBaseResponse(ctx context.Context, v any) BaseResponse[any] {
 	var resp BaseResponse[any]
+	var formatArgs []any
 	switch data := v.(type) {
 	case xerr.Error:
 		resp.Code = data.Code.Int()
 		resp.Message = data.Msg
 		resp.Data = data.Data
+		formatArgs = data.FormatArgs
 	case errors.CodeMsg:
 		resp.Code = data.Code
 		resp.Message = data.Msg
@@ -73,6 +75,9 @@ func wrapBaseResponse(ctx context.Context, v any) BaseResponse[any] {
 
 	if resp.Code != BusinessCodeOK {
 		resp.Message = xerr.TransErrMsg(resp.Code, resp.Message, metadata.Language.GetString(ctx))
+		if len(formatArgs) > 0 {
+			resp.Message = fmt.Sprintf(resp.Message, formatArgs...)
+		}
 	}
 
 	spanCtx := trace.SpanContextFromContext(ctx)

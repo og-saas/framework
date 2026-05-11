@@ -10,9 +10,10 @@ import (
 )
 
 type Error struct {
-	Code ErrCode `json:"code"`
-	Data any     `json:"data"`
-	Msg  string  `json:"message"`
+	Code       ErrCode `json:"code"`
+	Data       any     `json:"data"`
+	Msg        string  `json:"message"`
+	FormatArgs []any   `json:"-"`
 }
 
 var conf atomic.Value
@@ -27,6 +28,15 @@ func NewError(code ErrCode, data any, formatMsgArgs ...any) Error {
 		Code: code,
 		Data: data,
 		Msg:  fmt.Sprintf(code.String(), formatMsgArgs...),
+	}
+}
+
+// NewFormatError 业务错误
+func NewFormatError(code ErrCode, formatMsg string, formatMsgArgs ...any) Error {
+	return Error{
+		Code:       code,
+		Msg:        formatMsg,
+		FormatArgs: formatMsgArgs,
 	}
 }
 
@@ -93,7 +103,11 @@ func IsXerr(err error) bool {
 
 // GetMessage 获取多语言错误信息
 func (err Error) GetMessage(language string) string {
-	return TransErrMsg(err.Code.Int(), err.Msg, language)
+	msg := TransErrMsg(err.Code.Int(), err.Msg, language)
+	if len(err.FormatArgs) > 0 {
+		msg = fmt.Sprintf(msg, err.FormatArgs...)
+	}
+	return msg
 }
 
 // TransErrMsg 根据错误码和语言获取多语言错误信息
