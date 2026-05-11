@@ -50,10 +50,14 @@ func (r Retain) Int() int {
 type ClientPrefix string
 
 const (
-	ClientPrefixDevice = "device"
-	ClientPrefixUser   = "user"
-	ClientPrefixAdmin  = "admin"
+	ClientPrefixDevice ClientPrefix = "device"
+	ClientPrefixUser   ClientPrefix = "user"
+	ClientPrefixAdmin  ClientPrefix = "admin"
 )
+
+func (t ClientPrefix) String() string {
+	return string(t)
+}
 
 type ConnectionType int
 

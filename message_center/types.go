@@ -102,36 +102,3 @@ type HistoryMessage struct {
 	SendTime int64  `json:"sendTime"` // 消息发送时间（毫秒时间戳）
 	Content  string `json:"content"`  // 消息内容
 }
-
-// ========== 回调相关类型 ==========
-
-// WebhookReq 回调请求
-type WebhookReq struct {
-	EventType WebhookEventType `json:"eventType"` // 事件类型 connect/disconnect
-	EventTime int64            `json:"eventTime"` // 事件发生时间戳
-	EventData string           `json:"eventData"` // 事件数据（JSON字符串）
-}
-
-// WebhookResp 回调响应
-type WebhookResp struct{}
-
-// WebhookEventData 连接事件数据
-type WebhookEventData struct {
-	TenantId      int64  `json:"tenantId"`      // 租户ID
-	LogicClientId string `json:"logicClientId"` // 客户端ID
-	ClientId      string `json:"clientId"`      // 客户端ID
-	UserId        int64  `json:"userId"`        // 用户ID
-	Username      string `json:"username"`      // 用户名
-	IpAddress     string `json:"ipAddress"`     // IP地址
-	ConnectedAt   int64  `json:"connectedAt"`   // 连接时间
-}
-
-// WebhookDisconnectEventData 断开连接事件数据
-type WebhookDisconnectEventData struct {
-	TenantId       int64  `json:"tenantId"`       // 租户ID
-	LogicClientId  string `json:"logicClientId"`  // 客户端ID
-	ClientId       string `json:"clientId"`       // 客户端ID
-	UserId         int64  `json:"userId"`         // 用户ID
-	Username       string `json:"username"`       // 用户名
-	DisconnectedAt int64  `json:"disconnectedAt"` // 断开连接时间
-}
