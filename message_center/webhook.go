@@ -40,8 +40,8 @@ type WebhookBody struct {
 
 // WebhookEventData 事件数据
 type WebhookEventData struct {
-	TenantId      int64  `json:"tenantId"`      // 租户ID
-	LogicClientId string `json:"logicClientId"` // 逻辑客户端ID
+	TenantId       int64  `json:"tenantId"`       // 租户ID
+	ActualClientId string `json:"actualClientId"` // 客户端ID
 }
 
 func (k WebhookHeaderKey) String() string {
