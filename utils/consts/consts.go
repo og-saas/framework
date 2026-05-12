@@ -207,3 +207,18 @@ func (t ThirdPartyOauthType) ToThirdAuthType() comV1.ThirdAccountType {
 		return comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_UNSPECIFIED
 	}
 }
+
+func ToThirdAuthTypeString(t comV1.ThirdAccountType) ThirdPartyOauthType {
+	switch t {
+	case comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_GOOGLE:
+		return ThirdPartyOauthTypeGoogle
+	case comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_TELEGRAM:
+		return ThirdPartyOauthTypeTelegram
+	case comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_FACEBOOK:
+		return ThirdPartyOauthTypeFacebook
+	case comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_X:
+		return ThirdPartyOauthTypeX
+	default:
+		return "unknown"
+	}
+}
