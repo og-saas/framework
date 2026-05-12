@@ -4,7 +4,10 @@ import (
 	"crypto/sha256"
 	"crypto/subtle"
 	"encoding/hex"
-	"fmt"
+	"sort"
+	"strings"
+
+	"github.com/spf13/cast"
 )
 
 // WebhookHeaderKey 回调请求头 Key
@@ -61,10 +64,38 @@ func (e WebhookEventType) String() string {
 
 // VerifyWebhookSignature 验证 Webhook 签名
 func (c *Client) VerifyWebhookSignature(eventType WebhookEventType, eventTime int64, signature string) bool {
-	signString := fmt.Sprintf("tenantAppKey=%s&eventType=%s&eventTime=%d&secret=%s",
-		c.config.AppKey, eventType, eventTime, c.config.AppSecret)
-	expectedSign := sha256.Sum256([]byte(signString))
-	expectedSignHex := hex.EncodeToString(expectedSign[:])
+	// 构建排序的参数字符串，按照Java代码逻辑
+	params := map[string]string{
+		"tenantAppKey": c.config.AppKey,
+		"eventType":    eventType.String(),
+		"eventTime":    cast.ToString(eventTime),
+	}
+
+	// 按照键名排序构建查询字符串
+	keys := make([]string, 0, len(params))
+	for k := range params {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+
+	var signString strings.Builder
+	for _, k := range keys {
+		signString.WriteString(k)
+		signString.WriteString("=")
+		signString.WriteString(params[k])
+		signString.WriteString("&")
+	}
+	// 添加secret参数
+	signString.WriteString("secret=")
+	signString.WriteString(c.config.AppSecret)
+
+	// 计算SHA256哈希值
+	hash := sha256.Sum256([]byte(signString.String()))
+	expectedSignHex := hex.EncodeToString(hash[:])
+
+	//fmt.Println("signString: ", signString.String())
+	//fmt.Println("go sign: ", expectedSignHex)
+	//fmt.Println("java sign: ", signature)
 
 	return subtle.ConstantTimeCompare([]byte(expectedSignHex), []byte(signature)) == 1
 }

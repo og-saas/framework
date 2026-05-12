@@ -123,3 +123,13 @@ func TestClient_QueryHistory(t *testing.T) {
 	}
 	utils.PrettyJSON(resp)
 }
+
+func TestHook_VerifySign(t *testing.T) {
+	client, err := NewClient(testConfig)
+	if err != nil {
+		t.Fatalf("New error: %v", err)
+	}
+	resp := client.VerifyWebhookSignature(WebhookEventTypeConnect, 1711800000000, "45c3dfdaa7593ab5d31db4622cd6fe4118a2ffbc57c03bfc093757754ee6eaac")
+	//resp := client.VerifyWebhookSignature(WebhookEventTypeDisconnect, 1778570627664, "4315078373fa66aef05c6399a8edb3b8f463074c01a76188f63633b244660798")
+	utils.PrettyJSON(resp)
+}
