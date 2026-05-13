@@ -183,6 +183,9 @@ func (d DeviceType) EndpointSubType() EndpointSubType {
 type ThirdPartyOauthType string
 
 const (
+	ThirdPartyOauthTypeAccount  ThirdPartyOauthType = "account"
+	ThirdPartyOauthTypePhone    ThirdPartyOauthType = "phone"
+	ThirdPartyOauthTypeEmail    ThirdPartyOauthType = "email"
 	ThirdPartyOauthTypeGoogle   ThirdPartyOauthType = "google"   // Google
 	ThirdPartyOauthTypeTelegram ThirdPartyOauthType = "telegram" // Telegram
 	ThirdPartyOauthTypeFacebook ThirdPartyOauthType = "facebook" // Facebook
@@ -195,6 +198,12 @@ func (t ThirdPartyOauthType) String() string {
 
 func (t ThirdPartyOauthType) ToThirdAuthType() comV1.ThirdAccountType {
 	switch t {
+	case ThirdPartyOauthTypeAccount:
+		return comV1.ThirdAccountType(1) // 账号无对应三方类型枚举，按枚举类型转换
+	case ThirdPartyOauthTypePhone:
+		return comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_PHONE
+	case ThirdPartyOauthTypeEmail:
+		return comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_EMAIL
 	case ThirdPartyOauthTypeGoogle:
 		return comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_GOOGLE
 	case ThirdPartyOauthTypeTelegram:
