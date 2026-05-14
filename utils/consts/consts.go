@@ -1,6 +1,7 @@
 package consts
 
 import (
+	comV1 "github.com/og-saas/proto/pb/common/v1"
 	"github.com/shopspring/decimal"
 	"github.com/zeromicro/go-zero/core/stringx"
 )
@@ -176,4 +177,57 @@ func (d DeviceType) EndpointSubType() EndpointSubType {
 	}
 
 	return EndpointSubTypeOther
+}
+
+// ThirdPartyOauthType 第三方登录类型
+type ThirdPartyOauthType string
+
+const (
+	ThirdPartyOauthTypeAccount  ThirdPartyOauthType = "account"
+	ThirdPartyOauthTypePhone    ThirdPartyOauthType = "phone"
+	ThirdPartyOauthTypeEmail    ThirdPartyOauthType = "email"
+	ThirdPartyOauthTypeGoogle   ThirdPartyOauthType = "google"   // Google
+	ThirdPartyOauthTypeTelegram ThirdPartyOauthType = "telegram" // Telegram
+	ThirdPartyOauthTypeFacebook ThirdPartyOauthType = "facebook" // Facebook
+	ThirdPartyOauthTypeX        ThirdPartyOauthType = "x"        // X
+)
+
+func (t ThirdPartyOauthType) String() string {
+	return string(t)
+}
+
+func (t ThirdPartyOauthType) ToThirdAuthType() comV1.ThirdAccountType {
+	switch t {
+	case ThirdPartyOauthTypeAccount:
+		return comV1.ThirdAccountType(1) // 账号无对应三方类型枚举，按枚举类型转换
+	case ThirdPartyOauthTypePhone:
+		return comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_PHONE
+	case ThirdPartyOauthTypeEmail:
+		return comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_EMAIL
+	case ThirdPartyOauthTypeGoogle:
+		return comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_GOOGLE
+	case ThirdPartyOauthTypeTelegram:
+		return comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_TELEGRAM
+	case ThirdPartyOauthTypeFacebook:
+		return comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_FACEBOOK
+	case ThirdPartyOauthTypeX:
+		return comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_X
+	default:
+		return comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_UNSPECIFIED
+	}
+}
+
+func ToThirdAuthTypeString(t comV1.ThirdAccountType) ThirdPartyOauthType {
+	switch t {
+	case comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_GOOGLE:
+		return ThirdPartyOauthTypeGoogle
+	case comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_TELEGRAM:
+		return ThirdPartyOauthTypeTelegram
+	case comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_FACEBOOK:
+		return ThirdPartyOauthTypeFacebook
+	case comV1.ThirdAccountType_THIRD_ACCOUNT_TYPE_X:
+		return ThirdPartyOauthTypeX
+	default:
+		return "unknown"
+	}
 }
