@@ -113,6 +113,8 @@ type AgentBetRebatNotify struct {
 	GameCategoryId int64  `json:"game_category_id,omitempty"` // 游戏分类 id
 	CurrencyCode   string `json:"currency_code,omitempty"`    // 币种
 	ConvertRatio   string `json:"convert_ratio,omitempty"`    // 转换比例
+	GameId         int64  `json:"game_id,omitempty"`          // 游戏id
+	GamePlatformId int64  `json:"game_platform_id,omitempty"` // 游戏平台id
 }
 
 // UserRegisterNotify 用户注册通知

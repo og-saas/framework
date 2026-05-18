@@ -1,14 +1,20 @@
 package sign
 
 import (
+	"crypto/aes"
+	"crypto/cipher"
 	"crypto/hmac"
+	"crypto/rand"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"io"
 	"sort"
 	"strconv"
 	"strings"
+
+	"github.com/zeromicro/go-zero/core/jsonx"
 )
 
 // HmacSha256 对数据进行 HMAC-SHA256 签名，返回 hex 编码字符串
@@ -114,4 +120,51 @@ func marshalValue(v any) string {
 		b, _ := json.Marshal(val)
 		return string(b)
 	}
+}
+
+func AesEncrypt(key string, data any) string {
+	plaintext, err := jsonx.Marshal(data)
+	if err != nil {
+		return ""
+	}
+	block, err := aes.NewCipher([]byte(key))
+	if err != nil {
+		return ""
+	}
+
+	iv := make([]byte, aes.BlockSize)
+	if _, err = io.ReadFull(rand.Reader, iv); err != nil {
+		return ""
+	}
+
+	stream := cipher.NewCFBEncrypter(block, iv)
+	ciphertext := make([]byte, len(plaintext))
+	stream.XORKeyStream(ciphertext, plaintext)
+
+	result := make([]byte, len(iv)+len(ciphertext))
+	copy(result[:aes.BlockSize], iv)
+	copy(result[aes.BlockSize:], ciphertext)
+
+	return hex.EncodeToString(result)
+}
+
+func AesDecrypt(key string, ciphertextHex string) []byte {
+	ciphertext, err := hex.DecodeString(ciphertextHex)
+	if err != nil || len(ciphertext) < aes.BlockSize {
+		return nil
+	}
+
+	block, err := aes.NewCipher([]byte(key))
+	if err != nil {
+		return nil
+	}
+
+	iv := ciphertext[:aes.BlockSize]
+	encryptedData := ciphertext[aes.BlockSize:]
+
+	stream := cipher.NewCFBDecrypter(block, iv)
+	plaintext := make([]byte, len(encryptedData))
+	stream.XORKeyStream(plaintext, encryptedData)
+
+	return plaintext
 }

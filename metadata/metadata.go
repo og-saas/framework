@@ -28,6 +28,7 @@ const (
 	DefaultCurrency Metadata = "default_currency" // 钱包默认币种
 	DeviceEndpoint  Metadata = "Device-Endpoint"  // 设备终端类型 APP H5 PC
 	Host            Metadata = "Host"             // 域名
+	DataEncrypt     Metadata = "Data-Encrypt"     // 数据加密开关
 )
 
 // RpcMetadata 同步到下游服务的Metadata
@@ -62,6 +63,11 @@ func (s Metadata) GetValue(ctx context.Context) any {
 // GetString 获取元数据字符串
 func (s Metadata) GetString(ctx context.Context) string {
 	return cast.ToString(ctx.Value(s))
+}
+
+// GetBool 获取元数据bool类型
+func (s Metadata) GetBool(ctx context.Context) bool {
+	return cast.ToBool(ctx.Value(s))
 }
 
 // GetMetadataKey 防止同名被框架覆盖 添加og前缀
