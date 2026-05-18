@@ -13,5 +13,7 @@ func TestBase36Encode(t *testing.T) {
 	//fmt.Println(Base36Encode(3830248033757650944))
 	//fmt.Println(Base36Encode(1550487228994551818))
 	//fmt.Println(Base36Encode(1550640147949682702))
-	fmt.Println(Base36Encode(1549631778698827714))
+	//fmt.Println(Base36Encode(1549631778698827714))
+	//fmt.Println(Base36Encode(85419477293924872))
+	fmt.Println(Base36Encode(3830248033757650944))
 }
