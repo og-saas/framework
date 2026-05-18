@@ -19,6 +19,10 @@ const (
 	SiteConfigCategoryVip                 SiteConfigCategory = 13 // Vip配置
 	SiteConfigBackground                  SiteConfigCategory = 14 // 登录/注册背景图
 	SiteConfigCurrencyConvert             SiteConfigCategory = 15 // 币种兑换配置
+	SiteConfigCategoryAudit               SiteConfigCategory = 16 // 稽核
+	SiteConfigCategoryReplenish           SiteConfigCategory = 17 // 审核配置
+	SiteConfigCategoryPayoutMonitor       SiteConfigCategory = 18 // 派奖监控
+
 )
 
 type GameCalcBetAmountType int
@@ -57,4 +61,5 @@ const (
 	SiteConfigKeyVipPromoteInfo             SiteConfigKey = "vip_promote_info"              // Vip宣传图
 	SiteConfigKeyVipCustomerService         SiteConfigKey = "vip_customer_service"          // Vip专属客服
 	SiteConfigKeyPlatformCurrencySafetyRisk SiteConfigKey = "platform_currency_safety_risk" // 币种兑换规则配置
+	SiteConfigKeyPayoutMonitor              SiteConfigKey = "payout_monitor"                // 派奖监控
 )

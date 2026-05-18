@@ -2,6 +2,7 @@ package site_config
 
 import (
 	"github.com/og-saas/framework/utils/consts"
+	"github.com/shopspring/decimal"
 	"github.com/zeromicro/go-zero/core/stringx"
 )
 
@@ -77,4 +78,17 @@ type GameCalcBetAmount struct {
 type GameCalcBetAmountItem struct {
 	Type GameCalcBetAmountType `json:"type"`
 	Desc string                `json:"desc"`
+}
+
+type PayoutMonitor struct {
+	Rules   []PayoutMonitorRule `json:"rules"`
+	Enabled bool                `json:"enabled"`
+}
+
+type PayoutMonitorRule struct {
+	Remark            string          `json:"remark"`
+	CurrencyCode      string          `json:"currency_code"`
+	BigWinAmount      decimal.Decimal `json:"big_win_amount"`
+	HighPowerAmount   decimal.Decimal `json:"high_power_amount"`
+	HighPowerMultiple decimal.Decimal `json:"high_power_multiple"`
 }

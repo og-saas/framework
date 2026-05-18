@@ -3,9 +3,10 @@ package utils
 import (
 	"crypto/rand"
 	"fmt"
-	"github.com/shopspring/decimal"
 	"math/big"
 	"time"
+
+	"github.com/shopspring/decimal"
 
 	"github.com/dromara/carbon/v2"
 )
@@ -14,13 +15,14 @@ import (
 type TimeRangeType int
 
 const (
-	TimeRangeTypeToday         TimeRangeType = 1 // 今天
-	TimeRangeTypeYesterday     TimeRangeType = 2 // 昨天
-	TimeRangeTypeLastThreeDay  TimeRangeType = 3 // 最近3天
-	TimeRangeTypeLastSevenDay  TimeRangeType = 4 // 最近7天
-	TimeRangeTypeLastThirtyDay TimeRangeType = 5 // 最近30天
-	TimeRangeTypeThisWeek      TimeRangeType = 6 // 本周
-	TimeRangeTypeThisMonth     TimeRangeType = 7 // 本月
+	TimeRangeTypeToday          TimeRangeType = 1 // 今天
+	TimeRangeTypeYesterday      TimeRangeType = 2 // 昨天
+	TimeRangeTypeLastThreeDay   TimeRangeType = 3 // 最近3天
+	TimeRangeTypeLastSevenDay   TimeRangeType = 4 // 最近7天
+	TimeRangeTypeLastThirtyDay  TimeRangeType = 5 // 最近30天
+	TimeRangeTypeThisWeek       TimeRangeType = 6 // 本周
+	TimeRangeTypeThisMonth      TimeRangeType = 7 // 本月
+	TimeRangeTypeLastFifteenDay TimeRangeType = 8 // 最近15天
 )
 
 // GetTimestampRange 获取时间范围
@@ -40,6 +42,8 @@ func (s TimeRangeType) GetTimeRange() (*carbon.Carbon, *carbon.Carbon) {
 		return now.AddDays(-3), now
 	case TimeRangeTypeLastSevenDay: // 最近 7 天
 		return now.AddDays(-7), now
+	case TimeRangeTypeLastFifteenDay:
+		return now.AddDays(-15), now
 	case TimeRangeTypeLastThirtyDay: // 最近 30 天
 		return now.AddDays(-30), now
 	case TimeRangeTypeThisWeek: // 本周
@@ -78,6 +82,8 @@ func (s TimeRangeType) GetTimeRangeWithTimezone(zone string) (*carbon.Carbon, *c
 		return now.AddDays(-3), now
 	case TimeRangeTypeLastSevenDay: // 最近 7 天
 		return now.AddDays(-7), now
+	case TimeRangeTypeLastFifteenDay:
+		return now.AddDays(-15), now
 	case TimeRangeTypeLastThirtyDay: // 最近 30 天
 		return now.AddDays(-30), now
 	case TimeRangeTypeThisWeek: // 本周
