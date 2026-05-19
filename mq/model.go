@@ -146,3 +146,32 @@ type WithdrawOrderCreateNotify struct {
 	OrderStatus    int32  `json:"order_status,omitempty"`    // 提现订单状态 1-待审核 2-审核驳回 3-待出款/审核通过 4-出款成功 5-出款失败 6-出款已取消 7-提现失败
 	ShowStatus     int32  `json:"show_status,omitempty"`     // C端展示状态 1-处理中 2-已到账 3-失败 4-已取消
 }
+
+// WithdrawOrderNotify 提现订单回调通知（出款成功/失败）
+type WithdrawOrderNotify struct {
+	UserId                int64          `json:"user_id,omitempty"`                  // 用户 ID
+	OrderNo               string         `json:"order_no,omitempty"`                 // 订单编号
+	SubOrderNo            string         `json:"sub_order_no,omitempty"`             // 子订单号
+	ThirdOrderNo          string         `json:"third_order_no,omitempty"`           // 三方订单号
+	Username              string         `json:"username,omitempty"`                 // 用户名
+	CurrencyCode          string         `json:"currency_code,omitempty"`            // 币种
+	WithdrawAmount        string         `json:"withdraw_amount,omitempty"`          // 提现金额
+	FeeAmount             string         `json:"fee_amount,omitempty"`               // 手续费金额
+	ActualAmount          string         `json:"actual_amount,omitempty"`            // 实际到账金额
+	Phone                 string         `json:"phone,omitempty"`                    // 手机号
+	RealName              string         `json:"real_name,omitempty"`                // 真实姓名
+	OrderStatus           int32          `json:"order_status,omitempty"`             // 订单状态
+	FailReason            string         `json:"fail_reason,omitempty"`              // 失败原因
+	SitePaymentPlatformId int64          `json:"site_payment_platform_id,omitempty"` // 站点三方支付平台 ID
+	PaymentPlatformCode   string         `json:"payment_platform_code,omitempty"`    // 支付平台编码
+	SitePaymentChannelId  int64          `json:"site_payment_channel_id,omitempty"`  // 站点三方支付通道 ID
+	PaymentChannelCode    string         `json:"payment_channel_code,omitempty"`     // 通道编码
+	PaymentTypeCode       string         `json:"payment_type_code,omitempty"`        // 支付类型编码
+	SuccessTime           int64          `json:"success_time,omitempty"`             // 订单成功时间
+	FailTime              int64          `json:"fail_time,omitempty"`                // 订单失败时间
+	Remark                string         `json:"remark,omitempty"`                   // 备注
+	SiteId                int64          `json:"site_id,omitempty"`                  // 站点 ID
+	AccountId             int64          `json:"account_id,omitempty"`               // 提现账号ID
+	WithdrawPtbAmount     consts.PtbCoin `json:"withdraw_ptb_amount,omitempty"`      // 提现金额平台币(提现金额换算出来的)
+	ConvertRatio          string         `json:"convert_ratio,omitempty"`            // 转换比例
+}
