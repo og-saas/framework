@@ -43,4 +43,6 @@ const (
 	HandlerNameRewardRetry HandlerName = "reward_retry_handler"
 	// HandlerNameMeiliPush meili push
 	HandlerNameMeiliPush HandlerName = "meili_push_handler"
+	// HandlerNameAgentFullSync 代理全量同步MeiliSearch
+	HandlerNameAgentFullSync HandlerName = "agent_full_sync_handler"
 )
