@@ -17,6 +17,8 @@ func RewardSubCategoryToTransactionSubCategory(subCategory commonv1.RewardSubCat
 	case commonv1.RewardSubCategory_REWARD_SUB_JACKPOT_TICKET:
 		return commonv1.TransactionSubCategory_ACTIVITY_JACKPOT_TICKET
 	case commonv1.RewardSubCategory_REWARD_SUB_AGENT_INVITE:
+		return commonv1.TransactionSubCategory_REBATE_RECEIVE
+	case commonv1.RewardSubCategory_REWARD_SUB_AGENT_FEE_DIRECT, commonv1.RewardSubCategory_REWARD_SUB_AGENT_FEE_INDIRECT:
 		return commonv1.TransactionSubCategory_REBATE_SEND
 	case commonv1.RewardSubCategory_REWARD_SUB_VIP_UPGRADE:
 		return commonv1.TransactionSubCategory_VIP_REWARD_UPGRADE_BONUS
