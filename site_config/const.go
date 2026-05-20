@@ -43,6 +43,7 @@ const (
 	SiteConfigKeyBaseInfo                   SiteConfigKey = "base_info"                     // 站点配置
 	SiteConfigKeyFooterInfo                 SiteConfigKey = "footer_info"                   // 页脚配置
 	SiteConfigKeyDownloadAPP                SiteConfigKey = "download_app"                  // 下载app配置
+	SiteConfigKeyAPPInstall                 SiteConfigKey = "app_install"                   // APP安装入口
 	SiteConfigKeyFooterMenus                SiteConfigKey = "footer_menus"                  // 底部主菜单配置
 	SiteConfigKeySidebarUserAccount         SiteConfigKey = "sidebar_user_account"          // 用户账号区域
 	SiteConfigKeySidebarRechargeDeposit     SiteConfigKey = "sidebar_recharge_withdraw"     // 充值提现区域
