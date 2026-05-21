@@ -44,6 +44,7 @@ type WebhookBody struct {
 // WebhookEventData 事件数据
 type WebhookEventData struct {
 	ClientId string `json:"clientId"` // 客户端ID
+	IP       string `json:"ip"`       // 客户端IP
 }
 
 func (k WebhookHeaderKey) String() string {
