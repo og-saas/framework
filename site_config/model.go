@@ -1,6 +1,7 @@
 package site_config
 
 import (
+	"github.com/og-saas/framework/utils/consts"
 	"github.com/shopspring/decimal"
 	"github.com/zeromicro/go-zero/core/stringx"
 )
@@ -99,4 +100,36 @@ type PayoutMonitorRule struct {
 type PlatformCurrencyMode struct {
 	CurrencyCode string               `json:"currency_code"`
 	Mode         PlatformCurrencyType `json:"mode"`
+}
+
+type AppIcon struct {
+	Src  string `json:"src"`
+	Type string `json:"type"`
+}
+
+type AppIconMap struct {
+	Icon192 AppIcon `json:"icon192"`
+	Icon512 AppIcon `json:"icon512"`
+}
+
+type DownGuide struct {
+	Windows []*LanguageContent `json:"windows"`
+	Mac     []*LanguageContent `json:"mac"`
+	Ios     []*LanguageContent `json:"ios"`
+	Android []*LanguageContent `json:"android"`
+}
+
+type APPInstall struct {
+	DefaultLanguage string             `json:"default_language"`
+	Status          consts.StatusType  `json:"status"`           // 状态 1-开启 2-关闭
+	Name            []*LanguageContent `json:"name"`             // 标题
+	Remark          []*LanguageContent `json:"remark"`           // 描述
+	PwaName         string             `json:"pwa_name"`         // 应用名称
+	PwaShortName    string             `json:"pwa_short_name"`   // 应用短名称
+	StartURL        string             `json:"start_url"`        // 启动地址
+	Display         string             `json:"display"`          // 显示模式
+	ThemeColor      string             `json:"theme_color"`      // 主题色
+	BackgroundColor string             `json:"background_color"` // 背景色
+	Icons           *AppIconMap        `json:"icons"`            // PWA icon
+	DownGuide       *DownGuide         `json:"down_guide"`       // 下载引导
 }
