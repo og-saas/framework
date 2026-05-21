@@ -1,7 +1,6 @@
 package site_config
 
 import (
-	"github.com/og-saas/framework/utils/consts"
 	"github.com/shopspring/decimal"
 	"github.com/zeromicro/go-zero/core/stringx"
 )
@@ -56,18 +55,21 @@ type VipEndpointCustomerService struct {
 
 // CurrencyConvertConfig 币种兑换配置
 type CurrencyConvertConfig struct {
-	Status             consts.StatusType `json:"status"`               // 状态
-	FeeType            int64             `json:"fee_type"`             // 手续费模式 1-固定 2-比例
-	Multiple           int64             `json:"multiple"`             // 流水倍数
-	FeeValue           int64             `json:"fee_value"`            // 手续费值
-	MinExchange        int64             `json:"min_exchange"`         // 最小兑换平台币
-	DailyFreeNum       int64             `json:"daily_free_num"`       // 每日免费次数
-	AutoAuditLimit     int64             `json:"auto_audit_limit"`     // 审核阀值
-	SingleMaxLimit     int64             `json:"single_max_limit"`     // 单笔最高限额
-	DailyPlayerLimit   int64             `json:"daily_player_limit"`   // 单日玩家兑换上限(全站)
-	ExchangeCoolDown   int64             `json:"exchange_cool_down"`   // 兑换冷却时间
-	ExchangeOpenHours  []int64           `json:"exchange_open_hours"`  // 兑换开放时间段
-	DailyExchangeLimit int64             `json:"daily_exchange_limit"` // 单日兑换上限(单人玩家)
+	AutoConvert int `json:"auto_convert"` // 客户端自动换算开关1=开2=关
+	FeeEnabled  int `json:"fee_enabled"`  // 是否启用手续费1=开2=关,启用后,需要配置fee_setting
+	FeeSetting  struct {
+		FeeType int     `json:"fee_type"` // 手续费类型percent或fixed
+		FeeRate float64 `json:"fee_rate"` // 手续费值
+	} `json:"fee_setting"` // 手续费配置
+	ExchangeMin            int64   `json:"exchange_min"`              // 单笔最小兑换
+	ExchangeMax            int64   `json:"exchange_max"`              // 单笔最大兑换
+	ExchangeDailyLimit     int64   `json:"exchange_daily_limit"`      // 每日兑换上限
+	UserDailyTotalLimit    int64   `json:"user_daily_total_limit"`    // 单日玩家总上限
+	ExchangeDailyFreeCount int64   `json:"exchange_daily_free_count"` // 每日免费兑换次数,0=无免费次数
+	ExchangeCooldown       int64   `json:"exchange_cooldown"`         // 兑换冷却时间(秒),0=无冷却
+	OperationTimeUnlimited int     `json:"operation_time_unlimited"`  // 是否不限制运营时间,1=开 2=关
+	AutoCredit             int     `json:"auto_credit"`               // 自动入账开关,1=开 2=关
+	OperatingHours         []int64 `json:"operating_hours"`           // 运营时段配置
 }
 
 type GameCalcBetAmount struct {
@@ -91,4 +93,10 @@ type PayoutMonitorRule struct {
 	BigWinAmount      decimal.Decimal `json:"big_win_amount"`
 	HighPowerAmount   decimal.Decimal `json:"high_power_amount"`
 	HighPowerMultiple decimal.Decimal `json:"high_power_multiple"`
+}
+
+// PlatformCurrencyMode 币种模式
+type PlatformCurrencyMode struct {
+	CurrencyCode string               `json:"currency_code"`
+	Mode         PlatformCurrencyType `json:"mode"`
 }

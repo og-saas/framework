@@ -33,6 +33,14 @@ const (
 	GameCalcBetAmountTypeRealBetAmountOrWinAmount                       // min(实际投注金额,abs(用户输赢金额))
 )
 
+type PlatformCurrencyType int
+
+const (
+	_                             PlatformCurrencyType = iota
+	PlatformCurrencyModeCustomize                      // 自定义
+	PlatformCurrencyModeFiat                           // 指定法币
+)
+
 // SiteConfigKey 站点配置key
 type SiteConfigKey string
 
@@ -62,4 +70,5 @@ const (
 	SiteConfigKeyVipCustomerService         SiteConfigKey = "vip_customer_service"          // Vip专属客服
 	SiteConfigKeyPlatformCurrencySafetyRisk SiteConfigKey = "platform_currency_safety_risk" // 币种兑换规则配置
 	SiteConfigKeyPayoutMonitor              SiteConfigKey = "payout_monitor"                // 派奖监控
+	SiteConfigKeyPlatformCurrencyMode       SiteConfigKey = "platform_currency_mode"        // 平台币模式
 )
