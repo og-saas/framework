@@ -48,6 +48,7 @@ type VipCustomerService struct {
 
 // VipEndpointCustomerService vip终端客服信息
 type VipEndpointCustomerService struct {
+	VipLevel int                `json:"vip_level"` // vip等级
 	Icon     string             `json:"icon"`      // 图标
 	Link     string             `json:"link"`      // 跳转链接
 	Names    []*LanguageContent `json:"names"`     // 名称列表
