@@ -45,4 +45,6 @@ const (
 	HandlerNameMeiliPush HandlerName = "meili_push_handler"
 	// HandlerNameAgentFullSync 代理全量同步MeiliSearch
 	HandlerNameAgentFullSync HandlerName = "agent_full_sync_handler"
+	// HandlerNameActiveUserFullSync 活跃用户全量同步MeiliSearch
+	HandlerNameActiveUserFullSync HandlerName = "active_user_full_sync_handler"
 )
