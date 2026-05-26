@@ -231,3 +231,10 @@ func ToThirdAuthTypeString(t comV1.ThirdAccountType) ThirdPartyOauthType {
 		return "unknown"
 	}
 }
+
+// RechargeTargetType 充值目标类型
+type RechargeTargetType int
+
+const (
+	RechargeTargetTypeActivity RechargeTargetType = iota + 1 // 充值目标类型活动
+)

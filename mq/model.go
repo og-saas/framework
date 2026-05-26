@@ -58,32 +58,33 @@ type GameBetRecordNotify struct {
 
 // RechargeOrderNotify 充值订单通知
 type RechargeOrderNotify struct {
-	UserId                int64  `json:"user_id,omitempty"`                  // 用户 ID
-	OrderNo               string `json:"order_no,omitempty"`                 // 订单编号
-	ThirdOrderNo          string `json:"third_order_no,omitempty"`           // 三方订单号
-	Username              string `json:"username,omitempty"`                 // 用户名
-	CurrencyCode          string `json:"currency_code,omitempty"`            // 币种
-	RechargeAmount        string `json:"recharge_amount,omitempty"`          // 充值金额
-	FeeAmount             string `json:"fee_amount,omitempty"`               // 手续费金额
-	GiftAmount            string `json:"gift_amount,omitempty"`              // 赠送金额
-	ActualAmount          string `json:"actual_amount,omitempty"`            // 实际到账金额
-	Phone                 string `json:"phone,omitempty"`                    // 手机号
-	RealName              string `json:"real_name,omitempty"`                // 真实姓名
-	OrderStatus           int32  `json:"order_status,omitempty"`             // 订单状态
-	FailReason            string `json:"fail_reason,omitempty"`              // 失败原因
-	SitePaymentPlatformId int64  `json:"site_payment_platform_id,omitempty"` // 站点三方支付平台 ID
-	PaymentPlatformCode   string `json:"payment_platform_code,omitempty"`    // 支付平台编码
-	SitePaymentChannelId  int64  `json:"site_payment_channel_id,omitempty"`  // 站点三方支付通道 ID
-	PaymentChannelCode    string `json:"payment_channel_code,omitempty"`     // 通道编码
-	PaymentTypeCode       string `json:"payment_type_code,omitempty"`        // 支付类型编码
-	SuccessTime           int64  `json:"success_time,omitempty"`             // 订单成功时间
-	FailTime              int64  `json:"fail_time,omitempty"`                // 订单失败时间
-	Remark                string `json:"remark,omitempty"`                   // 备注
-	SiteId                int64  `json:"site_id,omitempty"`                  // 站点 ID
-	FirstSign             bool   `json:"first_sign,omitempty"`               // 是否首充
-
-	RechargePtbAmount consts.PtbCoin `json:"valid_ptb_amount,omitempty"` // 充值金额平台币(充值金额换算出来的)
-	ConvertRatio      string         `json:"convert_ratio,omitempty"`    // 转换比例
+	UserId                int64                     `json:"user_id,omitempty"`                  // 用户 ID
+	OrderNo               string                    `json:"order_no,omitempty"`                 // 订单编号
+	ThirdOrderNo          string                    `json:"third_order_no,omitempty"`           // 三方订单号
+	Username              string                    `json:"username,omitempty"`                 // 用户名
+	CurrencyCode          string                    `json:"currency_code,omitempty"`            // 币种
+	RechargeAmount        string                    `json:"recharge_amount,omitempty"`          // 充值金额
+	FeeAmount             string                    `json:"fee_amount,omitempty"`               // 手续费金额
+	GiftAmount            string                    `json:"gift_amount,omitempty"`              // 赠送金额
+	ActualAmount          string                    `json:"actual_amount,omitempty"`            // 实际到账金额
+	Phone                 string                    `json:"phone,omitempty"`                    // 手机号
+	RealName              string                    `json:"real_name,omitempty"`                // 真实姓名
+	OrderStatus           int32                     `json:"order_status,omitempty"`             // 订单状态
+	FailReason            string                    `json:"fail_reason,omitempty"`              // 失败原因
+	SitePaymentPlatformId int64                     `json:"site_payment_platform_id,omitempty"` // 站点三方支付平台 ID
+	PaymentPlatformCode   string                    `json:"payment_platform_code,omitempty"`    // 支付平台编码
+	SitePaymentChannelId  int64                     `json:"site_payment_channel_id,omitempty"`  // 站点三方支付通道 ID
+	PaymentChannelCode    string                    `json:"payment_channel_code,omitempty"`     // 通道编码
+	PaymentTypeCode       string                    `json:"payment_type_code,omitempty"`        // 支付类型编码
+	SuccessTime           int64                     `json:"success_time,omitempty"`             // 订单成功时间
+	FailTime              int64                     `json:"fail_time,omitempty"`                // 订单失败时间
+	Remark                string                    `json:"remark,omitempty"`                   // 备注
+	SiteId                int64                     `json:"site_id,omitempty"`                  // 站点 ID
+	FirstSign             bool                      `json:"first_sign,omitempty"`               // 是否首充
+	RechargePtbAmount     consts.PtbCoin            `json:"valid_ptb_amount,omitempty"`         // 充值金额平台币(充值金额换算出来的)
+	ConvertRatio          string                    `json:"convert_ratio,omitempty"`            // 转换比例
+	TargetType            consts.RechargeTargetType `json:"target_type,omitempty"`              // 充值目标类型 1-活动
+	TargetId              []string                  `json:"target_id,omitempty"`                // 充值目标ID列表
 }
 
 type AgentLevelGrowthNotify struct {
