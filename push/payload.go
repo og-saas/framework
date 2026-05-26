@@ -61,11 +61,12 @@ type SiteAgentFullPayload struct {
 	RegisterSource  string `json:"register_source"`  // 注册来源 H5 PC APP
 	LevelSubMax     int32  `json:"level_sub_max"`    // 下级最大层级 顶层代理数据
 	AgentModeId     string `json:"agent_mode_id"`    // 代理模式id 顶层代理数据
+	CreatedAt       int64  `json:"created_at"`       // 创建时间
 }
 
 func (p SiteAgentFullPayload) GetFilterableAttributes() []any {
 	return []any{
-		"site_id", "user_id", "username", "promotion_status", "parent_user_id", "top_user_id", "level", "type", "upgraded_team_at", "sub_num_direct", "sub_num_indirect", "channel_id", "register_source", "level_sub_max", "agent_mode_id",
+		"site_id", "user_id", "username", "promotion_status", "parent_user_id", "top_user_id", "level", "type", "upgraded_team_at", "sub_num_direct", "sub_num_indirect", "channel_id", "register_source", "level_sub_max", "agent_mode_id", "created_at",
 	}
 }
 
