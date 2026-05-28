@@ -228,3 +228,16 @@ func RandomInt64(min, max int64) int64 {
 	}
 	return min + mathrand.Int64N(max-min+1)
 }
+
+func GetLinkUrl(link, args string) string {
+	if stringx.HasEmpty(link) {
+		return ""
+	}
+	if stringx.HasEmpty(args) || strings.Contains(link, "?") {
+		return link
+	}
+	if !strings.HasPrefix(args, "?") {
+		args = "?" + args
+	}
+	return fmt.Sprintf("%s%s", link, args)
+}

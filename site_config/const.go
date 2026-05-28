@@ -8,8 +8,9 @@ const (
 	SiteConfigCategoryBaseInfo            SiteConfigCategory = 2  // 站点配置
 	SiteConfigCategoryFooterInfo          SiteConfigCategory = 3  // 页脚配置
 	SiteConfigCategoryDownloadAPP         SiteConfigCategory = 4  // 下载app配置
-	SiteConfigCategorySidebarLoginYes     SiteConfigCategory = 5  // 侧边栏已登录配置
-	SiteConfigCategorySidebarLoginNo      SiteConfigCategory = 6  // 侧边栏未登录配置
+	SiteConfigCategorySidebarVisualMenu   SiteConfigCategory = 5  // 侧边栏可视化配置
+	SiteConfigCategorySidebarLoginYes     SiteConfigCategory = 5  // 侧边栏已登录配置（弃用）
+	SiteConfigCategorySidebarLoginNo      SiteConfigCategory = 6  // 侧边栏未登录配置（弃用）
 	SiteConfigCategoryFooterMenus         SiteConfigCategory = 7  // 底部主菜单配置
 	SiteConfigCategoryUnLoginPromotionImg SiteConfigCategory = 8  // 未登录宣传图
 	SiteConfigCategoryLobby               SiteConfigCategory = 9  // 大厅
@@ -22,6 +23,9 @@ const (
 	SiteConfigCategoryAudit               SiteConfigCategory = 16 // 稽核
 	SiteConfigCategoryReplenish           SiteConfigCategory = 17 // 审核配置
 	SiteConfigCategoryPayoutMonitor       SiteConfigCategory = 18 // 派奖监控
+	SiteConfigCategoryPcShowType          SiteConfigCategory = 19 // PC展示样式
+	SiteConfigCategoryCountryAccessLimit  SiteConfigCategory = 20 // 区域限制
+	SiteConfigCategoryTopDownloadBar      SiteConfigCategory = 21 // 顶部下载条设置
 
 )
 
@@ -47,8 +51,9 @@ type SiteConfigKey string
 const (
 	SiteConfigKeyGame                       SiteConfigKey = "game"                          // 游戏账号配置
 	SiteConfigKeyGameFixedCategory          SiteConfigKey = "fixed_game_category"           // 游戏内置分类
-	SiteConfigKeyGameCalcBetAmount          SiteConfigKey = "game_calc_bet_amount"          // 游戏内置分类
-	SiteConfigKeyBaseInfo                   SiteConfigKey = "base_info"                     // 站点配置
+	SiteConfigKeyGameCalcBetAmount          SiteConfigKey = "game_calc_bet_amount"          // 游戏投注金额计算方式
+	SiteConfigKeyBaseInfo                   SiteConfigKey = "base_info"                     // 站点基础信息配置
+	SiteConfigKeySiteLogo                   SiteConfigKey = "site_logo"                     // 站点logo
 	SiteConfigKeyFooterInfo                 SiteConfigKey = "footer_info"                   // 页脚配置
 	SiteConfigKeyDownloadAPP                SiteConfigKey = "download_app"                  // 下载app配置
 	SiteConfigKeyAPPInstall                 SiteConfigKey = "app_install"                   // APP安装入口
@@ -72,4 +77,24 @@ const (
 	SiteConfigKeyPlatformCurrencySafetyRisk SiteConfigKey = "platform_currency_safety_risk" // 币种兑换规则配置
 	SiteConfigKeyPayoutMonitor              SiteConfigKey = "payout_monitor"                // 派奖监控
 	SiteConfigKeyPlatformCurrencyMode       SiteConfigKey = "platform_currency_mode"        // 平台币模式
+	SiteConfigKeyRegisterBg                 SiteConfigKey = "register_backgroud_img"        // 注册背景图配置
+	SiteConfigKeyLoginBg                    SiteConfigKey = "login_backgroud_img"           // 登录背景图配置
+	SiteConfigKeyAuditMode                  SiteConfigKey = "audit_mode"                    // 稽核模式
+	SiteConfigKeyAuditWeight                SiteConfigKey = "audit_weight"                  // 稽核权重
+	SiteConfigKeyWithdrawAuditConfig        SiteConfigKey = "withdraw_audit_config"         // 提现审核配置
+	SiteConfigKeyManualReviewProcess        SiteConfigKey = "manual_review_process"         // 提款自动转人工审核配置
+	SiteConfigKeyPcShowType                 SiteConfigKey = "site_pc_show_type"             // PC展示样式
+	SiteConfigKeyRegionControl              SiteConfigKey = "region_access_control"         // 地区访问控制
+	SiteConfigKeyInterceptionPage           SiteConfigKey = "interception_page"             // 拦截页设置
+	SiteConfigKeyMaintenance                SiteConfigKey = "site_maintenance"              // 站点维护设置
+	SiteConfigKeyTopDownloadBar             SiteConfigKey = "top_download_bar"              // 顶部下载条设置
+	SiteConfigKeySidebarVisualMenu          SiteConfigKey = "sidebar_visual_menu"           // 侧边栏可视化菜单
 )
+
+func (k SiteConfigKey) String() string {
+	return string(k)
+}
+
+func (c SiteConfigCategory) Int32() int32 {
+	return int32(c)
+}

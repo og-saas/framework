@@ -2,6 +2,7 @@ package site_config
 
 import (
 	"github.com/og-saas/framework/utils/consts"
+	commonv1 "github.com/og-saas/proto/pb/common/v1"
 	"github.com/shopspring/decimal"
 	"github.com/zeromicro/go-zero/core/stringx"
 )
@@ -133,4 +134,37 @@ type APPInstall struct {
 	BackgroundColor string             `json:"background_color"` // 背景色
 	Icons           *AppIconMap        `json:"icons"`            // PWA icon
 	DownGuide       *DownGuide         `json:"down_guide"`       // 下载引导
+}
+
+// SidebarVisualMenu 侧边栏可视化配置
+type SidebarVisualMenu struct {
+	DefaultLanguage string                  `json:"default_language"`
+	Type            int                     `json:"type"`           // 类型：1-链接 2-组件 3-分组
+	TitlesLang      []*LanguageContent      `json:"titles_lang"`    // 多语言标题
+	Icon            string                  `json:"icon"`           // 图标
+	LoginStatus     []int                   `json:"login_status"`   // 登录状态：1-登录前 2-登录后
+	EndpointTypes   []commonv1.EndpointType `json:"endpoint_types"` // 终端：1-h5 2-app 3-pc
+	VipLevels       []int32                 `json:"vip_levels"`     // VIP等级限制
+	UserIds         []int64                 `json:"user_ids"`       // 用户ID限制
+	ChannelIds      []int64                 `json:"channel_ids"`    // 渠道ID限制
+	Link            *SidebarLink            `json:"link"`           // 链接
+	Component       *SidebarComponent       `json:"component"`      // 组件
+	Group           *SidebarGroup           `json:"group"`          // 分组
+}
+
+type SidebarLink struct {
+	LinkType commonv1.LinkType `json:"link_type"` // 链接类型
+	Link     string            `json:"link"`      // 链接
+	LinkArgs string            `json:"link_args"` // 链接参数
+}
+
+type SidebarComponent struct {
+	ComponentType int                `json:"component_type"` // 组件类型： 1-个人中心 2-广告
+	TipsLang      []*LanguageContent `json:"tips_lang"`      // 多语言提示语
+	Image         string             `json:"image"`          // 图片
+}
+
+type SidebarGroup struct {
+	InteractionTypes []int                `json:"interaction_types"` // 交互类型：1-点击 2-悬浮
+	Children         []*SidebarVisualMenu `json:"children"`          // 子集
 }
