@@ -1,5 +1,7 @@
 package push
 
+import "github.com/shopspring/decimal"
+
 // 站点端会员信息上报
 
 // SiteUserFullPayload 会员信息全量上报（首次创建时使用，所有字段都会上报，包括零值）
@@ -46,37 +48,41 @@ type SiteUserListPayload struct {
 
 // SiteAgentFullPayload 代理信息全量上报（首次创建时使用，所有字段都会上报，包括零值）
 type SiteAgentFullPayload struct {
-	SiteId          string `json:"site_id"`          // 站点ID
-	UserId          string `json:"user_id"`          // 用户ID/代理ID
-	Username        string `json:"username"`         // 用户名/代理用户名
-	PromotionStatus int32  `json:"promotion_status"` // 推广开关状态：1-启用，2-禁用
-	ParentUserID    string `json:"parent_user_id"`   // 父代理ID 直属上级
-	TopUserID       string `json:"top_user_id"`      // 顶部代理ID
-	Level           int32  `json:"level"`            // 所处层级
-	Type            int32  `json:"type"`             // 代理类型：1-代理成员（无下级），2-代理团队（有下级）
-	UpgradeTeamAt   int64  `json:"upgraded_team_at"` // 成为代理时间
-	SubNumDirect    int32  `json:"sub_num_direct"`   // 直属下级总数 绑定
-	SubNumIndirect  int32  `json:"sub_num_indirect"` // 非直属下级总数 绑定
-	ChannelId       string `json:"channel_id"`       // 渠道ID
-	RegisterSource  string `json:"register_source"`  // 注册来源 H5 PC APP
-	LevelSubMax     int32  `json:"level_sub_max"`    // 下级最大层级 顶层代理数据
-	AgentModeId     string `json:"agent_mode_id"`    // 代理模式id 顶层代理数据
+	SiteId           string          `json:"site_id"`            // 站点ID
+	UserId           string          `json:"user_id"`            // 用户ID/代理ID
+	Username         string          `json:"username"`           // 用户名/代理用户名
+	PromotionStatus  int32           `json:"promotion_status"`   // 推广开关状态：1-启用，2-禁用
+	ParentUserID     string          `json:"parent_user_id"`     // 父代理ID 直属上级
+	TopUserID        string          `json:"top_user_id"`        // 顶部代理ID
+	Level            int32           `json:"level"`              // 所处层级
+	Type             int32           `json:"type"`               // 代理类型：1-代理成员（无下级），2-代理团队（有下级）
+	UpgradeTeamAt    int64           `json:"upgraded_team_at"`   // 成为代理时间
+	SubNumDirect     int32           `json:"sub_num_direct"`     // 直属下级总数 绑定
+	SubNumIndirect   int32           `json:"sub_num_indirect"`   // 非直属下级总数 绑定
+	ChannelId        string          `json:"channel_id"`         // 渠道ID
+	RegisterSource   string          `json:"register_source"`    // 注册来源 H5 PC APP
+	LevelSubMax      int32           `json:"level_sub_max"`      // 下级最大层级 顶层代理数据
+	AgentModeId      string          `json:"agent_mode_id"`      // 代理模式id 顶层代理数据
+	CreatedAt        int64           `json:"created_at"`         // 创建时间
+	FeeAmountClaimed decimal.Decimal `json:"fee_amount_claimed"` // 已领取佣金金额
+
 }
 
 func (p SiteAgentFullPayload) GetFilterableAttributes() []any {
 	return []any{
-		"site_id", "user_id", "username", "promotion_status", "parent_user_id", "top_user_id", "level", "type", "upgraded_team_at", "sub_num_direct", "sub_num_indirect", "channel_id", "register_source", "level_sub_max", "agent_mode_id",
+		"site_id", "user_id", "username", "promotion_status", "parent_user_id", "top_user_id", "level", "type", "upgraded_team_at", "sub_num_direct", "sub_num_indirect", "channel_id", "register_source", "level_sub_max", "agent_mode_id", "created_at", "fee_amount_claimed",
 	}
 }
 
 // SiteAgentListPayload 代理信息列表上报（增量更新时使用）
 type SiteAgentListPayload struct {
-	UserId          string `json:"user_id"`                    // 用户ID/代理ID
-	Username        string `json:"username,omitempty"`         // 用户名/代理用户名
-	PromotionStatus int32  `json:"promotion_status,omitempty"` // 推广开关状态：1-启用，2-禁用
-	Type            int32  `json:"type,omitempty"`             // 代理类型：1-代理成员（无下级），2-代理团队（有下级）
-	SubNumDirect    int32  `json:"sub_num_direct,omitempty"`   // 直属下级总数 绑定
-	SubNumIndirect  int32  `json:"sub_num_indirect,omitempty"` // 非直属下级总数 绑定
-	LevelSubMax     int32  `json:"level_sub_max,omitempty"`    // 下级最大层级 顶层代理数据
-	AgentModeId     string `json:"agent_mode_id,omitempty"`    // 代理模式id 顶层代理数据
+	UserId           string          `json:"user_id"`                      // 用户ID/代理ID
+	Username         string          `json:"username,omitempty"`           // 用户名/代理用户名
+	PromotionStatus  int32           `json:"promotion_status,omitempty"`   // 推广开关状态：1-启用，2-禁用
+	Type             int32           `json:"type,omitempty"`               // 代理类型：1-代理成员（无下级），2-代理团队（有下级）
+	SubNumDirect     int32           `json:"sub_num_direct,omitempty"`     // 直属下级总数 绑定
+	SubNumIndirect   int32           `json:"sub_num_indirect,omitempty"`   // 非直属下级总数 绑定
+	LevelSubMax      int32           `json:"level_sub_max,omitempty"`      // 下级最大层级 顶层代理数据
+	AgentModeId      string          `json:"agent_mode_id,omitempty"`      // 代理模式id 顶层代理数据
+	FeeAmountClaimed decimal.Decimal `json:"fee_amount_claimed,omitempty"` // 已领取佣金金额
 }
