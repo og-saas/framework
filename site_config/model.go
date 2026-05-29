@@ -49,11 +49,12 @@ type VipCustomerService struct {
 
 // VipEndpointCustomerService vip终端客服信息
 type VipEndpointCustomerService struct {
-	VipLevel int                `json:"vip_level"` // vip等级
-	Icon     string             `json:"icon"`      // 图标
-	Link     string             `json:"link"`      // 跳转链接
-	Names    []*LanguageContent `json:"names"`     // 名称列表
-	LinkType int                `json:"link_type"` // 链接类型
+	VipLevels         []int32            `json:"vip_level"`        // vip等级
+	Icon              string             `json:"icon"`             // 图标
+	Link              string             `json:"link"`             // 跳转链接
+	Names             []*LanguageContent `json:"names"`            // 名称列表
+	LinkType          int                `json:"link_type"`        // 链接类型
+	CustomerServiceID int64              `json:"customer_service"` // 客服ID
 }
 
 // CurrencyConvertConfig 币种兑换配置
