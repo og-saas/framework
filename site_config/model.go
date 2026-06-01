@@ -166,4 +166,5 @@ type SidebarComponent struct {
 	ComponentType int                `json:"component_type"` // 组件类型： 1-个人中心 2-广告
 	TipsLang      []*LanguageContent `json:"tips_lang"`      // 多语言提示语
 	Image         string             `json:"image"`          // 图片
+	ImageLang     []*LanguageContent `json:"image_lang"`     // 多语言图片
 }
