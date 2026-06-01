@@ -53,7 +53,8 @@ type VipEndpointCustomerService struct {
 	Link              string                  `json:"link"`                    // 跳转链接 (废弃)
 	Names             []*LanguageContent      `json:"names"`                   // 名称列表 (废弃)
 	LinkType          int                     `json:"link_type"`               // 链接类型 (废弃)
-	VipLevels         []int32                 `json:"vip_level"`               // vip等级
+	VipLevel          int32                   `json:"vip_level"`               // vip等级
+	VipLevels         []int32                 `json:"vip_levels"`              // vip等级
 	CustomerServiceID int64                   `json:"customer_service,string"` // 客服ID
 	ShowSide          []commonv1.EndpointType `json:"show_side"`               // 展示终端
 }
