@@ -125,18 +125,19 @@ type DownGuide struct {
 }
 
 type APPInstall struct {
-	DefaultLanguage string             `json:"default_language"`
-	Status          consts.StatusType  `json:"status"`           // 状态 1-开启 2-关闭
-	Name            []*LanguageContent `json:"name"`             // 标题
-	Remark          []*LanguageContent `json:"remark"`           // 描述
-	PwaName         string             `json:"pwa_name"`         // 应用名称
-	PwaShortName    string             `json:"pwa_short_name"`   // 应用短名称
-	StartURL        string             `json:"start_url"`        // 启动地址
-	Display         string             `json:"display"`          // 显示模式
-	ThemeColor      string             `json:"theme_color"`      // 主题色
-	BackgroundColor string             `json:"background_color"` // 背景色
-	Icons           *AppIconMap        `json:"icons"`            // PWA icon
-	DownGuide       *DownGuide         `json:"down_guide"`       // 下载引导
+	DefaultLanguage   string             `json:"default_language"`
+	Status            consts.StatusType  `json:"status"`              // 状态 1-开启 2-关闭
+	Name              []*LanguageContent `json:"name"`                // 标题
+	Remark            []*LanguageContent `json:"remark"`              // 描述
+	PwaName           string             `json:"pwa_name"`            // 应用名称
+	PwaShortName      string             `json:"pwa_short_name"`      // 应用短名称
+	StartURL          string             `json:"start_url"`           // 启动地址
+	Display           string             `json:"display"`             // 显示模式
+	ThemeColor        string             `json:"theme_color"`         // 主题色
+	BackgroundColor   string             `json:"background_color"`    // 背景色
+	Icons             *AppIconMap        `json:"icons"`               // PWA icon
+	DownGuide         *DownGuide         `json:"down_guide"`          // 下载引导
+	AutoInstallWindow consts.StatusType  `json:"auto_install_window"` // 自动打开安装窗口: 1-打开，2-关闭
 }
 
 // SidebarVisualMenu 侧边栏可视化配置
