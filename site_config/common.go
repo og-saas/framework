@@ -32,6 +32,9 @@ func GetLanguageObject[T LangAware](items []T, language, defaultLanguage string)
 		hasDefault, hasFirst bool
 	)
 	for _, item := range items {
+		if item == nil {
+			break
+		}
 		lang, hasContent := item.GetLangData()
 		// 优先精确匹配
 		if lang == language {
