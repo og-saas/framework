@@ -1,12 +1,17 @@
 package site_config
 
 import (
+	"github.com/samber/lo"
 	"github.com/zeromicro/go-zero/core/jsonx"
 	"github.com/zeromicro/go-zero/core/stringx"
 )
 
 func GetContentByLanguage(data []*LanguageContent, language, defaultLanguage string) string {
-	langData := GetLanguageObject(data, language, defaultLanguage)
+	langData := GetLanguageObject(
+		lo.Filter(data, func(item *LanguageContent, index int) bool {
+			return item != nil
+		}),
+		language, defaultLanguage)
 	if langData == nil {
 		return ""
 	}
@@ -32,9 +37,6 @@ func GetLanguageObject[T LangAware](items []T, language, defaultLanguage string)
 		hasDefault, hasFirst bool
 	)
 	for _, item := range items {
-		if any(item) == nil {
-			break
-		}
 		lang, hasContent := item.GetLangData()
 		// 优先精确匹配
 		if lang == language {
