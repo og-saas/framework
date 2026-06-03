@@ -93,6 +93,8 @@ const (
 	ErrCodeGameEnterBalanceNotEnough ErrCode = 20002 // ErrCodeGameEnterLogExists
 	// ErrCodeGamePlatformUnreachable 游戏中台请求未到达（被拦截/网络不可达）
 	ErrCodeGamePlatformUnreachable ErrCode = 20003 // GamePlatformUnreachable
+	// ErrCodeGamePlatformUnavailable 游戏服务暂不可用，请联系管理员
+	ErrCodeGamePlatformUnavailable ErrCode = 20004
 )
 
 // 财务相关
