@@ -23,6 +23,8 @@ var (
 	TopicUserWithdrawCreateNotify = "user_withdraw_create_notify"
 	// TopicWithdrawOrderNotify 提现订单回调通知
 	TopicWithdrawOrderNotify = "withdraw_order_notify"
+	// TopicUserRiskMonitorNotify 用户行为风控监控通知
+	TopicUserRiskMonitorNotify = "user_risk_monitor_notify"
 )
 
 func UpdateTopicPrefix(prefixes ...string) (prefix string) {
@@ -41,6 +43,7 @@ func UpdateTopicPrefix(prefixes ...string) (prefix string) {
 	TopicAgentBetRebatNotify = prefix + TopicAgentBetRebatNotify
 	TopicUserWithdrawCreateNotify = prefix + TopicUserWithdrawCreateNotify
 	TopicWithdrawOrderNotify = prefix + TopicWithdrawOrderNotify
+	TopicUserRiskMonitorNotify = prefix + TopicUserRiskMonitorNotify
 
 	return
 }

@@ -148,6 +148,17 @@ type WithdrawOrderCreateNotify struct {
 	ShowStatus     int32  `json:"show_status,omitempty"`     // C端展示状态 1-处理中 2-已到账 3-失败 4-已取消
 }
 
+// UserRiskMonitorNotify 用户行为风控监控通知
+type UserRiskMonitorNotify struct {
+	SiteID     int64  `json:"site_id"`     // 站点ID
+	UserID     int64  `json:"user_id"`     // 用户ID
+	Behavior   int32  `json:"behavior"`    // 风控行为 1=注册 2=登录 3=提现
+	IP         string `json:"ip"`          // 用户IP
+	DeviceID   string `json:"device_id"`   // 设备ID
+	Username   string `json:"username"`    // 用户名
+	BehaviorAt int64  `json:"behavior_at"` // 行为发生时间
+}
+
 // WithdrawOrderNotify 提现订单回调通知（出款成功/失败）
 type WithdrawOrderNotify struct {
 	UserId                int64          `json:"user_id,omitempty"`                  // 用户 ID
