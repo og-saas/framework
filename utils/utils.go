@@ -241,3 +241,16 @@ func GetLinkUrl(link, args string) string {
 	}
 	return fmt.Sprintf("%s%s", link, args)
 }
+
+func GenUrl(domain, path string) string {
+	if stringx.HasEmpty(path) {
+		return ""
+	}
+	if strings.HasPrefix(path, "http://") || strings.HasPrefix(path, "https://") {
+		return path
+	}
+	if stringx.HasEmpty(domain) {
+		return path
+	}
+	return strings.TrimRight(domain, "/") + "/" + strings.TrimLeft(path, "/")
+}
