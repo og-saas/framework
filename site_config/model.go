@@ -146,6 +146,7 @@ type SidebarVisualMenu struct {
 	Type             int                     `json:"type"`              // 类型：1-链接 2-组件 3-分组
 	TitlesLang       []*LanguageContent      `json:"titles_lang"`       // 多语言标题
 	Icon             string                  `json:"icon"`              // 图标
+	SelectedIcon     string                  `json:"selected_icon"`     // 选中图标
 	LoginStatus      []int                   `json:"login_status"`      // 登录状态：1-登录前 2-登录后
 	EndpointTypes    []commonv1.EndpointType `json:"endpoint_types"`    // 终端：1-h5 2-app 3-pc
 	VipLevels        []int32                 `json:"vip_levels"`        // VIP等级限制
