@@ -89,6 +89,8 @@ const (
 	SiteConfigKeyMaintenance                SiteConfigKey = "site_maintenance"              // 站点维护设置
 	SiteConfigKeyTopDownloadBar             SiteConfigKey = "top_download_bar"              // 顶部下载条设置
 	SiteConfigKeySidebarVisualMenu          SiteConfigKey = "sidebar_visual_menu"           // 侧边栏可视化菜单
+	SiteConfigKeySAppConfig                 SiteConfigKey = "app_config"                    // app打包配置
+	SiteConfigKeyServerUrl                  SiteConfigKey = "server_url"                    // app api服务地址
 )
 
 func (k SiteConfigKey) String() string {
