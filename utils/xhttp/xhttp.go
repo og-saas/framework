@@ -9,6 +9,7 @@ import (
 	"github.com/og-saas/framework/metadata"
 	"github.com/og-saas/framework/utils/sign"
 	"github.com/og-saas/framework/utils/xerr"
+	v1 "github.com/og-saas/proto/pb/user/v1"
 	"github.com/zeromicro/go-zero/rest/httpx"
 	"github.com/zeromicro/x/errors"
 	"go.opentelemetry.io/otel/trace"
@@ -60,6 +61,13 @@ func wrapBaseResponse(ctx context.Context, v any) BaseResponse[any] {
 		if st, ok := status.FromError(data); ok {
 			resp.Code = int(st.Code())
 			resp.Message = st.Message()
+			if details := st.Details(); len(details) > 0 {
+				if msg, ok1 := details[0].(*v1.StringList); ok1 {
+					for _, arg := range msg.Items {
+						formatArgs = append(formatArgs, arg)
+					}
+				}
+			}
 		} else {
 			resp.Code = http.StatusInternalServerError
 			resp.Message = data.Error()

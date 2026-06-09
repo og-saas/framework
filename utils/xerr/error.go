@@ -6,7 +6,10 @@ import (
 	"strconv"
 	"sync/atomic"
 
+	v1 "github.com/og-saas/proto/pb/user/v1"
 	"github.com/zeromicro/go-zero/core/stringx"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 type Error struct {
@@ -151,4 +154,14 @@ func TransErrMsg(code int, defaultMsg, language string) string {
 	}
 
 	return defaultMsg
+}
+
+func StatusError(code codes.Code, msg string, args ...string) error {
+	st := status.New(code, msg)
+	if len(args) > 0 {
+		st, _ = st.WithDetails(&v1.StringList{
+			Items: args,
+		})
+	}
+	return st.Err()
 }
