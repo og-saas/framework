@@ -9,6 +9,8 @@ const (
 )
 
 var ErrCodeGroupMap = map[ErrCode]CodeGroup{
+	ErrCodeActivityEnded:            CodeGroupModel,
+	ErrCodeActivityClosed:           CodeGroupModel,
 	ErrCodeClaimRewardIPLimit:       CodeGroupModel,
 	ErrCodeClaimRewardDeviceLimit:   CodeGroupModel,
 	ErrCodeClaimRewardEndpointLimit: CodeGroupModel,
