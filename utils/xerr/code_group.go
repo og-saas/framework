@@ -9,11 +9,14 @@ const (
 )
 
 var ErrCodeGroupMap = map[ErrCode]CodeGroup{
-	ErrCodeActivityEnded:            CodeGroupModel,
-	ErrCodeActivityClosed:           CodeGroupModel,
-	ErrCodeClaimRewardIPLimit:       CodeGroupModel,
-	ErrCodeClaimRewardDeviceLimit:   CodeGroupModel,
-	ErrCodeClaimRewardEndpointLimit: CodeGroupModel,
+	ErrCodeActivityEnded:                    CodeGroupModel,
+	ErrCodeActivityClosed:                   CodeGroupModel,
+	ErrCodeClaimRewardSmsLimit:              CodeGroupModel,
+	ErrCodeClaimRewardEmailLimit:            CodeGroupModel,
+	ErrCodeClaimRewardSameActivityTypeLimit: CodeGroupModel,
+	ErrCodeClaimRewardIPLimit:               CodeGroupModel,
+	ErrCodeClaimRewardDeviceLimit:           CodeGroupModel,
+	ErrCodeClaimRewardEndpointLimit:         CodeGroupModel,
 }
 
 func (g CodeGroup) String() string {
