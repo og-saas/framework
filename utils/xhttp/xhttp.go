@@ -24,11 +24,12 @@ const (
 )
 
 type BaseResponse[T any] struct {
-	Code    int    `json:"code" xml:"code"`
-	Message string `json:"message" xml:"message"`
-	Data    T      `json:"data,omitempty" xml:"data,omitempty"`
-	TraceID string `json:"trace_id,omitempty" xml:"trace_id,omitempty"`
-	Sign    string `json:"sign,omitempty" xml:"sign,omitempty"`
+	Code      int            `json:"code" xml:"code"`
+	CodeGroup xerr.CodeGroup `json:"code_group,omitempty" xml:"code_group,omitempty"`
+	Message   string         `json:"message" xml:"message"`
+	Data      T              `json:"data,omitempty" xml:"data,omitempty"`
+	TraceID   string         `json:"trace_id,omitempty" xml:"trace_id,omitempty"`
+	Sign      string         `json:"sign,omitempty" xml:"sign,omitempty"`
 }
 
 // JsonBaseResponseCtx writes v into w with appropriate http status code.
@@ -82,6 +83,10 @@ func wrapBaseResponse(ctx context.Context, v any) BaseResponse[any] {
 		resp.Message = xerr.TransErrMsg(resp.Code, resp.Message, metadata.Language.GetString(ctx))
 		if len(formatArgs) > 0 {
 			resp.Message = fmt.Sprintf(resp.Message, formatArgs...)
+		}
+		resp.CodeGroup = xerr.CodeGroupToast
+		if group, ok := xerr.ErrCodeGroupMap[xerr.ErrCode(resp.Code)]; ok {
+			resp.CodeGroup = group
 		}
 	}
 
