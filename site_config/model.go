@@ -152,6 +152,7 @@ type SidebarVisualMenu struct {
 	VipLevels        []int32                 `json:"vip_levels"`        // VIP等级限制
 	UserIds          []int64                 `json:"user_ids"`          // 用户ID限制
 	ChannelIds       []int64                 `json:"channel_ids"`       // 渠道ID限制
+	Consignee        MemberScope             `json:"consignee"`         // 会员可见范围：1-全部会员 2-自定义会员 3-VIP等级 4-指定渠道
 	Link             *SidebarLink            `json:"link"`              // 链接信息
 	Component        *SidebarComponent       `json:"component"`         // 组件信息
 	InteractionTypes []int                   `json:"interaction_types"` // 交互类型：1-点击 2-悬浮

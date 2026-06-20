@@ -100,3 +100,13 @@ func (k SiteConfigKey) String() string {
 func (c SiteConfigCategory) Int32() int32 {
 	return int32(c)
 }
+
+// MemberScope 侧边栏菜单会员可见范围
+type MemberScope int
+
+const (
+	MemberScopeAll          MemberScope = 1 // 全部会员
+	MemberScopeCustomMember MemberScope = 2 // 自定义会员
+	MemberScopeVipLevel     MemberScope = 3 // VIP等级
+	MemberScopeChannel      MemberScope = 4 // 指定渠道
+)
