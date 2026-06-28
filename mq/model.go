@@ -159,6 +159,40 @@ type UserRiskMonitorNotify struct {
 	BehaviorAt int64  `json:"behavior_at"` // 行为发生时间
 }
 
+// UserVipLevelChangeNotify VIP等级变化通知
+type UserVipLevelChangeNotify struct {
+	UserId   int64 `json:"user_id,omitempty"`   // 用户ID
+	SiteId   int64 `json:"site_id,omitempty"`   // 站点ID
+	VipLevel int32 `json:"vip_level,omitempty"` // 变化后VIP等级
+	EventAt  int64 `json:"event_at,omitempty"`  // 事件时间
+}
+
+// JackpotMatchRankNotify 锦标赛达成指定名次通知
+type JackpotMatchRankNotify struct {
+	UserId     int64 `json:"user_id,omitempty"`     // 用户ID
+	SiteId     int64 `json:"site_id,omitempty"`     // 站点ID
+	ActivityId int64 `json:"activity_id,omitempty"` // 活动id
+	Rank       int32 `json:"rank,omitempty"`        // 名次
+	EventAt    int64 `json:"event_at,omitempty"`    // 事件时间
+}
+
+// UserPageLoginNotify 登录指定页面通知
+type UserPageLoginNotify struct {
+	UserId   int64  `json:"user_id,omitempty"`   // 用户ID
+	SiteId   int64  `json:"site_id,omitempty"`   // 站点ID
+	PageCode string `json:"page_code,omitempty"` // 页面编码
+	DeviceId string `json:"device_id,omitempty"` // 设备ID
+	EventAt  int64  `json:"event_at,omitempty"`  // 事件时间
+}
+
+// UserActivityCompleteNotify 指定活动全部完成通知
+type UserActivityCompleteNotify struct {
+	UserId     int64 `json:"user_id,omitempty"`     // 用户ID
+	SiteId     int64 `json:"site_id,omitempty"`     // 站点ID
+	ActivityId int64 `json:"activity_id,omitempty"` // 活动ID
+	EventAt    int64 `json:"event_at,omitempty"`    // 事件时间
+}
+
 // WithdrawOrderNotify 提现订单回调通知（出款成功/失败）
 type WithdrawOrderNotify struct {
 	UserId                int64          `json:"user_id,omitempty"`                  // 用户 ID

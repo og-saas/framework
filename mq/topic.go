@@ -25,6 +25,14 @@ var (
 	TopicWithdrawOrderNotify = "withdraw_order_notify"
 	// TopicUserRiskMonitorNotify 用户行为风控监控通知
 	TopicUserRiskMonitorNotify = "user_risk_monitor_notify"
+	// TopicUserVipLevelChangeNotify VIP等级变化通知
+	TopicUserVipLevelChangeNotify = "user_vip_level_change_notify"
+	// TopicJackpotMatchRankNotify 锦标赛达成指定名次通知
+	TopicJackpotMatchRankNotify = "jackpot_match_rank_notify"
+	// TopicUserPageLoginNotify 登录指定页面通知
+	TopicUserPageLoginNotify = "user_page_login_notify"
+	// TopicUserActivityCompleteNotify 指定活动全部完成通知
+	TopicUserActivityCompleteNotify = "user_activity_complete_notify"
 )
 
 func UpdateTopicPrefix(prefixes ...string) (prefix string) {
@@ -44,6 +52,10 @@ func UpdateTopicPrefix(prefixes ...string) (prefix string) {
 	TopicUserWithdrawCreateNotify = prefix + TopicUserWithdrawCreateNotify
 	TopicWithdrawOrderNotify = prefix + TopicWithdrawOrderNotify
 	TopicUserRiskMonitorNotify = prefix + TopicUserRiskMonitorNotify
+	TopicUserVipLevelChangeNotify = prefix + TopicUserVipLevelChangeNotify
+	TopicJackpotMatchRankNotify = prefix + TopicJackpotMatchRankNotify
+	TopicUserPageLoginNotify = prefix + TopicUserPageLoginNotify
+	TopicUserActivityCompleteNotify = prefix + TopicUserActivityCompleteNotify
 
 	return
 }
