@@ -35,6 +35,19 @@ var (
 	TopicUserActivityCompleteNotify = "user_activity_complete_notify"
 	// TopicWebsocketOnlineNotify websocket上线通知
 	TopicWebsocketOnlineNotify = "websocket_online_notify"
+
+	// TopicSiteMsgVipNotify VIP消息通知（含类型枚举区分升级/奖励创建/奖励发放）
+	TopicSiteMsgVipNotify = "site_msg_vip_notify"
+	// TopicSiteMsgActivityReward 活动奖励消息（奖励可领取/奖励发放成功）
+	TopicSiteMsgActivityReward = "site_msg_activity_reward"
+	// TopicSiteMsgActivityJackpot 活动Jackpot触发
+	TopicSiteMsgActivityJackpot = "site_msg_activity_jackpot"
+	// TopicSiteMsgActivitySchedule 活动定时调度（开始通知/结束前提醒）
+	TopicSiteMsgActivitySchedule = "site_msg_activity_schedule"
+	// TopicSiteMsgWithdrawAudit 提现审核结果通知
+	TopicSiteMsgWithdrawAudit = "site_msg_withdraw_audit"
+	// TopicSiteMsgRechargeFail 充值失败通知
+	TopicSiteMsgRechargeFail = "site_msg_recharge_fail"
 )
 
 func UpdateTopicPrefix(prefixes ...string) (prefix string) {
@@ -59,6 +72,12 @@ func UpdateTopicPrefix(prefixes ...string) (prefix string) {
 	TopicUserPageLoginNotify = prefix + TopicUserPageLoginNotify
 	TopicUserActivityCompleteNotify = prefix + TopicUserActivityCompleteNotify
 	TopicWebsocketOnlineNotify = prefix + TopicWebsocketOnlineNotify
+	TopicSiteMsgVipNotify = prefix + TopicSiteMsgVipNotify
+	TopicSiteMsgActivityReward = prefix + TopicSiteMsgActivityReward
+	TopicSiteMsgActivityJackpot = prefix + TopicSiteMsgActivityJackpot
+	TopicSiteMsgActivitySchedule = prefix + TopicSiteMsgActivitySchedule
+	TopicSiteMsgWithdrawAudit = prefix + TopicSiteMsgWithdrawAudit
+	TopicSiteMsgRechargeFail = prefix + TopicSiteMsgRechargeFail
 
 	return
 }
