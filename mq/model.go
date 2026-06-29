@@ -180,7 +180,7 @@ type JackpotMatchRankNotify struct {
 type UserPageLoginNotify struct {
 	UserId   int64  `json:"user_id,omitempty"`   // 用户ID
 	SiteId   int64  `json:"site_id,omitempty"`   // 站点ID
-	PageCode string `json:"page_code,omitempty"` // 页面编码
+	PageUrl  string `json:"page_url,omitempty"`  // 页面URL
 	DeviceId string `json:"device_id,omitempty"` // 设备ID
 	EventAt  int64  `json:"event_at,omitempty"`  // 事件时间
 }
