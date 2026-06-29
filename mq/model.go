@@ -221,3 +221,12 @@ type WithdrawOrderNotify struct {
 	WithdrawPtbAmount     consts.PtbCoin `json:"withdraw_ptb_amount,omitempty"`      // 提现金额平台币(提现金额换算出来的)
 	ConvertRatio          string         `json:"convert_ratio,omitempty"`            // 转换比例
 }
+
+// WebsocketOnlineNotify websocket上线通知
+type WebsocketOnlineNotify struct {
+	UserId   int64  `json:"user_id,omitempty"`   // 用户ID
+	SiteId   int64  `json:"site_id,omitempty"`   // 站点ID
+	DeviceId string `json:"device_id,omitempty"` // 设备ID
+	Endpoint string `json:"endpoint,omitempty"`  // 终端类型 APP H5 PC
+	OnlineAt int64  `json:"online_at,omitempty"` // 上线时间
+}

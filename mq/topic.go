@@ -33,6 +33,8 @@ var (
 	TopicUserPageLoginNotify = "user_page_login_notify"
 	// TopicUserActivityCompleteNotify 指定活动全部完成通知
 	TopicUserActivityCompleteNotify = "user_activity_complete_notify"
+	// TopicWebsocketOnlineNotify websocket上线通知
+	TopicWebsocketOnlineNotify = "websocket_online_notify"
 )
 
 func UpdateTopicPrefix(prefixes ...string) (prefix string) {
@@ -56,6 +58,7 @@ func UpdateTopicPrefix(prefixes ...string) (prefix string) {
 	TopicJackpotMatchRankNotify = prefix + TopicJackpotMatchRankNotify
 	TopicUserPageLoginNotify = prefix + TopicUserPageLoginNotify
 	TopicUserActivityCompleteNotify = prefix + TopicUserActivityCompleteNotify
+	TopicWebsocketOnlineNotify = prefix + TopicWebsocketOnlineNotify
 
 	return
 }
