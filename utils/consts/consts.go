@@ -113,6 +113,7 @@ const (
 	TransferIn                   OrderPrefix = "TI"   // 转入操作【中台资金转入用户钱包】
 	TransferOut                  OrderPrefix = "TO"   // 转出操作【用户资金转入中台】
 	OrderPrefixActivity          OrderPrefix = "AO"   // 活动奖励订单
+	OrderPrefixJourney           OrderPrefix = "JY"   // 用户 Journey 奖励订单
 )
 const (
 	// OpenTelemetry 标准字段名（推荐）
