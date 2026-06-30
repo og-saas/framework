@@ -38,6 +38,8 @@ func RewardSubCategoryToTransactionSubCategory(subCategory commonv1.RewardSubCat
 		return commonv1.TransactionSubCategory_VIP_TASK_RECHARGE_DAY
 	case commonv1.RewardSubCategory_REWARD_SUB_VIP_TASK_WEEKLY_RECHARGE:
 		return commonv1.TransactionSubCategory_VIP_TASK_RECHARGE_WEEK
+	case commonv1.RewardSubCategory_REWARD_CATEGORY_SUB_JOURNEY:
+		return commonv1.TransactionSubCategory_JOURNEY_REWARD
 	default:
 		return commonv1.TransactionSubCategory_SUB_UNSPECIFIED
 	}
@@ -80,6 +82,8 @@ func TransactionSubCategoryToTransactionCategory(subCategory commonv1.Transactio
 		commonv1.TransactionSubCategory_VIP_REWARD_WEEKLY_SALARY,
 		commonv1.TransactionSubCategory_VIP_REWARD_MONTHLY_SALARY:
 		return commonv1.TransactionCategory_VIP
+	case commonv1.TransactionSubCategory_JOURNEY_REWARD:
+		return commonv1.TransactionCategory_JOURNEY
 	default:
 		return commonv1.TransactionCategory_UNSPECIFIED
 	}

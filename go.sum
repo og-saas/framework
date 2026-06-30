@@ -332,6 +332,10 @@ github.com/og-saas/proto v0.0.32-0.20260511101321-1c5916a5a044 h1:JaGOb9mcfqNHLH
 github.com/og-saas/proto v0.0.32-0.20260511101321-1c5916a5a044/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
 github.com/og-saas/proto v0.0.45-0.20260603104134-29efc0640f4c h1:G43fghtuQbO/Sj4/RUlzA6iCbYNtuLpvwcWQfMdwTo4=
 github.com/og-saas/proto v0.0.45-0.20260603104134-29efc0640f4c/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
+github.com/og-saas/proto v0.0.45-0.20260630072620-b8ddc87ce19e h1:Kha/Qu59bOnmxEPxbmD/fwVJ+1MqcxwKfLWuVdsNxuc=
+github.com/og-saas/proto v0.0.45-0.20260630072620-b8ddc87ce19e/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
+github.com/og-saas/proto v0.0.45-0.20260630073132-18db045f221f h1:p9yZaIlM6uEHQsKP7mjyKJG+sthB4BiPSzew5ljD0fE=
+github.com/og-saas/proto v0.0.45-0.20260630073132-18db045f221f/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
 github.com/onsi/ginkgo/v2 v2.13.0 h1:0jY9lJquiL8fcf3M4LAXN5aMlS/b2BV86HFFPCPMgE4=
 github.com/onsi/ginkgo/v2 v2.13.0/go.mod h1:TE309ZR8s5FsKKpuB1YAQYBzCaAfUgatB/xlT/ETL/o=
 github.com/onsi/gomega v1.29.0 h1:KIA/t2t5UBzoirT4H9tsML45GEbo3ouUnBHsCfD2tVg=
