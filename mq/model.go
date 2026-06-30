@@ -2,6 +2,7 @@ package mq
 
 import (
 	"github.com/og-saas/framework/utils/consts"
+	"github.com/shopspring/decimal"
 )
 
 // UserWalletTransferNotify 用户钱包交易通知
@@ -220,6 +221,24 @@ type WithdrawOrderNotify struct {
 	AccountId             int64          `json:"account_id,omitempty"`               // 提现账号ID
 	WithdrawPtbAmount     consts.PtbCoin `json:"withdraw_ptb_amount,omitempty"`      // 提现金额平台币(提现金额换算出来的)
 	ConvertRatio          string         `json:"convert_ratio,omitempty"`            // 转换比例
+}
+
+// UserJourneyActionNotify 用户旅程动作通知
+type UserJourneyActionNotify struct {
+	SiteId     int64                    `json:"site_id,omitempty"`     // 站点ID
+	UserId     int64                    `json:"user_id,omitempty"`     // 用户ID
+	JourneyId  int64                    `json:"journey_id,omitempty"`  // 旅程id
+	ActionType consts.JourneyActionType `json:"action_type,omitempty"` // 动作类型 1弹窗,2toast,3push,4站内信,5悬浮图标,6tips,7banner,8活动,9奖励
+	ContentId  int64                    `json:"content_id,omitempty"`  // 对应类型的表主键
+	Params     string                   `json:"params,omitempty"`      // 额外参数配置 case ActionType=9  JourneyRewardParams
+	StartTime  int64                    `json:"start_time,omitempty"`  // 开始时间
+	EndTime    int64                    `json:"end_time,omitempty"`    // 结束时间
+	Step       int64                    `json:"step,omitempty"`        // 第几阶段
+}
+
+type JourneyRewardParams struct {
+	Amount   decimal.Decimal `json:"amount,omitempty"`   // 奖励金额
+	Multiple decimal.Decimal `json:"multiple,omitempty"` // 稽核倍数
 }
 
 // WebsocketOnlineNotify websocket上线通知

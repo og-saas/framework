@@ -26,6 +26,22 @@ func (t StatusType) Bool() bool {
 	return t == StatusTypeEnable
 }
 
+// ActionType 用户旅程动作类型
+type JourneyActionType uint32
+
+const (
+	_                       JourneyActionType = iota
+	ActionTypePopup                           // 弹窗
+	ActionTypeToast                           // toast
+	ActionTypePush                            // push
+	ActionTypeStationLetter                   // 站内信
+	ActionTypeFloatIcon                       // 悬浮图标
+	ActionTypeTips                            // tips
+	ActionTypeBanner                          // banner
+	ActionTypeActivity                        // 活动
+	ActionTypeReward                          // 奖励
+)
+
 const DefaultLanguage = "en-US"
 
 // TransferType 转入类型
