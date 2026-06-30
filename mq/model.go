@@ -313,5 +313,5 @@ type WebsocketOnlineNotify struct {
 	SiteId   int64  `json:"site_id,omitempty"`   // 站点ID
 	DeviceId string `json:"device_id,omitempty"` // 设备ID
 	Endpoint string `json:"endpoint,omitempty"`  // 终端类型 APP H5 PC
-	OnlineAt int64  `json:"online_at,omitempty"` // 上线时间
+	EventAt  int64  `json:"event_at,omitempty"`  // 事件时间
 }
