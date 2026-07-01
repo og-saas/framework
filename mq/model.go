@@ -2,6 +2,7 @@ package mq
 
 import (
 	"github.com/og-saas/framework/utils/consts"
+	"github.com/og-saas/framework/utils/structx"
 	"github.com/shopspring/decimal"
 )
 
@@ -305,6 +306,44 @@ type UserJourneyActionNotify struct {
 type JourneyRewardParams struct {
 	Amount   decimal.Decimal `json:"amount,omitempty"`   // 奖励金额
 	Multiple decimal.Decimal `json:"multiple,omitempty"` // 稽核倍数
+}
+
+// JourneyPushParams 旅程推送参数
+type JourneyPushParams struct {
+	Titles   []structx.MultiLanguage `json:"titles,omitempty"`    // 站内信标题
+	Contents []structx.MultiLanguage `json:"contents,omitempty"`  // 站内信内容
+	UserId   int64                   `json:"user_id,omitempty"`   // 用户ID
+	SiteId   int64                   `json:"site_id,omitempty"`   // 站点ID
+	CoverURL string                  `json:"cover_url,omitempty"` // 封面图
+	Link     string                  `json:"link,omitempty"`      // 跳转链接
+}
+
+// JourneyTipsParams 旅程tips参数
+type JourneyTipsParams struct {
+	Titles   []structx.MultiLanguage `json:"titles,omitempty"`   // 站内信标题
+	Contents []structx.MultiLanguage `json:"contents,omitempty"` // 站内信内容
+	UserId   int64                   `json:"user_id,omitempty"`  // 用户ID
+	SiteId   int64                   `json:"site_id,omitempty"`  // 站点ID
+	Position string                  `json:"position,omitempty"` // toast位置
+	Icon     string                  `json:"icon,omitempty"`     // 图标
+}
+
+// JourneyToastParams 旅程toast参数
+type JourneyToastParams struct {
+	Titles     []structx.MultiLanguage `json:"titles,omitempty"`   // 站内信标题
+	Contents   []structx.MultiLanguage `json:"contents,omitempty"` // 站内信内容
+	UserId     int64                   `json:"user_id,omitempty"`  // 用户ID
+	SiteId     int64                   `json:"site_id,omitempty"`  // 站点ID
+	Position   string                  `json:"position,omitempty"` // toast位置
+	DueTimeSec int64                   `json:"due_time_sec"`       // 时长
+}
+
+// JourneyStationLetterParams 旅程站内信参数
+type JourneyStationLetterParams struct {
+	Titles   []structx.MultiLanguage `json:"titles,omitempty"`   // 站内信标题
+	Contents []structx.MultiLanguage `json:"contents,omitempty"` // 站内信内容
+	UserId   int64                   `json:"user_id,omitempty"`  // 用户ID
+	SiteId   int64                   `json:"site_id,omitempty"`  // 站点ID
 }
 
 // WebsocketOnlineNotify websocket上线通知
