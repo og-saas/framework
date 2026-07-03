@@ -205,6 +205,8 @@ type SiteMsgVipNotify struct {
 	RewardIds    []int64 `json:"reward_ids,omitempty"`    // 奖励ID列表
 	RewardAmount string  `json:"reward_amount,omitempty"` // 奖励金额
 	CurrencyCode string  `json:"currency_code,omitempty"` // 币种
+	TriggerTime  int64   `json:"trigger_time,omitempty"`  // 触发时间
+	ExpireTime   int64   `json:"expire_time,omitempty"`   // 过期时间 奖励可领取场景
 }
 
 // SiteMsgActivityRewardNotify 活动奖励消息通知
@@ -216,18 +218,21 @@ type SiteMsgActivityRewardNotify struct {
 	RewardIds    []int64 `json:"reward_ids,omitempty"`    // 奖励ID列表
 	RewardAmount string  `json:"reward_amount,omitempty"` // 奖励金额
 	CurrencyCode string  `json:"currency_code,omitempty"` // 币种
+	TriggerTime  int64   `json:"trigger_time,omitempty"`  // 触发时间
+	ExpireTime   int64   `json:"expire_time,omitempty"`   // 过期时间 奖励可领取场景
 }
 
 // JackpotActivityScoreNotify 活动Jackpot触发通知
 type JackpotActivityScoreNotify struct {
-	SiteId     int64 `json:"site_id,omitempty"`     // 站点ID
-	ActivityId int64 `json:"activity_id,omitempty"` // 活动ID
-	CycleNum   int32 `json:"cycle_num,omitempty"`   // 周期数
-	UserId     int64 `json:"user_id,omitempty"`     // 用户ID
-	StartAt    int64 `json:"start_at,omitempty"`    // 开始时间
-	EndAt      int64 `json:"end_at,omitempty"`      // 结束时间
-	Mode       int32 `json:"mode,omitempty"`        // 模式 1=投注 2=充值 3=投注+充值
-	Score      int32 `json:"score,omitempty"`       // 积分
+	SiteId      int64 `json:"site_id,omitempty"`      // 站点ID
+	ActivityId  int64 `json:"activity_id,omitempty"`  // 活动ID
+	CycleNum    int32 `json:"cycle_num,omitempty"`    // 周期数
+	UserId      int64 `json:"user_id,omitempty"`      // 用户ID
+	StartAt     int64 `json:"start_at,omitempty"`     // 开始时间
+	EndAt       int64 `json:"end_at,omitempty"`       // 结束时间
+	Mode        int32 `json:"mode,omitempty"`         // 模式 1=投注 2=充值 3=投注+充值
+	Score       int32 `json:"score,omitempty"`        // 积分
+	TriggerTime int64 `json:"trigger_time,omitempty"` // 触发时间
 }
 
 // SiteMsgActivityScheduleNotify 活动定时调度通知（开始通知/结束前提醒）
