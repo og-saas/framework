@@ -51,6 +51,8 @@ var (
 
 	// TopicUserJourneyActionNotify 用户旅程动作通知
 	TopicUserJourneyActionNotify = "user_journey_action_notify"
+	// TopicRewardUnclaimedNotify 奖励24小时未领取通知
+	TopicRewardUnclaimedNotify = "reward_unclaimed_notify"
 )
 
 func UpdateTopicPrefix(prefixes ...string) (prefix string) {
@@ -82,6 +84,7 @@ func UpdateTopicPrefix(prefixes ...string) (prefix string) {
 	TopicSiteMsgWithdrawAudit = prefix + TopicSiteMsgWithdrawAudit
 	TopicSiteMsgRechargeFail = prefix + TopicSiteMsgRechargeFail
 	TopicUserJourneyActionNotify = prefix + TopicUserJourneyActionNotify
+	TopicRewardUnclaimedNotify = prefix + TopicRewardUnclaimedNotify
 
 	return
 }

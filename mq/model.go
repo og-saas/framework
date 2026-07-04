@@ -205,6 +205,8 @@ type SiteMsgVipNotify struct {
 	RewardIds    []int64 `json:"reward_ids,omitempty"`    // 奖励ID列表
 	RewardAmount string  `json:"reward_amount,omitempty"` // 奖励金额
 	CurrencyCode string  `json:"currency_code,omitempty"` // 币种
+	TriggerTime  int64   `json:"trigger_time,omitempty"`  // 触发时间
+	ExpireTime   int64   `json:"expire_time,omitempty"`   // 过期时间 奖励可领取场景
 }
 
 // SiteMsgActivityRewardNotify 活动奖励消息通知
@@ -216,18 +218,21 @@ type SiteMsgActivityRewardNotify struct {
 	RewardIds    []int64 `json:"reward_ids,omitempty"`    // 奖励ID列表
 	RewardAmount string  `json:"reward_amount,omitempty"` // 奖励金额
 	CurrencyCode string  `json:"currency_code,omitempty"` // 币种
+	TriggerTime  int64   `json:"trigger_time,omitempty"`  // 触发时间
+	ExpireTime   int64   `json:"expire_time,omitempty"`   // 过期时间 奖励可领取场景
 }
 
 // JackpotActivityScoreNotify 活动Jackpot触发通知
 type JackpotActivityScoreNotify struct {
-	SiteId     int64 `json:"site_id,omitempty"`     // 站点ID
-	ActivityId int64 `json:"activity_id,omitempty"` // 活动ID
-	CycleNum   int32 `json:"cycle_num,omitempty"`   // 周期数
-	UserId     int64 `json:"user_id,omitempty"`     // 用户ID
-	StartAt    int64 `json:"start_at,omitempty"`    // 开始时间
-	EndAt      int64 `json:"end_at,omitempty"`      // 结束时间
-	Mode       int32 `json:"mode,omitempty"`        // 模式 1=投注 2=充值 3=投注+充值
-	Score      int32 `json:"score,omitempty"`       // 积分
+	SiteId      int64 `json:"site_id,omitempty"`      // 站点ID
+	ActivityId  int64 `json:"activity_id,omitempty"`  // 活动ID
+	CycleNum    int32 `json:"cycle_num,omitempty"`    // 周期数
+	UserId      int64 `json:"user_id,omitempty"`      // 用户ID
+	StartAt     int64 `json:"start_at,omitempty"`     // 开始时间
+	EndAt       int64 `json:"end_at,omitempty"`       // 结束时间
+	Mode        int32 `json:"mode,omitempty"`         // 模式 1=投注 2=充值 3=投注+充值
+	Score       int32 `json:"score,omitempty"`        // 积分
+	TriggerTime int64 `json:"trigger_time,omitempty"` // 触发时间
 }
 
 // SiteMsgActivityScheduleNotify 活动定时调度通知（开始通知/结束前提醒）
@@ -356,4 +361,15 @@ type WebsocketOnlineNotify struct {
 	DeviceId string `json:"device_id,omitempty"` // 设备ID
 	Endpoint string `json:"endpoint,omitempty"`  // 终端类型 APP H5 PC
 	EventAt  int64  `json:"event_at,omitempty"`  // 事件时间
+}
+
+// RewardUnclaimedNotify 奖励未领取通知
+type RewardUnclaimedNotify struct {
+	SiteId      int64 `json:"site_id,omitempty"`      // 站点ID
+	UserId      int64 `json:"user_id,omitempty"`      // 用户ID
+	RewardId    int64 `json:"reward_id,omitempty"`    // 奖励ID
+	Category    int32 `json:"category,omitempty"`     // 分类: 1-活动奖励, 2-代理奖励, 3-VIP奖励
+	CategorySub int32 `json:"category_sub,omitempty"` // 子类: 101-注册活动奖励, 102-首充活动奖励, 103-累充活动奖励, 104-单充活动奖励, 201-代理邀请奖励, 202-代理佣金直属, 203-代理佣金非直属, 301-VIP升级礼金, 302-VIP周度俸禄, 303-VIP月度俸禄, 304-VIP流水返利, 305-VIP亏损返还, 306-VIP救济金, 307-VIP每日打码任务, 308-VIP每周打码任务, 309-VIP每日充值任务, 310-VIP每周充值任务, 401-充值红利
+	ExpireAt    int64 `json:"expire_at,omitempty"`    // 过期时间
+	CreatedAt   int64 `json:"created_at,omitempty"`   // 创建时间
 }
