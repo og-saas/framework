@@ -51,7 +51,7 @@ var (
 
 	// TopicUserJourneyActionNotify 用户旅程动作通知
 	TopicUserJourneyActionNotify = "user_journey_action_notify"
-	// TopicRewardUnclaimedNotify 奖励未领取通知
+	// TopicRewardUnclaimedNotify 奖励24小时未领取通知
 	TopicRewardUnclaimedNotify = "reward_unclaimed_notify"
 )
 
