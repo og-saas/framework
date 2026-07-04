@@ -362,3 +362,14 @@ type WebsocketOnlineNotify struct {
 	Endpoint string `json:"endpoint,omitempty"`  // 终端类型 APP H5 PC
 	EventAt  int64  `json:"event_at,omitempty"`  // 事件时间
 }
+
+// RewardUnclaimedNotify 奖励未领取通知
+type RewardUnclaimedNotify struct {
+	SiteId      int64 `json:"site_id,omitempty"`      // 站点ID
+	UserId      int64 `json:"user_id,omitempty"`      // 用户ID
+	RewardId    int64 `json:"reward_id,omitempty"`    // 奖励ID
+	Category    int32 `json:"category,omitempty"`     // 分类: 1-活动奖励, 2-代理奖励, 3-VIP奖励
+	CategorySub int32 `json:"category_sub,omitempty"` // 子类: 101-注册活动奖励, 102-首充活动奖励, 103-累充活动奖励, 104-单充活动奖励, 201-代理邀请奖励, 202-代理佣金直属, 203-代理佣金非直属, 301-VIP升级礼金, 302-VIP周度俸禄, 303-VIP月度俸禄, 304-VIP流水返利, 305-VIP亏损返还, 306-VIP救济金, 307-VIP每日打码任务, 308-VIP每周打码任务, 309-VIP每日充值任务, 310-VIP每周充值任务, 401-充值红利
+	ExpireAt    int64 `json:"expire_at,omitempty"`    // 过期时间
+	CreatedAt   int64 `json:"created_at,omitempty"`   // 创建时间
+}
