@@ -342,7 +342,7 @@ type JourneyToastParams struct {
 	Contents   structx.MultiLanguage `json:"contents,omitempty"` // 站内信内容
 	UserId     int64                 `json:"user_id,omitempty"`  // 用户ID
 	SiteId     int64                 `json:"site_id,omitempty"`  // 站点ID
-	Position   string                `json:"position,omitempty"` // toast位置 1:用户模块 2:资金模块 3:安全模块 4:活动模块 5:VIP模块
+	Position   string                `json:"position,omitempty"` // toast位置 0未知道, 1:用户模块 2:资金模块 3:安全模块 4:活动模块 5:VIP模块
 	DueTimeSec int64                 `json:"due_time_sec"`       // 时长
 	Icon       string                `json:"icon,omitempty"`     // 图标
 }
