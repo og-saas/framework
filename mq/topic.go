@@ -69,6 +69,7 @@ func UpdateTopicPrefix(prefixes ...string) (prefix string) {
 	TopicRechargeOrderNotify = prefix + TopicRechargeOrderNotify
 	TopicAgentGradeGrowthNotify = prefix + TopicAgentGradeGrowthNotify
 	TopicAgentBetRebatNotify = prefix + TopicAgentBetRebatNotify
+	TopicUserRegisterNotify = prefix + TopicUserRegisterNotify
 	TopicUserWithdrawCreateNotify = prefix + TopicUserWithdrawCreateNotify
 	TopicWithdrawOrderNotify = prefix + TopicWithdrawOrderNotify
 	TopicUserRiskMonitorNotify = prefix + TopicUserRiskMonitorNotify
