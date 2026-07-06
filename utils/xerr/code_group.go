@@ -17,6 +17,7 @@ var ErrCodeGroupMap = map[ErrCode]CodeGroup{
 	ErrCodeClaimRewardIPLimit:               CodeGroupModel,
 	ErrCodeClaimRewardDeviceLimit:           CodeGroupModel,
 	ErrCodeClaimRewardEndpointLimit:         CodeGroupModel,
+	ErrCodeUserExists:                       CodeGroupModel,
 }
 
 func (g CodeGroup) String() string {
