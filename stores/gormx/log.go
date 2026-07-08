@@ -81,13 +81,13 @@ func (l *GormLogger) Trace(ctx context.Context, begin time.Time, fc func() (sql 
 }
 
 func log(ctx context.Context) logx.Logger {
-	return logx.WithContext(ctx).WithCallerSkip(fileIndex() + 1)
+	return logx.WithContext(ctx).WithCallerSkip(fileIndex())
 }
 
 func fileIndex() int {
 	pcs := [13]uintptr{}
 	// the third caller usually from gorm internal
-	length := runtime.Callers(3, pcs[:])
+	length := runtime.Callers(4, pcs[:])
 	frames := runtime.CallersFrames(pcs[:length])
 	for i := 0; i < length; i++ {
 		// second return value is "more", not "ok"
