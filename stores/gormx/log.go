@@ -4,6 +4,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"runtime"
+	"strings"
 	"time"
 
 	"github.com/og-saas/framework/utils/contextkey"
@@ -79,5 +81,22 @@ func (l *GormLogger) Trace(ctx context.Context, begin time.Time, fc func() (sql 
 }
 
 func log(ctx context.Context) logx.Logger {
-	return logx.WithContext(ctx).WithCallerSkip(skipCaller)
+	return logx.WithContext(ctx).WithCallerSkip(fileIndex() + 1)
+}
+
+func fileIndex() int {
+	pcs := [13]uintptr{}
+	// the third caller usually from gorm internal
+	length := runtime.Callers(3, pcs[:])
+	frames := runtime.CallersFrames(pcs[:length])
+	for i := 0; i < length; i++ {
+		// second return value is "more", not "ok"
+		frame, _ := frames.Next()
+		if (!strings.Contains(frame.File, "/gorm.io/") ||
+			strings.HasSuffix(frame.File, "_test.go")) && !strings.HasSuffix(frame.File, ".gen.go") && !strings.Contains(frame.File, "/dao/") {
+			return i + 1
+		}
+	}
+
+	return 1
 }
