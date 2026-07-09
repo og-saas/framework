@@ -159,6 +159,8 @@ const (
 	ErrCodeClaimRewardDeviceLimit ErrCode = 60013 // ErrCodeClaimRewardDeviceLimit
 	// ErrCodeClaimRewardEndpointLimit 领取终端限制
 	ErrCodeClaimRewardEndpointLimit ErrCode = 60014 // ErrCodeClaimRewardEndpointLimit
+	// ErrCodeActivityConditionNotMet 用户不符合参与活动条件
+	ErrCodeActivityConditionNotMet ErrCode = 60015 // ErrCodeActivityConditionNotMet
 )
 
 func (code ErrCode) Int() int {
