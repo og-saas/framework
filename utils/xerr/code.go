@@ -1,5 +1,7 @@
 package xerr
 
+import "google.golang.org/grpc/codes"
+
 //go:generate stringer -type=ErrCode -output=code_string.go --linecomment
 type ErrCode uint32
 
@@ -160,7 +162,7 @@ const (
 	// ErrCodeClaimRewardEndpointLimit 领取终端限制
 	ErrCodeClaimRewardEndpointLimit ErrCode = 60014 // ErrCodeClaimRewardEndpointLimit
 	// ErrCodeActivityConditionNotMet 用户不符合参与活动条件
-	ErrCodeActivityConditionNotMet ErrCode = 60015 // ErrCodeActivityConditionNotMet
+	ErrCodeActivityConditionNotMet codes.Code = 60015 // ErrCodeActivityConditionNotMet
 )
 
 func (code ErrCode) Int() int {
