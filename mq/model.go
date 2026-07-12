@@ -346,7 +346,6 @@ type JourneyToastParams struct {
 type JourneyStationLetterParams struct {
 	Titles   structx.MultiLanguage `json:"titles,omitempty"`   // 站内信标题
 	Contents structx.MultiLanguage `json:"contents,omitempty"` // 站内信内容
-	UserId   int64                 `json:"user_id,omitempty"`  // 用户ID
 }
 
 // WebsocketOnlineNotify websocket上线通知
