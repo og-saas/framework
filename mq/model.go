@@ -305,14 +305,14 @@ type UserJourneyActionNotify struct {
 	JourneyId  int64                    `json:"journey_id,omitempty"`  // 旅程id
 	ActionType consts.JourneyActionType `json:"action_type,omitempty"` // 动作类型 1弹窗,2toast,3push,4站内信,5悬浮图标,6tips,7banner,8活动,9奖励
 	ContentId  int64                    `json:"content_id,omitempty"`  // 对应类型的表主键
-	Params     string                   `json:"params,omitempty"`      // 额外参数配置 case ActionType=9  JourneyRewardParams
+	Params     any                      `json:"params,omitempty"`      // 额外参数配置 case ActionType=9  JourneyRewardParams
 	StartTime  int64                    `json:"start_time,omitempty"`  // 开始时间
 	EndTime    int64                    `json:"end_time,omitempty"`    // 结束时间
 	Step       int64                    `json:"step,omitempty"`        // 第几阶段
 }
 
 type JourneyRewardParams struct {
-	Amount   decimal.Decimal `json:"amount,omitempty"`   // 奖励金额
+	Reward   decimal.Decimal `json:"reward,omitempty"`   // 奖励金额
 	Multiple decimal.Decimal `json:"multiple,omitempty"` // 稽核倍数
 }
 
