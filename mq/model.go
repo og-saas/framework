@@ -2,8 +2,6 @@ package mq
 
 import (
 	"github.com/og-saas/framework/utils/consts"
-	"github.com/og-saas/framework/utils/structx"
-	"github.com/shopspring/decimal"
 )
 
 // UserWalletTransferNotify 用户钱包交易通知
@@ -309,43 +307,6 @@ type UserJourneyActionNotify struct {
 	StartTime  int64                    `json:"start_time,omitempty"`  // 开始时间
 	EndTime    int64                    `json:"end_time,omitempty"`    // 结束时间
 	Step       int64                    `json:"step,omitempty"`        // 第几阶段
-}
-
-type JourneyRewardParams struct {
-	Reward   decimal.Decimal `json:"reward,omitempty"`   // 奖励金额
-	Multiple decimal.Decimal `json:"multiple,omitempty"` // 稽核倍数
-}
-
-// JourneyPushParams 旅程推送参数
-type JourneyPushParams struct {
-	Titles   structx.MultiLanguage `json:"titles,omitempty"`    // 站内信标题
-	Contents structx.MultiLanguage `json:"contents,omitempty"`  // 站内信内容
-	Icon     string                `json:"cover_url,omitempty"` // 封面图
-	Link     string                `json:"link,omitempty"`      // 跳转链接
-	LinkType int                   `json:"link_type"`
-}
-
-// JourneyTipsParams 旅程tips参数
-type JourneyTipsParams struct {
-	Titles   structx.MultiLanguage `json:"titles,omitempty"`   // 站内信标题
-	Contents structx.MultiLanguage `json:"contents,omitempty"` // 站内信内容
-	Position int64                 `json:"position,omitempty"` // toast位置
-	Icon     string                `json:"icon,omitempty"`     // 图标
-}
-
-// JourneyToastParams 旅程toast参数
-type JourneyToastParams struct {
-	Titles     structx.MultiLanguage `json:"titles,omitempty"`   // 站内信标题
-	Contents   structx.MultiLanguage `json:"contents,omitempty"` // 站内信内容
-	Position   int64                 `json:"position,omitempty"` // toast位置 0未知道, 1:用户模块 2:资金模块 3:安全模块 4:活动模块 5:VIP模块
-	DueTimeSec int64                 `json:"due_time_sec"`       // 时长
-	Icon       string                `json:"icon,omitempty"`     // 图标
-}
-
-// JourneyStationLetterParams 旅程站内信参数
-type JourneyStationLetterParams struct {
-	Titles   structx.MultiLanguage `json:"titles,omitempty"`   // 站内信标题
-	Contents structx.MultiLanguage `json:"contents,omitempty"` // 站内信内容
 }
 
 // WebsocketOnlineNotify websocket上线通知
