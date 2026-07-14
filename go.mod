@@ -19,7 +19,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/hanyougame/glib v1.3.23
 	github.com/jinzhu/copier v0.4.0
-	github.com/og-saas/proto v0.0.45-0.20260630073132-18db045f221f
+	github.com/og-saas/proto v0.0.45-0.20260714021533-ee734e2f7e92
 	github.com/redis/go-redis/v9 v9.17.2
 	github.com/samber/lo v1.52.0
 	github.com/shopspring/decimal v1.4.0
