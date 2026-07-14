@@ -14,7 +14,7 @@ type SiteUserFullPayload struct {
 	RegisterCountry string   `json:"register_country"` // 注册国家 code_2
 	RegisterIp      string   `json:"register_ip"`      // 注册IP
 	RegisterSource  string   `json:"register_source"`  // 注册来源 H5 PC APP
-	UserTags        []string `json:"user_tags"`        // 会员标签
+	UserTags        []string `json:"tags"`             // 会员标签
 	Phone           string   `json:"phone"`            // 手机号
 	Email           string   `json:"email"`            // 邮箱
 	Status          int32    `json:"status"`           // 账号状态
@@ -26,7 +26,7 @@ type SiteUserFullPayload struct {
 
 func (p SiteUserFullPayload) GetFilterableAttributes() []any {
 	return []any{
-		"site_id", "user_id", "channel_id", "username", "register_time", "register_country", "register_ip", "register_source", "user_tags", "phone", "email", "status", "sub_status", "vip_level", "last_login_time", "last_login_ip",
+		"site_id", "user_id", "channel_id", "username", "register_time", "register_country", "register_ip", "register_source", "tags", "phone", "email", "status", "sub_status", "vip_level", "last_login_time", "last_login_ip",
 	}
 }
 
@@ -34,7 +34,7 @@ func (p SiteUserFullPayload) GetFilterableAttributes() []any {
 type SiteUserListPayload struct {
 	UserId        string   `json:"user_id"`                   // 用户ID
 	Username      string   `json:"username,omitempty"`        // 用户名
-	UserTags      []string `json:"user_tags,omitempty"`       // 会员标签
+	UserTags      []string `json:"tags,omitempty"`            // 会员标签
 	Phone         string   `json:"phone,omitempty"`           // 手机号
 	Email         string   `json:"email,omitempty"`           // 邮箱
 	Status        int32    `json:"status,omitempty"`          // 账号状态
