@@ -26,7 +26,7 @@ const (
 	SiteConfigCategoryPcShowType          SiteConfigCategory = 19 // PC展示样式
 	SiteConfigCategoryCountryAccessLimit  SiteConfigCategory = 20 // 区域限制
 	SiteConfigCategoryTopDownloadBar      SiteConfigCategory = 21 // 顶部下载条设置
-	SiteConfigCategoryMarqueeIcon         SiteConfigCategory = 22 // 跑马灯图标
+	SiteConfigCategoryMarqueeIcon         SiteConfigCategory = 23 // 跑马灯图标
 
 )
 
