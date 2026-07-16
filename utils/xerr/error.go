@@ -75,6 +75,15 @@ func NewServerInternalError(err error) Error {
 	if err == nil {
 		err = fmt.Errorf("unknown error")
 	}
+	e, ok := status.FromError(err)
+	if ok {
+		return Error{
+			Code: ErrCodeServerInternalError,
+			Data: nil,
+			Msg:  e.Message(),
+		}
+	}
+
 	return Error{
 		Code: ErrCodeServerInternalError,
 		Data: nil,
