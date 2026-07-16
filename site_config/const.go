@@ -26,6 +26,7 @@ const (
 	SiteConfigCategoryPcShowType          SiteConfigCategory = 19 // PC展示样式
 	SiteConfigCategoryCountryAccessLimit  SiteConfigCategory = 20 // 区域限制
 	SiteConfigCategoryTopDownloadBar      SiteConfigCategory = 21 // 顶部下载条设置
+	SiteConfigCategoryMarqueeIcon         SiteConfigCategory = 22 // 跑马灯图标
 
 )
 
@@ -91,6 +92,7 @@ const (
 	SiteConfigKeySidebarVisualMenu          SiteConfigKey = "sidebar_visual_menu"           // 侧边栏可视化菜单
 	SiteConfigKeySAppConfig                 SiteConfigKey = "app_config"                    // app打包配置
 	SiteConfigKeyServerUrl                  SiteConfigKey = "server_url"                    // app api服务地址
+	SiteConfigKeyMarqueeIcon                SiteConfigKey = "marquee_config"                // 跑马灯图标
 )
 
 func (k SiteConfigKey) String() string {

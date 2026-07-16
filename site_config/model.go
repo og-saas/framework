@@ -171,3 +171,9 @@ type SidebarComponent struct {
 	Image         string             `json:"image"`          // 图片
 	ImageLang     []*LanguageContent `json:"image_lang"`     // 多语言图片
 }
+
+type MarqueeIcon struct {
+	H5Icon  string `json:"h5_icon"`  // h5端图标
+	PcIcon  string `json:"pc_icon"`  // pc端图标
+	AppIcon string `json:"app_icon"` // app端图标
+}
