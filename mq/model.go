@@ -193,6 +193,13 @@ type UserActivityCompleteNotify struct {
 	EventAt    int64 `json:"event_at,omitempty"`    // 事件时间
 }
 
+// UserBankruptNotify  用户破产事件通知
+type UserBankruptNotify struct {
+	UserId  int64 `json:"user_id,omitempty"`  // 用户ID
+	SiteId  int64 `json:"site_id,omitempty"`  // 站点ID
+	EventAt int64 `json:"event_at,omitempty"` // 事件时间
+}
+
 // SiteMsgVipNotify VIP消息通知
 type SiteMsgVipNotify struct {
 	UserId       int64   `json:"user_id,omitempty"`       // 用户ID

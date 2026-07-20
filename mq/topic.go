@@ -53,6 +53,9 @@ var (
 	TopicUserJourneyActionNotify = "user_journey_action_notify"
 	// TopicRewardUnclaimedNotify 奖励24小时未领取通知
 	TopicRewardUnclaimedNotify = "reward_unclaimed_notify"
+
+	// TopicUserBankruptNotify 用户破产事件
+	TopicUserBankruptNotify = "user_bankrupt_notify"
 )
 
 func UpdateTopicPrefix(prefixes ...string) (prefix string) {
