@@ -85,6 +85,8 @@ const (
 	ErrCodeCaptchaDayLimit ErrCode = 10029 // CaptchaDayLimit
 	// ErrCodeVerifyFailWarning 校验失败预警 (密码/验证码错误)
 	ErrCodeVerifyFailWarning ErrCode = 10030 // VerifyFailWarning
+	// ErrCodeRepeatCompleteError 补充全错误（信息已存在，不允许重复补全信息）
+	ErrCodeRepeatCompleteError ErrCode = 10031 // RepeatCompleteError
 )
 
 // 游戏相关

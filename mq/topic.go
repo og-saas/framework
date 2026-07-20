@@ -36,8 +36,8 @@ var (
 	// TopicWebsocketOnlineNotify websocket上线通知
 	TopicWebsocketOnlineNotify = "websocket_online_notify"
 
-	// TopicSiteMsgVipNotify VIP消息通知（含类型枚举区分升级/奖励创建/奖励发放）
-	TopicSiteMsgVipNotify = "site_msg_vip_notify"
+	// TopicSiteMsgVipNotifyOrdered VIP消息通知（含类型枚举区分升级/奖励创建/奖励发放） 有序消息
+	TopicSiteMsgVipNotifyOrdered = "site_msg_vip_notify_ordered"
 	// TopicSiteMsgActivityReward 活动奖励消息（奖励可领取/奖励发放成功）
 	TopicSiteMsgActivityReward = "site_msg_activity_reward"
 	// TopicSiteMsgActivityJackpot 活动Jackpot触发
@@ -81,7 +81,7 @@ func UpdateTopicPrefix(prefixes ...string) (prefix string) {
 	TopicUserPageLoginNotify = prefix + TopicUserPageLoginNotify
 	TopicUserActivityCompleteNotify = prefix + TopicUserActivityCompleteNotify
 	TopicWebsocketOnlineNotify = prefix + TopicWebsocketOnlineNotify
-	TopicSiteMsgVipNotify = prefix + TopicSiteMsgVipNotify
+	TopicSiteMsgVipNotifyOrdered = prefix + TopicSiteMsgVipNotifyOrdered
 	TopicSiteMsgActivityReward = prefix + TopicSiteMsgActivityReward
 	TopicSiteMsgActivityJackpot = prefix + TopicSiteMsgActivityJackpot
 	TopicSiteMsgActivitySchedule = prefix + TopicSiteMsgActivitySchedule
