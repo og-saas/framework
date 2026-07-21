@@ -10,6 +10,7 @@ import (
 	"github.com/og-saas/framework/utils/sign"
 	"github.com/og-saas/framework/utils/xerr"
 	v1 "github.com/og-saas/proto/pb/user/v1"
+	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/rest/httpx"
 	"github.com/zeromicro/x/errors"
 	"go.opentelemetry.io/otel/trace"
@@ -39,6 +40,12 @@ func JsonBaseResponseCtx(ctx context.Context, w http.ResponseWriter, v any) {
 	if ok := metadata.DataEncrypt.GetBool(ctx); ok {
 		resp.Sign = sign.SignParams(resp.TraceID, resp.Data)
 		resp.Data = sign.AesEncrypt(resp.TraceID, resp.Data)
+	}
+	// 使用error 防止关闭info后看不见
+	if resp.Code != BusinessCodeOK {
+		logx.WithContext(ctx).Errorf("JsonBaseResponseCtx Code: %d response: %+v", resp.Code, resp)
+	} else {
+		logx.WithContext(ctx).Errorf("JsonBaseResponseCtx OK")
 	}
 
 	httpx.OkJsonCtx(ctx, w, resp)
