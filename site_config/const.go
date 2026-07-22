@@ -55,6 +55,7 @@ const (
 	SiteConfigKeyGameCalcBetAmount          SiteConfigKey = "game_calc_bet_amount"          // 游戏投注金额计算方式
 	SiteConfigKeyBaseInfo                   SiteConfigKey = "base_info"                     // 站点基础信息配置
 	SiteConfigKeySiteLogo                   SiteConfigKey = "site_logo"                     // 站点logo
+	SiteConfigKeySiteLCurrencyConfig        SiteConfigKey = "currency_config"               // 币种配置
 	SiteConfigKeyFooterInfo                 SiteConfigKey = "footer_info"                   // 页脚配置
 	SiteConfigKeyDownloadAPP                SiteConfigKey = "download_app"                  // 下载app配置
 	SiteConfigKeyAPPInstall                 SiteConfigKey = "app_install"                   // APP安装入口

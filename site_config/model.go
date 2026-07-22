@@ -1,6 +1,7 @@
 package site_config
 
 import (
+	"github.com/og-saas/framework/utils"
 	"github.com/og-saas/framework/utils/consts"
 	commonv1 "github.com/og-saas/proto/pb/common/v1"
 	"github.com/shopspring/decimal"
@@ -176,4 +177,27 @@ type MarqueeIcon struct {
 	H5Icon  string `json:"h5_icon"`  // h5端图标
 	PcIcon  string `json:"pc_icon"`  // pc端图标
 	AppIcon string `json:"app_icon"` // app端图标
+}
+
+// 0: 无符号位置，1: 左侧，2: 右侧
+type SymbolPosition struct {
+	Valid    int32 `json:"valid,default=1"`    // 法币
+	Number   int32 `json:"number,default=1"`   // 数字币
+	Platform int32 `json:"platform,default=1"` // 平台币
+}
+
+func GetSymbolPosition(position SymbolPosition, currencyType commonv1.CurrencyType) int32 {
+	// 0: 无符号位置，1: 左侧，2: 右侧
+	left := int32(1)
+	right := int32(2)
+	switch currencyType {
+	case commonv1.CurrencyType_CURRENCY_TYPE_VALID:
+		return utils.Ternary(position.Valid != 0, position.Valid, left)
+	case commonv1.CurrencyType_CURRENCY_TYPE_NUMBER:
+		return utils.Ternary(position.Number != 0, position.Number, right)
+	case commonv1.CurrencyType_CURRENCY_TYPE_PLATFORM:
+		return utils.Ternary(position.Platform != 0, position.Platform, left)
+	default:
+		return left
+	}
 }
