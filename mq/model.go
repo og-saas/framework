@@ -327,15 +327,17 @@ type WebsocketOnlineNotify struct {
 
 // ReportRecordNotify 上报记录
 type ReportRecordNotify struct {
-	SiteId     int64          `json:"site_id,omitempty"`     // 站点ID
-	ChannelId  int64          `json:"channel_id,omitempty"`  // 渠道ID
-	Os         string         `json:"os,omitempty"`          // 终端应用类型
-	Ip         string         `json:"ip,omitempty"`          // IP地址
-	Domain     string         `json:"domain,omitempty"`      // 域名
-	DeviceId   string         `json:"device_id,omitempty"`   // 设备ID
-	AppVersion string         `json:"app_version,omitempty"` // 版本号
-	Timezone   string         `json:"timezone,omitempty"`    // 时区
-	Events     []*ReportEvent `json:"events"`                // 事件列表
+	SiteId         int64               `json:"site_id,omitempty"`                             // 站点ID
+	ChannelId      int64               `json:"channel_id,omitempty"`                          // 渠道ID
+	Domain         string              `json:"domain,omitempty"`                              // 域名
+	Ip             string              `json:"ip,omitempty"`                                  // IP地址
+	DeviceId       string              `json:"device_id,omitempty"`                           // 设备ID
+	DeviceType     consts.DeviceType   `gorm:"column:device_type" json:"device_type"`         // 设备类型
+	DeviceEndpoint consts.EndpointType `gorm:"column:device_endpoint" json:"device_endpoint"` // 终端信息
+	DeviceOs       string              `gorm:"column:device_os" json:"device_os"`             // 设备操作系统
+	AppVersion     string              `json:"app_version,omitempty"`                         // 版本号
+	Timezone       string              `json:"timezone,omitempty"`                            // 时区
+	Events         []*ReportEvent      `json:"events"`                                        // 事件列表
 
 }
 
