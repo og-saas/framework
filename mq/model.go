@@ -342,9 +342,9 @@ type ReportRecordNotify struct {
 }
 
 type ReportEvent struct {
-	Type    int    `json:"type"`    // 事件类型: 1-应用访问量，2-首页访问量，3-APP下载量
-	Content string `json:"content"` // 事件内容（可以是数量、结构化的对象数据）
-	Time    int64  `json:"time"`    // 事件时间（时间戳，秒级）
+	Type    consts.ReportEventType `json:"type"`    // 事件类型: 1-应用访问量，2-首页访问量，3-APP下载量
+	Content string                 `json:"content"` // 事件内容（可以是数量、结构化的对象数据）
+	Time    int64                  `json:"time"`    // 事件时间（时间戳，秒级）
 }
 
 // RewardUnclaimedNotify 奖励未领取通知

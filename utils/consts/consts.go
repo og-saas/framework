@@ -259,7 +259,7 @@ const (
 type ReportEventType int
 
 const (
-	ReportEventTypePvApp    ReportEventType = 1
-	ReportEventTypePvHome   ReportEventType = 2
-	ReportEventTypeDownload ReportEventType = 3
+	ReportEventTypePvApp    ReportEventType = 1 // 应用访问量
+	ReportEventTypePvHome   ReportEventType = 2 // 首页访问量
+	ReportEventTypeDownload ReportEventType = 3 // APP下载量
 )
