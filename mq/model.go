@@ -325,6 +325,26 @@ type WebsocketOnlineNotify struct {
 	EventAt  int64  `json:"event_at,omitempty"`  // 事件时间
 }
 
+// ReportRecordNotify 上报记录
+type ReportRecordNotify struct {
+	SiteId     int64          `json:"site_id,omitempty"`     // 站点ID
+	ChannelId  int64          `json:"channel_id,omitempty"`  // 渠道ID
+	Os         string         `json:"os,omitempty"`          // 终端应用类型
+	Ip         string         `json:"ip,omitempty"`          // IP地址
+	Domain     string         `json:"domain,omitempty"`      // 域名
+	DeviceId   string         `json:"device_id,omitempty"`   // 设备ID
+	AppVersion string         `json:"app_version,omitempty"` // 版本号
+	Timezone   string         `json:"timezone,omitempty"`    // 时区
+	Events     []*ReportEvent `json:"events"`                // 事件列表
+
+}
+
+type ReportEvent struct {
+	Type    int    `json:"type"`    // 事件类型: 1-应用访问量，2-首页访问量，3-APP下载量
+	Content string `json:"content"` // 事件内容（可以是数量、结构化的对象数据）
+	Time    int64  `json:"time"`    // 事件时间（时间戳，秒级）
+}
+
 // RewardUnclaimedNotify 奖励未领取通知
 type RewardUnclaimedNotify struct {
 	SiteId      int64 `json:"site_id,omitempty"`      // 站点ID

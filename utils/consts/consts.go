@@ -255,3 +255,11 @@ type RechargeTargetType int
 const (
 	RechargeTargetTypeActivity RechargeTargetType = iota + 1 // 充值目标类型活动
 )
+
+type ReportEventType int
+
+const (
+	ReportEventTypePvApp    ReportEventType = 1
+	ReportEventTypePvHome   ReportEventType = 2
+	ReportEventTypeDownload ReportEventType = 3
+)
