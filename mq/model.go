@@ -337,8 +337,8 @@ type ReportRecordNotify struct {
 	DeviceOs       string              `gorm:"column:device_os" json:"device_os"`             // 设备操作系统
 	AppVersion     string              `json:"app_version,omitempty"`                         // 版本号
 	Timezone       string              `json:"timezone,omitempty"`                            // 时区
+	Language       string              `json:"language,omitempty"`                            // 语言
 	Events         []*ReportEvent      `json:"events"`                                        // 事件列表
-
 }
 
 type ReportEvent struct {
