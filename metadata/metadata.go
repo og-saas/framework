@@ -29,6 +29,7 @@ const (
 	DeviceEndpoint  Metadata = "Device-Endpoint"  // 设备终端类型 APP H5 PC
 	DataEncrypt     Metadata = "Data-Encrypt"     // 数据加密开关
 	TimeZone        Metadata = "Time-Zone"        // 时区
+	Path            Metadata = "Path"             // 请求路径
 )
 
 // RpcMetadata 同步到下游服务的Metadata
