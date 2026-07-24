@@ -41,11 +41,13 @@ func JsonBaseResponseCtx(ctx context.Context, w http.ResponseWriter, v any) {
 		resp.Sign = sign.SignParams(resp.TraceID, resp.Data)
 		resp.Data = sign.AesEncrypt(resp.TraceID, resp.Data)
 	}
+
+	path := metadata.Path.GetString(ctx)
 	// 使用error 防止关闭info后看不见
 	if resp.Code != BusinessCodeOK {
-		logx.WithContext(ctx).Errorf("JsonBaseResponseCtx Code: %d response: %+v", resp.Code, resp)
+		logx.WithContext(ctx).Errorf("JsonBaseResponseCtx Code: %d, path:%s, response: %+v", resp.Code, path, resp)
 	} else {
-		logx.WithContext(ctx).Errorf("JsonBaseResponseCtx OK")
+		logx.WithContext(ctx).Errorf("JsonBaseResponseCtx OK path:%s", path)
 	}
 
 	httpx.OkJsonCtx(ctx, w, resp)
