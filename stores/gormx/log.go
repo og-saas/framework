@@ -92,8 +92,11 @@ func fileIndex() int {
 	for i := 0; i < length; i++ {
 		// second return value is "more", not "ok"
 		frame, _ := frames.Next()
-		if (!strings.Contains(frame.File, "/gorm.io/") ||
-			strings.HasSuffix(frame.File, "_test.go")) && !strings.HasSuffix(frame.File, ".gen.go") && !strings.Contains(frame.File, "/dao/") {
+		if (!strings.Contains(frame.File, "/gorm.io/") || strings.HasSuffix(frame.File, "_test.go")) &&
+			!strings.Contains(frame.File, "cachex/auto_gzip_cache.go") &&
+			!strings.Contains(frame.File, "rockscache@v") &&
+			!strings.HasSuffix(frame.File, ".gen.go") &&
+			!strings.Contains(frame.File, "/dao/") {
 			return i + 1
 		}
 	}
