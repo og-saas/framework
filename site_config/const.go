@@ -27,6 +27,7 @@ const (
 	SiteConfigCategoryCountryAccessLimit  SiteConfigCategory = 20 // 区域限制
 	SiteConfigCategoryTopDownloadBar      SiteConfigCategory = 21 // 顶部下载条设置
 	SiteConfigCategoryMarqueeIcon         SiteConfigCategory = 23 // 跑马灯图标
+	SiteConfigCategoryAppConfig           SiteConfigCategory = 24 // APP配置
 
 )
 
@@ -94,6 +95,7 @@ const (
 	SiteConfigKeySAppConfig                 SiteConfigKey = "app_config"                    // app打包配置
 	SiteConfigKeyServerUrl                  SiteConfigKey = "server_url"                    // app api服务地址
 	SiteConfigKeyMarqueeIcon                SiteConfigKey = "marquee_config"                // 跑马灯图标
+	SiteConfigKeyAppReportConfig            SiteConfigKey = "app_report_config"             // app上报配置
 )
 
 func (k SiteConfigKey) String() string {
