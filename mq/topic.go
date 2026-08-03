@@ -58,6 +58,8 @@ var (
 	TopicUserBankruptNotify = "user_bankrupt_notify"
 	// TopicReportRecordNotify 上报记录
 	TopicReportRecordNotify = "report_record_notify"
+	// TopicUserCompleteInfoNotify 用户完善信息通知
+	TopicUserCompleteInfoNotify = "user_complete_info_notify"
 )
 
 func UpdateTopicPrefix(prefixes ...string) (prefix string) {
@@ -92,6 +94,7 @@ func UpdateTopicPrefix(prefixes ...string) (prefix string) {
 	TopicUserJourneyActionNotify = prefix + TopicUserJourneyActionNotify
 	TopicRewardUnclaimedNotify = prefix + TopicRewardUnclaimedNotify
 	TopicReportRecordNotify = prefix + TopicReportRecordNotify
+	TopicUserCompleteInfoNotify = prefix + TopicUserCompleteInfoNotify
 
 	return
 }

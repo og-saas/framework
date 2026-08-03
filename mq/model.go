@@ -357,3 +357,12 @@ type RewardUnclaimedNotify struct {
 	ExpireAt    int64 `json:"expire_at,omitempty"`    // 过期时间
 	CreatedAt   int64 `json:"created_at,omitempty"`   // 创建时间
 }
+
+// UserCompleteInfoNotify SaaS用户完善信息通知
+type UserCompleteInfoNotify struct {
+	SiteId    int64               `json:"site_id,omitempty"`    // 站点ID
+	UserId    int64               `json:"user_id,omitempty"`    // 用户ID
+	BindType  consts.UserBindType `json:"bind_type,omitempty"`  // 绑定类型 1=绑定手机号 2=绑定邮箱 3=绑定提现方式
+	BindValue string              `json:"bind_value,omitempty"` // 绑定内容（手机号/邮箱/提现方式）
+	EventAt   int64               `json:"event_at,omitempty"`   // 事件时间
+}

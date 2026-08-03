@@ -249,6 +249,15 @@ func ToThirdAuthTypeString(t comV1.ThirdAccountType) ThirdPartyOauthType {
 	}
 }
 
+// UserBindType 用户绑定类型
+type UserBindType int
+
+const (
+	UserBindTypePhone    UserBindType = 1 // 绑定手机号
+	UserBindTypeEmail    UserBindType = 2 // 绑定邮箱
+	UserBindTypeWithdraw UserBindType = 3 // 绑定提现方式
+)
+
 // RechargeTargetType 充值目标类型
 type RechargeTargetType int
 
