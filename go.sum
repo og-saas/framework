@@ -251,8 +251,6 @@ github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.4 h1:kEISI/Gx67NzH3nJxAmY/dGac80
 github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.4/go.mod h1:6Nz966r3vQYCqIzWsuEl9d7cf7mRhtDmm++sOxlnfxI=
 github.com/h2non/parth v0.0.0-20190131123155-b4df798d6542 h1:2VTzZjLZBgl62/EtslCrtky5vbi9dd7HrQPQIx6wqiw=
 github.com/h2non/parth v0.0.0-20190131123155-b4df798d6542/go.mod h1:Ow0tF8D4Kplbc8s8sSb3V2oUCygFHVp8gC3Dn6U4MNI=
-github.com/hanyougame/glib v1.3.23 h1:oeXoWNgt9LDW9q+7f0tRXrePV5VhiJjcNszkAzZyPzs=
-github.com/hanyougame/glib v1.3.23/go.mod h1:D3ye5V7o6GgWeB95VZ+RQR3htRhFr+h0lIjyJpX7/I8=
 github.com/hashicorp/errwrap v1.0.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
 github.com/hashicorp/errwrap v1.1.0 h1:OxrOeh75EUXMY8TBjag2fzXGZ40LB6IKw45YeGUDY2I=
 github.com/hashicorp/errwrap v1.1.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
@@ -330,6 +328,8 @@ github.com/natefinch/lumberjack v2.0.0+incompatible h1:4QJd3OLAMgj7ph+yZTuX13Ld4
 github.com/natefinch/lumberjack v2.0.0+incompatible/go.mod h1:Wi9p2TTF5DG5oU+6YfsmYQpsTIOm0B1VNzQg9Mw6nPk=
 github.com/og-saas/proto v0.0.32-0.20260511101321-1c5916a5a044 h1:JaGOb9mcfqNHLHLo5NzNls3PeeR1tnZ+sbzYvwgslI8=
 github.com/og-saas/proto v0.0.32-0.20260511101321-1c5916a5a044/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
+github.com/og-saas/proto v0.0.46-0.20260725062208-dc1f4c115ea5 h1:8suB5jDW3WZXP9zh/wuGvxtxeTH1PkVeJnOFT8emO5k=
+github.com/og-saas/proto v0.0.46-0.20260725062208-dc1f4c115ea5/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
 github.com/onsi/ginkgo/v2 v2.13.0 h1:0jY9lJquiL8fcf3M4LAXN5aMlS/b2BV86HFFPCPMgE4=
 github.com/onsi/ginkgo/v2 v2.13.0/go.mod h1:TE309ZR8s5FsKKpuB1YAQYBzCaAfUgatB/xlT/ETL/o=
 github.com/onsi/gomega v1.29.0 h1:KIA/t2t5UBzoirT4H9tsML45GEbo3ouUnBHsCfD2tVg=
