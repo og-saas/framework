@@ -23,6 +23,43 @@ var (
 	TopicUserWithdrawCreateNotify = "user_withdraw_create_notify"
 	// TopicWithdrawOrderNotify 提现订单回调通知
 	TopicWithdrawOrderNotify = "withdraw_order_notify"
+	// TopicUserRiskMonitorNotify 用户行为风控监控通知
+	TopicUserRiskMonitorNotify = "user_risk_monitor_notify"
+	// TopicUserVipLevelChangeNotify VIP等级变化通知
+	TopicUserVipLevelChangeNotify = "user_vip_level_change_notify"
+	// TopicJackpotMatchRankNotify 锦标赛达成指定名次通知
+	TopicJackpotMatchRankNotify = "jackpot_match_rank_notify"
+	// TopicUserPageLoginNotify 登录指定页面通知
+	TopicUserPageLoginNotify = "user_page_login_notify"
+	// TopicUserActivityCompleteNotify 指定活动全部完成通知
+	TopicUserActivityCompleteNotify = "user_activity_complete_notify"
+	// TopicWebsocketOnlineNotify websocket上线通知
+	TopicWebsocketOnlineNotify = "websocket_online_notify"
+
+	// TopicSiteMsgVipNotifyOrdered VIP消息通知（含类型枚举区分升级/奖励创建/奖励发放） 有序消息
+	TopicSiteMsgVipNotifyOrdered = "site_msg_vip_notify_ordered"
+	// TopicSiteMsgActivityReward 活动奖励消息（奖励可领取/奖励发放成功）
+	TopicSiteMsgActivityReward = "site_msg_activity_reward"
+	// TopicSiteMsgActivityJackpot 活动Jackpot触发
+	TopicSiteMsgActivityJackpot = "site_msg_activity_jackpot"
+	// TopicSiteMsgActivitySchedule 活动定时调度（开始通知/结束前提醒）
+	TopicSiteMsgActivitySchedule = "site_msg_activity_schedule"
+	// TopicSiteMsgWithdrawAudit 提现审核结果通知
+	TopicSiteMsgWithdrawAudit = "site_msg_withdraw_audit"
+	// TopicSiteMsgRechargeFail 充值失败通知
+	TopicSiteMsgRechargeFail = "site_msg_recharge_fail"
+
+	// TopicUserJourneyActionNotify 用户旅程动作通知
+	TopicUserJourneyActionNotify = "user_journey_action_notify"
+	// TopicRewardUnclaimedNotify 奖励24小时未领取通知
+	TopicRewardUnclaimedNotify = "reward_unclaimed_notify"
+
+	// TopicUserBankruptNotify 用户破产事件
+	TopicUserBankruptNotify = "user_bankrupt_notify"
+	// TopicReportRecordNotify 上报记录
+	TopicReportRecordNotify = "report_record_notify"
+	// TopicUserCompleteInfoNotify 用户完善信息通知
+	TopicUserCompleteInfoNotify = "user_complete_info_notify"
 )
 
 func UpdateTopicPrefix(prefixes ...string) (prefix string) {
@@ -39,8 +76,25 @@ func UpdateTopicPrefix(prefixes ...string) (prefix string) {
 	TopicRechargeOrderNotify = prefix + TopicRechargeOrderNotify
 	TopicAgentGradeGrowthNotify = prefix + TopicAgentGradeGrowthNotify
 	TopicAgentBetRebatNotify = prefix + TopicAgentBetRebatNotify
+	TopicUserRegisterNotify = prefix + TopicUserRegisterNotify
 	TopicUserWithdrawCreateNotify = prefix + TopicUserWithdrawCreateNotify
 	TopicWithdrawOrderNotify = prefix + TopicWithdrawOrderNotify
+	TopicUserRiskMonitorNotify = prefix + TopicUserRiskMonitorNotify
+	TopicUserVipLevelChangeNotify = prefix + TopicUserVipLevelChangeNotify
+	TopicJackpotMatchRankNotify = prefix + TopicJackpotMatchRankNotify
+	TopicUserPageLoginNotify = prefix + TopicUserPageLoginNotify
+	TopicUserActivityCompleteNotify = prefix + TopicUserActivityCompleteNotify
+	TopicWebsocketOnlineNotify = prefix + TopicWebsocketOnlineNotify
+	TopicSiteMsgVipNotifyOrdered = prefix + TopicSiteMsgVipNotifyOrdered
+	TopicSiteMsgActivityReward = prefix + TopicSiteMsgActivityReward
+	TopicSiteMsgActivityJackpot = prefix + TopicSiteMsgActivityJackpot
+	TopicSiteMsgActivitySchedule = prefix + TopicSiteMsgActivitySchedule
+	TopicSiteMsgWithdrawAudit = prefix + TopicSiteMsgWithdrawAudit
+	TopicSiteMsgRechargeFail = prefix + TopicSiteMsgRechargeFail
+	TopicUserJourneyActionNotify = prefix + TopicUserJourneyActionNotify
+	TopicRewardUnclaimedNotify = prefix + TopicRewardUnclaimedNotify
+	TopicReportRecordNotify = prefix + TopicReportRecordNotify
+	TopicUserCompleteInfoNotify = prefix + TopicUserCompleteInfoNotify
 
 	return
 }

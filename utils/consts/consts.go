@@ -26,6 +26,22 @@ func (t StatusType) Bool() bool {
 	return t == StatusTypeEnable
 }
 
+// ActionType 用户旅程动作类型
+type JourneyActionType uint32
+
+const (
+	_                       JourneyActionType = iota
+	ActionTypePopup                           // 弹窗
+	ActionTypeToast                           // toast
+	ActionTypePush                            // push
+	ActionTypeStationLetter                   // 站内信
+	ActionTypeFloatIcon                       // 悬浮图标
+	ActionTypeTips                            // tips
+	ActionTypeBanner                          // banner
+	ActionTypeActivity                        // 活动
+	ActionTypeReward                          // 奖励
+)
+
 const DefaultLanguage = "en-US"
 
 // TransferType 转入类型
@@ -97,6 +113,7 @@ const (
 	TransferIn                   OrderPrefix = "TI"   // 转入操作【中台资金转入用户钱包】
 	TransferOut                  OrderPrefix = "TO"   // 转出操作【用户资金转入中台】
 	OrderPrefixActivity          OrderPrefix = "AO"   // 活动奖励订单
+	OrderPrefixJourney           OrderPrefix = "JY"   // 用户 Journey 奖励订单
 )
 const (
 	// OpenTelemetry 标准字段名（推荐）
@@ -232,9 +249,26 @@ func ToThirdAuthTypeString(t comV1.ThirdAccountType) ThirdPartyOauthType {
 	}
 }
 
+// UserBindType 用户绑定类型
+type UserBindType int
+
+const (
+	UserBindTypePhone    UserBindType = 1 // 绑定手机号
+	UserBindTypeEmail    UserBindType = 2 // 绑定邮箱
+	UserBindTypeWithdraw UserBindType = 3 // 绑定提现方式
+)
+
 // RechargeTargetType 充值目标类型
 type RechargeTargetType int
 
 const (
 	RechargeTargetTypeActivity RechargeTargetType = iota + 1 // 充值目标类型活动
+)
+
+type ReportEventType int
+
+const (
+	ReportEventTypePvApp    ReportEventType = 1 // 应用访问量
+	ReportEventTypePvHome   ReportEventType = 2 // 首页访问量
+	ReportEventTypeDownload ReportEventType = 3 // APP下载量
 )

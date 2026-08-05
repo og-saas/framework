@@ -26,6 +26,8 @@ const (
 	SiteConfigCategoryPcShowType          SiteConfigCategory = 19 // PC展示样式
 	SiteConfigCategoryCountryAccessLimit  SiteConfigCategory = 20 // 区域限制
 	SiteConfigCategoryTopDownloadBar      SiteConfigCategory = 21 // 顶部下载条设置
+	SiteConfigCategoryMarqueeIcon         SiteConfigCategory = 23 // 跑马灯图标
+	SiteConfigCategoryAppConfig           SiteConfigCategory = 24 // APP配置
 
 )
 
@@ -54,6 +56,7 @@ const (
 	SiteConfigKeyGameCalcBetAmount          SiteConfigKey = "game_calc_bet_amount"          // 游戏投注金额计算方式
 	SiteConfigKeyBaseInfo                   SiteConfigKey = "base_info"                     // 站点基础信息配置
 	SiteConfigKeySiteLogo                   SiteConfigKey = "site_logo"                     // 站点logo
+	SiteConfigKeySiteLCurrencyConfig        SiteConfigKey = "currency_config"               // 币种配置
 	SiteConfigKeyFooterInfo                 SiteConfigKey = "footer_info"                   // 页脚配置
 	SiteConfigKeyDownloadAPP                SiteConfigKey = "download_app"                  // 下载app配置
 	SiteConfigKeyAPPInstall                 SiteConfigKey = "app_install"                   // APP安装入口
@@ -89,6 +92,10 @@ const (
 	SiteConfigKeyMaintenance                SiteConfigKey = "site_maintenance"              // 站点维护设置
 	SiteConfigKeyTopDownloadBar             SiteConfigKey = "top_download_bar"              // 顶部下载条设置
 	SiteConfigKeySidebarVisualMenu          SiteConfigKey = "sidebar_visual_menu"           // 侧边栏可视化菜单
+	SiteConfigKeySAppConfig                 SiteConfigKey = "app_config"                    // app打包配置
+	SiteConfigKeyServerUrl                  SiteConfigKey = "server_url"                    // app api服务地址
+	SiteConfigKeyMarqueeIcon                SiteConfigKey = "marquee_config"                // 跑马灯图标
+	SiteConfigKeyAppReportConfig            SiteConfigKey = "app_report_config"             // app上报配置
 )
 
 func (k SiteConfigKey) String() string {
@@ -98,3 +105,13 @@ func (k SiteConfigKey) String() string {
 func (c SiteConfigCategory) Int32() int32 {
 	return int32(c)
 }
+
+// MemberScope 侧边栏菜单会员可见范围
+type MemberScope int
+
+const (
+	MemberScopeAll          MemberScope = 1 // 全部会员
+	MemberScopeCustomMember MemberScope = 2 // 自定义会员
+	MemberScopeVipLevel     MemberScope = 3 // VIP等级
+	MemberScopeChannel      MemberScope = 4 // 指定渠道
+)

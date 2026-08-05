@@ -27,8 +27,9 @@ const (
 	UserAgent       Metadata = "User-Agent"       // 浏览器用户代理
 	DefaultCurrency Metadata = "default_currency" // 钱包默认币种
 	DeviceEndpoint  Metadata = "Device-Endpoint"  // 设备终端类型 APP H5 PC
-	Host            Metadata = "Host"             // 域名
 	DataEncrypt     Metadata = "Data-Encrypt"     // 数据加密开关
+	TimeZone        Metadata = "Time-Zone"        // 时区
+	Path            Metadata = "Path"             // 请求路径
 )
 
 // RpcMetadata 同步到下游服务的Metadata
@@ -48,6 +49,7 @@ var RpcMetadata = []Metadata{
 	UserAgent,
 	DefaultCurrency,
 	DeviceEndpoint,
+	TimeZone,
 }
 
 // GetKey 获取元数据key

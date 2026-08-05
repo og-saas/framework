@@ -2,7 +2,9 @@ package rocketmqx
 
 import (
 	"context"
+	"fmt"
 	"os"
+	"runtime/debug"
 	"strings"
 	"time"
 
@@ -19,6 +21,8 @@ const (
 	noMessageSleepDuration = 200 * time.Millisecond
 	// ACK 操作的超时时间
 	ackTimeout = 5 * time.Second
+	// 消费 goroutine panic 恢复后的重启延迟
+	pullConsumerRestartDelay = 3 * time.Second
 	// 表达式类型：消息未找到
 	messageNotFoundCode = v2.Code_MESSAGE_NOT_FOUND
 )
@@ -93,7 +97,8 @@ func (r *RocketMqx) NewPullConsumer(handler config2.PullMessageHandler) (simpleC
 	}
 
 	// 将消息处理逻辑提取到单独的函数中
-	go r.processMessages(simpleConsumer, handler, r.getTopicNames())
+	// 启动消费 goroutine，panic 后自动恢复并重启，避免 topic 静默停止消费（P0-18）
+	go r.runPullConsumer(simpleConsumer, handler, r.getTopicNames())
 
 	return
 }
@@ -158,10 +163,12 @@ func (r *RocketMqx) processMessages(consumer rmqClient.SimpleConsumer, handler c
 			time.Duration(r.config.ConsumerConfig.InvisibleDuration)*time.Second,
 		)
 
-		res, err := handler(handlerCtx, mvs...)
+		// handler panic 不应终止消费 goroutine，safeHandle 会 recover 并返回 (false, err)，
+		// 消息不会被 ACK，broker 在 InvisibleDuration 后自动重投（P0-18）
+		res, err := r.safeHandle(handlerCtx, handler, topics, consumer.GetGroupName(), mvs...)
 		handlerCancel()
 
-		// 4. ACK确认
+		// 5. ACK确认
 		if res && err == nil {
 			// 确认ACK - 5秒超时
 			ackCtx, ackCancel := context.WithTimeout(context.Background(), ackTimeout)
@@ -184,6 +191,36 @@ func (r *RocketMqx) getTopicNames() string {
 		names = append(names, tr.Topic)
 	}
 	return strings.Join(names, ",")
+}
+
+// runPullConsumer 运行拉取消费循环，panic 时自动恢复并重启 goroutine，避免 topic 静默停止消费（P0-18）。
+func (r *RocketMqx) runPullConsumer(consumer rmqClient.SimpleConsumer, handler config2.PullMessageHandler, topics string) {
+	for {
+		func() {
+			defer func() {
+				if e := recover(); e != nil {
+					logx.Errorf("Pull consumer panic recovered, topics: %s, restarting after %s, error: %v\n%s",
+						topics, pullConsumerRestartDelay, e, string(debug.Stack()))
+					time.Sleep(pullConsumerRestartDelay)
+				}
+			}()
+			r.processMessages(consumer, handler, topics)
+		}()
+	}
+}
+
+// safeHandle 包装 handler 调用，recover panic 后返回 (false, err)。
+// 消息不会被 ACK，broker 在 InvisibleDuration 后自动重投，触发正常重试机制（P0-18）。
+func (r *RocketMqx) safeHandle(ctx context.Context, handler config2.PullMessageHandler, topics, group string, messages ...*rmqClient.MessageView) (res bool, err error) {
+	defer func() {
+		if e := recover(); e != nil {
+			err = fmt.Errorf("handler panic recovered, topics: %s, group: %s: %v", topics, group, e)
+			res = false
+			logx.Errorf("%s\n%s", err.Error(), string(debug.Stack()))
+		}
+	}()
+	res, err = handler(ctx, messages...)
+	return
 }
 
 // buildSubscriptionRelations 构建订阅关系映射

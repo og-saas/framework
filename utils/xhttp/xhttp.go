@@ -9,6 +9,8 @@ import (
 	"github.com/og-saas/framework/metadata"
 	"github.com/og-saas/framework/utils/sign"
 	"github.com/og-saas/framework/utils/xerr"
+	v1 "github.com/og-saas/proto/pb/user/v1"
+	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/rest/httpx"
 	"github.com/zeromicro/x/errors"
 	"go.opentelemetry.io/otel/trace"
@@ -23,11 +25,12 @@ const (
 )
 
 type BaseResponse[T any] struct {
-	Code    int    `json:"code" xml:"code"`
-	Message string `json:"message" xml:"message"`
-	Data    T      `json:"data,omitempty" xml:"data,omitempty"`
-	TraceID string `json:"trace_id,omitempty" xml:"trace_id,omitempty"`
-	Sign    string `json:"sign,omitempty" xml:"sign,omitempty"`
+	Code      int            `json:"code" xml:"code"`
+	CodeGroup xerr.CodeGroup `json:"code_group,omitempty" xml:"code_group,omitempty"`
+	Message   string         `json:"message" xml:"message"`
+	Data      T              `json:"data,omitempty" xml:"data,omitempty"`
+	TraceID   string         `json:"trace_id,omitempty" xml:"trace_id,omitempty"`
+	Sign      string         `json:"sign,omitempty" xml:"sign,omitempty"`
 }
 
 // JsonBaseResponseCtx writes v into w with appropriate http status code.
@@ -37,6 +40,14 @@ func JsonBaseResponseCtx(ctx context.Context, w http.ResponseWriter, v any) {
 	if ok := metadata.DataEncrypt.GetBool(ctx); ok {
 		resp.Sign = sign.SignParams(resp.TraceID, resp.Data)
 		resp.Data = sign.AesEncrypt(resp.TraceID, resp.Data)
+	}
+
+	path := metadata.Path.GetString(ctx)
+	// 使用error 防止关闭info后看不见
+	if resp.Code != BusinessCodeOK {
+		logx.WithContext(ctx).Errorf("JsonBaseResponseCtx Code: %d, path:%s, response: %+v", resp.Code, path, resp)
+	} else {
+		logx.WithContext(ctx).Errorf("JsonBaseResponseCtx OK path:%s", path)
 	}
 
 	httpx.OkJsonCtx(ctx, w, resp)
@@ -60,6 +71,13 @@ func wrapBaseResponse(ctx context.Context, v any) BaseResponse[any] {
 		if st, ok := status.FromError(data); ok {
 			resp.Code = int(st.Code())
 			resp.Message = st.Message()
+			if details := st.Details(); len(details) > 0 {
+				if msg, ok1 := details[0].(*v1.StringList); ok1 {
+					for _, arg := range msg.Items {
+						formatArgs = append(formatArgs, arg)
+					}
+				}
+			}
 		} else {
 			resp.Code = http.StatusInternalServerError
 			resp.Message = data.Error()
@@ -74,6 +92,10 @@ func wrapBaseResponse(ctx context.Context, v any) BaseResponse[any] {
 		resp.Message = xerr.TransErrMsg(resp.Code, resp.Message, metadata.Language.GetString(ctx))
 		if len(formatArgs) > 0 {
 			resp.Message = fmt.Sprintf(resp.Message, formatArgs...)
+		}
+		resp.CodeGroup = xerr.CodeGroupToast
+		if group, ok := xerr.ErrCodeGroupMap[xerr.ErrCode(resp.Code)]; ok {
+			resp.CodeGroup = group
 		}
 	}
 

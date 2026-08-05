@@ -20,6 +20,8 @@ func RewardSubCategoryToTransactionSubCategory(subCategory commonv1.RewardSubCat
 		return commonv1.TransactionSubCategory_ACTIVITY_CHECKIN
 	case commonv1.RewardSubCategory_REWARD_SUB_CASHBACK_ONCE, commonv1.RewardSubCategory_REWARD_SUB_CASHBACK_CYCLE:
 		return commonv1.TransactionSubCategory_ACTIVITY_CASHBACK
+	case commonv1.RewardSubCategory_REWARD_SUB_LUCKY_WHEEL:
+		return commonv1.TransactionSubCategory_ACTIVITY_LUCKY_WHEEL
 	case commonv1.RewardSubCategory_REWARD_SUB_AGENT_INVITE:
 		return commonv1.TransactionSubCategory_REBATE_RECEIVE
 	case commonv1.RewardSubCategory_REWARD_SUB_AGENT_FEE_DIRECT, commonv1.RewardSubCategory_REWARD_SUB_AGENT_FEE_INDIRECT:
@@ -42,6 +44,8 @@ func RewardSubCategoryToTransactionSubCategory(subCategory commonv1.RewardSubCat
 		return commonv1.TransactionSubCategory_VIP_TASK_RECHARGE_DAY
 	case commonv1.RewardSubCategory_REWARD_SUB_VIP_TASK_WEEKLY_RECHARGE:
 		return commonv1.TransactionSubCategory_VIP_TASK_RECHARGE_WEEK
+	case commonv1.RewardSubCategory_REWARD_CATEGORY_SUB_JOURNEY:
+		return commonv1.TransactionSubCategory_JOURNEY_REWARD
 	default:
 		return commonv1.TransactionSubCategory_SUB_UNSPECIFIED
 	}
@@ -67,7 +71,8 @@ func TransactionSubCategoryToTransactionCategory(subCategory commonv1.Transactio
 		commonv1.TransactionSubCategory_ACTIVITY_TOTAL_RECHARGE,
 		commonv1.TransactionSubCategory_ACTIVITY_FIRST_RECHARGE,
 		commonv1.TransactionSubCategory_ACTIVITY_CHECKIN,
-		commonv1.TransactionSubCategory_ACTIVITY_CASHBACK:
+		commonv1.TransactionSubCategory_ACTIVITY_CASHBACK,
+		commonv1.TransactionSubCategory_ACTIVITY_LUCKY_WHEEL:
 		return commonv1.TransactionCategory_ACTIVITY
 	case commonv1.TransactionSubCategory_REBATE_SEND,
 		commonv1.TransactionSubCategory_REBATE_RECEIVE:
@@ -86,6 +91,8 @@ func TransactionSubCategoryToTransactionCategory(subCategory commonv1.Transactio
 		commonv1.TransactionSubCategory_VIP_REWARD_WEEKLY_SALARY,
 		commonv1.TransactionSubCategory_VIP_REWARD_MONTHLY_SALARY:
 		return commonv1.TransactionCategory_VIP
+	case commonv1.TransactionSubCategory_JOURNEY_REWARD:
+		return commonv1.TransactionCategory_JOURNEY
 	default:
 		return commonv1.TransactionCategory_UNSPECIFIED
 	}

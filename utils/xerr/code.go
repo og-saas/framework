@@ -1,5 +1,7 @@
 package xerr
 
+import "google.golang.org/grpc/codes"
+
 //go:generate stringer -type=ErrCode -output=code_string.go --linecomment
 type ErrCode uint32
 
@@ -83,6 +85,8 @@ const (
 	ErrCodeCaptchaDayLimit ErrCode = 10029 // CaptchaDayLimit
 	// ErrCodeVerifyFailWarning 校验失败预警 (密码/验证码错误)
 	ErrCodeVerifyFailWarning ErrCode = 10030 // VerifyFailWarning
+	// ErrCodeRepeatCompleteError 补充全错误（信息已存在，不允许重复补全信息）
+	ErrCodeRepeatCompleteError ErrCode = 10031 // RepeatCompleteError
 )
 
 // 游戏相关
@@ -93,6 +97,8 @@ const (
 	ErrCodeGameEnterBalanceNotEnough ErrCode = 20002 // ErrCodeGameEnterLogExists
 	// ErrCodeGamePlatformUnreachable 游戏中台请求未到达（被拦截/网络不可达）
 	ErrCodeGamePlatformUnreachable ErrCode = 20003 // GamePlatformUnreachable
+	// ErrCodeGamePlatformUnavailable 游戏服务暂不可用，请联系管理员
+	ErrCodeGamePlatformUnavailable ErrCode = 20004
 )
 
 // 财务相关
@@ -157,6 +163,8 @@ const (
 	ErrCodeClaimRewardDeviceLimit ErrCode = 60013 // ErrCodeClaimRewardDeviceLimit
 	// ErrCodeClaimRewardEndpointLimit 领取终端限制
 	ErrCodeClaimRewardEndpointLimit ErrCode = 60014 // ErrCodeClaimRewardEndpointLimit
+	// ErrCodeActivityConditionNotMet 用户不符合参与活动条件
+	ErrCodeActivityConditionNotMet codes.Code = 60015 // ErrCodeActivityConditionNotMet
 )
 
 func (code ErrCode) Int() int {

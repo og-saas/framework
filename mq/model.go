@@ -148,6 +148,132 @@ type WithdrawOrderCreateNotify struct {
 	ShowStatus     int32  `json:"show_status,omitempty"`     // C端展示状态 1-处理中 2-已到账 3-失败 4-已取消
 }
 
+// UserRiskMonitorNotify 用户行为风控监控通知
+type UserRiskMonitorNotify struct {
+	SiteID     int64  `json:"site_id"`     // 站点ID
+	UserID     int64  `json:"user_id"`     // 用户ID
+	Behavior   int32  `json:"behavior"`    // 风控行为 1=注册 2=登录 3=提现
+	IP         string `json:"ip"`          // 用户IP
+	DeviceID   string `json:"device_id"`   // 设备ID
+	Username   string `json:"username"`    // 用户名
+	BehaviorAt int64  `json:"behavior_at"` // 行为发生时间
+}
+
+// UserVipLevelChangeNotify VIP等级变化通知
+type UserVipLevelChangeNotify struct {
+	UserId   int64 `json:"user_id,omitempty"`   // 用户ID
+	SiteId   int64 `json:"site_id,omitempty"`   // 站点ID
+	VipLevel int32 `json:"vip_level,omitempty"` // 变化后VIP等级
+	EventAt  int64 `json:"event_at,omitempty"`  // 事件时间
+}
+
+// JackpotMatchRankNotify 锦标赛达成指定名次通知
+type JackpotMatchRankNotify struct {
+	UserId     int64 `json:"user_id,omitempty"`     // 用户ID
+	SiteId     int64 `json:"site_id,omitempty"`     // 站点ID
+	ActivityId int64 `json:"activity_id,omitempty"` // 活动id
+	Rank       int32 `json:"rank,omitempty"`        // 名次
+	EventAt    int64 `json:"event_at,omitempty"`    // 事件时间
+}
+
+// UserPageLoginNotify 登录指定页面通知
+type UserPageLoginNotify struct {
+	UserId   int64  `json:"user_id,omitempty"`   // 用户ID
+	SiteId   int64  `json:"site_id,omitempty"`   // 站点ID
+	PageUrl  string `json:"page_url,omitempty"`  // 页面URL
+	DeviceId string `json:"device_id,omitempty"` // 设备ID
+	EventAt  int64  `json:"event_at,omitempty"`  // 事件时间
+}
+
+// UserActivityCompleteNotify 指定活动全部完成通知
+type UserActivityCompleteNotify struct {
+	UserId     int64 `json:"user_id,omitempty"`     // 用户ID
+	SiteId     int64 `json:"site_id,omitempty"`     // 站点ID
+	ActivityId int64 `json:"activity_id,omitempty"` // 活动ID
+	EventAt    int64 `json:"event_at,omitempty"`    // 事件时间
+}
+
+// UserBankruptNotify  用户破产事件通知
+type UserBankruptNotify struct {
+	UserId  int64 `json:"user_id,omitempty"`  // 用户ID
+	SiteId  int64 `json:"site_id,omitempty"`  // 站点ID
+	EventAt int64 `json:"event_at,omitempty"` // 事件时间
+}
+
+// SiteMsgVipNotify VIP消息通知
+type SiteMsgVipNotify struct {
+	UserId       int64   `json:"user_id,omitempty"`       // 用户ID
+	SiteId       int64   `json:"site_id,omitempty"`       // 站点ID
+	NotifyType   int32   `json:"notify_type,omitempty"`   // 通知类型 1=升级 2=奖励创建 3=奖励发放
+	VipLevel     int32   `json:"vip_level,omitempty"`     // 当前/新VIP等级
+	OldVipLevel  int32   `json:"old_vip_level,omitempty"` // 原VIP等级（升级时）
+	RewardIds    []int64 `json:"reward_ids,omitempty"`    // 奖励ID列表
+	RewardAmount string  `json:"reward_amount,omitempty"` // 奖励金额
+	CurrencyCode string  `json:"currency_code,omitempty"` // 币种
+	TriggerTime  int64   `json:"trigger_time,omitempty"`  // 触发时间
+	ExpireTime   int64   `json:"expire_time,omitempty"`   // 过期时间 奖励可领取场景
+}
+
+// SiteMsgActivityRewardNotify 活动奖励消息通知
+type SiteMsgActivityRewardNotify struct {
+	UserId       int64   `json:"user_id,omitempty"`       // 用户ID
+	SiteId       int64   `json:"site_id,omitempty"`       // 站点ID
+	ActivityId   int64   `json:"activity_id,omitempty"`   // 活动ID
+	NotifyType   int32   `json:"notify_type,omitempty"`   // 通知类型 1=可领取 2=发放成功
+	RewardIds    []int64 `json:"reward_ids,omitempty"`    // 奖励ID列表
+	RewardAmount string  `json:"reward_amount,omitempty"` // 奖励金额
+	CurrencyCode string  `json:"currency_code,omitempty"` // 币种
+	TriggerTime  int64   `json:"trigger_time,omitempty"`  // 触发时间
+	ExpireTime   int64   `json:"expire_time,omitempty"`   // 过期时间 奖励可领取场景
+}
+
+// JackpotActivityScoreNotify 活动Jackpot触发通知
+type JackpotActivityScoreNotify struct {
+	SiteId      int64 `json:"site_id,omitempty"`      // 站点ID
+	ActivityId  int64 `json:"activity_id,omitempty"`  // 活动ID
+	CycleNum    int32 `json:"cycle_num,omitempty"`    // 周期数
+	UserId      int64 `json:"user_id,omitempty"`      // 用户ID
+	StartAt     int64 `json:"start_at,omitempty"`     // 开始时间
+	EndAt       int64 `json:"end_at,omitempty"`       // 结束时间
+	Mode        int32 `json:"mode,omitempty"`         // 模式 1=投注 2=充值 3=投注+充值
+	Score       int32 `json:"score,omitempty"`        // 积分
+	TriggerTime int64 `json:"trigger_time,omitempty"` // 触发时间
+}
+
+// SiteMsgActivityScheduleNotify 活动定时调度通知（开始通知/结束前提醒）
+type SiteMsgActivityScheduleNotify struct {
+	ActivityId int64 `json:"activity_id,omitempty"` // 活动ID
+	SiteId     int64 `json:"site_id,omitempty"`     // 站点ID
+	NotifyType int32 `json:"notify_type,omitempty"` // 通知类型 1=开始 2=结束前提醒
+	StartTime  int64 `json:"start_time,omitempty"`  // 活动开始时间
+	EndTime    int64 `json:"end_time,omitempty"`    // 活动结束时间
+}
+
+// WithdrawAuditNotify 提现审核结果通知
+type WithdrawAuditNotify struct {
+	OrderId      int64  `json:"order_id,omitempty"`      // 订单ID
+	UserId       int64  `json:"user_id,omitempty"`       // 用户ID
+	SiteId       int64  `json:"site_id,omitempty"`       // 站点ID
+	OrderNo      string `json:"order_no,omitempty"`      // 订单编号
+	AuditStatus  int32  `json:"audit_status,omitempty"`  // 审核状态 1=通过 2=拒绝
+	Amount       string `json:"amount,omitempty"`        // 提现金额
+	CurrencyCode string `json:"currency_code,omitempty"` // 币种
+	FailReason   string `json:"fail_reason,omitempty"`   // 拒绝原因
+	TriggerTime  int64  `json:"trigger_time,omitempty"`  // 触发时间
+}
+
+// SiteMsgRechargeFailNotify 充值失败通知
+type SiteMsgRechargeFailNotify struct {
+	OrderId      int64  `json:"order_id,omitempty"`      // 订单ID
+	UserId       int64  `json:"user_id,omitempty"`       // 用户ID
+	SiteId       int64  `json:"site_id,omitempty"`       // 站点ID
+	OrderNo      string `json:"order_no,omitempty"`      // 订单编号
+	Amount       string `json:"amount,omitempty"`        // 充值金额
+	CurrencyCode string `json:"currency_code,omitempty"` // 币种
+	FailReason   string `json:"fail_reason,omitempty"`   // 失败原因
+	TriggerTime  int64  `json:"trigger_time,omitempty"`  // 触发时间
+}
+
 // WithdrawOrderNotify 提现订单回调通知（出款成功/失败）
 type WithdrawOrderNotify struct {
 	UserId                int64          `json:"user_id,omitempty"`                  // 用户 ID
@@ -175,4 +301,68 @@ type WithdrawOrderNotify struct {
 	AccountId             int64          `json:"account_id,omitempty"`               // 提现账号ID
 	WithdrawPtbAmount     consts.PtbCoin `json:"withdraw_ptb_amount,omitempty"`      // 提现金额平台币(提现金额换算出来的)
 	ConvertRatio          string         `json:"convert_ratio,omitempty"`            // 转换比例
+}
+
+// UserJourneyActionNotify 用户旅程动作通知
+type UserJourneyActionNotify struct {
+	SiteId     int64                    `json:"site_id,omitempty"`     // 站点ID
+	UserId     int64                    `json:"user_id,omitempty"`     // 用户ID
+	JourneyId  int64                    `json:"journey_id,omitempty"`  // 旅程id
+	ActionType consts.JourneyActionType `json:"action_type,omitempty"` // 动作类型 1弹窗,2toast,3push,4站内信,5悬浮图标,6tips,7banner,8活动,9奖励
+	ContentId  int64                    `json:"content_id,omitempty"`  // 对应类型的表主键
+	Params     any                      `json:"params,omitempty"`      // 额外参数配置 case ActionType=9  JourneyRewardParams
+	StartTime  int64                    `json:"start_time,omitempty"`  // 开始时间
+	EndTime    int64                    `json:"end_time,omitempty"`    // 结束时间
+	Step       int64                    `json:"step,omitempty"`        // 第几阶段
+}
+
+// WebsocketOnlineNotify websocket上线通知
+type WebsocketOnlineNotify struct {
+	UserId   int64  `json:"user_id,omitempty"`   // 用户ID
+	SiteId   int64  `json:"site_id,omitempty"`   // 站点ID
+	DeviceId string `json:"device_id,omitempty"` // 设备ID
+	Endpoint string `json:"endpoint,omitempty"`  // 终端类型 APP H5 PC
+	EventAt  int64  `json:"event_at,omitempty"`  // 事件时间
+}
+
+// ReportRecordNotify 上报记录
+type ReportRecordNotify struct {
+	SiteId         int64               `json:"site_id,omitempty"`                             // 站点ID
+	ChannelId      int64               `json:"channel_id,omitempty"`                          // 渠道ID
+	Domain         string              `json:"domain,omitempty"`                              // 域名
+	Ip             string              `json:"ip,omitempty"`                                  // IP地址
+	DeviceId       string              `json:"device_id,omitempty"`                           // 设备ID
+	DeviceType     consts.DeviceType   `gorm:"column:device_type" json:"device_type"`         // 设备类型
+	DeviceEndpoint consts.EndpointType `gorm:"column:device_endpoint" json:"device_endpoint"` // 终端信息
+	DeviceOs       string              `gorm:"column:device_os" json:"device_os"`             // 设备操作系统
+	AppVersion     string              `json:"app_version,omitempty"`                         // 版本号
+	Timezone       string              `json:"timezone,omitempty"`                            // 时区
+	Language       string              `json:"language,omitempty"`                            // 语言
+	Events         []*ReportEvent      `json:"events"`                                        // 事件列表
+}
+
+type ReportEvent struct {
+	Type    consts.ReportEventType `json:"type"`    // 事件类型: 1-应用访问量，2-首页访问量，3-APP下载量
+	Content string                 `json:"content"` // 事件内容（可以是数量、结构化的对象数据）
+	Time    int64                  `json:"time"`    // 事件时间（时间戳，秒级）
+}
+
+// RewardUnclaimedNotify 奖励未领取通知
+type RewardUnclaimedNotify struct {
+	SiteId      int64 `json:"site_id,omitempty"`      // 站点ID
+	UserId      int64 `json:"user_id,omitempty"`      // 用户ID
+	RewardId    int64 `json:"reward_id,omitempty"`    // 奖励ID
+	Category    int32 `json:"category,omitempty"`     // 分类: 1-活动奖励, 2-代理奖励, 3-VIP奖励
+	CategorySub int32 `json:"category_sub,omitempty"` // 子类: 101-注册活动奖励, 102-首充活动奖励, 103-累充活动奖励, 104-单充活动奖励, 201-代理邀请奖励, 202-代理佣金直属, 203-代理佣金非直属, 301-VIP升级礼金, 302-VIP周度俸禄, 303-VIP月度俸禄, 304-VIP流水返利, 305-VIP亏损返还, 306-VIP救济金, 307-VIP每日打码任务, 308-VIP每周打码任务, 309-VIP每日充值任务, 310-VIP每周充值任务, 401-充值红利
+	ExpireAt    int64 `json:"expire_at,omitempty"`    // 过期时间
+	CreatedAt   int64 `json:"created_at,omitempty"`   // 创建时间
+}
+
+// UserCompleteInfoNotify SaaS用户完善信息通知
+type UserCompleteInfoNotify struct {
+	SiteId    int64               `json:"site_id,omitempty"`    // 站点ID
+	UserId    int64               `json:"user_id,omitempty"`    // 用户ID
+	BindType  consts.UserBindType `json:"bind_type,omitempty"`  // 绑定类型 1=绑定手机号 2=绑定邮箱 3=绑定提现方式
+	BindValue string              `json:"bind_value,omitempty"` // 绑定内容（手机号/邮箱/提现方式）
+	EventAt   int64               `json:"event_at,omitempty"`   // 事件时间
 }

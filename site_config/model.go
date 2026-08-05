@@ -1,6 +1,7 @@
 package site_config
 
 import (
+	"github.com/og-saas/framework/utils"
 	"github.com/og-saas/framework/utils/consts"
 	commonv1 "github.com/og-saas/proto/pb/common/v1"
 	"github.com/shopspring/decimal"
@@ -53,7 +54,8 @@ type VipEndpointCustomerService struct {
 	Link              string                  `json:"link"`                    // 跳转链接 (废弃)
 	Names             []*LanguageContent      `json:"names"`                   // 名称列表 (废弃)
 	LinkType          int                     `json:"link_type"`               // 链接类型 (废弃)
-	VipLevels         []int32                 `json:"vip_level"`               // vip等级
+	VipLevel          int32                   `json:"vip_level"`               // vip等级
+	VipLevels         []int32                 `json:"vip_levels"`              // vip等级
 	CustomerServiceID int64                   `json:"customer_service,string"` // 客服ID
 	ShowSide          []commonv1.EndpointType `json:"show_side"`               // 展示终端
 }
@@ -124,18 +126,19 @@ type DownGuide struct {
 }
 
 type APPInstall struct {
-	DefaultLanguage string             `json:"default_language"`
-	Status          consts.StatusType  `json:"status"`           // 状态 1-开启 2-关闭
-	Name            []*LanguageContent `json:"name"`             // 标题
-	Remark          []*LanguageContent `json:"remark"`           // 描述
-	PwaName         string             `json:"pwa_name"`         // 应用名称
-	PwaShortName    string             `json:"pwa_short_name"`   // 应用短名称
-	StartURL        string             `json:"start_url"`        // 启动地址
-	Display         string             `json:"display"`          // 显示模式
-	ThemeColor      string             `json:"theme_color"`      // 主题色
-	BackgroundColor string             `json:"background_color"` // 背景色
-	Icons           *AppIconMap        `json:"icons"`            // PWA icon
-	DownGuide       *DownGuide         `json:"down_guide"`       // 下载引导
+	DefaultLanguage   string             `json:"default_language"`
+	Status            consts.StatusType  `json:"status"`              // 状态 1-开启 2-关闭
+	Name              []*LanguageContent `json:"name"`                // 标题
+	Remark            []*LanguageContent `json:"remark"`              // 描述
+	PwaName           string             `json:"pwa_name"`            // 应用名称
+	PwaShortName      string             `json:"pwa_short_name"`      // 应用短名称
+	StartURL          string             `json:"start_url"`           // 启动地址
+	Display           string             `json:"display"`             // 显示模式
+	ThemeColor        string             `json:"theme_color"`         // 主题色
+	BackgroundColor   string             `json:"background_color"`    // 背景色
+	Icons             *AppIconMap        `json:"icons"`               // PWA icon
+	DownGuide         *DownGuide         `json:"down_guide"`          // 下载引导
+	AutoInstallWindow consts.StatusType  `json:"auto_install_window"` // 自动打开安装窗口: 1-打开，2-关闭
 }
 
 // SidebarVisualMenu 侧边栏可视化配置
@@ -144,11 +147,13 @@ type SidebarVisualMenu struct {
 	Type             int                     `json:"type"`              // 类型：1-链接 2-组件 3-分组
 	TitlesLang       []*LanguageContent      `json:"titles_lang"`       // 多语言标题
 	Icon             string                  `json:"icon"`              // 图标
+	SelectedIcon     string                  `json:"selected_icon"`     // 选中图标
 	LoginStatus      []int                   `json:"login_status"`      // 登录状态：1-登录前 2-登录后
 	EndpointTypes    []commonv1.EndpointType `json:"endpoint_types"`    // 终端：1-h5 2-app 3-pc
 	VipLevels        []int32                 `json:"vip_levels"`        // VIP等级限制
 	UserIds          []int64                 `json:"user_ids"`          // 用户ID限制
 	ChannelIds       []int64                 `json:"channel_ids"`       // 渠道ID限制
+	Consignee        MemberScope             `json:"consignee"`         // 会员可见范围：1-全部会员 2-自定义会员 3-VIP等级 4-指定渠道
 	Link             *SidebarLink            `json:"link"`              // 链接信息
 	Component        *SidebarComponent       `json:"component"`         // 组件信息
 	InteractionTypes []int                   `json:"interaction_types"` // 交互类型：1-点击 2-悬浮
@@ -165,4 +170,34 @@ type SidebarComponent struct {
 	ComponentType int                `json:"component_type"` // 组件类型： 1-个人中心 2-广告
 	TipsLang      []*LanguageContent `json:"tips_lang"`      // 多语言提示语
 	Image         string             `json:"image"`          // 图片
+	ImageLang     []*LanguageContent `json:"image_lang"`     // 多语言图片
+}
+
+type MarqueeIcon struct {
+	H5Icon  string `json:"h5_icon"`  // h5端图标
+	PcIcon  string `json:"pc_icon"`  // pc端图标
+	AppIcon string `json:"app_icon"` // app端图标
+}
+
+// 0: 无符号位置，1: 左侧，2: 右侧
+type SymbolPosition struct {
+	Valid    int32 `json:"valid,default=1"`    // 法币
+	Number   int32 `json:"number,default=1"`   // 数字币
+	Platform int32 `json:"platform,default=1"` // 平台币
+}
+
+func GetSymbolPosition(position SymbolPosition, currencyType commonv1.CurrencyType) int32 {
+	// 0: 无符号位置，1: 左侧，2: 右侧
+	left := int32(1)
+	right := int32(2)
+	switch currencyType {
+	case commonv1.CurrencyType_CURRENCY_TYPE_VALID:
+		return utils.Ternary(position.Valid != 0, position.Valid, left)
+	case commonv1.CurrencyType_CURRENCY_TYPE_NUMBER:
+		return utils.Ternary(position.Number != 0, position.Number, right)
+	case commonv1.CurrencyType_CURRENCY_TYPE_PLATFORM:
+		return utils.Ternary(position.Platform != 0, position.Platform, left)
+	default:
+		return left
+	}
 }

@@ -136,6 +136,22 @@ func RandomDecimal(min, max decimal.Decimal) (decimal.Decimal, error) {
 	return decimal.NewFromInt(valCents).Div(hundred), nil
 }
 
+// ClampTimeRange 限制时间范围不超过指定天数
+func ClampTimeRange(startAt, endAt *int64, maxDays int64) {
+	now := time.Now().Unix()
+	maxStartAt := now - maxDays*24*60*60
+
+	if *endAt == 0 || *endAt > now {
+		*endAt = now
+	}
+	if *startAt == 0 || *startAt < maxStartAt {
+		*startAt = maxStartAt
+	}
+	if *startAt > *endAt {
+		*startAt = *endAt
+	}
+}
+
 // IsValidTimezone 判断时区是否有效
 func IsValidTimezone(tz string) bool {
 	_, err := time.LoadLocation(tz)

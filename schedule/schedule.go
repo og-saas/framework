@@ -47,4 +47,8 @@ const (
 	HandlerNameAgentFullSync HandlerName = "agent_full_sync_handler"
 	// HandlerNameActiveUserFullSync 活跃用户全量同步MeiliSearch
 	HandlerNameActiveUserFullSync HandlerName = "active_user_full_sync_handler"
+	// HandlerNameRefreshBalance 刷新余额
+	HandlerNameRefreshBalance HandlerName = "refresh_balance_handler"
+	// HandlerNameSendUnsentPush 发送未推送消息
+	HandlerNameSendUnsentPush HandlerName = "send_unsent_push_handler"
 )
