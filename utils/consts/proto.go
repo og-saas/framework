@@ -22,6 +22,12 @@ func RewardSubCategoryToTransactionSubCategory(subCategory commonv1.RewardSubCat
 		return commonv1.TransactionSubCategory_ACTIVITY_CASHBACK
 	case commonv1.RewardSubCategory_REWARD_SUB_LUCKY_WHEEL:
 		return commonv1.TransactionSubCategory_ACTIVITY_LUCKY_WHEEL
+	case commonv1.RewardSubCategory_REWARD_SUB_RED_ENVELOPE_RAIN:
+		return commonv1.TransactionSubCategory_ACTIVITY_RED_ENVELOPE_RAIN
+	case commonv1.RewardSubCategory_REWARD_SUB_SUPER_RED_ENVELOPE:
+		return commonv1.TransactionSubCategory_ACTIVITY_SUPER_RED_ENVELOPE
+	case commonv1.RewardSubCategory_REWARD_SUB_VIP_RED_ENVELOPE:
+		return commonv1.TransactionSubCategory_ACTIVITY_VIP_RED_ENVELOPE
 	case commonv1.RewardSubCategory_REWARD_SUB_AGENT_INVITE:
 		return commonv1.TransactionSubCategory_REBATE_RECEIVE
 	case commonv1.RewardSubCategory_REWARD_SUB_AGENT_FEE_DIRECT, commonv1.RewardSubCategory_REWARD_SUB_AGENT_FEE_INDIRECT:
@@ -72,7 +78,10 @@ func TransactionSubCategoryToTransactionCategory(subCategory commonv1.Transactio
 		commonv1.TransactionSubCategory_ACTIVITY_FIRST_RECHARGE,
 		commonv1.TransactionSubCategory_ACTIVITY_CHECKIN,
 		commonv1.TransactionSubCategory_ACTIVITY_CASHBACK,
-		commonv1.TransactionSubCategory_ACTIVITY_LUCKY_WHEEL:
+		commonv1.TransactionSubCategory_ACTIVITY_LUCKY_WHEEL,
+		commonv1.TransactionSubCategory_ACTIVITY_RED_ENVELOPE_RAIN,
+		commonv1.TransactionSubCategory_ACTIVITY_SUPER_RED_ENVELOPE,
+		commonv1.TransactionSubCategory_ACTIVITY_VIP_RED_ENVELOPE:
 		return commonv1.TransactionCategory_ACTIVITY
 	case commonv1.TransactionSubCategory_REBATE_SEND,
 		commonv1.TransactionSubCategory_REBATE_RECEIVE:

@@ -330,6 +330,8 @@ github.com/og-saas/proto v0.0.46-0.20260804033730-bb18f8db3895 h1:apBbxrGAsUiuEC
 github.com/og-saas/proto v0.0.46-0.20260804033730-bb18f8db3895/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
 github.com/og-saas/proto v0.0.46-0.20260805081917-4d1ef20234de h1:B2GIOZthCMJW3xK6sIic+k8AeHkY+Bfb4OUy5mEAWyk=
 github.com/og-saas/proto v0.0.46-0.20260805081917-4d1ef20234de/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
+github.com/og-saas/proto v0.0.46-0.20260809034630-e391f26cb7ac h1:VIcGvkQxtRFwBCCKUySsOmrrRy5rpUtqFg8QtWF7djs=
+github.com/og-saas/proto v0.0.46-0.20260809034630-e391f26cb7ac/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
 github.com/onsi/ginkgo/v2 v2.13.0 h1:0jY9lJquiL8fcf3M4LAXN5aMlS/b2BV86HFFPCPMgE4=
 github.com/onsi/ginkgo/v2 v2.13.0/go.mod h1:TE309ZR8s5FsKKpuB1YAQYBzCaAfUgatB/xlT/ETL/o=
 github.com/onsi/gomega v1.29.0 h1:KIA/t2t5UBzoirT4H9tsML45GEbo3ouUnBHsCfD2tVg=
