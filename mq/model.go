@@ -127,8 +127,8 @@ type UserRegisterNotify struct {
 	Domain         string `json:"domain"`          // 注册域名
 	DeviceID       string `json:"device_id"`       // 设备id
 	DeviceEndpoint string `json:"device_endpoint"` // 设备终端 APP H5 PC
-	RegisterType   int32  `json:"register_type"`   // 注册方式
-	SourceTarget   int32  `json:"source_target"`   // 注册来源 1-活动 2-游戏 3-代理推广
+	RegisterType   int64  `json:"register_type"`   // 注册方式
+	SourceTarget   int64  `json:"source_target"`   // 注册来源 1-活动 2-游戏 3-代理推广
 	SourceID       int64  `json:"source_id"`       // 注册来源id
 	CountryCode    string `json:"country_code"`    // 国家码
 	RegisterAt     int64  `json:"register_at"`     // 注册时间
