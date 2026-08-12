@@ -164,7 +164,8 @@ const (
 	// ErrCodeClaimRewardEndpointLimit 领取终端限制
 	ErrCodeClaimRewardEndpointLimit ErrCode = 60014 // ErrCodeClaimRewardEndpointLimit
 	// ErrCodeActivityConditionNotMet 用户不符合参与活动条件
-	ErrCodeActivityConditionNotMet codes.Code = 60015 // ErrCodeActivityConditionNotMet
+	ErrCodeActivityConditionNotMet                  codes.Code = 60015 // ErrCodeActivityConditionNotMet
+	ErrCodeRedPackageRainActivityConditionBetNotMet codes.Code = 60016 // ErrCodeRedPackageRainActivityConditionBetNotMet 红包雨活动投注条件不满足
 )
 
 func (code ErrCode) Int() int {
