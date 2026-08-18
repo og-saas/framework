@@ -9,6 +9,8 @@ var (
 	TopicUserWalletTransferNotify = "user_wallet_transfer_notify"
 	// TopicUserLoginLogNotify 用户登录日志通知
 	TopicUserLoginLogNotify = "user_login_log_notify"
+	// TopicUserOperationLogNotify 用户操作日志通知
+	TopicUserOperationLogNotify = "user_operation_log_notify"
 	// TopicGameBetRecordNotify 游戏下注记录通知
 	TopicGameBetRecordNotify = "game_bet_record_notify"
 	// TopicRechargeOrderNotify 充值订单通知
@@ -72,6 +74,7 @@ func UpdateTopicPrefix(prefixes ...string) (prefix string) {
 
 	TopicUserWalletTransferNotify = prefix + TopicUserWalletTransferNotify
 	TopicUserLoginLogNotify = prefix + TopicUserLoginLogNotify
+	TopicUserOperationLogNotify = prefix + TopicUserOperationLogNotify
 	TopicGameBetRecordNotify = prefix + TopicGameBetRecordNotify
 	TopicRechargeOrderNotify = prefix + TopicRechargeOrderNotify
 	TopicAgentGradeGrowthNotify = prefix + TopicAgentGradeGrowthNotify

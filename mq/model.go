@@ -2,7 +2,41 @@ package mq
 
 import (
 	"github.com/og-saas/framework/utils/consts"
+	commonv1 "github.com/og-saas/proto/pb/common/v1"
 )
+
+type UserOperationLogNotify struct {
+	UserID          int64                        `json:"user_id"`
+	ChannelID       int64                        `json:"channel_id"`
+	SiteID          int64                        `json:"site_id"`
+	OperationType   commonv1.UserOperationType   `json:"operation_type"`
+	BizID           string                       `json:"biz_id"`
+	Amount          string                       `json:"amount"`
+	CurrencyCode    string                       `json:"currency_code"`
+	ActivityID      int64                        `json:"activity_id"`
+	Status          commonv1.UserOperationStatus `json:"status"`
+	Domain          string                       `json:"domain"`
+	IP              string                       `json:"ip"`
+	IPCountry       string                       `json:"ip_country"`
+	IPProvince      string                       `json:"ip_province"`
+	IPCountryCode   string                       `json:"ip_country_code"`
+	IPContinentCode string                       `json:"ip_continent_code"`
+	IPCity          string                       `json:"ip_city"`
+	IPIsp           string                       `json:"ip_isp"`
+	IsProxy         commonv1.Status              `json:"is_proxy"`
+	DeviceID        string                       `json:"device_id"`
+	DeviceType      string                       `json:"device_type"`
+	DeviceEndpoint  string                       `json:"device_endpoint"`
+	DeviceOS        string                       `json:"device_os"`
+	OSVersion       string                       `json:"os_version"`
+	AppVersion      string                       `json:"app_version"`
+	Timezone        string                       `json:"timezone"`
+	UserAgent       string                       `json:"user_agent"`
+	Language        string                       `json:"language"`
+	ExtraInfo       []byte                       `json:"extra_info"`
+	Remark          string                       `json:"remark"`
+	OperatedAt      int64                        `json:"operated_at"`
+}
 
 // UserWalletTransferNotify 用户钱包交易通知
 type UserWalletTransferNotify struct {

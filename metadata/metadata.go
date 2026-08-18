@@ -23,6 +23,7 @@ const (
 	DeviceId        Metadata = "Device-Id"        // 设备id
 	DeviceType      Metadata = "Device-Type"      // 设备类型
 	DeviceOS        Metadata = "Device-Os"        // 设备操作系统
+	OSVersion       Metadata = "OS-Version"       // 操作系统版本
 	AppVersion      Metadata = "App-Version"      // app版本
 	UserAgent       Metadata = "User-Agent"       // 浏览器用户代理
 	DefaultCurrency Metadata = "default_currency" // 钱包默认币种
@@ -45,6 +46,7 @@ var RpcMetadata = []Metadata{
 	DeviceId,
 	DeviceType,
 	DeviceOS,
+	OSVersion,
 	AppVersion,
 	UserAgent,
 	DefaultCurrency,
