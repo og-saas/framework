@@ -99,6 +99,8 @@ const (
 	ErrCodeGamePlatformUnreachable ErrCode = 20003 // GamePlatformUnreachable
 	// ErrCodeGamePlatformUnavailable 游戏服务暂不可用，请联系管理员
 	ErrCodeGamePlatformUnavailable ErrCode = 20004
+	// ErrCodeGameCurrencyNotAllowed 游戏币种不允许
+	ErrCodeGameCurrencyNotAllowed ErrCode = 20005
 )
 
 // 财务相关
@@ -164,7 +166,8 @@ const (
 	// ErrCodeClaimRewardEndpointLimit 领取终端限制
 	ErrCodeClaimRewardEndpointLimit ErrCode = 60014 // ErrCodeClaimRewardEndpointLimit
 	// ErrCodeActivityConditionNotMet 用户不符合参与活动条件
-	ErrCodeActivityConditionNotMet codes.Code = 60015 // ErrCodeActivityConditionNotMet
+	ErrCodeActivityConditionNotMet                  codes.Code = 60015 // ErrCodeActivityConditionNotMet
+	ErrCodeRedPackageRainActivityConditionBetNotMet codes.Code = 60016 // ErrCodeRedPackageRainActivityConditionBetNotMet 红包雨活动投注条件不满足
 )
 
 func (code ErrCode) Int() int {
