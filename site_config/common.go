@@ -39,11 +39,11 @@ func GetLanguageObject[T LangAware](items []T, language, defaultLanguage string)
 	for _, item := range items {
 		lang, hasContent := item.GetLangData()
 		// 优先精确匹配
-		if lang == language {
+		if lang == language && hasContent {
 			return item
 		}
 		// 获取站点默认语言内容
-		if stringx.NotEmpty(defaultLanguage) && lang == defaultLanguage {
+		if stringx.NotEmpty(defaultLanguage) && lang == defaultLanguage && hasContent {
 			defaultContent = item
 			hasDefault = true
 		}
