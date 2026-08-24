@@ -188,6 +188,7 @@ type SymbolPosition struct {
 
 type LanguageConfig struct {
 	RecommendLanguageCode string `json:"recommend_language_code"` // 推荐语言code
+	RecommendLanguageName string `json:"recommend_language_name"` // 推荐语言名称
 }
 
 func GetSymbolPosition(position SymbolPosition, currencyType commonv1.CurrencyType) int32 {

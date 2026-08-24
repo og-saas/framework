@@ -28,7 +28,7 @@ const (
 	SiteConfigCategoryTopDownloadBar      SiteConfigCategory = 21 // 顶部下载条设置
 	SiteConfigCategoryMarqueeIcon         SiteConfigCategory = 23 // 跑马灯图标
 	SiteConfigCategoryAppConfig           SiteConfigCategory = 24 // APP配置
-	SiteConfigCategoryLanguageConfig      SiteConfigCategory = 25 // 语言配置
+	SiteConfigCategoryLanguageConfig      SiteConfigCategory = 26 // 语言配置
 
 )
 
