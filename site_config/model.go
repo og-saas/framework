@@ -186,6 +186,10 @@ type SymbolPosition struct {
 	Platform int32 `json:"platform,default=1"` // 平台币
 }
 
+type LanguageConfig struct {
+	RecommendLanguageCode string `json:"recommend_language_code"` // 推荐语言code
+}
+
 func GetSymbolPosition(position SymbolPosition, currencyType commonv1.CurrencyType) int32 {
 	// 0: 无符号位置，1: 左侧，2: 右侧
 	left := int32(1)
