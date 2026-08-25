@@ -187,6 +187,7 @@ type SymbolPosition struct {
 }
 
 type LanguageConfig struct {
+	Weight                int64  `json:"weight"`                  // 权重
 	RecommendLanguageCode string `json:"recommend_language_code"` // 推荐语言code
 	RecommendLanguageName string `json:"recommend_language_name"` // 推荐语言名称
 }
