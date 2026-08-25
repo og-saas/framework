@@ -186,7 +186,12 @@ type SymbolPosition struct {
 	Platform int32 `json:"platform,default=1"` // 平台币
 }
 
-type LanguageConfig struct {
+type SiteLanguageConfig struct {
+	Status    commonv1.Status           `json:"status"`    // 状态
+	Languages []*SiteLanguageConfigItem `json:"languages"` // 语言
+}
+
+type SiteLanguageConfigItem struct {
 	Weight                int64  `json:"weight"`                  // 权重
 	RecommendLanguageCode string `json:"recommend_language_code"` // 推荐语言code
 	RecommendLanguageName string `json:"recommend_language_name"` // 推荐语言名称
