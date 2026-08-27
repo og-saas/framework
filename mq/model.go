@@ -259,13 +259,16 @@ type SiteMsgActivityRewardNotify struct {
 	CurrencyCode string  `json:"currency_code,omitempty"` // 币种
 	TriggerTime  int64   `json:"trigger_time,omitempty"`  // 触发时间
 	ExpireTime   int64   `json:"expire_time,omitempty"`   // 过期时间 奖励可领取场景
+	TotalCycle   int64   `json:"total_cycle,omitempty"`   // 总周期数 锦标赛活动
+	CycleNum     int32   `json:"cycle_num,omitempty"`     // 当前周期数 锦标赛活动
 }
 
 // JackpotActivityScoreNotify 活动Jackpot触发通知
 type JackpotActivityScoreNotify struct {
 	SiteId      int64 `json:"site_id,omitempty"`      // 站点ID
 	ActivityId  int64 `json:"activity_id,omitempty"`  // 活动ID
-	CycleNum    int32 `json:"cycle_num,omitempty"`    // 周期数
+	TotalCycle  int64 `json:"total_cycle,omitempty"`  // 总周期数
+	CycleNum    int32 `json:"cycle_num,omitempty"`    // 当前周期数
 	UserId      int64 `json:"user_id,omitempty"`      // 用户ID
 	StartAt     int64 `json:"start_at,omitempty"`     // 开始时间
 	EndAt       int64 `json:"end_at,omitempty"`       // 结束时间
