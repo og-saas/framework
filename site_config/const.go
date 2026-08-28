@@ -76,6 +76,7 @@ const (
 	SiteConfigKeySeoConfig                  SiteConfigKey = "seo_config"                    // SEO配置
 	SiteConfigKeyGoogleConfig               SiteConfigKey = "google_config"                 // 谷歌登录配置
 	SiteConfigKeyAgentGradeIcons            SiteConfigKey = "agent_grade_icons"             // 代理等级图标
+	SiteConfigKeyAgentSettleAudit           SiteConfigKey = "agent_settlement_auto_audit"   // 代理结算自动审核配置
 	SiteConfigKeyVipPromoteInfo             SiteConfigKey = "vip_promote_info"              // Vip宣传图
 	SiteConfigKeyVipCustomerService         SiteConfigKey = "vip_customer_service"          // Vip专属客服
 	SiteConfigKeyPlatformCurrencySafetyRisk SiteConfigKey = "platform_currency_safety_risk" // 币种兑换规则配置

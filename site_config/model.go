@@ -212,3 +212,15 @@ func GetSymbolPosition(position SymbolPosition, currencyType commonv1.CurrencyTy
 		return left
 	}
 }
+
+// 代理结算自动审核配置
+type AgentSettleAutoAuditConfig struct {
+	Deny                      commonv1.Status `json:"deny"`                         // 黑名单开关 1=是 2=否
+	Allow                     commonv1.Status `json:"allow"`                        // 白名单开关 1=是 2=否
+	AutoDirectCommissionAmt   decimal.Decimal `json:"auto_direct_commission_amt"`   //直属佣金自动放行金额
+	AutoIndirectCommissionAmt decimal.Decimal `json:"auto_indirect_commission_amt"` // 非直属佣金自动放行金额
+	DirectTeamCashFlow        decimal.Decimal `json:"direct_team_cash_flow"`        // 直属团队总有效流水
+	NonDirectTeamCashFlow     decimal.Decimal `json:"non_direct_team_cash_flow"`    // 非直属团队总有效流水
+	DirectSubordinateCount    int64           `json:"direct_subordinate_count"`     // 有效直属人数
+	DirectFlowRatio           decimal.Decimal `json:"direct_flow_ratio"`            //直属流水占比最低门槛（%）
+}
