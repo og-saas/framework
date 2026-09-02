@@ -339,6 +339,7 @@ type WithdrawOrderNotify struct {
 	AccountId             int64          `json:"account_id,omitempty"`               // 提现账号ID
 	WithdrawPtbAmount     consts.PtbCoin `json:"withdraw_ptb_amount,omitempty"`      // 提现金额平台币(提现金额换算出来的)
 	ConvertRatio          string         `json:"convert_ratio,omitempty"`            // 转换比例
+	WithdrawableBalance   string         `json:"withdrawable_balance,omitempty"`     // 可提现余额
 }
 
 // UserJourneyActionNotify 用户旅程动作通知
