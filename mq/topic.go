@@ -62,6 +62,10 @@ var (
 	TopicReportRecordNotify = "report_record_notify"
 	// TopicUserCompleteInfoNotify 用户完善信息通知
 	TopicUserCompleteInfoNotify = "user_complete_info_notify"
+	// TopicUserAgentEventNotify 用户代理事件通知
+	TopicUserAgentEventNotify = "user_agent_event_notify"
+	// TopicUserWithdrawableBalanceChangeNotify 用户可提现余额变动事件通知
+	TopicUserWithdrawableBalanceChangeNotify = "user_withdrawable_balance_change_notify"
 )
 
 func UpdateTopicPrefix(prefixes ...string) (prefix string) {
@@ -98,6 +102,8 @@ func UpdateTopicPrefix(prefixes ...string) (prefix string) {
 	TopicRewardUnclaimedNotify = prefix + TopicRewardUnclaimedNotify
 	TopicReportRecordNotify = prefix + TopicReportRecordNotify
 	TopicUserCompleteInfoNotify = prefix + TopicUserCompleteInfoNotify
+	TopicUserAgentEventNotify = prefix + TopicUserAgentEventNotify
+	TopicUserWithdrawableBalanceChangeNotify = prefix + TopicUserWithdrawableBalanceChangeNotify
 
 	return
 }

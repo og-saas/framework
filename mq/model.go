@@ -166,6 +166,7 @@ type UserRegisterNotify struct {
 	SourceID       int64  `json:"source_id"`       // 注册来源id
 	CountryCode    string `json:"country_code"`    // 国家码
 	RegisterAt     int64  `json:"register_at"`     // 注册时间
+	TimeZone       string `json:"time_zone"`       // 时区
 }
 
 // WithdrawOrderCreateNotify 发起提现通知
@@ -355,11 +356,12 @@ type UserJourneyActionNotify struct {
 
 // WebsocketOnlineNotify websocket上线通知
 type WebsocketOnlineNotify struct {
-	UserId   int64  `json:"user_id,omitempty"`   // 用户ID
-	SiteId   int64  `json:"site_id,omitempty"`   // 站点ID
-	DeviceId string `json:"device_id,omitempty"` // 设备ID
-	Endpoint string `json:"endpoint,omitempty"`  // 终端类型 APP H5 PC
-	EventAt  int64  `json:"event_at,omitempty"`  // 事件时间
+	UserId       int64  `json:"user_id,omitempty"`       // 用户ID
+	SiteId       int64  `json:"site_id,omitempty"`       // 站点ID
+	DeviceId     string `json:"device_id,omitempty"`     // 设备ID
+	Endpoint     string `json:"endpoint,omitempty"`      // 终端类型 APP H5 PC
+	ConnectTimes int32  `json:"connect_times,omitempty"` // 连接次数
+	EventAt      int64  `json:"event_at,omitempty"`      // 事件时间
 }
 
 // ReportRecordNotify 上报记录
@@ -402,4 +404,20 @@ type UserCompleteInfoNotify struct {
 	BindType  consts.UserBindType `json:"bind_type,omitempty"`  // 绑定类型 1=绑定手机号 2=绑定邮箱 3=绑定提现方式
 	BindValue string              `json:"bind_value,omitempty"` // 绑定内容（手机号/邮箱/提现方式）
 	EventAt   int64               `json:"event_at,omitempty"`   // 事件时间
+}
+
+// UserAgentEventNotify 用户代理事件通知
+type UserAgentEventNotify struct {
+	UserId     int64 `json:"user_id,omitempty"`      // 用户ID
+	SiteId     int64 `json:"site_id,omitempty"`      // 站点ID
+	IsTopAgent bool  `json:"is_top_agent,omitempty"` // 是否顶级代理
+	EventAt    int64 `json:"event_at,omitempty"`     // 事件时间
+}
+
+// UserWithdrawableBalanceChangeNotify 用户可提现余额变动事件通知
+type UserWithdrawableBalanceChangeNotify struct {
+	UserId              int64  `json:"user_id,omitempty"`              // 用户ID
+	SiteId              int64  `json:"site_id,omitempty"`              // 站点ID
+	WithdrawableBalance string `json:"withdrawable_balance,omitempty"` // 可提现余额
+	EventAt             int64  `json:"event_at,omitempty"`             // 事件时间
 }
