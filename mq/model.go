@@ -410,10 +410,11 @@ type UserCompleteInfoNotify struct {
 
 // UserAgentEventNotify 用户代理事件通知
 type UserAgentEventNotify struct {
-	UserId     int64 `json:"user_id,omitempty"`      // 用户ID
-	SiteId     int64 `json:"site_id,omitempty"`      // 站点ID
-	IsTopAgent bool  `json:"is_top_agent,omitempty"` // 是否顶级代理
-	EventAt    int64 `json:"event_at,omitempty"`     // 事件时间
+	UserId      int64 `json:"user_id,omitempty"`       // 用户ID
+	SiteId      int64 `json:"site_id,omitempty"`       // 站点ID
+	IsTopAgent  bool  `json:"is_top_agent,omitempty"`  // 是否顶级代理
+	ChildUserId int64 `json:"child_user_id,omitempty"` // 下级用户ID
+	EventAt     int64 `json:"event_at,omitempty"`      // 事件时间
 }
 
 // UserWithdrawableBalanceChangeNotify 用户可提现余额变动事件通知
