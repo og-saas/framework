@@ -2,7 +2,7 @@ module github.com/og-saas/framework
 
 go 1.25.1
 
-//replace github.com/og-saas/proto => ../proto
+replace github.com/og-saas/proto => ../proto
 
 require (
 	github.com/apache/rocketmq-clients/golang/v5 v5.1.3

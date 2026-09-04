@@ -46,6 +46,8 @@ const (
 	RiskMetricWithdrawIP       RiskMetricCode = "withdraw_ip_cnt"        // 提现IP频次
 	RiskMetricWithdrawDevice   RiskMetricCode = "withdraw_device_cnt"    // 提现设备频次
 	RiskMetricWithdrawUsername RiskMetricCode = "withdraw_user_name_cnt" // 提现用户名频次
+	RiskMetricOnlineIP         RiskMetricCode = "mqtt_ip_cnt"            // 在线IP频次
+	RiskMetricOnlineDevice     RiskMetricCode = "mqtt_device_cnt"        // 在线设备频次
 )
 
 func (c RiskMetricCode) String() string {
@@ -82,6 +84,13 @@ func GetRiskMetricCode(behavior commonv1.RiskBehavior, targetType commonv1.AclTa
 		case commonv1.AclTargetType_ACL_TARGET_TYPE_USER:
 			return RiskMetricWithdrawUsername
 		}
+	case commonv1.RiskBehavior_RISK_BEHAVIOR_ONLINE:
+		switch targetType {
+		case commonv1.AclTargetType_ACL_TARGET_TYPE_IP:
+			return RiskMetricOnlineIP
+		case commonv1.AclTargetType_ACL_TARGET_TYPE_DEVICE:
+			return RiskMetricOnlineDevice
+		}
 	}
 	return ""
 }
@@ -90,9 +99,11 @@ func GetRiskMetricCode(behavior commonv1.RiskBehavior, targetType commonv1.AclTa
 type RiskQueryField string
 
 const (
-	RiskQueryFieldIP       RiskQueryField = "ip"        // IP地址
-	RiskQueryFieldDeviceID RiskQueryField = "device_id" // 设备ID
-	RiskQueryFieldUsername RiskQueryField = "username"  // 用户名
+	RiskQueryFieldIP           RiskQueryField = "ip"                // IP地址
+	RiskQueryFieldDeviceID     RiskQueryField = "device_id"         // 设备ID
+	RiskQueryFieldUsername     RiskQueryField = "username"          // 用户名
+	RiskQueryFieldMqttIP       RiskQueryField = "last_connected_ip" // IP地址
+	RiskQueryFieldMqttDeviceID RiskQueryField = "device_id"         // 设备ID
 )
 
 // 根据限制对象获取对应的维度属性
