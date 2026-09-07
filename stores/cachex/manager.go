@@ -9,6 +9,7 @@ import (
 // Key 只支持 CacheKey | TenantCacheKey | string 类型
 // key为string 不会带入参数
 // 如果是 TenantCacheKey, 不用传递tenant参数
+// Deprecated: 高并发有bug 请使用 CacheFn
 func Fetch2[T KeyType](ctx context.Context, key T, expire time.Duration, fn func() (string, error), args ...any) (string, error) {
 	return Engine(ctx).Fetch2(ctx, KeyString(ctx, key, args...), expire, fn)
 }

@@ -19,6 +19,8 @@ func MustTenant(c Config, rdbEngine *redisx.RDBEngine) {
 	}
 }
 
+// Deprecated: 并发下有bug 请使用 CacheFn
+// Engine 根据上下文中的租户 ID 获取对应的 rockscache 客户端。
 func Engine(ctx context.Context) *rockscache.Client {
 	if rdb, ok := getClientForTenant(tenant.GetTenantId(ctx)); ok {
 		return rdb
@@ -31,6 +33,7 @@ func Engine(ctx context.Context) *rockscache.Client {
 	return nil
 }
 
+// Deprecated: 请使用 CacheFn
 // New 创建一个缓存
 func New(c Config, rdb redis.UniversalClient) *rockscache.Client {
 	options := rockscache.NewDefaultOptions()
