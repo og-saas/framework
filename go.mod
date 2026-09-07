@@ -18,7 +18,7 @@ require (
 	github.com/golang-jwt/jwt/v4 v4.5.2
 	github.com/google/uuid v1.6.0
 	github.com/jinzhu/copier v0.4.0
-	github.com/og-saas/proto v0.0.46-0.20260818023438-a6cdfbb7a85b
+	github.com/og-saas/proto v0.0.46-0.20260907031925-93084388c656
 	github.com/redis/go-redis/v9 v9.17.2
 	github.com/samber/lo v1.52.0
 	github.com/shopspring/decimal v1.4.0
