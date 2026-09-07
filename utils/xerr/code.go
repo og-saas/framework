@@ -99,8 +99,8 @@ const (
 	ErrCodeGamePlatformUnreachable ErrCode = 20003 // GamePlatformUnreachable
 	// ErrCodeGamePlatformUnavailable 游戏服务暂不可用，请联系管理员
 	ErrCodeGamePlatformUnavailable ErrCode = 20004
-	// ErrCodeGameCurrencyNotAllowed 游戏币种不允许
-	ErrCodeGameCurrencyNotAllowed ErrCode = 20005
+	// ErrCodeSportGameNotSet 当前未配置体育板块游戏
+	ErrCodeSportGameNotSet ErrCode = 20005 // SportGameNotSet
 )
 
 // 财务相关

@@ -13,6 +13,7 @@ import (
 var engine sync.Map
 
 func MustTenant(c Config, rdbEngine *redisx.RDBEngine) {
+	disableCacheRead = c.DisableCacheRead
 	for tenantId, client := range rdbEngine.Map() {
 		engine.Store(tenantId, New(c, client))
 	}

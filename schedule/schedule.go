@@ -33,6 +33,10 @@ const (
 	HandlerNameVipMonthReward HandlerName = "vip_month_reward_handler"
 	// HandlerVipLevelDown vip 降级
 	HandlerVipLevelDown HandlerName = "vip_level_down_handler"
+	// HandlerVipLevelDailyStat vip 等级每日统计
+	HandlerVipLevelDailyStat HandlerName = "vip_level_daily_stat_handler"
+	// HandlerActiveUserDailyStat 用户活跃每日统计
+	HandlerActiveUserDailyStat HandlerName = "active_user_daily_stat_handler"
 	// HandlerNameSyncAgentExp 代理 同步经验值
 	HandlerNameSyncAgentExp HandlerName = "sync_agent_exp_handler"
 	// HandlerNameAgentCommissionStat 代理 用户佣金日统计

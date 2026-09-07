@@ -24,6 +24,7 @@ const (
 )
 
 var cacheSf singleflight.Group
+var disableCacheRead = false
 
 func gzipCompress(src []byte) ([]byte, error) {
 	var buf bytes.Buffer
@@ -163,15 +164,10 @@ func CacheSet[T any, K KeyType](ctx context.Context, keyT K, expire time.Duratio
 //   - error: 错误信息，如果发生错误则返回
 func CacheFn[T any, K KeyType](ctx context.Context, keyT K, expire time.Duration, fn func() (T, error), args ...any) (T, error) {
 	var (
-		ret              T
-		log              = logx.WithContext(ctx)
-		key              = KeyString(ctx, keyT, args...)
-		disableCacheRead = false
+		ret T
+		log = logx.WithContext(ctx)
+		key = KeyString(ctx, keyT, args...)
 	)
-	cache := Engine(ctx)
-	if cache != nil {
-		disableCacheRead = cache.Options.DisableCacheRead
-	}
 	if disableCacheRead {
 		return fn()
 	}

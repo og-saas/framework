@@ -166,6 +166,7 @@ type UserRegisterNotify struct {
 	SourceID       int64  `json:"source_id"`       // 注册来源id
 	CountryCode    string `json:"country_code"`    // 国家码
 	RegisterAt     int64  `json:"register_at"`     // 注册时间
+	TimeZone       string `json:"time_zone"`       // 时区
 }
 
 // WithdrawOrderCreateNotify 发起提现通知
@@ -261,13 +262,16 @@ type SiteMsgActivityRewardNotify struct {
 	CurrencyCode string  `json:"currency_code,omitempty"` // 币种
 	TriggerTime  int64   `json:"trigger_time,omitempty"`  // 触发时间
 	ExpireTime   int64   `json:"expire_time,omitempty"`   // 过期时间 奖励可领取场景
+	TotalCycle   int64   `json:"total_cycle,omitempty"`   // 总周期数 锦标赛活动
+	CycleNum     int32   `json:"cycle_num,omitempty"`     // 当前周期数 锦标赛活动
 }
 
 // JackpotActivityScoreNotify 活动Jackpot触发通知
 type JackpotActivityScoreNotify struct {
 	SiteId      int64 `json:"site_id,omitempty"`      // 站点ID
 	ActivityId  int64 `json:"activity_id,omitempty"`  // 活动ID
-	CycleNum    int32 `json:"cycle_num,omitempty"`    // 周期数
+	TotalCycle  int64 `json:"total_cycle,omitempty"`  // 总周期数
+	CycleNum    int32 `json:"cycle_num,omitempty"`    // 当前周期数
 	UserId      int64 `json:"user_id,omitempty"`      // 用户ID
 	StartAt     int64 `json:"start_at,omitempty"`     // 开始时间
 	EndAt       int64 `json:"end_at,omitempty"`       // 结束时间
@@ -312,31 +316,33 @@ type SiteMsgRechargeFailNotify struct {
 
 // WithdrawOrderNotify 提现订单回调通知（出款成功/失败）
 type WithdrawOrderNotify struct {
-	UserId                int64          `json:"user_id,omitempty"`                  // 用户 ID
-	OrderNo               string         `json:"order_no,omitempty"`                 // 订单编号
-	SubOrderNo            string         `json:"sub_order_no,omitempty"`             // 子订单号
-	ThirdOrderNo          string         `json:"third_order_no,omitempty"`           // 三方订单号
-	Username              string         `json:"username,omitempty"`                 // 用户名
-	CurrencyCode          string         `json:"currency_code,omitempty"`            // 币种
-	WithdrawAmount        string         `json:"withdraw_amount,omitempty"`          // 提现金额
-	FeeAmount             string         `json:"fee_amount,omitempty"`               // 手续费金额
-	ActualAmount          string         `json:"actual_amount,omitempty"`            // 实际到账金额
-	Phone                 string         `json:"phone,omitempty"`                    // 手机号
-	RealName              string         `json:"real_name,omitempty"`                // 真实姓名
-	OrderStatus           int32          `json:"order_status,omitempty"`             // 订单状态
-	FailReason            string         `json:"fail_reason,omitempty"`              // 失败原因
-	SitePaymentPlatformId int64          `json:"site_payment_platform_id,omitempty"` // 站点三方支付平台 ID
-	PaymentPlatformCode   string         `json:"payment_platform_code,omitempty"`    // 支付平台编码
-	SitePaymentChannelId  int64          `json:"site_payment_channel_id,omitempty"`  // 站点三方支付通道 ID
-	PaymentChannelCode    string         `json:"payment_channel_code,omitempty"`     // 通道编码
-	PaymentTypeCode       string         `json:"payment_type_code,omitempty"`        // 支付类型编码
-	SuccessTime           int64          `json:"success_time,omitempty"`             // 订单成功时间
-	FailTime              int64          `json:"fail_time,omitempty"`                // 订单失败时间
-	Remark                string         `json:"remark,omitempty"`                   // 备注
-	SiteId                int64          `json:"site_id,omitempty"`                  // 站点 ID
-	AccountId             int64          `json:"account_id,omitempty"`               // 提现账号ID
-	WithdrawPtbAmount     consts.PtbCoin `json:"withdraw_ptb_amount,omitempty"`      // 提现金额平台币(提现金额换算出来的)
-	ConvertRatio          string         `json:"convert_ratio,omitempty"`            // 转换比例
+	UserId                 int64          `json:"user_id,omitempty"`                  // 用户 ID
+	OrderNo                string         `json:"order_no,omitempty"`                 // 订单编号
+	SubOrderNo             string         `json:"sub_order_no,omitempty"`             // 子订单号
+	ThirdOrderNo           string         `json:"third_order_no,omitempty"`           // 三方订单号
+	Username               string         `json:"username,omitempty"`                 // 用户名
+	CurrencyCode           string         `json:"currency_code,omitempty"`            // 币种
+	WithdrawAmount         string         `json:"withdraw_amount,omitempty"`          // 提现金额
+	FeeAmount              string         `json:"fee_amount,omitempty"`               // 手续费金额
+	ActualAmount           string         `json:"actual_amount,omitempty"`            // 实际到账金额
+	Phone                  string         `json:"phone,omitempty"`                    // 手机号
+	RealName               string         `json:"real_name,omitempty"`                // 真实姓名
+	OrderStatus            int32          `json:"order_status,omitempty"`             // 订单状态
+	FailReason             string         `json:"fail_reason,omitempty"`              // 失败原因
+	SitePaymentPlatformId  int64          `json:"site_payment_platform_id,omitempty"` // 站点三方支付平台 ID
+	PaymentPlatformCode    string         `json:"payment_platform_code,omitempty"`    // 支付平台编码
+	SitePaymentChannelId   int64          `json:"site_payment_channel_id,omitempty"`  // 站点三方支付通道 ID
+	PaymentChannelCode     string         `json:"payment_channel_code,omitempty"`     // 通道编码
+	PaymentTypeCode        string         `json:"payment_type_code,omitempty"`        // 支付类型编码
+	SuccessTime            int64          `json:"success_time,omitempty"`             // 订单成功时间
+	FailTime               int64          `json:"fail_time,omitempty"`                // 订单失败时间
+	Remark                 string         `json:"remark,omitempty"`                   // 备注
+	SiteId                 int64          `json:"site_id,omitempty"`                  // 站点 ID
+	AccountId              int64          `json:"account_id,omitempty"`               // 提现账号ID
+	WithdrawPtbAmount      consts.PtbCoin `json:"withdraw_ptb_amount,omitempty"`      // 提现金额平台币(提现金额换算出来的)
+	ConvertRatio           string         `json:"convert_ratio,omitempty"`            // 转换比例
+	WithdrawableBalance    string         `json:"withdrawable_balance,omitempty"`     // 可提现余额
+	WithdrawablePtbBalance consts.PtbCoin `json:"withdrawable_ptb_balance,omitempty"` // 可提现余额平台币
 }
 
 // UserJourneyActionNotify 用户旅程动作通知
@@ -354,11 +360,12 @@ type UserJourneyActionNotify struct {
 
 // WebsocketOnlineNotify websocket上线通知
 type WebsocketOnlineNotify struct {
-	UserId   int64  `json:"user_id,omitempty"`   // 用户ID
-	SiteId   int64  `json:"site_id,omitempty"`   // 站点ID
-	DeviceId string `json:"device_id,omitempty"` // 设备ID
-	Endpoint string `json:"endpoint,omitempty"`  // 终端类型 APP H5 PC
-	EventAt  int64  `json:"event_at,omitempty"`  // 事件时间
+	UserId       int64  `json:"user_id,omitempty"`       // 用户ID
+	SiteId       int64  `json:"site_id,omitempty"`       // 站点ID
+	DeviceId     string `json:"device_id,omitempty"`     // 设备ID
+	Endpoint     string `json:"endpoint,omitempty"`      // 终端类型 APP H5 PC
+	ConnectTimes int32  `json:"connect_times,omitempty"` // 连接次数
+	EventAt      int64  `json:"event_at,omitempty"`      // 事件时间
 }
 
 // ReportRecordNotify 上报记录
@@ -401,4 +408,21 @@ type UserCompleteInfoNotify struct {
 	BindType  consts.UserBindType `json:"bind_type,omitempty"`  // 绑定类型 1=绑定手机号 2=绑定邮箱 3=绑定提现方式
 	BindValue string              `json:"bind_value,omitempty"` // 绑定内容（手机号/邮箱/提现方式）
 	EventAt   int64               `json:"event_at,omitempty"`   // 事件时间
+}
+
+// UserAgentEventNotify 用户代理事件通知
+type UserAgentEventNotify struct {
+	UserId      int64 `json:"user_id,omitempty"`       // 用户ID
+	SiteId      int64 `json:"site_id,omitempty"`       // 站点ID
+	IsTopAgent  bool  `json:"is_top_agent,omitempty"`  // 是否顶级代理
+	ChildUserId int64 `json:"child_user_id,omitempty"` // 下级用户ID
+	EventAt     int64 `json:"event_at,omitempty"`      // 事件时间
+}
+
+// UserWithdrawableBalanceChangeNotify 用户可提现余额变动事件通知
+type UserWithdrawableBalanceChangeNotify struct {
+	UserId              int64  `json:"user_id,omitempty"`              // 用户ID
+	SiteId              int64  `json:"site_id,omitempty"`              // 站点ID
+	WithdrawableBalance string `json:"withdrawable_balance,omitempty"` // 可提现余额
+	EventAt             int64  `json:"event_at,omitempty"`             // 事件时间
 }
