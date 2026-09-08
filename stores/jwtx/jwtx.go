@@ -11,6 +11,7 @@ import (
 	"github.com/og-saas/framework/metadata"
 	"github.com/og-saas/framework/utils"
 	"github.com/redis/go-redis/v9"
+	"github.com/spf13/cast"
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/rest/token"
 )
@@ -133,7 +134,8 @@ func (j *JWT) ParseToken(r *http.Request) (uid any, claims jwt.MapClaims, err er
 			}
 			return
 		}
-		if stringCmd.Val() != claims["exp"] {
+		exp, _ := stringCmd.Int64()
+		if exp != cast.ToInt64(claims["exp"]) {
 			err = ErrInvalidToken
 			return
 		}
