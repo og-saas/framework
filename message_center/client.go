@@ -100,6 +100,7 @@ func (c *Client) Otp(ctx context.Context, req OtpReq) (*OtpResp, error) {
 		Topics:         req.Topics,
 		Expire:         req.Expire,
 		ConnectionType: req.ConnectionType,
+		ExtInfo:        req.ExtInfo,
 	}
 
 	return doRequestAndParse[OtpResp](c, ctx, OtpURL, http.MethodPost, internalReq)
