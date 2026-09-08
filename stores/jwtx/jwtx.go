@@ -11,7 +11,6 @@ import (
 	"github.com/og-saas/framework/metadata"
 	"github.com/og-saas/framework/utils"
 	"github.com/redis/go-redis/v9"
-	"github.com/spf13/cast"
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/rest/token"
 )
@@ -125,21 +124,21 @@ func (j *JWT) ParseToken(r *http.Request) (uid any, claims jwt.MapClaims, err er
 		return
 	}
 
-	if j.sso && j.rdb != nil { //验证token是否存在与redis
-		var stringCmd = j.rdb.Get(r.Context(), j.generateCacheKey(uid))
-		if err = stringCmd.Err(); err != nil {
-			if errors.Is(err, redis.Nil) {
-				err = ErrInvalidToken
-				return
-			}
-			return
-		}
-		exp, _ := stringCmd.Int64()
-		if exp != cast.ToInt64(claims["exp"]) {
-			err = ErrInvalidToken
-			return
-		}
-	}
+	//if j.sso && j.rdb != nil { //验证token是否存在与redis
+	//	var stringCmd = j.rdb.Get(r.Context(), j.generateCacheKey(uid))
+	//	if err = stringCmd.Err(); err != nil {
+	//		if errors.Is(err, redis.Nil) {
+	//			err = ErrInvalidToken
+	//			return
+	//		}
+	//		return
+	//	}
+	//	exp, _ := stringCmd.Int64()
+	//	if exp != cast.ToInt64(claims["exp"]) {
+	//		err = ErrInvalidToken
+	//		return
+	//	}
+	//}
 
 	return
 }
