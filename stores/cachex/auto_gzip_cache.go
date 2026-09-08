@@ -49,7 +49,7 @@ func gzipDecompress(src []byte) ([]byte, error) {
 	return io.ReadAll(zr)
 }
 
-func encodeCacheValue(v any) ([]byte, error) {
+func EncodeCacheValue(v any) ([]byte, error) {
 	raw, err := json.Marshal(v)
 	if err != nil {
 		return nil, err
@@ -75,7 +75,7 @@ func encodeCacheValue(v any) ([]byte, error) {
 	return buf, nil
 }
 
-func decodeCacheValue[T any](bs []byte, ret *T) error {
+func DecodeCacheValue[T any](bs []byte, ret *T) error {
 	if len(bs) == 0 {
 		return fmt.Errorf("empty cache data")
 	}
@@ -119,7 +119,7 @@ func CacheGet[T any, K KeyType](ctx context.Context, keyT K, args ...any) (T, er
 		return ret, err
 	}
 
-	if err = decodeCacheValue(bs, &ret); err != nil {
+	if err = DecodeCacheValue(bs, &ret); err != nil {
 		log.Errorf("CacheGet decodeCacheValue error, key=%s err=%v", key, err)
 		_ = redisCli.Del(ctx, key).Err()
 		return ret, err
@@ -136,7 +136,7 @@ func CacheSet[T any, K KeyType](ctx context.Context, keyT K, expire time.Duratio
 		key      = KeyString(ctx, keyT, args...)
 	)
 
-	data, err := encodeCacheValue(val)
+	data, err := EncodeCacheValue(val)
 	if err != nil {
 		log.Errorf("CacheSet encodeCacheValue error, key=%s err=%v", key, err)
 		return err

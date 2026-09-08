@@ -76,7 +76,7 @@ func (j *JWT) GenerateToken(ctx context.Context, uid any, claims jwt.MapClaims) 
 		return "", ErrJwtGenerateError
 	}
 	if j.sso && j.rdb != nil {
-		err = j.rdb.Set(ctx, j.generateCacheKey(uid), accessToken, time.Second*time.Duration(j.ttl)).Err()
+		err = j.rdb.Set(ctx, j.generateCacheKey(uid), claims["exp"], time.Second*time.Duration(j.ttl)).Err()
 		if err != nil {
 			logx.Error("set jwt info to redis err: ", err)
 			return "", ErrJwtGenerateError
@@ -133,7 +133,7 @@ func (j *JWT) ParseToken(r *http.Request) (uid any, claims jwt.MapClaims, err er
 			}
 			return
 		}
-		if stringCmd.Val() != tok.Raw {
+		if stringCmd.Val() != claims["exp"] {
 			err = ErrInvalidToken
 			return
 		}
