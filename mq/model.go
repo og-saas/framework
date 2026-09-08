@@ -185,13 +185,15 @@ type WithdrawOrderCreateNotify struct {
 
 // UserRiskMonitorNotify 用户行为风控监控通知
 type UserRiskMonitorNotify struct {
-	SiteID     int64  `json:"site_id"`     // 站点ID
-	UserID     int64  `json:"user_id"`     // 用户ID
-	Behavior   int32  `json:"behavior"`    // 风控行为 1=注册 2=登录 3=提现
-	IP         string `json:"ip"`          // 用户IP
-	DeviceID   string `json:"device_id"`   // 设备ID
-	Username   string `json:"username"`    // 用户名
-	BehaviorAt int64  `json:"behavior_at"` // 行为发生时间
+	SiteID     int64                 `json:"site_id"`     // 站点ID
+	UserID     int64                 `json:"user_id"`     // 用户ID
+	Behavior   int32                 `json:"behavior"`    // 风控行为 1=注册 2=登录 3=提现 4=在线 5=奖励 6=管理员操作
+	IP         string                `json:"ip"`          // 用户IP
+	DeviceID   string                `json:"device_id"`   // 设备ID
+	Username   string                `json:"username"`    // 用户名
+	BehaviorAt int64                 `json:"behavior_at"` // 行为发生时间
+	RuleType   commonv1.RiskRuleType `json:"rule_type"`   // 风控规则类型
+	Amount     consts.PtbCoin        `json:"amount"`      // 平台币金额(提现)
 }
 
 // UserVipLevelChangeNotify VIP等级变化通知

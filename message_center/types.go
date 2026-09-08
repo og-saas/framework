@@ -12,6 +12,7 @@ type OtpReq struct {
 	Topics         []string       `json:"topics"`         // 可订阅的Topic列表
 	Expire         int64          `json:"expire"`         // OTP有效时间（分钟）
 	ConnectionType ConnectionType `json:"connectionType"` // 连接类型 1:mqtt 2:ws 默认1
+	ExtInfo        map[string]any `json:"extInfo"`        // 拓展信息
 }
 
 // otpReqInternal 内部请求（包含AppKey）
@@ -21,6 +22,7 @@ type otpReqInternal struct {
 	Topics         []string       `json:"topics"`         // 可订阅的Topic列表
 	Expire         int64          `json:"expire"`         // OTP有效时间（分钟）
 	ConnectionType ConnectionType `json:"connectionType"` // 连接类型 1:mqtt 2:ws 默认1
+	ExtInfo        map[string]any `json:"extInfo"`        // 拓展信息
 }
 
 // OtpResp 获取连接凭证响应

@@ -326,14 +326,8 @@ github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 h1:C3w9PqII01/Oq
 github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822/go.mod h1:+n7T8mK8HuQTcFwEeznm/DIxMOiR9yIdICNftLE1DvQ=
 github.com/natefinch/lumberjack v2.0.0+incompatible h1:4QJd3OLAMgj7ph+yZTuX13Ld4UpgHp07nNdFX7mqFfM=
 github.com/natefinch/lumberjack v2.0.0+incompatible/go.mod h1:Wi9p2TTF5DG5oU+6YfsmYQpsTIOm0B1VNzQg9Mw6nPk=
-github.com/og-saas/proto v0.0.46-0.20260804033730-bb18f8db3895 h1:apBbxrGAsUiuECnb0WwXMazl7pgrZMmYsrDHPFPyWpI=
-github.com/og-saas/proto v0.0.46-0.20260804033730-bb18f8db3895/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
-github.com/og-saas/proto v0.0.46-0.20260805081917-4d1ef20234de h1:B2GIOZthCMJW3xK6sIic+k8AeHkY+Bfb4OUy5mEAWyk=
-github.com/og-saas/proto v0.0.46-0.20260805081917-4d1ef20234de/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
-github.com/og-saas/proto v0.0.46-0.20260809034630-e391f26cb7ac h1:VIcGvkQxtRFwBCCKUySsOmrrRy5rpUtqFg8QtWF7djs=
-github.com/og-saas/proto v0.0.46-0.20260809034630-e391f26cb7ac/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
-github.com/og-saas/proto v0.0.46-0.20260818023438-a6cdfbb7a85b h1:um40uw6h45y2xVWvyjATYFQXWb6MKs9LGobQBbi7qr8=
-github.com/og-saas/proto v0.0.46-0.20260818023438-a6cdfbb7a85b/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
+github.com/og-saas/proto v0.0.46-0.20260907031925-93084388c656 h1:6uy1dRr6B+JI3cx8jbKJbR2o0kUQEtXiFuAQT5VSPJw=
+github.com/og-saas/proto v0.0.46-0.20260907031925-93084388c656/go.mod h1:6Nzk5zHaFFsfkk4DK0b0q2lsve+jPAXs9dqfkBcQZew=
 github.com/onsi/ginkgo/v2 v2.13.0 h1:0jY9lJquiL8fcf3M4LAXN5aMlS/b2BV86HFFPCPMgE4=
 github.com/onsi/ginkgo/v2 v2.13.0/go.mod h1:TE309ZR8s5FsKKpuB1YAQYBzCaAfUgatB/xlT/ETL/o=
 github.com/onsi/gomega v1.29.0 h1:KIA/t2t5UBzoirT4H9tsML45GEbo3ouUnBHsCfD2tVg=
