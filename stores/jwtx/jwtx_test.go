@@ -2,16 +2,18 @@ package jwtx
 
 import (
 	"context"
-	"github.com/golang-jwt/jwt/v4"
 	"net/http"
 	"testing"
+
+	"github.com/golang-jwt/jwt/v4"
+	"github.com/spf13/cast"
 )
 
 var j = NewJWT().
 	WithScene("api").
 	WithSecret("123456").
 	WithSso(true).
-	WithTTL(5)
+	WithTTL(500)
 
 func TestGenToken(t *testing.T) {
 
@@ -26,11 +28,11 @@ func TestGenToken(t *testing.T) {
 }
 
 func TestParseToken(t *testing.T) {
-	token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZ2UiOjEsImV4cCI6MTczOTAwMTk5OCwiaWF0IjoxNzM5MDAxOTkzLCJuYW1lIjoiMSIsInVpZCI6MX0.on-Ie0zcFwTYTnUq5BspTYbdT9BY9N4cZW0fHwA0M9E"
+	token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZ2UiOjEsImV4cCI6MTc4ODkyMTU0MSwiaWF0IjoxNzg4OTIxMDQxLCJuYW1lIjoiMSIsInVzZXJfaWQiOjF9.RNwQS9SJ8-wDwj8LS1Y_xR5FRVDL6MXPiHa9DAKNdz4"
 
 	_, data, err := j.ParseToken(&http.Request{
 		Header: http.Header{"Authorization": []string{"Bearer " + token}},
 	})
 	t.Log(err)
-	t.Log(data)
+	t.Log(cast.ToInt64(data["exp"]))
 }
