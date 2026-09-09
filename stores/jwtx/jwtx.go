@@ -77,7 +77,7 @@ func (j *JWT) GenerateToken(ctx context.Context, uid any, claims jwt.MapClaims) 
 		return "", ErrJwtGenerateError
 	}
 	if j.sso && j.rdb != nil {
-		err = j.rdb.Set(ctx, j.generateCacheKey(uid), j.getExpTime(accessToken), time.Second*time.Duration(j.ttl)).Err()
+		err = j.rdb.Set(ctx, j.generateCacheKey(uid), now+j.ttl, time.Second*time.Duration(j.ttl)).Err()
 		if err != nil {
 			logx.Error("set jwt info to redis err: ", err)
 			return "", ErrJwtGenerateError
