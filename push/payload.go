@@ -6,22 +6,23 @@ import "github.com/shopspring/decimal"
 
 // SiteUserFullPayload 会员信息全量上报（首次创建时使用，所有字段都会上报，包括零值）
 type SiteUserFullPayload struct {
-	SiteId          string   `json:"site_id"`          // 站点ID
-	UserId          string   `json:"user_id"`          // 用户ID
-	ChannelId       string   `json:"channel_id"`       // 渠道ID
-	Username        string   `json:"username"`         // 用户名
-	RegisterTime    int64    `json:"register_time"`    // 注册时间
-	RegisterCountry string   `json:"register_country"` // 注册国家 code_2
-	RegisterIp      string   `json:"register_ip"`      // 注册IP
-	RegisterSource  string   `json:"register_source"`  // 注册来源 H5 PC APP
-	UserTags        []string `json:"tags"`             // 会员标签
-	Phone           string   `json:"phone"`            // 手机号
-	Email           string   `json:"email"`            // 邮箱
-	Status          int32    `json:"status"`           // 账号状态
-	SubStatus       []int32  `json:"sub_status"`       // 账号子状态
-	VipLevel        int32    `json:"vip_level"`        // Vip等级
-	LastLoginTime   int64    `json:"last_login_time"`  // 最后登录时间
-	LastLoginIp     string   `json:"last_login_ip"`    // 最后登录IP
+	SiteId          string   `json:"site_id"`                // 站点ID
+	UserId          string   `json:"user_id"`                // 用户ID
+	ChannelId       string   `json:"channel_id"`             // 渠道ID
+	Username        string   `json:"username"`               // 用户名
+	RegisterTime    int64    `json:"register_time"`          // 注册时间
+	RegisterCountry string   `json:"register_country"`       // 注册国家 code_2
+	RegisterIp      string   `json:"register_ip"`            // 注册IP
+	RegisterSource  string   `json:"register_source"`        // 注册来源 H5 PC APP
+	UserTags        []string `json:"tags"`                   // 会员标签
+	Phone           string   `json:"phone"`                  // 手机号
+	Email           string   `json:"email"`                  // 邮箱
+	Status          int32    `json:"status"`                 // 账号状态
+	SubStatus       []int32  `json:"sub_status"`             // 账号子状态
+	VipLevel        int32    `json:"vip_level"`              // Vip等级
+	LastLoginTime   int64    `json:"last_login_time"`        // 最后登录时间
+	LastLoginIp     string   `json:"last_login_ip"`          // 最后登录IP
+	CountryCode     string   `json:"country_code,omitempty"` // 注册国家 code_2
 }
 
 func (p SiteUserFullPayload) GetFilterableAttributes() []any {
