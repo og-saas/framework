@@ -114,6 +114,9 @@ const (
 	TransferOut                  OrderPrefix = "TO"   // 转出操作【用户资金转入中台】
 	OrderPrefixActivity          OrderPrefix = "AO"   // 活动奖励订单
 	OrderPrefixJourney           OrderPrefix = "JY"   // 用户 Journey 奖励订单
+	OrderPrefixGameBet           OrderPrefix = "GB"   // 游戏投注
+	OrderPrefixGameSettle        OrderPrefix = "GS"   // 游戏结算
+	OrderPrefixGameAdjust        OrderPrefix = "GA"   // 游戏调整金额
 )
 const (
 	// OpenTelemetry 标准字段名（推荐）
