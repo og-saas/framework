@@ -20,7 +20,7 @@ const (
 	// ErrCodeNotFound 未找到
 	ErrCodeNotFound ErrCode = 404 // NotFound
 	// ErrCodeSystemConfigNotFound 系统配置未找到
-	ErrCodeSystemConfigNotFound ErrCode = 40401 // SystemConfigNotFound
+	ErrCodeSystemConfigNotFound codes.Code = 40401 // SystemConfigNotFound
 	// ErrCodeServerInternalError 服务器内部错误
 	ErrCodeServerInternalError ErrCode = 500 // ServerInternalError
 	// ErrCodeServiceUnavailable 服务不可用
