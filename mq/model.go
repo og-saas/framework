@@ -202,6 +202,7 @@ type UserVipLevelChangeNotify struct {
 	SiteId   int64 `json:"site_id,omitempty"`   // 站点ID
 	VipLevel int32 `json:"vip_level,omitempty"` // 变化后VIP等级
 	EventAt  int64 `json:"event_at,omitempty"`  // 事件时间
+	OldLevel int32 `json:"old_level,omitempty"` // 变化前VIP等级
 }
 
 // JackpotMatchRankNotify 锦标赛达成指定名次通知
