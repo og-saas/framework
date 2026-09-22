@@ -87,6 +87,8 @@ const (
 	ErrCodeVerifyFailWarning ErrCode = 10030 // VerifyFailWarning
 	// ErrCodeRepeatCompleteError 补充全错误（信息已存在，不允许重复补全信息）
 	ErrCodeRepeatCompleteError ErrCode = 10031 // RepeatCompleteError
+	// ErrCodeFeedbackDailyLimit 反馈次数达日上限
+	ErrCodeFeedbackDailyLimit ErrCode = 10032 // FeedbackDailyLimit
 )
 
 // 游戏相关

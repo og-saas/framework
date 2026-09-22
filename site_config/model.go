@@ -224,3 +224,10 @@ type AgentSettleAutoAuditConfig struct {
 	DirectSubordinateCount    int64           `json:"direct_subordinate_count"`     // 有效直属人数
 	DirectFlowRatio           decimal.Decimal `json:"direct_flow_ratio"`            //直属流水占比最低门槛（%）
 }
+
+// UserFeedbackConfig 用户反馈配置
+type UserFeedbackConfig struct {
+	DisplayAmount decimal.Decimal `json:"display_amount"` // 客户端展示金额
+	Multiple      decimal.Decimal `json:"multiple"`       // 稽核倍数
+	DailyLimit    int64           `json:"daily_limit"`    // 用户每日反馈上限
+}

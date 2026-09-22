@@ -29,7 +29,7 @@ const (
 	SiteConfigCategoryMarqueeIcon         SiteConfigCategory = 23 // 跑马灯图标
 	SiteConfigCategoryAppConfig           SiteConfigCategory = 24 // APP配置
 	SiteConfigCategoryLanguageConfig      SiteConfigCategory = 26 // 语言配置
-
+	SiteConfigCategoryUserFeedback        SiteConfigCategory = 27 // 用户反馈
 )
 
 type GameCalcBetAmountType int
@@ -99,6 +99,7 @@ const (
 	SiteConfigKeyMarqueeIcon                SiteConfigKey = "marquee_config"                // 跑马灯图标
 	SiteConfigKeyAppReportConfig            SiteConfigKey = "app_report_config"             // app上报配置
 	SiteConfigKeyLanguageConfig             SiteConfigKey = "language_config"               // 语言配置
+	SiteConfigKeyUserFeedbackConfig         SiteConfigKey = "user_feedback_config"          // 用户反馈配置
 )
 
 func (k SiteConfigKey) String() string {
