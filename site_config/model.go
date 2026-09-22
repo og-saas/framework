@@ -90,8 +90,10 @@ type GameCalcBetAmountItem struct {
 }
 
 type PayoutMonitor struct {
-	Rules   []PayoutMonitorRule `json:"rules"`
-	Enabled bool                `json:"enabled"`
+	Rules    []PayoutMonitorRule `json:"rules"`
+	Enabled  bool                `json:"enabled"`
+	Notice   bool                `json:"notice"`
+	MediaIDs []string            `json:"media_ids"`
 }
 
 type PayoutMonitorRule struct {
