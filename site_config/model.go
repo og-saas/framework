@@ -90,8 +90,10 @@ type GameCalcBetAmountItem struct {
 }
 
 type PayoutMonitor struct {
-	Rules   []PayoutMonitorRule `json:"rules"`
-	Enabled bool                `json:"enabled"`
+	Rules    []PayoutMonitorRule `json:"rules"`
+	Enabled  bool                `json:"enabled"`
+	Notice   bool                `json:"notice"`
+	MediaIDs []string            `json:"media_ids"`
 }
 
 type PayoutMonitorRule struct {
@@ -223,4 +225,11 @@ type AgentSettleAutoAuditConfig struct {
 	NonDirectTeamCashFlow     decimal.Decimal `json:"non_direct_team_cash_flow"`    // 非直属团队总有效流水
 	DirectSubordinateCount    int64           `json:"direct_subordinate_count"`     // 有效直属人数
 	DirectFlowRatio           decimal.Decimal `json:"direct_flow_ratio"`            //直属流水占比最低门槛（%）
+}
+
+// UserFeedbackConfig 用户反馈配置
+type UserFeedbackConfig struct {
+	DisplayAmount decimal.Decimal `json:"display_amount"` // 客户端展示金额
+	Multiple      decimal.Decimal `json:"multiple"`       // 稽核倍数
+	DailyLimit    int64           `json:"daily_limit"`    // 用户每日反馈上限
 }

@@ -57,4 +57,6 @@ const (
 	HandlerNameRefreshBalance HandlerName = "refresh_balance_handler"
 	// HandlerNameSendUnsentPush 发送未推送消息
 	HandlerNameSendUnsentPush HandlerName = "send_unsent_push_handler"
+	// HandlerSaveOnlineUser 保存在线用户信息
+	HandlerSaveOnlineUser HandlerName = "save_online_user_handler"
 )
