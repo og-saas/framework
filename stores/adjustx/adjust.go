@@ -4,51 +4,28 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"net/http"
+	"net/url"
+
 	"github.com/fatih/structs"
-	"github.com/samber/lo"
 	"github.com/spf13/cast"
-	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/service"
 	"github.com/zeromicro/go-zero/rest/httpc"
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"net/http"
-	"net/url"
 )
 
 type Sender struct {
-	ctx          context.Context
-	url          string
-	ChannelId    int64
-	AppToken     string
-	Auth         string
-	EventCodeMap map[AdEventType]string
+	ctx  context.Context
+	url  string
+	Auth string
 }
 
 func NewAdjustSender(ctx context.Context, eventConfig Config) *Sender {
-	eventMap := lo.SliceToMap(eventConfig.EventCodes, func(c EventCodeConfig) (AdEventType, string) {
-		return AdEventType(c.Name), c.Code
-	})
 	return &Sender{
-		ctx:          ctx,
-		url:          eventConfig.Url,
-		ChannelId:    eventConfig.ChannelID,
-		AppToken:     eventConfig.AppToken,
-		Auth:         eventConfig.Auth,
-		EventCodeMap: eventMap,
+		ctx:  ctx,
+		url:  eventConfig.Url,
+		Auth: eventConfig.Auth,
 	}
-}
-
-func (sender *Sender) GetCode(event AdEventType) string {
-	val, ok := sender.EventCodeMap[event]
-	if ok {
-		return val
-	}
-	logx.Errorf("channel %d, event %s Not Exist", sender.ChannelId, event)
-	return ""
-}
-
-func (sender *Sender) GetAppToken() string {
-	return sender.AppToken
 }
 
 func (sender *Sender) GetEnv(env string) string {
