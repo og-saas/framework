@@ -32,6 +32,7 @@ const (
 	TimeZone        Metadata = "Time-Zone"        // 时区
 	Path            Metadata = "Path"             // 请求路径
 	Adid            Metadata = "Adid"             // 请求路径
+	GpsAdid         Metadata = "Gps-Ad-Id"        // Google Advertising ID
 )
 
 // RpcMetadata 同步到下游服务的Metadata
