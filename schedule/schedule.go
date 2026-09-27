@@ -59,4 +59,6 @@ const (
 	HandlerNameSendUnsentPush HandlerName = "send_unsent_push_handler"
 	// HandlerSaveOnlineUser 保存在线用户信息
 	HandlerSaveOnlineUser HandlerName = "save_online_user_handler"
+	// HandlerChannelBillSettle 渠道账单结算
+	HandlerChannelBillSettle HandlerName = "channel_bill_settle_handler"
 )

@@ -117,6 +117,7 @@ const (
 	OrderPrefixGameBet           OrderPrefix = "GB"   // 游戏投注
 	OrderPrefixGameSettle        OrderPrefix = "GS"   // 游戏结算
 	OrderPrefixGameAdjust        OrderPrefix = "GA"   // 游戏调整金额
+	OrderPrefixChannelSettlement OrderPrefix = "CS"   // 渠道结算订单
 )
 const (
 	// OpenTelemetry 标准字段名（推荐）
