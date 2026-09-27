@@ -13,6 +13,7 @@ require (
 	github.com/aws/smithy-go v1.25.1
 	github.com/dromara/carbon/v2 v2.6.16
 	github.com/dtm-labs/rockscache v0.1.1
+	github.com/fatih/structs v1.1.0
 	github.com/go-redsync/redsync/v4 v4.15.0
 	github.com/go-resty/resty/v2 v2.17.1
 	github.com/golang-jwt/jwt/v4 v4.5.2

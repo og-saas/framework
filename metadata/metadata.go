@@ -31,6 +31,8 @@ const (
 	DataEncrypt     Metadata = "Data-Encrypt"     // 数据加密开关
 	TimeZone        Metadata = "Time-Zone"        // 时区
 	Path            Metadata = "Path"             // 请求路径
+	Adid            Metadata = "Adid"             // adjust adid
+	GpsAdid         Metadata = "Gps-Ad-Id"        // adjust gps_adid
 )
 
 // RpcMetadata 同步到下游服务的Metadata
