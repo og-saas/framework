@@ -233,3 +233,42 @@ type UserFeedbackConfig struct {
 	Multiple      decimal.Decimal `json:"multiple"`       // 稽核倍数
 	DailyLimit    int64           `json:"daily_limit"`    // 用户每日反馈上限
 }
+
+// RechargeChannelExceptionConfig 充值通道异常监控配置
+type RechargeChannelExceptionConfig struct {
+	Alarm           *RechargeChannelAlarm           `json:"alarm"`            // 异常报警指标
+	ExceptionNotice *RechargeChannelExceptionNotice `json:"exception_notice"` // 通道异常通知
+	NormalNotice    *RechargeChannelNormalNotice    `json:"normal_notice"`    // 通道日常通知
+}
+
+// RechargeChannelAlarm 充值通道异常报警指标
+// 高风险规则:统计窗口内拉单失败次数达到 FailCount 时,将支付通道标记为异常,
+// 仅发送异常通知,不自动调整排序或关闭支付通道,需运营人工处理(置底/关闭)后解除异常状态
+type RechargeChannelAlarm struct {
+	StatWindow int `json:"stat_window"` // 统计窗口(分钟),仅支持1-120的正整数
+	FailCount  int `json:"fail_count"`  // 拉单失败次数,仅支持1-99的正整数,达到该次数即触发拉单失败异常
+}
+
+// RechargeChannelExceptionNotice 充值通道异常通知配置
+// 通知条件:达到异常报警指标并命中异常值时立即通知,之后按间隔重复通知,
+// 达到最大通知次数或运营处理完成后停止重复通知
+type RechargeChannelExceptionNotice struct {
+	Telegram *NoticeAccountConfig `json:"telegram"`  // Telegram通知
+	Lark     *NoticeAccountConfig `json:"lark"`      // Lark通知
+	Interval int                  `json:"interval"`  // 通知间隔(分钟/次),仅支持1-30的正整数
+	MaxTimes int                  `json:"max_times"` // 最大通知次数(次),仅支持1-30的正整数,不含首次即时通知
+}
+
+// RechargeChannelNormalNotice 充值通道日常通知配置
+// 通知条件:按汇总通知频率统计实时(近24小时)所有充值支付通道的支付成功率、拉单失败率后发送汇总通知
+type RechargeChannelNormalNotice struct {
+	Telegram  *NoticeAccountConfig `json:"telegram"`  // Telegram通知
+	Lark      *NoticeAccountConfig `json:"lark"`      // Lark通知
+	Frequency int                  `json:"frequency"` // 汇总通知频率(小时),仅支持1-24的正整数
+}
+
+// NoticeAccountConfig 通知账号配置
+type NoticeAccountConfig struct {
+	Enabled  bool     `json:"enabled"`   // 是否启用,true-开启 false-关闭
+	MediaIDs []string `json:"media_ids"` // 通知账号(社媒ID列表)
+}

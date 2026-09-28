@@ -12,6 +12,8 @@ const (
 	JobKeyDemo JobKey = "demo"
 	// JobKeySyncGameRecord 同步游戏记录
 	JobKeySyncGameRecord JobKey = "sync_game_record"
+	// JobKeyRechargeChannelMonitor 充值通道监控
+	JobKeyRechargeChannelMonitor JobKey = "recharge_channel_monitor"
 )
 
 type HandlerName string
@@ -61,4 +63,6 @@ const (
 	HandlerSaveOnlineUser HandlerName = "save_online_user_handler"
 	// HandlerChannelBillSettle 渠道账单结算
 	HandlerChannelBillSettle HandlerName = "channel_bill_settle_handler"
+	// HandlerRechargeChannelMonitor 充值通道监控
+	HandlerRechargeChannelMonitor HandlerName = "recharge_channel_monitor_handler"
 )
