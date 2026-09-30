@@ -2,7 +2,7 @@ module github.com/og-saas/framework
 
 go 1.25.1
 
-//replace github.com/og-saas/proto => ../proto
+replace github.com/og-saas/proto => ../proto
 
 require (
 	github.com/apache/rocketmq-clients/golang/v5 v5.1.3
@@ -26,6 +26,8 @@ require (
 	github.com/sony/sonyflake v1.3.0
 	github.com/spf13/cast v1.10.0
 	github.com/tencentyun/cos-go-sdk-v5 v0.7.73
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.3.108
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/teo v1.3.108
 	github.com/zeromicro/go-zero v1.9.4
 	github.com/zeromicro/x v0.0.0-20240408115609-8224c482b07e
 	go.opentelemetry.io/otel v1.39.0
