@@ -65,4 +65,6 @@ const (
 	HandlerChannelBillSettle HandlerName = "channel_bill_settle_handler"
 	// HandlerRechargeChannelMonitor 充值通道监控
 	HandlerRechargeChannelMonitor HandlerName = "recharge_channel_monitor_handler"
+	// HandlerOnlineUserSimulation 用户在线模拟
+	HandlerOnlineUserSimulation HandlerName = "online_user_simulation_handler"
 )
