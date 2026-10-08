@@ -366,7 +366,7 @@ type WebsocketOnlineNotify struct {
 	DeviceId     string `json:"device_id,omitempty"`     // 设备ID
 	Endpoint     string `json:"endpoint,omitempty"`      // 终端类型 APP H5 PC
 	ConnectTimes int32  `json:"connect_times,omitempty"` // 连接次数
-	EventAt      int64  `json:"event_at,omitempty"`      // 事件时间
+	EventAt      int64  `json:"event_at,omitempty"`      // 事件时间 (这里直接使用的java callback的 单位毫秒)
 }
 
 // ReportRecordNotify 上报记录
