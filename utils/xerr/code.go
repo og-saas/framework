@@ -93,6 +93,8 @@ const (
 	ErrCodeFeedbackDailyLimit ErrCode = 10032 // FeedbackDailyLimit
 	// ErrCodeWithdrawAccountUnavailable 提款账号已停用
 	ErrCodeWithdrawAccountUnavailable ErrCode = 10033 // WithdrawAccountUnavailable
+	// ErrCodeWithdrawAccountBound 提款账号已被绑定
+	ErrCodeWithdrawAccountBound ErrCode = 10034 // WithdrawAccountBound
 )
 
 // 游戏相关

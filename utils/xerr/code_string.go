@@ -48,6 +48,7 @@ func _() {
 	_ = x[ErrCodeRepeatCompleteError-10031]
 	_ = x[ErrCodeFeedbackDailyLimit-10032]
 	_ = x[ErrCodeWithdrawAccountUnavailable-10033]
+	_ = x[ErrCodeWithdrawAccountBound-10034]
 	_ = x[ErrCodeGameEnterLogExists-20001]
 	_ = x[ErrCodeGameEnterBalanceNotEnough-20002]
 	_ = x[ErrCodeGamePlatformUnreachable-20003]
@@ -79,7 +80,7 @@ func _() {
 	_ = x[ErrCodeClaimRewardEndpointLimit-60014]
 }
 
-const _ErrCode_name = "SuccessFailParamErrorUnauthorizedForbiddenNotFoundServerInternalErrorServiceUnavailableUserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorThirdPartyAuthErrorNicknameTimeErrorMaxNumberErrorBalanceRetrievingErrorNicknameExistErrorOldPasswordErrorLoginLockedSetPinLockedFirstOldPinErrorSetPinLockedMaxWithdrawAccountNotExistsWithdrawAccountNotSetPinSetPinCaptchaNumErrorUserStatusForbiddenAccountFormatErrorCaptchaCoolingCaptchaDayLimitVerifyFailWarningRepeatCompleteErrorFeedbackDailyLimitWithdrawAccountUnavailableGameEnterLogExistsErrCodeGameEnterLogExistsGamePlatformUnreachableErrCodeGamePlatformUnavailableSportGameNotSetWithdrawBalanceNotEnoughWithdrawAmountOutOfRangeRechargeAmountOutOfChannelDayMaxWithdrawLockedWithdrawPinCheckErrorUserWithdrawForbiddenWithdrawLockedFirstErrCodeInvalidPromotionCodeErrCodeBindParentNotAllowedErrCodeCaptchaErrErrCodeActivityNotStartErrCodeActivityEndedErrCodeActivityClosedErrCodeRewardNotAvailableYetErrCodeRewardNotBelongToYouErrCodeRewardConditionNotMetErrCodeRewardNotClaimableErrCodeRewardExpiredErrCodeClaimRewardSmsLimitErrCodeClaimRewardEmailLimitErrCodeClaimRewardSameActivityTypeLimitErrCodeClaimRewardIPLimitErrCodeClaimRewardDeviceLimitErrCodeClaimRewardEndpointLimit"
+const _ErrCode_name = "SuccessFailParamErrorUnauthorizedForbiddenNotFoundServerInternalErrorServiceUnavailableUserNotExistsUserExistsUserPwdErrorHadBindErrorNotBindErrorRepeatUpdateErrorTemporaryTokenEmptyErrorTemporaryTokenInvalidErrorSelfHadBindErrorBindSameErrorUserAbnormalErrorThirdPartyAuthErrorNicknameTimeErrorMaxNumberErrorBalanceRetrievingErrorNicknameExistErrorOldPasswordErrorLoginLockedSetPinLockedFirstOldPinErrorSetPinLockedMaxWithdrawAccountNotExistsWithdrawAccountNotSetPinSetPinCaptchaNumErrorUserStatusForbiddenAccountFormatErrorCaptchaCoolingCaptchaDayLimitVerifyFailWarningRepeatCompleteErrorFeedbackDailyLimitWithdrawAccountUnavailableWithdrawAccountBoundGameEnterLogExistsErrCodeGameEnterLogExistsGamePlatformUnreachableErrCodeGamePlatformUnavailableSportGameNotSetWithdrawBalanceNotEnoughWithdrawAmountOutOfRangeRechargeAmountOutOfChannelDayMaxWithdrawLockedWithdrawPinCheckErrorUserWithdrawForbiddenWithdrawLockedFirstErrCodeInvalidPromotionCodeErrCodeBindParentNotAllowedErrCodeCaptchaErrErrCodeActivityNotStartErrCodeActivityEndedErrCodeActivityClosedErrCodeRewardNotAvailableYetErrCodeRewardNotBelongToYouErrCodeRewardConditionNotMetErrCodeRewardNotClaimableErrCodeRewardExpiredErrCodeClaimRewardSmsLimitErrCodeClaimRewardEmailLimitErrCodeClaimRewardSameActivityTypeLimitErrCodeClaimRewardIPLimitErrCodeClaimRewardDeviceLimitErrCodeClaimRewardEndpointLimit"
 
 var _ErrCode_map = map[ErrCode]string{
 	0:     _ErrCode_name[0:7],
@@ -122,35 +123,36 @@ var _ErrCode_map = map[ErrCode]string{
 	10031: _ErrCode_name[571:590],
 	10032: _ErrCode_name[590:608],
 	10033: _ErrCode_name[608:634],
-	20001: _ErrCode_name[634:652],
-	20002: _ErrCode_name[652:677],
-	20003: _ErrCode_name[677:700],
-	20004: _ErrCode_name[700:730],
-	20005: _ErrCode_name[730:745],
-	30001: _ErrCode_name[745:769],
-	30002: _ErrCode_name[769:793],
-	30003: _ErrCode_name[793:825],
-	30004: _ErrCode_name[825:839],
-	30005: _ErrCode_name[839:860],
-	30006: _ErrCode_name[860:881],
-	30007: _ErrCode_name[881:900],
-	40000: _ErrCode_name[900:927],
-	40001: _ErrCode_name[927:954],
-	50001: _ErrCode_name[954:971],
-	60001: _ErrCode_name[971:994],
-	60002: _ErrCode_name[994:1014],
-	60003: _ErrCode_name[1014:1035],
-	60004: _ErrCode_name[1035:1063],
-	60005: _ErrCode_name[1063:1090],
-	60006: _ErrCode_name[1090:1118],
-	60007: _ErrCode_name[1118:1143],
-	60008: _ErrCode_name[1143:1163],
-	60009: _ErrCode_name[1163:1189],
-	60010: _ErrCode_name[1189:1217],
-	60011: _ErrCode_name[1217:1256],
-	60012: _ErrCode_name[1256:1281],
-	60013: _ErrCode_name[1281:1310],
-	60014: _ErrCode_name[1310:1341],
+	10034: _ErrCode_name[634:654],
+	20001: _ErrCode_name[654:672],
+	20002: _ErrCode_name[672:697],
+	20003: _ErrCode_name[697:720],
+	20004: _ErrCode_name[720:750],
+	20005: _ErrCode_name[750:765],
+	30001: _ErrCode_name[765:789],
+	30002: _ErrCode_name[789:813],
+	30003: _ErrCode_name[813:845],
+	30004: _ErrCode_name[845:859],
+	30005: _ErrCode_name[859:880],
+	30006: _ErrCode_name[880:901],
+	30007: _ErrCode_name[901:920],
+	40000: _ErrCode_name[920:947],
+	40001: _ErrCode_name[947:974],
+	50001: _ErrCode_name[974:991],
+	60001: _ErrCode_name[991:1014],
+	60002: _ErrCode_name[1014:1034],
+	60003: _ErrCode_name[1034:1055],
+	60004: _ErrCode_name[1055:1083],
+	60005: _ErrCode_name[1083:1110],
+	60006: _ErrCode_name[1110:1138],
+	60007: _ErrCode_name[1138:1163],
+	60008: _ErrCode_name[1163:1183],
+	60009: _ErrCode_name[1183:1209],
+	60010: _ErrCode_name[1209:1237],
+	60011: _ErrCode_name[1237:1276],
+	60012: _ErrCode_name[1276:1301],
+	60013: _ErrCode_name[1301:1330],
+	60014: _ErrCode_name[1330:1361],
 }
 
 func (i ErrCode) String() string {
