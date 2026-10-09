@@ -91,6 +91,8 @@ const (
 	ErrCodeRepeatCompleteError ErrCode = 10031 // RepeatCompleteError
 	// ErrCodeFeedbackDailyLimit 反馈次数达日上限
 	ErrCodeFeedbackDailyLimit ErrCode = 10032 // FeedbackDailyLimit
+	// ErrCodeWithdrawAccountUnavailable 提款账号已停用
+	ErrCodeWithdrawAccountUnavailable ErrCode = 10033 // WithdrawAccountUnavailable
 )
 
 // 游戏相关
