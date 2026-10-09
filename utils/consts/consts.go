@@ -278,3 +278,8 @@ const (
 	ReportEventTypeAppInstall ReportEventType = 4 // APP安装
 	ReportEventTypeLinkClick  ReportEventType = 5 // 点击链接
 )
+
+const (
+	AppInstallTypePwa = "pwa"
+	AppInstallTypeApk = "apk"
+)
