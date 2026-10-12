@@ -19,12 +19,14 @@ require (
 	github.com/golang-jwt/jwt/v4 v4.5.2
 	github.com/google/uuid v1.6.0
 	github.com/jinzhu/copier v0.4.0
-	github.com/og-saas/proto v0.0.46-0.20260922024841-9bd5b23ea396
+	github.com/og-saas/proto v0.0.46-0.20261009102145-7a269f8aa2c5
 	github.com/redis/go-redis/v9 v9.17.2
 	github.com/samber/lo v1.52.0
 	github.com/shopspring/decimal v1.4.0
 	github.com/sony/sonyflake v1.3.0
 	github.com/spf13/cast v1.10.0
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.3.108
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/teo v1.3.108
 	github.com/tencentyun/cos-go-sdk-v5 v0.7.73
 	github.com/zeromicro/go-zero v1.9.4
 	github.com/zeromicro/x v0.0.0-20240408115609-8224c482b07e
