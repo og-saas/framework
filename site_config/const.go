@@ -98,8 +98,8 @@ const (
 	SiteConfigKeySAppConfig                     SiteConfigKey = "app_config"                        // app打包配置
 	SiteConfigKeyServerUrl                      SiteConfigKey = "server_url"                        // app api服务地址
 	SiteConfigKeyMarqueeIcon                    SiteConfigKey = "marquee_config"                    // 跑马灯图标
-	SiteConfigKeyAppReportConfig                SiteConfigKey = "app_report_config"                 // app上报配置(Android)
-	SiteConfigKeyAppReportWebConfig             SiteConfigKey = "app_report_config_web"             // app上报配置(WEB)
+	SiteConfigKeyAppReportConfig                SiteConfigKey = "app_report_config"                 // app上报配置(WWB)
+	SiteConfigKeyAppReportAPPConfig             SiteConfigKey = "app_report_config_app"             // app上报配置(APP)
 	SiteConfigKeyLanguageConfig                 SiteConfigKey = "language_config"                   // 语言配置
 	SiteConfigKeyUserFeedbackConfig             SiteConfigKey = "user_feedback_config"              // 用户反馈配置
 	SiteConfigKeyRechargeChannelExceptionConfig SiteConfigKey = "recharge_exception_monitor_config" // 充值通道异常监控
