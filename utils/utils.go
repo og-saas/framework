@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	mathrand "math/rand/v2"
+	"reflect"
 	"strings"
 
 	"github.com/og-saas/framework/utils/consts"
@@ -253,4 +254,64 @@ func GenUrl(domain, path string) string {
 		return path
 	}
 	return strings.TrimRight(domain, "/") + "/" + strings.TrimLeft(path, "/")
+}
+
+// IntAllElements 作为集合中的特殊值, 表示匹配所有元素
+const (
+	IntAllElements   = -1
+	StringAllElement = "all"
+)
+
+func Contains[T comparable](collection []T, element T) bool {
+	if ContainsAll(collection) {
+		return true
+	}
+
+	for _, v := range collection {
+		if v == element {
+			return true
+		}
+	}
+	return false
+}
+
+func ContainsAll[T comparable](collection []T) bool {
+	if len(collection) == 1 && isAllElements(collection[0]) {
+		return true
+	}
+
+	return false
+}
+
+func Intersect[T comparable, Slice ~[]T](list1, list2 Slice) Slice {
+	if ContainsAll(list1) {
+		return list2
+	}
+
+	result := Slice{}
+	seen := map[T]struct{}{}
+
+	for i := range list1 {
+		seen[list1[i]] = struct{}{}
+	}
+
+	for i := range list2 {
+		if _, ok := seen[list2[i]]; ok {
+			result = append(result, list2[i])
+		}
+	}
+
+	return result
+}
+
+func isAllElements[T comparable](value T) bool {
+	rv := reflect.ValueOf(value)
+	switch rv.Kind() {
+	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+		return rv.Int() == IntAllElements
+	case reflect.String:
+		return rv.String() == StringAllElement
+	default:
+	}
+	return false
 }
