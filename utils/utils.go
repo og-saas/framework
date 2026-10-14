@@ -259,7 +259,7 @@ func GenUrl(domain, path string) string {
 // IntAllElements 作为集合中的特殊值, 表示匹配所有元素
 const (
 	IntAllElements   = -1
-	StringAllElement = "all"
+	StringAllElement = "-1"
 )
 
 func Contains[T comparable](collection []T, element T) bool {
