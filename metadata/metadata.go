@@ -33,7 +33,7 @@ const (
 	Path            Metadata = "Path"             // 请求路径
 	Adid            Metadata = "Adid"             // adjust adid
 	GpsAdid         Metadata = "Gps-Ad-Id"        // adjust gps_adid
-	HumanCode       Metadata = "Human-Code"       // 人机验证码
+	HumanCheck      Metadata = "Human-Check"      // 人机验证数据
 )
 
 // RpcMetadata 同步到下游服务的Metadata
