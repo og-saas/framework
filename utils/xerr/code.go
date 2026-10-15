@@ -141,6 +141,10 @@ const (
 const (
 	// ErrCodeCaptchaErr 验证码错误
 	ErrCodeCaptchaErr ErrCode = 50001 // ErrCodeCaptchaErr
+	// ErrHumanCodeEmptyErr 人机验证码为空
+	ErrHumanCodeEmptyErr ErrCode = 50002 // HumanCodeEmptyErr
+	// ErrHumanCodeCheckFailedErr 人机验证码校验失败
+	ErrHumanCodeCheckFailedErr ErrCode = 50003 // ErrHumanCodeCheckFailedErr
 )
 
 // 优惠相关
