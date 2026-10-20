@@ -96,6 +96,12 @@ func Must(configs ...Config) {
 
 // MustJourneyDb 旅程初始化 JourneyDb
 func MustJourneyDb(config Config) {
+	if config.Driver == "" || config.DSN == "" {
+		panic("gorm: journey_db config missing, etcd must provide a non-empty journey_db")
+	}
+	if _, ok := dialectorFuncMap[config.Driver]; !ok {
+		panic(fmt.Errorf("gorm: journey_db config invalid: unsupported driver %q", config.Driver))
+	}
 	JourneyDb = config.NewDB()
 }
 
