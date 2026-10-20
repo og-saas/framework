@@ -10,6 +10,7 @@ import (
 	"reflect"
 	"strings"
 
+	"github.com/nyaruka/phonenumbers/v2"
 	"github.com/og-saas/framework/utils/consts"
 	"github.com/og-saas/framework/utils/tenant"
 	"github.com/zeromicro/go-zero/core/logx"
@@ -314,4 +315,34 @@ func isAllElements[T comparable](value T) bool {
 	default:
 	}
 	return false
+}
+
+// GetRealPhone normalizes a phone number into its national significant number
+// (NSN, digits only without country code or formatting).
+//
+// countryCode is the international calling code (e.g. 63 for PH, 86 for CN),
+// which is mapped to a region internally before parsing. If phone already
+// contains a leading country code (e.g. "+639..." or "639..."), Parse will
+// honor it; otherwise countryCode serves as the default region hint.
+func GetRealPhone(phone string, countryCode int) (string, error) {
+	region := phonenumbers.GetRegionCodeForCountryCode(countryCode)
+	if region == "" {
+		return "", fmt.Errorf("invalid country code: %d", countryCode)
+	}
+
+	// parse our phone number
+	num, err := phonenumbers.Parse(phone, region)
+	if err != nil {
+		return "", err
+	}
+
+	// check if it's a valid number for its region
+	valid := phonenumbers.IsValidNumber(num)
+	if !valid {
+		return "", fmt.Errorf("invalid phone number: %s", phone)
+	}
+
+	// return national significant number (digits only, no country code)
+	formatted := phonenumbers.GetNationalSignificantNumber(num)
+	return formatted, nil
 }
