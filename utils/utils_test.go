@@ -23,6 +23,26 @@ func TestBase36Encode(t *testing.T) {
 	fmt.Println(Base36Encode(91339144667596113))
 }
 
+func TestRealPhone(t *testing.T) {
+	ret, err := GetRealPhone("6309307853678", 63)
+	if err != nil {
+		t.Error(err)
+	}
+	fmt.Println(ret)
+
+	// 纯本地号码(不带国家码),靠 countryCode 作为 region 提示
+	ret, err = GetRealPhone("9307853671", 63)
+	if err != nil {
+		t.Error(err)
+	}
+	fmt.Println(ret)
+
+	// 无效国家码
+	if _, err = GetRealPhone("09307853678", 999); err == nil {
+		t.Error("expected error for invalid country code")
+	}
+}
+
 func TestBase36Decode(t *testing.T) {
 	//fmt.Println(Base36Decode("t3m5lz9lp8g0"))
 	//fmt.Println(Base36Decode("bs2punt1f8y2"))

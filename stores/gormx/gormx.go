@@ -13,8 +13,9 @@ import (
 )
 
 var (
-	Engine *DBEngine
-	once   sync.Once
+	Engine    *DBEngine
+	once      sync.Once
+	JourneyDb *gorm.DB
 )
 
 type DBEngine struct {
@@ -91,6 +92,17 @@ func (s *DBManager) getClientForTenant(tenantId int64) (*gorm.DB, bool) {
 
 func Must(configs ...Config) {
 	must(tenant.Default, configs...)
+}
+
+// MustJourneyDb 旅程初始化 JourneyDb
+func MustJourneyDb(config Config) {
+	if config.Driver == "" || config.DSN == "" {
+		panic("gorm: journey_db config missing, etcd must provide a non-empty journey_db")
+	}
+	if _, ok := dialectorFuncMap[config.Driver]; !ok {
+		panic(fmt.Errorf("gorm: journey_db config invalid: unsupported driver %q", config.Driver))
+	}
+	JourneyDb = config.NewDB()
 }
 
 // UpdateTenant 更新租户配置，configMap 中的全部更新，pool 中存在但 configMap 中没有的删除
