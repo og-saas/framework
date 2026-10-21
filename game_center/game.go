@@ -6,6 +6,7 @@ import (
 	"net/url"
 
 	"github.com/go-resty/resty/v2"
+	"github.com/og-saas/framework/utils/consts"
 	"github.com/spf13/cast"
 	"github.com/zeromicro/go-zero/core/jsonx"
 	"github.com/zeromicro/go-zero/core/logx"
@@ -24,6 +25,10 @@ func NewGameCenter(config CenterConfig) *GameCenter {
 
 func (g *GameCenter) GetCurrencyConf() []CurrencyItem {
 	return g.Config.CurrencyConf
+}
+
+func (g *GameCenter) GetGameWalletType() consts.GameWalletType {
+	return g.Config.GameWalletType
 }
 
 func getCurrency(cs []string) string {

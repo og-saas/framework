@@ -279,3 +279,14 @@ const (
 	ReportEventTypeApkInstall       ReportEventType = 5 // APK安装
 	ReportEventTypeChannelLinkClick ReportEventType = 6 // 点击渠道链接
 )
+
+type GameWalletType string
+
+const (
+	GameWalletTypeTransfer GameWalletType = "transfer_wallet"
+	GameWalletTypeSingle   GameWalletType = "single_wallet"
+)
+
+func (t GameWalletType) String() string {
+	return string(t)
+}

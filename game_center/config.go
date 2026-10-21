@@ -1,13 +1,18 @@
 package game_center
 
-import "strings"
+import (
+	"strings"
+
+	"github.com/og-saas/framework/utils/consts"
+)
 
 type CenterConfig struct {
-	Username     string                  `json:"username"`
-	Password     string                  `json:"password"`
-	RequestURL   string                  `json:"request_url"`
-	CurrencyConf []CurrencyItem          `json:"currency_conf"`
-	currencyMap  map[string]CurrencyItem // 新增：用于快速查找的映射
+	Username       string                  `json:"username"`
+	Password       string                  `json:"password"`
+	RequestURL     string                  `json:"request_url"`
+	GameWalletType consts.GameWalletType   `json:"game_wallet_type"`
+	CurrencyConf   []CurrencyItem          `json:"currency_conf"`
+	currencyMap    map[string]CurrencyItem // 新增：用于快速查找的映射
 }
 
 type CurrencyItem struct {
