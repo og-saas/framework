@@ -31,6 +31,7 @@ const (
 	SiteConfigCategoryLanguageConfig           SiteConfigCategory = 26 // 语言配置
 	SiteConfigCategoryUserFeedback             SiteConfigCategory = 27 // 用户反馈
 	SiteConfigCategoryRechargeExceptionMonitor SiteConfigCategory = 28 // 充值通道异常监控
+	SiteConfigCategoryGameAlert                SiteConfigCategory = 30 // 游戏失败率预警
 )
 
 type GameCalcBetAmountType int
@@ -103,6 +104,7 @@ const (
 	SiteConfigKeyLanguageConfig                 SiteConfigKey = "language_config"                   // 语言配置
 	SiteConfigKeyUserFeedbackConfig             SiteConfigKey = "user_feedback_config"              // 用户反馈配置
 	SiteConfigKeyRechargeChannelExceptionConfig SiteConfigKey = "recharge_exception_monitor_config" // 充值通道异常监控
+	SiteConfigKeyGameAlert                      SiteConfigKey = "game_failure_rate_monitor"         // 游戏失败率预警
 )
 
 func (k SiteConfigKey) String() string {

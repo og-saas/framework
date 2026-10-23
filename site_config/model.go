@@ -272,3 +272,19 @@ type NoticeAccountConfig struct {
 	Enabled  bool     `json:"enabled"`   // 是否启用,true-开启 false-关闭
 	MediaIDs []string `json:"media_ids"` // 通知账号(社媒ID列表)
 }
+
+// NoticeMediaItem 推送媒介
+type NoticeMediaItem struct {
+	Type     int      `json:"type"`      // 推送媒介：1=飞书 2=Telegram
+	MediaIDs []string `json:"media_ids"` // notice_media 表的媒体账号ID
+}
+
+// Config 站点配置（site_config.content）
+type Config struct {
+	SampleCount          int               `json:"sample_count"`           // 样本总数(次)
+	FailureRateThreshold decimal.Decimal   `json:"failure_rate_threshold"` // 失败率阈值(%)
+	AutoOffline          commonv1.Status   `json:"auto_offline"`           // 达到阈值时自动下架游戏：1=开启 2=关闭
+	Notice               commonv1.Status   `json:"notice"`                 // 告警推送开关：1=开启 2=关闭
+	NoticeMedias         []NoticeMediaItem `json:"notice_medias"`          // 推送账号绑定列表
+	NoticeTemplate       string            `json:"notice_template"`        // 告警内容模板
+}
