@@ -106,6 +106,7 @@ const (
 	SiteConfigKeyUserFeedbackConfig             SiteConfigKey = "user_feedback_config"              // 用户反馈配置
 	SiteConfigKeyRechargeChannelExceptionConfig SiteConfigKey = "recharge_exception_monitor_config" // 充值通道异常监控
 	SiteConfigKeyGameAlert                      SiteConfigKey = "game_failure_rate_monitor"         // 游戏失败率预警
+	SiteConfigKeyUserWithdrawSetting            SiteConfigKey = "user_withdrawal_setting"           // 用户提现设置
 )
 
 func (k SiteConfigKey) String() string {

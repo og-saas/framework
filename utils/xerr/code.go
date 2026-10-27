@@ -127,6 +127,8 @@ const (
 	ErrCodeUserWithdrawForbidden ErrCode = 30006 // UserWithdrawForbidden
 	// ErrCodeWithdrawLockedFirst 提现PIN码错误，账号已锁定（首次锁定）
 	ErrCodeWithdrawLockedFirst ErrCode = 30007 // WithdrawLockedFirst
+	// ErrCodeWithdrawRechargeAmountLimit 提现充值金额限制
+	ErrCodeWithdrawRechargeAmountLimit ErrCode = 30008 // WithdrawRechargeAmountLimit
 )
 
 // 代理相关
