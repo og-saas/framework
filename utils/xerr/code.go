@@ -95,6 +95,8 @@ const (
 	ErrCodeWithdrawAccountUnavailable ErrCode = 10033 // WithdrawAccountUnavailable
 	// ErrCodeWithdrawAccountBound 提款账号已被绑定
 	ErrCodeWithdrawAccountBound ErrCode = 10034 // WithdrawAccountBound
+	// ErrCodeWithdrawRechargeAmountLimit 提现充值金额限制
+	ErrCodeWithdrawRechargeAmountLimit = 10035 // WithdrawRechargeAmountLimit
 )
 
 // 游戏相关
