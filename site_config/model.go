@@ -288,3 +288,8 @@ type Config struct {
 	NoticeMedias         []NoticeMediaItem `json:"notice_medias"`          // 推送账号绑定列表
 	NoticeTemplate       string            `json:"notice_template"`        // 告警内容模板
 }
+
+// DefaultRechargeChannelConfig 充值默认支付通道开关配置
+type DefaultRechargeChannelConfig struct {
+	Strategy DefaultRechargeChannelType `json:"strategy"` // 模式
+}

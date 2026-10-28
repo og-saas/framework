@@ -31,6 +31,7 @@ const (
 	SiteConfigCategoryLanguageConfig           SiteConfigCategory = 26 // 语言配置
 	SiteConfigCategoryUserFeedback             SiteConfigCategory = 27 // 用户反馈
 	SiteConfigCategoryRechargeExceptionMonitor SiteConfigCategory = 28 // 充值通道异常监控
+	SiteConfigCategoryDefaultRechargeChannel   SiteConfigCategory = 29 // 充值默认支付通道开关配置
 	SiteConfigCategoryGameAlert                SiteConfigCategory = 30 // 游戏失败率预警
 )
 
@@ -54,58 +55,59 @@ const (
 type SiteConfigKey string
 
 const (
-	SiteConfigKeyGame                           SiteConfigKey = "game"                              // 游戏账号配置
-	SiteConfigKeyGameFixedCategory              SiteConfigKey = "fixed_game_category"               // 游戏内置分类
-	SiteConfigKeyGameCalcBetAmount              SiteConfigKey = "game_calc_bet_amount"              // 游戏投注金额计算方式
-	SiteConfigKeyBaseInfo                       SiteConfigKey = "base_info"                         // 站点基础信息配置
-	SiteConfigKeyMixpanel                       SiteConfigKey = "mixpanel"                          // mixpanel 配置
-	SiteConfigKeySiteLogo                       SiteConfigKey = "site_logo"                         // 站点logo
-	SiteConfigKeySiteLCurrencyConfig            SiteConfigKey = "currency_config"                   // 币种配置
-	SiteConfigKeyFooterInfo                     SiteConfigKey = "footer_info"                       // 页脚配置
-	SiteConfigKeyDownloadAPP                    SiteConfigKey = "download_app"                      // 下载app配置
-	SiteConfigKeyAPPInstall                     SiteConfigKey = "app_install"                       // APP安装入口
-	SiteConfigKeyFooterMenus                    SiteConfigKey = "footer_menus"                      // 底部主菜单配置
-	SiteConfigKeySidebarUserAccount             SiteConfigKey = "sidebar_user_account"              // 用户账号区域
-	SiteConfigKeySidebarRechargeDeposit         SiteConfigKey = "sidebar_recharge_withdraw"         // 充值提现区域
-	SiteConfigKeySidebarFeatureOperation        SiteConfigKey = "sidebar_feature_operation"         // 功能操作区域
-	SiteConfigKeySidebarOtherLinks              SiteConfigKey = "sidebar_other_links"               // 其他链接区域
-	SiteConfigKeySidebarAdPlacement             SiteConfigKey = "sidebar_ad_placement"              // 广告位区域
-	SiteConfigKeySidebarAppDownload             SiteConfigKey = "sidebar_app_download"              // APP下载区域
-	SiteConfigKeySidebarLanguageSwitch          SiteConfigKey = "sidebar_language_switch"           // 语言切换区域
-	SiteConfigKeySidebarVersionInfo             SiteConfigKey = "sidebar_version_info"              // 版本信息区域
-	SiteConfigKeySidebarLoginRegister           SiteConfigKey = "sidebar_login_register"            // 登录注册区域
-	SiteConfigKeyUnLoginHomeConfig              SiteConfigKey = "home_config"                       // 首页未登录宣传图
-	SiteConfigKeyLobbyEnter                     SiteConfigKey = "lobby_enter"                       // 大厅快捷入口
-	SiteConfigKeySeoConfig                      SiteConfigKey = "seo_config"                        // SEO配置
-	SiteConfigKeyGoogleConfig                   SiteConfigKey = "google_config"                     // 谷歌登录配置
-	SiteConfigKeyAgentGradeIcons                SiteConfigKey = "agent_grade_icons"                 // 代理等级图标
-	SiteConfigKeyAgentSettleAudit               SiteConfigKey = "agent_settlement_auto_audit"       // 代理结算自动审核配置
-	SiteConfigKeyVipPromoteInfo                 SiteConfigKey = "vip_promote_info"                  // Vip宣传图
-	SiteConfigKeyVipCustomerService             SiteConfigKey = "vip_customer_service"              // Vip专属客服
-	SiteConfigKeyPlatformCurrencySafetyRisk     SiteConfigKey = "platform_currency_safety_risk"     // 币种兑换规则配置
-	SiteConfigKeyPayoutMonitor                  SiteConfigKey = "payout_monitor"                    // 派奖监控
-	SiteConfigKeyPlatformCurrencyMode           SiteConfigKey = "platform_currency_mode"            // 平台币模式
-	SiteConfigKeyRegisterBg                     SiteConfigKey = "register_backgroud_img"            // 注册背景图配置
-	SiteConfigKeyLoginBg                        SiteConfigKey = "login_backgroud_img"               // 登录背景图配置
-	SiteConfigKeyAuditMode                      SiteConfigKey = "audit_mode"                        // 稽核模式
-	SiteConfigKeyAuditWeight                    SiteConfigKey = "audit_weight"                      // 稽核权重
-	SiteConfigKeyWithdrawAuditConfig            SiteConfigKey = "withdraw_audit_config"             // 提现审核配置
-	SiteConfigKeyManualReviewProcess            SiteConfigKey = "manual_review_process"             // 提款自动转人工审核配置
-	SiteConfigKeyPcShowType                     SiteConfigKey = "site_pc_show_type"                 // PC展示样式
-	SiteConfigKeyRegionControl                  SiteConfigKey = "region_access_control"             // 地区访问控制
-	SiteConfigKeyInterceptionPage               SiteConfigKey = "interception_page"                 // 拦截页设置
-	SiteConfigKeyMaintenance                    SiteConfigKey = "site_maintenance"                  // 站点维护设置
-	SiteConfigKeyTopDownloadBar                 SiteConfigKey = "top_download_bar"                  // 顶部下载条设置
-	SiteConfigKeySidebarVisualMenu              SiteConfigKey = "sidebar_visual_menu"               // 侧边栏可视化菜单
-	SiteConfigKeySAppConfig                     SiteConfigKey = "app_config"                        // app打包配置
-	SiteConfigKeyServerUrl                      SiteConfigKey = "server_url"                        // app api服务地址
-	SiteConfigKeyMarqueeIcon                    SiteConfigKey = "marquee_config"                    // 跑马灯图标
-	SiteConfigKeyAppReportConfig                SiteConfigKey = "app_report_config"                 // app上报配置(WWB)
-	SiteConfigKeyAppReportAPPConfig             SiteConfigKey = "app_report_config_app"             // app上报配置(APP)
-	SiteConfigKeyLanguageConfig                 SiteConfigKey = "language_config"                   // 语言配置
-	SiteConfigKeyUserFeedbackConfig             SiteConfigKey = "user_feedback_config"              // 用户反馈配置
-	SiteConfigKeyRechargeChannelExceptionConfig SiteConfigKey = "recharge_exception_monitor_config" // 充值通道异常监控
-	SiteConfigKeyGameAlert                      SiteConfigKey = "game_failure_rate_monitor"         // 游戏失败率预警
+	SiteConfigKeyGame                           SiteConfigKey = "game"                                    // 游戏账号配置
+	SiteConfigKeyGameFixedCategory              SiteConfigKey = "fixed_game_category"                     // 游戏内置分类
+	SiteConfigKeyGameCalcBetAmount              SiteConfigKey = "game_calc_bet_amount"                    // 游戏投注金额计算方式
+	SiteConfigKeyBaseInfo                       SiteConfigKey = "base_info"                               // 站点基础信息配置
+	SiteConfigKeyMixpanel                       SiteConfigKey = "mixpanel"                                // mixpanel 配置
+	SiteConfigKeySiteLogo                       SiteConfigKey = "site_logo"                               // 站点logo
+	SiteConfigKeySiteLCurrencyConfig            SiteConfigKey = "currency_config"                         // 币种配置
+	SiteConfigKeyFooterInfo                     SiteConfigKey = "footer_info"                             // 页脚配置
+	SiteConfigKeyDownloadAPP                    SiteConfigKey = "download_app"                            // 下载app配置
+	SiteConfigKeyAPPInstall                     SiteConfigKey = "app_install"                             // APP安装入口
+	SiteConfigKeyFooterMenus                    SiteConfigKey = "footer_menus"                            // 底部主菜单配置
+	SiteConfigKeySidebarUserAccount             SiteConfigKey = "sidebar_user_account"                    // 用户账号区域
+	SiteConfigKeySidebarRechargeDeposit         SiteConfigKey = "sidebar_recharge_withdraw"               // 充值提现区域
+	SiteConfigKeySidebarFeatureOperation        SiteConfigKey = "sidebar_feature_operation"               // 功能操作区域
+	SiteConfigKeySidebarOtherLinks              SiteConfigKey = "sidebar_other_links"                     // 其他链接区域
+	SiteConfigKeySidebarAdPlacement             SiteConfigKey = "sidebar_ad_placement"                    // 广告位区域
+	SiteConfigKeySidebarAppDownload             SiteConfigKey = "sidebar_app_download"                    // APP下载区域
+	SiteConfigKeySidebarLanguageSwitch          SiteConfigKey = "sidebar_language_switch"                 // 语言切换区域
+	SiteConfigKeySidebarVersionInfo             SiteConfigKey = "sidebar_version_info"                    // 版本信息区域
+	SiteConfigKeySidebarLoginRegister           SiteConfigKey = "sidebar_login_register"                  // 登录注册区域
+	SiteConfigKeyUnLoginHomeConfig              SiteConfigKey = "home_config"                             // 首页未登录宣传图
+	SiteConfigKeyLobbyEnter                     SiteConfigKey = "lobby_enter"                             // 大厅快捷入口
+	SiteConfigKeySeoConfig                      SiteConfigKey = "seo_config"                              // SEO配置
+	SiteConfigKeyGoogleConfig                   SiteConfigKey = "google_config"                           // 谷歌登录配置
+	SiteConfigKeyAgentGradeIcons                SiteConfigKey = "agent_grade_icons"                       // 代理等级图标
+	SiteConfigKeyAgentSettleAudit               SiteConfigKey = "agent_settlement_auto_audit"             // 代理结算自动审核配置
+	SiteConfigKeyVipPromoteInfo                 SiteConfigKey = "vip_promote_info"                        // Vip宣传图
+	SiteConfigKeyVipCustomerService             SiteConfigKey = "vip_customer_service"                    // Vip专属客服
+	SiteConfigKeyPlatformCurrencySafetyRisk     SiteConfigKey = "platform_currency_safety_risk"           // 币种兑换规则配置
+	SiteConfigKeyPayoutMonitor                  SiteConfigKey = "payout_monitor"                          // 派奖监控
+	SiteConfigKeyPlatformCurrencyMode           SiteConfigKey = "platform_currency_mode"                  // 平台币模式
+	SiteConfigKeyRegisterBg                     SiteConfigKey = "register_backgroud_img"                  // 注册背景图配置
+	SiteConfigKeyLoginBg                        SiteConfigKey = "login_backgroud_img"                     // 登录背景图配置
+	SiteConfigKeyAuditMode                      SiteConfigKey = "audit_mode"                              // 稽核模式
+	SiteConfigKeyAuditWeight                    SiteConfigKey = "audit_weight"                            // 稽核权重
+	SiteConfigKeyWithdrawAuditConfig            SiteConfigKey = "withdraw_audit_config"                   // 提现审核配置
+	SiteConfigKeyManualReviewProcess            SiteConfigKey = "manual_review_process"                   // 提款自动转人工审核配置
+	SiteConfigKeyPcShowType                     SiteConfigKey = "site_pc_show_type"                       // PC展示样式
+	SiteConfigKeyRegionControl                  SiteConfigKey = "region_access_control"                   // 地区访问控制
+	SiteConfigKeyInterceptionPage               SiteConfigKey = "interception_page"                       // 拦截页设置
+	SiteConfigKeyMaintenance                    SiteConfigKey = "site_maintenance"                        // 站点维护设置
+	SiteConfigKeyTopDownloadBar                 SiteConfigKey = "top_download_bar"                        // 顶部下载条设置
+	SiteConfigKeySidebarVisualMenu              SiteConfigKey = "sidebar_visual_menu"                     // 侧边栏可视化菜单
+	SiteConfigKeySAppConfig                     SiteConfigKey = "app_config"                              // app打包配置
+	SiteConfigKeyServerUrl                      SiteConfigKey = "server_url"                              // app api服务地址
+	SiteConfigKeyMarqueeIcon                    SiteConfigKey = "marquee_config"                          // 跑马灯图标
+	SiteConfigKeyAppReportConfig                SiteConfigKey = "app_report_config"                       // app上报配置(WWB)
+	SiteConfigKeyAppReportAPPConfig             SiteConfigKey = "app_report_config_app"                   // app上报配置(APP)
+	SiteConfigKeyLanguageConfig                 SiteConfigKey = "language_config"                         // 语言配置
+	SiteConfigKeyUserFeedbackConfig             SiteConfigKey = "user_feedback_config"                    // 用户反馈配置
+	SiteConfigKeyRechargeChannelExceptionConfig SiteConfigKey = "recharge_exception_monitor_config"       // 充值通道异常监控
+	SiteConfigKeyGameAlert                      SiteConfigKey = "game_failure_rate_monitor"               // 游戏失败率预警
+	SiteConfigKeyDefaultRechargeChannel         SiteConfigKey = "recharge_default_payment_channel_config" // 充值默认支付通道开关配置
 )
 
 func (k SiteConfigKey) String() string {
@@ -124,4 +126,13 @@ const (
 	MemberScopeCustomMember MemberScope = 2 // 自定义会员
 	MemberScopeVipLevel     MemberScope = 3 // VIP等级
 	MemberScopeChannel      MemberScope = 4 // 指定渠道
+)
+
+// DefaultRechargeChannelType 充值默认支付通道类型
+type DefaultRechargeChannelType int
+
+const (
+	_                                 DefaultRechargeChannelType = 0 // 全部关闭
+	DefaultRechargeChannelTypeLast    DefaultRechargeChannelType = 1 // 上次成功
+	DefaultRechargeChannelTypeHighest DefaultRechargeChannelType = 2 // 24小时最高成功率
 )
