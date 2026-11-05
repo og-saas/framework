@@ -48,7 +48,7 @@ func BuildBatches(domains []Domain, paths []string, batchSize int) ([]Batch, err
 		hosts := []string{host}
 		schemes := []string{"http"}
 		if d.HTTPS {
-			schemes = append(schemes, "https")
+			schemes = []string{"https"}
 		}
 		if groups[zone] == nil {
 			groups[zone] = map[string]bool{}
