@@ -28,6 +28,8 @@ func RewardSubCategoryToTransactionSubCategory(subCategory commonv1.RewardSubCat
 		return commonv1.TransactionSubCategory_ACTIVITY_SUPER_RED_ENVELOPE
 	case commonv1.RewardSubCategory_REWARD_SUB_VIP_RED_ENVELOPE:
 		return commonv1.TransactionSubCategory_ACTIVITY_VIP_RED_ENVELOPE
+	case commonv1.RewardSubCategory_REWARD_SUB_CONTINUOUS_RECHARGE:
+		return commonv1.TransactionSubCategory_ACTIVITY_CONTINUOUS_RECHARGE
 	case commonv1.RewardSubCategory_REWARD_SUB_AGENT_INVITE:
 		return commonv1.TransactionSubCategory_REBATE_RECEIVE
 	case commonv1.RewardSubCategory_REWARD_SUB_AGENT_FEE_DIRECT, commonv1.RewardSubCategory_REWARD_SUB_AGENT_FEE_INDIRECT:
@@ -83,7 +85,8 @@ func TransactionSubCategoryToTransactionCategory(subCategory commonv1.Transactio
 		commonv1.TransactionSubCategory_ACTIVITY_LUCKY_WHEEL,
 		commonv1.TransactionSubCategory_ACTIVITY_RED_ENVELOPE_RAIN,
 		commonv1.TransactionSubCategory_ACTIVITY_SUPER_RED_ENVELOPE,
-		commonv1.TransactionSubCategory_ACTIVITY_VIP_RED_ENVELOPE:
+		commonv1.TransactionSubCategory_ACTIVITY_VIP_RED_ENVELOPE,
+		commonv1.TransactionSubCategory_ACTIVITY_CONTINUOUS_RECHARGE:
 		return commonv1.TransactionCategory_ACTIVITY
 	case commonv1.TransactionSubCategory_REBATE_SEND,
 		commonv1.TransactionSubCategory_REBATE_RECEIVE:

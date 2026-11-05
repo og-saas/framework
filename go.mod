@@ -20,7 +20,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/jinzhu/copier v0.4.0
 	github.com/nyaruka/phonenumbers/v2 v2.0.15
-	github.com/og-saas/proto v0.0.46-0.20261009102145-7a269f8aa2c5
+	github.com/og-saas/proto v0.0.46-0.20261105015737-4ca0d75f8f8e
 	github.com/redis/go-redis/v9 v9.17.2
 	github.com/samber/lo v1.52.0
 	github.com/shopspring/decimal v1.4.0
