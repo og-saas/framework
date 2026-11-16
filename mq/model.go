@@ -154,19 +154,20 @@ type AgentBetRebatNotify struct {
 
 // UserRegisterNotify 用户注册通知
 type UserRegisterNotify struct {
-	SiteID         int64  `json:"site_id"`         // 站点id
-	ChannelID      int64  `json:"channel_id"`      // 渠道id
-	UserID         int64  `json:"user_id"`         // 用户id
-	IP             string `json:"ip"`              // 注册ip
-	Domain         string `json:"domain"`          // 注册域名
-	DeviceID       string `json:"device_id"`       // 设备id
-	DeviceEndpoint string `json:"device_endpoint"` // 设备终端 APP H5 PC
-	RegisterType   int64  `json:"register_type"`   // 注册方式
-	SourceTarget   int64  `json:"source_target"`   // 注册来源 1-活动 2-游戏 3-代理推广
-	SourceID       int64  `json:"source_id"`       // 注册来源id
-	CountryCode    string `json:"country_code"`    // 国家码
-	RegisterAt     int64  `json:"register_at"`     // 注册时间
-	TimeZone       string `json:"time_zone"`       // 时区
+	SiteID         int64               `json:"site_id"`         // 站点id
+	ChannelID      int64               `json:"channel_id"`      // 渠道id
+	UserID         int64               `json:"user_id"`         // 用户id
+	IP             string              `json:"ip"`              // 注册ip
+	Domain         string              `json:"domain"`          // 注册域名
+	DeviceID       string              `json:"device_id"`       // 设备id
+	DeviceEndpoint consts.EndpointType `json:"device_endpoint"` // 设备终端 APP H5 PC
+	DeviceType     consts.DeviceType   `json:"device_type"`     // 设备类型
+	RegisterType   int64               `json:"register_type"`   // 注册方式
+	SourceTarget   int64               `json:"source_target"`   // 注册来源 1-活动 2-游戏 3-代理推广
+	SourceID       int64               `json:"source_id"`       // 注册来源id
+	CountryCode    string              `json:"country_code"`    // 国家码
+	RegisterAt     int64               `json:"register_at"`     // 注册时间
+	TimeZone       string              `json:"time_zone"`       // 时区
 }
 
 // WithdrawOrderCreateNotify 发起提现通知
