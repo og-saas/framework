@@ -33,6 +33,9 @@ const (
 	Path            Metadata = "Path"             // 请求路径
 	Adid            Metadata = "Adid"             // adjust adid
 	GpsAdid         Metadata = "Gps-Ad-Id"        // adjust gps_adid
+	Fbc             Metadata = "Fbc"              // facebook 广告点击ID（_fbc cookie）
+	Fbp             Metadata = "Fbp"              // facebook 浏览器ID（_fbp cookie）
+	Ttp             Metadata = "Ttp"              // tiktok 个性化cookie（_ttp cookie）
 	HumanCheck      Metadata = "Human-Check"      // 人机验证数据
 )
 
