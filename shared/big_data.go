@@ -1,7 +1,10 @@
 package shared
 
-import "time"
-import commonv1 "github.com/og-saas/proto/pb/common/v1"
+import (
+	"time"
+
+	commonv1 "github.com/og-saas/proto/pb/common/v1"
+)
 
 // 风控指标查询请求和响应结构
 // API: POST /api/risk/metric
@@ -10,6 +13,7 @@ const (
 	AccessTokenPath    = "/user-server/open/api/token"                // AccessTokenPath 用户服务获取token接口路径
 	RiskMetricPath     = "/data-api-server/api/risk/metric"           // RiskMetricPath 大数据风控指标查询接口路径
 	RiskMetricPagePath = "/data-api-server/api/risk/metric/page/user" // RiskMetricPagePath 大数据风控指标人员分页列表接口路径
+	GameNgrStatPath    = "/data-api-server/api/game/ngr/stat"         // GameNgrStatPath 大数据游戏净盈利统计接口路径
 )
 
 // 大数据请求基础配置
@@ -200,4 +204,43 @@ type RiskMetricPageResp struct {
 	Current int                `json:"current"` // 当前页
 	Pages   int                `json:"pages"`   // 总页数
 	TraceID string             `json:"traceId"` // 链路追踪ID
+}
+
+// GameNgrStatReq 游戏净盈利统计查询请求 (分页)
+type GameNgrStatReq struct {
+	Current   int64  `json:"current,omitempty"`    // 页码（默认 1）
+	Size      int64  `json:"size,omitempty"`       // 页数据大小（默认 10）
+	StartTime string `json:"start_time"`           // 查询开始时间（yyyy-MM-dd）
+	EndTime   string `json:"end_time"`             // 查询结束时间（yyyy-MM-dd）
+	ChannelID string `json:"channel_id,omitempty"` // 渠道ID
+	SiteID    string `json:"site_id,omitempty"`    // 站点ID
+}
+
+// GameNgrStatRecord 游戏净盈利统计记录 (records 元素)
+type GameNgrStatRecord struct {
+	StatTime           string  `json:"stat_time"`            // 统计时间（yyyy-MM-dd）
+	ChannelID          string  `json:"channel_id"`           // 渠道ID
+	PayCancelAmt       float64 `json:"pay_cancel_amt"`       // 赔付撤单金额_平台币
+	PayAmt             float64 `json:"pay_amt"`              // 赔付金额_平台币
+	BetCancelAmt       float64 `json:"bet_cancel_amt"`       // 投注撤销金额_平台币
+	BetAmt             float64 `json:"bet_amt"`              // 投注金额_平台币
+	PlatformServiceAmt float64 `json:"platform_service_amt"` // 厂商服务费_平台币
+	Ggr                float64 `json:"ggr"`                  // GGR
+	GNgr               float64 `json:"gngr"`                 // G-NGR
+}
+
+// GameNgrStatData 游戏净盈利统计数据 (data 节点, 分页)
+type GameNgrStatData struct {
+	Current int64               `json:"current"` // 页码
+	Size    int64               `json:"size"`    // 页数据大小
+	Total   int64               `json:"total"`   // 总数据大小
+	Records []GameNgrStatRecord `json:"records"` // 数据集
+}
+
+// GameNgrStatResp 游戏净盈利统计查询响应 (完整响应体)
+type GameNgrStatResp struct {
+	Code    int             `json:"code"`    // 响应代码 0=正常
+	Msg     string          `json:"msg"`     // 信息
+	Data    GameNgrStatData `json:"data"`    // 数据
+	TraceID string          `json:"traceId"` // 链路追踪ID
 }
