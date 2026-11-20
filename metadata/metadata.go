@@ -36,7 +36,8 @@ const (
 	Fbc             Metadata = "Fbc"              // facebook 广告点击ID（_fbc cookie）
 	Fbp             Metadata = "Fbp"              // facebook 浏览器ID（_fbp cookie）
 	Ttp             Metadata = "Ttp"              // tiktok 个性化cookie（_ttp cookie）
-	PixelId         Metadata = "Pixel-Id"         // 上报归属像素ID（FB/TK，登录/注册等客户端事件携带）
+	PixelId         Metadata = "Pixel-Id"         // 上报归属像素ID（FB/TK登录/注册由客户端携带）
+	MgskyClickId    Metadata = "Mgsky-Click-Id"   // MgskyAds 点击标识（pixel_click_id）
 	HumanCheck      Metadata = "Human-Check"      // 人机验证数据
 )
 
