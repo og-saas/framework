@@ -39,6 +39,8 @@ const (
 	HandlerVipLevelDailyStat HandlerName = "vip_level_daily_stat_handler"
 	// HandlerActiveUserDailyStat 用户活跃每日统计
 	HandlerActiveUserDailyStat HandlerName = "active_user_daily_stat_handler"
+	// HandlerChannelBalanceDailyStat 渠道余额每日统计
+	HandlerChannelBalanceDailyStat HandlerName = "channel_balance_daily_stat_handler"
 	// HandlerNameSyncAgentExp 代理 同步经验值
 	HandlerNameSyncAgentExp HandlerName = "sync_agent_exp_handler"
 	// HandlerNameAgentCommissionStat 代理 用户佣金日统计
