@@ -95,6 +95,8 @@ const (
 	ErrCodeWithdrawAccountUnavailable ErrCode = 10033 // WithdrawAccountUnavailable
 	// ErrCodeWithdrawAccountBound 提款账号已被绑定
 	ErrCodeWithdrawAccountBound ErrCode = 10034 // WithdrawAccountBound
+	// ErrCodeWithdrawBindPerfect 提款绑定信息完善
+	ErrCodeWithdrawBindPerfect ErrCode = 10035 // WithdrawBindPerfect
 )
 
 // 游戏相关
