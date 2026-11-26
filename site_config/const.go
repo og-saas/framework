@@ -109,6 +109,7 @@ const (
 	SiteConfigKeyGameAlert                      SiteConfigKey = "game_failure_rate_monitor"               // 游戏失败率预警
 	SiteConfigKeyUserWithdrawSetting            SiteConfigKey = "user_withdrawal_setting"                 // 用户提现设置
 	SiteConfigKeyDefaultRechargeChannel         SiteConfigKey = "recharge_default_payment_channel_config" // 充值默认支付通道开关配置
+	SiteConfigKeyWithdrawBindVerify             SiteConfigKey = "withdraw_bind_verify"                    // 提现绑定信息验证配置
 )
 
 func (k SiteConfigKey) String() string {
